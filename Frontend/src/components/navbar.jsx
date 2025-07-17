@@ -58,7 +58,7 @@ const Navbar = () => {
             </span>
             {showServices && (
               <div style={dropdownStyle}>
-                <NavLink to="/websitemembership" style={dropdownLinkStyle}>Membership</NavLink>
+                <NavLink to="/masterclass" style={dropdownLinkStyle}>Membership</NavLink>
                 <NavLink to="/website" style={dropdownLinkStyle}> Website Creation</NavLink>
                 <NavLink to="/merchantprocessing" style={dropdownLinkStyle}>Merchant Processing</NavLink>
                
