@@ -11,7 +11,8 @@ import { WebsiteCreation } from './page/WebsiteCreation';
 import OperatePrivate from './courses/OperatePrivate'; 
 import Sophomore from './courses/Sophomore'; // adjust path if different
 import LiveClass from './page/LiveClass'; // adjust path if different
-
+import Senior from './courses/Senior';
+import MerchantProcessing from './page/MerchantProcessing';
 
 function App() {
   return (
@@ -28,9 +29,9 @@ function App() {
         <Route path="/operateprivate" element={<OperatePrivate />} />
         <Route path="/sophomore" element={<Sophomore />} />
         <Route path="/liveclass" element={<LiveClass />} />
-        {/* Add more routes as needed */}
         <Route path="/remedy" element={<Remedy/>} />
- 
+        <Route path="/unlimitedcredit" element={<Senior/>} />
+        <Route path="/pmp" element={<MerchantProcessing/>} />
       </Routes>
       <Footer/>
     </Router>
