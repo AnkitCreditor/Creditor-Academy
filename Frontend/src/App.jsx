@@ -2,11 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './page/LandingPage';
 import PrivateMerchant from './courses/PrivateMerchant' // adjust path if different
+import Remedy from './courses/Remedy'
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import { Masterclass } from './page/Masterclass';
 import Sov from './courses/sov';
 import { WebsiteCreation } from './page/WebsiteCreation';
+import OperatePrivate from './courses/OperatePrivate'; 
+import Sophomore from './courses/Sophomore'; // adjust path if different
+import LiveClass from './page/LiveClass'; // adjust path if different
 
 
 function App() {
@@ -21,8 +25,12 @@ function App() {
         <Route path="/masterclass" element={<Masterclass />}/>
         <Route path="/sov" element={<Sov/>}/>
         <Route path="/website" element={<WebsiteCreation/>}/>
-
-        
+        <Route path="/operateprivate" element={<OperatePrivate />} />
+        <Route path="/sophomore" element={<Sophomore />} />
+        <Route path="/liveclass" element={<LiveClass />} />
+        {/* Add more routes as needed */}
+        <Route path="/remedy" element={<Remedy/>} />
+ 
       </Routes>
       <Footer/>
     </Router>

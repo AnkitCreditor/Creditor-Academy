@@ -20,7 +20,7 @@ const AboutSection = () => {
       {/* Right: About Text */}
       <div className="about-text-container">
         <h2 className="about-title">
-          <span className="title-accent">About</span> Creditor Academy
+          <span className="title-accent">About</span> 
           <span className="title-underline"></span>
         </h2>
         <p className="about-description">
