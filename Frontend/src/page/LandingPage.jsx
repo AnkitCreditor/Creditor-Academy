@@ -58,10 +58,9 @@ const LandingPage = () => {
         </div>
       </div>
       <AboutSection />
-    <MasterclassBanner />
-     <CoursesSection />
-      
-        <GameBanner />
+      <MasterclassBanner />
+      <CoursesSection />
+      <GameBanner />
 
         {/* Merged Remedy Section */}
         <section style={{ width: '100%', margin: 0, padding: 0, background: 'white', fontFamily: 'Poppins, sans-serif', boxSizing: 'border-box' }}>
