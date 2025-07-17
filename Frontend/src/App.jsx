@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './page/LandingPage';
 import PrivateMerchant from './courses/PrivateMerchant' // adjust path if different
+import Remedy from './courses/Remedy'
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import OperatePrivate from './courses/OperatePrivate'; 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/sophomore" element={<Sophomore />} />
         <Route path="/liveclass" element={<LiveClass />} />
         {/* Add more routes as needed */}
+        <Route path="/remedy" element={<Remedy/>} />
+  
       </Routes>
       <Footer/>
     </Router>
