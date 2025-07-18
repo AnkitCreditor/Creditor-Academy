@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import img1 from '../assets/car.jpg';
 import img2 from '../assets/couple.png';
 import img3 from '../assets/man.png';
@@ -10,6 +11,7 @@ import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
 import StatsSection from '../components/StatsSection';
+import { useNavigate } from 'react-router-dom'; 
 
 const LandingPage = () => {
   useEffect(() => {
@@ -24,6 +26,7 @@ const LandingPage = () => {
   }, []);
 
   const sliderImages = [img1, img2, img3, img4];
+  const navigate = useNavigate();
 
   return (
     <>
@@ -57,19 +60,80 @@ const LandingPage = () => {
           ))}
         </div>
       </div>
-      <AboutSection />
+      <AboutSection /> 
       <MasterclassBanner />
       <CoursesSection />
       <GameBanner />
 
         {/* Merged Remedy Section */}
-        <section style={{ width: '100%', margin: 0, padding: 0, background: 'white', fontFamily: 'Poppins, sans-serif', boxSizing: 'border-box' }}>
-          <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', padding: 0, boxSizing: 'border-box' }}>
-            <div style={{ width: '100%', margin: '0 auto' }}>
-              <img src="https://creditoracademy.com/wp-content/uploads/2025/05/i-want-remedy-now-.png" alt="Book a demo" style={{ width: '100%', height: 'auto', display: 'block', border: 'none' }} />
-            </div>
-            <div style={{ textAlign: 'center', padding: '20px 10px' }}>
-              <p style={{ fontSize: '1.3rem', color: '#666', marginBottom: '20px', lineHeight: 1.6 }}>
+        <section
+          style={{
+            width: '100%',
+            margin: 0,
+            padding: 0,
+            background: 'white',
+            fontFamily: 'Poppins, sans-serif',
+            boxSizing: 'border-box',
+          }}
+        >
+          <div
+            style={{
+              maxWidth: '1200px',
+              margin: '0 auto',
+              padding: '0 1rem',
+              boxSizing: 'border-box',
+            }}
+          >
+            {/* Image Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              viewport={{ once: false, amount: 0.2 }}
+              style={{ width: '100%', overflow: 'hidden' }}
+            >
+              <img
+                src="https://creditoracademy.com/wp-content/uploads/2025/05/i-want-remedy-now-.png"
+                alt="Book a demo"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  border: 'none',
+                  borderRadius: '10px',
+                }}
+              />
+            </motion.div>
+
+            {/* Content Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: false, amount: 0.2 }}
+              style={{
+                textAlign: 'center',
+                padding: '30px 10px',
+                maxWidth: '700px',
+                margin: '0 auto',
+              }}
+            >
+              <p
+                style={{
+                  fontSize: '2rem',
+                  fontWeight: '700',
+                  lineHeight: 1.5,
+                  marginBottom: '30px',
+                  textAlign: 'center',
+                  background: 'linear-gradient(to right, #1a66d9, #5fa8d3)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  opacity: 0,
+                  transform: 'translateY(20px)',
+                  animation: 'fadeSlideIn 1s ease-out forwards',
+                  letterSpacing: '0.5px',
+                }}
+              >
                 Book a session by clicking on the button
               </p>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
@@ -96,8 +160,8 @@ const LandingPage = () => {
         </section>
 
         {/* Services Section */}
-      <section style={{ padding: '60px 5%', background: '#f5f5f5', fontFamily: 'Poppins, sans-serif', boxSizing: 'border-box' }}>
-        <div style={{ maxWidth: '1200px', margin: 'auto', display: 'flex', flexWrap: 'wrap', gap: '30px', justifyContent: 'center', boxSizing: 'border-box' }}>
+        <section style={{ padding: '60px 5%', background: '#f5f5f5', fontFamily: 'Poppins, sans-serif', boxSizing: 'border-box' }}>
+          <div style={{ maxWidth: '1200px', margin: 'auto', display: 'flex', flexWrap: 'wrap', gap: '30px', justifyContent: 'center', boxSizing: 'border-box' }}>
 
           {/* Website Creation Card */}
           <div

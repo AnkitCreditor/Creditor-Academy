@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './CoursesSection.css';
 import {
   FaFileAlt, FaComments, FaCheckCircle, FaCreditCard, FaUser,
@@ -107,7 +108,14 @@ const CoursesSection = () => {
 
       <div className="cards-wrapper">
         {courses.map((course, index) => (
-          <div className="course-card animated-fade" key={index}>
+          <motion.div
+            className="course-card"
+            key={index}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
             <div className="course-img-wrapper">
               <img src={course.image} alt={course.title} className="course-img" />
             </div>
@@ -126,7 +134,7 @@ const CoursesSection = () => {
                 LEARN MORE
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
