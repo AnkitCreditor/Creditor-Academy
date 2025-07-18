@@ -130,7 +130,7 @@ const Navbar = () => {
                   { to: "/sov", label: "FRESHMAN: Sovereignty 101" },
                   { to: "/sophomore", label: "SOPHOMORE: Become Private" },
                   { to: "/operateprivate", label: "JUNIOR: Operate Private" },
-                  { to: "/senioryear", label: "SENIOR: PRIVATE BUSINESS CREDIT" },
+                  { to: "/unlimitedcredit", label: "SENIOR: PRIVATE BUSINESS CREDIT" },
                   { to: "/remedy", label: "I WANT REMEDY NOW!" },
                   { to: "/privatemerchant", label: "Private Merchant & Processing" },
                 ].map((item, i) => (
@@ -172,7 +172,7 @@ const Navbar = () => {
                 {[
                   { to: "/masterclass", label: "Membership" },
                   { to: "/website", label: "Website Creation" },
-                  { to: "/merchantprocessing", label: "Merchant Processing" },
+                  { to: "/pmp", label: "Merchant Processing" },
                 ].map((item, i) => (
                   <NavLink
                     key={i}
@@ -215,7 +215,7 @@ const Navbar = () => {
                   <NavLink to="/sov" style={mobileDropdownLinkStyle} onClick={toggleMenu}>FRESHMAN: Sovereignty 101</NavLink>
                   <NavLink to="/sophomore" style={mobileDropdownLinkStyle} onClick={toggleMenu}>SOPHOMORE: Become Private</NavLink>
                   <NavLink to="/operateprivate" style={mobileDropdownLinkStyle} onClick={toggleMenu}>JUNIOR: Operate Private</NavLink>
-                  <NavLink to="/senioryear" style={mobileDropdownLinkStyle} onClick={toggleMenu}>SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
+                  <NavLink to="/unlimitedcredit" style={mobileDropdownLinkStyle} onClick={toggleMenu}>SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
                   <NavLink to="/remedy" style={mobileDropdownLinkStyle} onClick={toggleMenu}>I WANT REMEDY NOW!</NavLink>
                   <NavLink to="/privatemerchant" style={mobileDropdownLinkStyle} onClick={toggleMenu}>Private Merchant & Processing</NavLink>
                 </div>
@@ -233,7 +233,7 @@ const Navbar = () => {
                 <div style={mobileDropdownContent}>
                   <NavLink to="/masterclass" style={mobileDropdownLinkStyle} onClick={toggleMenu}>Membership</NavLink>
                   <NavLink to="/website" style={mobileDropdownLinkStyle} onClick={toggleMenu}>Website Creation</NavLink>
-                  <NavLink to="/merchantprocessing" style={mobileDropdownLinkStyle} onClick={toggleMenu}>Merchant Processing</NavLink>
+                  <NavLink to="/pmp" style={mobileDropdownLinkStyle} onClick={toggleMenu}>Merchant Processing</NavLink>
                 </div>
               )}
             </div>
