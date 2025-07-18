@@ -1,155 +1,149 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 // ✅ Admin Modal Component
 const AdminModal = ({ isOpen, onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
-  const toggleMode = () => setIsLogin(!isLogin);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [fullName, setFullName] = useState(""); // Register state (commented)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem("session_token"));
+
+  // const toggleMode = () => {
+  //   setIsLogin(!isLogin);
+  //   setError("");
+  // };
+
+  const handleLogout = () => {
+    localStorage.removeItem("session_token");
+    setIsLoggedIn(false);
+    onClose && onClose();
+    window.location.href = "/";
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    if (isLogin) {
+      // LOGIN
+      try {
+        const response = await axios.post("http://localhost:9000/api/auth/login", {
+          email,
+          password,
+        });
+        if (response.data.token) {
+          localStorage.setItem("session_token", response.data.token);
+          setIsLoggedIn(true);
+          onClose && onClose();
+          window.location.href = "/welcome"; // Redirect to welcome page after login
+        } else {
+          setError("Login failed. No token received.");
+        }
+      } catch (err) {
+        setError(
+          err.response?.data?.message || "Invalid email or password. Please try again."
+        );
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      // REGISTER (basic, no OTP)
+      // Register logic commented out
+      // try {
+      //   await axios.post("http://localhost:9000/api/auth/registerUser", {
+      //     email,
+      //     phone: "0000000000", // Placeholder, since phone is required in API
+      //   });
+      //   setIsLogin(true);
+      //   setError("Registration successful. Please login.");
+      // } catch (err) {
+      //   setError(
+      //     err.response?.data?.message || "Registration failed. Please try again."
+      //   );
+      // } finally {
+      //   setLoading(false);
+      // }
+    }
+  };
 
   if (!isOpen) return null;
 
+  if (isLoggedIn) {
+    return (
+      <div className="fixed inset-0 w-screen h-screen bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999]">
+        <div className="animate-fadeIn transition-all">
+          <div className="relative bg-white rounded-2xl px-7 pt-8 pb-6 min-w-[340px] max-w-[400px] shadow-2xl font-sans">
+            <button className="absolute top-3 right-4 text-2xl text-gray-400 hover:text-gray-600" onClick={onClose}>&times;</button>
+            <h2 className="text-2xl font-bold mb-5 text-center text-[#0D88C2]">You are logged in!</h2>
+            <button className="w-full bg-[#0D88C2] text-white py-3 rounded-lg font-semibold text-lg mt-2 hover:bg-[#0b7ab0] transition-colors" onClick={handleLogout}>Logout</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div style={overlayStyle}>
-      <div style={modalContainerStyle}>
-        <div style={modalStyle}>
-          <button style={closeBtnStyle} onClick={onClose}>×</button>
+    <div className="fixed inset-0 w-screen h-screen bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999]">
+      <div className="animate-fadeIn transition-all">
+        <div className="relative bg-white rounded-2xl px-7 pt-8 pb-6 min-w-[340px] max-w-[400px] shadow-2xl font-sans">
+          <button className="absolute top-3 right-4 text-2xl text-gray-400 hover:text-gray-600" onClick={onClose}>&times;</button>
 
-          <h2 style={headingStyle}>
-            {isLogin ? " Welcome " : " Create Account"}
-          </h2>
+          <h2 className="text-2xl font-bold mb-5 text-center text-[#0D88C2]"> Welcome </h2>
 
-          <form style={formStyle}>
-            {!isLogin && (
-              <input type="text" placeholder=" Full Name" style={inputStyle} />
-            )}
-            <input type="email" placeholder=" Email" style={inputStyle} />
-            <input type="password" placeholder=" Password" style={inputStyle} />
+          {error && (
+            <div className="text-red-700 bg-red-50 border border-red-200 rounded-md p-2 mb-3 font-medium text-center">{error}</div>
+          )}
 
-            <button type="submit" style={submitBtnStyle}>
-              {isLogin ? "Login →" : "Register →"}
+          <form className="flex flex-col gap-4 mb-2" onSubmit={handleSubmit}>
+            {/* Register fields commented out */}
+            {/*
+            <input
+              type="text"
+              placeholder=" Full Name"
+              className="px-4 py-3 rounded-lg border border-gray-300 text-base mb-2 focus:outline-none font-sans"
+              value={fullName}
+              onChange={e => setFullName(e.target.value)}
+              required
+            />
+            */}
+            <input
+              type="email"
+              placeholder=" Email"
+              className="px-4 py-3 rounded-lg border border-gray-300 text-base mb-2 focus:outline-none font-sans"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder=" Password"
+              className="px-4 py-3 rounded-lg border border-gray-300 text-base mb-2 focus:outline-none font-sans"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+
+            <button type="submit" className="w-full bg-[#0D88C2] text-white py-3 rounded-lg font-semibold text-lg mt-2 hover:bg-[#0b7ab0] transition-colors" disabled={loading}>
+              {loading ? "Logging in..." : "Login →"}
             </button>
           </form>
 
-          <p style={toggleTextStyle}>
+          {/* Register toggle commented out */}
+          {/*
+          <p className="text-center mt-3 text-gray-700 text-base">
             {isLogin ? "New here?" : "Already registered?"}{" "}
-            <span style={toggleLinkStyle} onClick={toggleMode}>
+            <span className="text-[#0D88C2] cursor-pointer font-semibold underline ml-1" onClick={toggleMode}>
               {isLogin ? "Register Now" : "Login"}
             </span>
           </p>
+          */}
         </div>
       </div>
     </div>
   );
 };
-
-// ✅ Styles
-const overlayStyle = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100vw",
-  height: "100vh",
-  background: "rgba(8, 8, 8, 0.7)",
-  backdropFilter: "blur(8px)",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  zIndex: 9999,
-};
-
-const modalContainerStyle = {
-  animation: "fadeIn 0.3s ease-in-out",
-  transition: "all 0.3s ease-in-out",
-};
-
-const modalStyle = {
-  background: "rgba(255, 255, 255, 0.05)",
-  backdropFilter: "blur(30px)",
-  borderRadius: "20px",
-  padding: "50px 35px",
-  width: "95%",
-  maxWidth: "500px",
-  boxShadow: "0 25px 45px rgba(0,0,0,0.3)",
-  color: "#fff",
-  position: "relative",
-  fontFamily: "'Poppins', sans-serif",
-  border: "1px solid rgba(255,255,255,0.1)",
-};
-
-const closeBtnStyle = {
-  position: "absolute",
-  top: "15px",
-  right: "20px",
-  fontSize: "26px",
-  color: "#fff",
-  background: "none",
-  border: "none",
-  cursor: "pointer",
-  transition: "transform 0.2s ease",
-};
-
-const headingStyle = {
-  textAlign: "center",
-  fontSize: "24px",
-  marginBottom: "30px",
-  fontWeight: "700",
-};
-
-const formStyle = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "18px",
-};
-
-const inputStyle = {
-  padding: "14px 16px",
-  borderRadius: "12px",
-  border: "none",
-  outline: "none",
-  background: "rgba(255,255,255,0.15)",
-  color: "#fff",
-  fontSize: "15px",
-  fontWeight: "400",
-  transition: "0.3s ease",
-};
-
-const submitBtnStyle = {
-  padding: "14px",
-  background: "linear-gradient(135deg, #0D88C2, #23A6D5)",
-  color: "#fff",
-  border: "none",
-  borderRadius: "12px",
-  fontWeight: "600",
-  fontSize: "16px",
-  cursor: "pointer",
-  transition: "transform 0.2s ease",
-};
-
-const toggleTextStyle = {
-  marginTop: "20px",
-  fontSize: "14px",
-  textAlign: "center",
-};
-
-const toggleLinkStyle = {
-  color: "#23A6D5",
-  cursor: "pointer",
-  fontWeight: "600",
-  textDecoration: "underline",
-};
-
-// ✅ Keyframe animation
-const fadeInKeyframes = `
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-`;
-
-if (typeof document !== "undefined" && !document.getElementById("modal-fadein-keyframes")) {
-  const styleTag = document.createElement("style");
-  styleTag.id = "modal-fadein-keyframes";
-  styleTag.innerHTML = fadeInKeyframes;
-  document.head.appendChild(styleTag);
-}
 
 export default AdminModal;
