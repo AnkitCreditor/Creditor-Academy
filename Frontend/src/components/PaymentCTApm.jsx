@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import masterclassImage from '../assets/masteclassmembership.png';
 
 const PaymentCTA = () => {
@@ -23,11 +24,7 @@ const PaymentCTA = () => {
             <CardDescription>
               Get full access to the Private Merchant course and all premium content when you become a Master Class Member.
             </CardDescription>
-            <CTAButton 
-              href="https://www.creditoracademy.com/page/show/152454?portal_id=14800" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
+            <CTAButton to="/masterclass">
               Join the Master Class
             </CTAButton>
           </CardContent>
@@ -84,6 +81,10 @@ const Heading = styled.h2`
   color: #0056b3;
   font-weight: bold;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 const Subheading = styled.p`
@@ -92,6 +93,11 @@ const Subheading = styled.p`
   color: #2c3e50;
   max-width: 720px;
   margin: 0 auto 40px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 0 15px;
+  }
 `;
 
 const Card = styled.div`
@@ -102,6 +108,11 @@ const Card = styled.div`
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   overflow: hidden;
   margin: 0 auto;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const BannerImage = styled.img`
@@ -121,6 +132,10 @@ const CardTitle = styled.h3`
   font-size: 24px;
   color: #0056b3;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const CardDescription = styled.p`
@@ -128,9 +143,14 @@ const CardDescription = styled.p`
   color: #333333;
   max-width: 600px;
   margin: 0 auto 30px;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
-const CTAButton = styled.a`
+const CTAButton = styled(Link)`
   display: inline-block;
   padding: 12px 28px;
   background-color: #1f7ae0;
@@ -138,10 +158,24 @@ const CTAButton = styled.a`
   font-size: 15px;
   border-radius: 8px;
   text-decoration: none;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
   
   &:hover {
     background-color: #0056b3;
+    box-shadow: 0 4px 12px rgba(31, 122, 224, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 24px;
+    font-size: 14px;
   }
 `;
 
