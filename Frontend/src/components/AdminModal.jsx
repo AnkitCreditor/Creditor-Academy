@@ -3,10 +3,11 @@ import axios from "axios";
 
 // ✅ Admin Modal Component
 const AdminModal = ({ isOpen, onClose }) => {
-  const [isLogin, setIsLogin] = useState(true);
+  // Registration code commented out
+  // const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [fullName, setFullName] = useState(""); // Register state (commented)
+  // const [fullName, setFullName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem("session_token"));
@@ -27,45 +28,26 @@ const AdminModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    if (isLogin) {
-      // LOGIN
-      try {
-        const response = await axios.post("http://localhost:9000/api/auth/login", {
-          email,
-          password,
-        });
-        if (response.data.token) {
-          localStorage.setItem("session_token", response.data.token);
-          setIsLoggedIn(true);
-          onClose && onClose();
-          window.location.href = "/welcome"; // Redirect to welcome page after login
-        } else {
-          setError("Login failed. No token received.");
-        }
-      } catch (err) {
-        setError(
-          err.response?.data?.message || "Invalid email or password. Please try again."
-        );
-      } finally {
-        setLoading(false);
+    // Only login logic
+    try {
+      const response = await axios.post("http://localhost:9000/api/auth/login", {
+        email,
+        password,
+      });
+      if (response.data.token) {
+        localStorage.setItem("session_token", response.data.token);
+        setIsLoggedIn(true);
+        onClose && onClose();
+        window.location.href = "/welcome"; // Redirect to welcome page after login
+      } else {
+        setError("Login failed. No token received.");
       }
-    } else {
-      // REGISTER (basic, no OTP)
-      // Register logic commented out
-      // try {
-      //   await axios.post("http://localhost:9000/api/auth/registerUser", {
-      //     email,
-      //     phone: "0000000000", // Placeholder, since phone is required in API
-      //   });
-      //   setIsLogin(true);
-      //   setError("Registration successful. Please login.");
-      // } catch (err) {
-      //   setError(
-      //     err.response?.data?.message || "Registration failed. Please try again."
-      //   );
-      // } finally {
-      //   setLoading(false);
-      // }
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Invalid email or password. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,12 +55,12 @@ const AdminModal = ({ isOpen, onClose }) => {
 
   if (isLoggedIn) {
     return (
-      <div className="fixed inset-0 w-screen h-screen bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999]">
-        <div className="animate-fadeIn transition-all">
-          <div className="relative bg-white rounded-2xl px-7 pt-8 pb-6 min-w-[340px] max-w-[400px] shadow-2xl font-sans">
-            <button className="absolute top-3 right-4 text-2xl text-gray-400 hover:text-gray-600" onClick={onClose}>&times;</button>
-            <h2 className="text-2xl font-bold mb-5 text-center text-[#0D88C2]">You are logged in!</h2>
-            <button className="w-full bg-[#0D88C2] text-white py-3 rounded-lg font-semibold text-lg mt-2 hover:bg-[#0b7ab0] transition-colors" onClick={handleLogout}>Logout</button>
+      <div style={overlayStyle}>
+        <div style={modalContainerStyle}>
+          <div style={modalStyle}>
+            <button style={closeBtnStyle} onClick={onClose}>×</button>
+            <h2 style={headingStyle}>You are logged in!</h2>
+            <button style={submitBtnStyle} onClick={handleLogout}>Logout</button>
           </div>
         </div>
       </div>
@@ -86,33 +68,31 @@ const AdminModal = ({ isOpen, onClose }) => {
   }
 
   return (
-    <div className="fixed inset-0 w-screen h-screen bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999]">
-      <div className="animate-fadeIn transition-all">
-        <div className="relative bg-white rounded-2xl px-7 pt-8 pb-6 min-w-[340px] max-w-[400px] shadow-2xl font-sans">
-          <button className="absolute top-3 right-4 text-2xl text-gray-400 hover:text-gray-600" onClick={onClose}>&times;</button>
+    <div style={overlayStyle}>
+      <div style={modalContainerStyle}>
+        <div style={modalStyle}>
+          <button style={closeBtnStyle} onClick={onClose}>×</button>
 
-          <h2 className="text-2xl font-bold mb-5 text-center text-[#0D88C2]"> Welcome </h2>
+          <h2 style={headingStyle}> Welcome </h2>
 
           {error && (
-            <div className="text-red-700 bg-red-50 border border-red-200 rounded-md p-2 mb-3 font-medium text-center">{error}</div>
+            <div style={{ color: "#b91c1c", marginBottom: 10, fontWeight: 500 }}>{error}</div>
           )}
 
-          <form className="flex flex-col gap-4 mb-2" onSubmit={handleSubmit}>
-            {/* Register fields commented out */}
-            {/*
-            <input
+          <form style={formStyle} onSubmit={handleSubmit}>
+            {/* Registration fields commented out */}
+            {/* <input
               type="text"
               placeholder=" Full Name"
-              className="px-4 py-3 rounded-lg border border-gray-300 text-base mb-2 focus:outline-none font-sans"
+              style={inputStyle}
               value={fullName}
               onChange={e => setFullName(e.target.value)}
               required
-            />
-            */}
+            /> */}
             <input
               type="email"
               placeholder=" Email"
-              className="px-4 py-3 rounded-lg border border-gray-300 text-base mb-2 focus:outline-none font-sans"
+              style={inputStyle}
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
@@ -120,30 +100,138 @@ const AdminModal = ({ isOpen, onClose }) => {
             <input
               type="password"
               placeholder=" Password"
-              className="px-4 py-3 rounded-lg border border-gray-300 text-base mb-2 focus:outline-none font-sans"
+              style={inputStyle}
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
             />
 
-            <button type="submit" className="w-full bg-[#0D88C2] text-white py-3 rounded-lg font-semibold text-lg mt-2 hover:bg-[#0b7ab0] transition-colors" disabled={loading}>
+            <button type="submit" style={submitBtnStyle} disabled={loading}>
               {loading ? "Logging in..." : "Login →"}
             </button>
           </form>
 
-          {/* Register toggle commented out */}
-          {/*
-          <p className="text-center mt-3 text-gray-700 text-base">
+          {/* Registration toggle commented out */}
+          {/* <p style={toggleTextStyle}>
             {isLogin ? "New here?" : "Already registered?"}{" "}
-            <span className="text-[#0D88C2] cursor-pointer font-semibold underline ml-1" onClick={toggleMode}>
+            <span style={toggleLinkStyle} onClick={toggleMode}>
               {isLogin ? "Register Now" : "Login"}
             </span>
-          </p>
-          */}
+          </p> */}
         </div>
       </div>
     </div>
   );
 };
+
+// ✅ Styles
+const overlayStyle = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100vw",
+  height: "100vh",
+  background: "rgba(8, 8, 8, 0.7)",
+  backdropFilter: "blur(8px)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 9999,
+};
+
+const modalContainerStyle = {
+  animation: "fadeIn 0.3s ease-in-out",
+  transition: "all 0.3s ease-in-out",
+};
+
+const modalStyle = {
+  background: "#fff",
+  borderRadius: "16px",
+  padding: "32px 28px 24px 28px",
+  minWidth: 340,
+  maxWidth: 400,
+  boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+  position: "relative",
+  fontFamily: "'Poppins', sans-serif",
+};
+
+const closeBtnStyle = {
+  position: "absolute",
+  top: 12,
+  right: 18,
+  background: "none",
+  border: "none",
+  fontSize: 28,
+  color: "#888",
+  cursor: "pointer",
+};
+
+const headingStyle = {
+  fontSize: "1.7rem",
+  fontWeight: 700,
+  marginBottom: 18,
+  textAlign: "center",
+  color: "#0D88C2",
+};
+
+const formStyle = {
+  display: "flex",
+  flexDirection: "column",
+  gap: 16,
+  marginBottom: 10,
+};
+
+const inputStyle = {
+  padding: "12px 16px",
+  borderRadius: 8,
+  border: "1px solid #d1d5db",
+  fontSize: "1rem",
+  marginBottom: 8,
+  outline: "none",
+  fontFamily: "inherit",
+};
+
+const submitBtnStyle = {
+  background: "#0D88C2",
+  color: "#fff",
+  padding: "12px 0",
+  border: "none",
+  borderRadius: 8,
+  fontWeight: 600,
+  fontSize: "1.1rem",
+  cursor: "pointer",
+  marginTop: 8,
+  transition: "background 0.3s ease",
+};
+
+const toggleTextStyle = {
+  textAlign: "center",
+  marginTop: 12,
+  color: "#333",
+  fontSize: "1rem",
+};
+
+const toggleLinkStyle = {
+  color: "#0D88C2",
+  cursor: "pointer",
+  fontWeight: 600,
+  marginLeft: 4,
+  textDecoration: "underline",
+};
+
+// ✅ Keyframe animation
+const fadeInKeyframes = `
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+`;
+
+if (typeof document !== "undefined" && !document.getElementById("modal-fadein-keyframes")) {
+  const styleTag = document.createElement("style");
+  styleTag.id = "modal-fadein-keyframes";
+  styleTag.innerHTML = fadeInKeyframes;
+  document.head.appendChild(styleTag);
+}
 
 export default AdminModal;

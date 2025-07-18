@@ -25,16 +25,13 @@ export default function Welcome() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f9fbfc]">
-      <div className="bg-white px-8 py-12 rounded-2xl shadow-lg">
-        <h1 className="text-4xl text-[#0D88C2] text-center font-bold mb-2">Welcome to the Creditor Academy</h1>
-        <p className="text-lg text-gray-800 text-center mb-6">
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f9fbfc' }}>
+      <div style={{ background: 'white', padding: '48px 32px', borderRadius: '16px', boxShadow: '0 4px 32px rgba(0,0,0,0.08)' }}>
+        <h1 style={{ fontSize: '2.5rem', color: '#0D88C2', textAlign: 'center', marginBottom: '0.5em' }}>Welcome to the Creditor Academy</h1>
+        <p style={{ fontSize: '1.25rem', color: '#333', textAlign: 'center' }}>
           We’re glad to have you on board!<br/>
         </p>
-        <button
-          onClick={handleLogout}
-          className="mt-8 px-8 py-3 text-base bg-[#0D88C2] text-white rounded-lg cursor-pointer block mx-auto hover:bg-[#0b7ab0] transition-colors"
-        >
+        <button onClick={handleLogout} style={{ marginTop: 32, padding: '12px 32px', fontSize: '1rem', background: '#0D88C2', color: 'white', border: 'none', borderRadius: 8, cursor: 'pointer', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}>
           Logout
         </button>
       </div>
