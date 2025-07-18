@@ -34,6 +34,10 @@
   display: inline-block;
 }
 
+.about-text-container {
+  animation: none;
+}
+
 .title-accent {
   color: rgb(206, 212, 217);
   font-size: 24pt;
