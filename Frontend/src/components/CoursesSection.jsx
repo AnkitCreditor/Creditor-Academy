@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import './CoursesSection.css';
 import {
   FaFileAlt, FaComments, FaCheckCircle, FaCreditCard, FaUser,
@@ -7,6 +6,7 @@ import {
   FaHome, FaExclamationTriangle, FaPaperPlane, FaChartBar,
   FaStore, FaCube, FaShieldAlt, FaMobileAlt
 } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 import freshmanImage from '../assets/freshman.jpg';
 import sophomoreImage from '../assets/sophomore.jpg';

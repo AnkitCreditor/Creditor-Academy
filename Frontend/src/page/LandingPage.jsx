@@ -12,10 +12,10 @@ import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
 import StatsSection from '../components/StatsSection';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  
   useEffect(() => {
     const carousel = document.getElementById('hero-carousel');
     let idx = 0;
@@ -244,7 +244,7 @@ const LandingPage = () => {
                   Discover tailored payment solutions designed to empower your business with customized, seamless payment solutions.
                 </p>
                 <motion.button
-                  onClick={() => navigate('/merchant')}
+                  onClick={() => navigate('/pmp')}
                   whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0,0,0,0.15)' }}
                   transition={{ type: 'spring', stiffness: 300 }}
                   style={{ padding: '12px 24px', background: '#5DADE2', color: '#fff', border: 'none', borderRadius: '25px', cursor: 'pointer' }}
