@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import remedyBanner from '../assets/iwrn_banner.png'; // adjust path
-import flexImage from '../assets/flex.jpg'; // add this image to your assets folder
+import { motion } from 'framer-motion';
+import remedyBanner from '../assets/iwrn_banner.png';
+import flexImage from '../assets/flex.jpg';
 import RemedyOfferSection from '../components/RemedyOfferSection';
 import GameBanner from '../components/GameBanner';
 import RemedyMaster from '../components/RemedyMaster';
@@ -44,7 +45,7 @@ const Remedy = () => {
 
   const imageContainerStyle = {
     flex: 1,
-    minWidth: '300px',
+    minWidth: '280px',
     display: 'flex',
     justifyContent: 'center',
   };
@@ -58,7 +59,7 @@ const Remedy = () => {
 
   const textContainerStyle = {
     flex: 1,
-    minWidth: '300px',
+    minWidth: '280px',
   };
 
   const boxStyle = {
@@ -75,7 +76,12 @@ const Remedy = () => {
   return (
     <>
       {/* Banner Image */}
-      <section>
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <div style={{ width: '100%', height: 'auto', position: 'relative', overflow: 'hidden' }}>
           <img
             src={remedyBanner}
@@ -89,14 +95,20 @@ const Remedy = () => {
             }}
           />
         </div>
-      </section>
+      </motion.section>
 
       {/* Remedy Video Section */}
-      <section style={{
-        padding: '80px 6%',
-        background: 'linear-gradient(to right, #eef5ff, #ffffff)',
-        fontFamily: "'Poppins', sans-serif"
-      }}>
+      <motion.section
+        style={{
+          padding: '80px 6%',
+          background: 'linear-gradient(to right, #eef5ff, #ffffff)',
+          fontFamily: "'Poppins', sans-serif"
+        }}
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <div style={{ maxWidth: '800px', margin: '0 auto 50px', textAlign: 'center' }}>
           <h2 style={{ fontSize: '2.5rem', color: '#0056b3', marginBottom: '20px', lineHeight: '1.4' }}>
             <span style={{ color: '#3598db', fontWeight: 'bold' }}>I WANT A REMEDY NOW <span style={{ color: '#3598db' }}>!!</span></span>
@@ -124,18 +136,35 @@ const Remedy = () => {
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Take Your Power Back Section */}
-      <section style={sectionStyle}>
+      <motion.section
+        style={sectionStyle}
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2 }}
+        viewport={{ once: true }}
+      >
         <div style={contentGridStyle}>
-          {/* Left Image */}
           <div style={imageContainerStyle}>
-            <img src={flexImage} alt="Take Your Power Back" style={imageStyle} />
+            <motion.img
+              src={flexImage}
+              alt="Take Your Power Back"
+              style={imageStyle}
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            />
           </div>
-
-          {/* Right Text Content */}
-          <div style={textContainerStyle}>
+          <motion.div
+            style={textContainerStyle}
+            initial={{ x: 50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+          >
             <div style={boxStyle}>
               <p style={{ margin: 0 }}>
                 <strong>Tired of Being Denied, Deceived, or Drowned in Debt?</strong><br /><br />
@@ -145,13 +174,46 @@ const Remedy = () => {
                 It’s <strong>legal, psychological, and spiritual financial warfare</strong> — built to liberate you from the contracts and collections that trap millions.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
-      <RemedyOfferSection />
-      <GameBanner/>
-      <RemedyMaster/>
-      <RemedyResult/>
+      </motion.section>
+
+      {/* Other animated sections */}
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        <RemedyOfferSection />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <GameBanner />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        viewport={{ once: true }}
+      >
+      <RemedyMaster />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+      <RemedyResult />
+      </motion.div>
     </>
   );
 };
