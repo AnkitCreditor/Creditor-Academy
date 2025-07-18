@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import img1 from '../assets/car.jpg';
 import img2 from '../assets/couple.png';
@@ -11,7 +12,6 @@ import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
 import StatsSection from '../components/StatsSection';
-import { useNavigate } from 'react-router-dom'; 
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -28,7 +28,6 @@ const LandingPage = () => {
   }, []);
 
   const sliderImages = [img1, img2, img3, img4];
-  const navigate = useNavigate();
 
   return (
     <>
@@ -147,7 +146,6 @@ const LandingPage = () => {
                 }}
                 transition={{ type: 'spring', stiffness: 300 }}
                 onClick={() => navigate('/remedy')}
-                }
                 style={{
                   padding: '14px 28px',
                   fontSize: '1rem',
