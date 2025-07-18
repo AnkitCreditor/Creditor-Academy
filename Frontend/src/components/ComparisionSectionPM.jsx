@@ -93,46 +93,55 @@ const ComparisonSectionPM = () => {
 
 // Styled Components
 const ComparisonContainer = styled.div`
-  padding: 80px 5%;
+  padding: 60px 5%;
   background: linear-gradient(to bottom, #f0f9ff, #e0f2fe);
   font-family: 'Segoe UI', sans-serif;
 `;
 
 const ComparisonTitle = styled.h2`
   text-align: center;
-  font-size: 2.4rem;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
   font-weight: 800;
   color: #0f172a;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 
   svg {
     width: 30px;
     height: 30px;
     fill: #0ea5e9;
-    margin-right: 12px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
   }
 `;
 
 const Highlight = styled.span`
   color: #0ea5e9;
-  margin-left: 8px;
 `;
 
 const ComparisonWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 20px;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const CardBase = styled.div`
   flex: 1;
-  min-width: 300px;
-  padding: 30px 24px;
+  min-width: 280px;
+  max-width: 450px;
+  padding: 25px 20px;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   border: 3px solid;
@@ -149,7 +158,6 @@ const PrivateCard = styled(CardBase)`
 `;
 
 const VSCircle = styled.div`
-  align-self: center;
   background: #0ea5e9;
   color: white;
   font-size: 1.2rem;
@@ -163,11 +171,16 @@ const VSCircle = styled.div`
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
   position: relative;
   z-index: 1;
+  margin: 20px;
+
+  @media (max-width: 768px) {
+    margin: 20px auto;
+  }
 `;
 
 const TitleBase = styled.h3`
   text-align: center;
-  font-size: 1.3rem;
+  font-size: clamp(1.2rem, 2vw, 1.3rem);
   font-weight: bold;
   margin-bottom: 20px;
 `;
@@ -184,18 +197,21 @@ const ListBase = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
 
   li {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    line-height: 1.4;
   }
 
   svg {
     width: 18px;
     height: 18px;
     margin-right: 10px;
+    flex-shrink: 0;
+    margin-top: 3px;
   }
 `;
 
@@ -216,7 +232,7 @@ const PrivateList = styled(ListBase)`
 `;
 
 const MonetizationSection = styled.div`
-  padding: 100px 5%;
+  padding: 60px 5%;
   background: #f9fafb;
   font-family: 'Segoe UI', sans-serif;
   color: #1e293b;
@@ -233,26 +249,35 @@ const MonetizationWrapper = styled.div`
 
 const MonetizationContent = styled.div`
   flex: 1;
-  min-width: 300px;
+  min-width: 280px;
 `;
 
 const MonetizationTitle = styled.h2`
-  font-size: 2.2rem;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 800;
   margin-bottom: 16px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 
   svg {
     fill: #0ea5e9;
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
 const MonetizationDescription = styled.p`
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   color: #475569;
   margin-bottom: 24px;
+  line-height: 1.5;
 `;
 
 const Checklist = styled.ul`
@@ -263,7 +288,9 @@ const Checklist = styled.ul`
   li {
     margin-bottom: 16px;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
+    line-height: 1.4;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
   }
 
   svg {
@@ -272,6 +299,7 @@ const Checklist = styled.ul`
     fill: #10b981;
     margin-right: 10px;
     flex-shrink: 0;
+    margin-top: 3px;
   }
 
   strong {
@@ -283,19 +311,20 @@ const FinalStatement = styled.p`
   margin-top: 30px;
   font-weight: 600;
   color: #1e293b;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
 `;
 
 const MonetizationBox = styled.div`
   flex: 1;
-  min-width: 300px;
+  min-width: 280px;
   background: linear-gradient(135deg, #f0f9ff, #dbeafe);
-  padding: 40px 30px;
+  padding: 30px;
   border-radius: 16px;
   box-shadow: 0 16px 40px rgba(0,0,0,0.06);
   text-align: center;
 
   h3 {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
     font-weight: bold;
     color: #0f172a;
     margin-bottom: 10px;
@@ -303,7 +332,12 @@ const MonetizationBox = styled.div`
 
   p {
     color: #475569;
-    font-size: 1.05rem;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    line-height: 1.5;
+  }
+
+  svg {
+    margin-bottom: 15px;
   }
 `;
 
@@ -312,19 +346,24 @@ const MonetizationButton = styled.button`
   background: #0ea5e9;
   color: white;
   border: none;
-  padding: 14px 28px;
-  font-size: 1rem;
+  padding: 12px 24px;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   border-radius: 50px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(14,165,233,0.25);
   transition: transform 0.3s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   margin: 20px auto 0;
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
   }
 `;
 
