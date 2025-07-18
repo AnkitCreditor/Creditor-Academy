@@ -10,6 +10,7 @@ import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
 import StatsSection from '../components/StatsSection';
+import { useNavigate } from 'react-router-dom'; 
 
 const LandingPage = () => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const LandingPage = () => {
   }, []);
 
   const sliderImages = [img1, img2, img3, img4];
+  const navigate = useNavigate();
 
   return (
     <>
@@ -57,10 +59,11 @@ const LandingPage = () => {
           ))}
         </div>
       </div>
-      <AboutSection />
-      <MasterclassBanner />
-      <CoursesSection />
-      <GameBanner />
+      <AboutSection /> 
+    <MasterclassBanner />
+     <CoursesSection />
+      
+        <GameBanner />
 
         {/* Merged Remedy Section */}
         <section style={{ width: '100%', margin: 0, padding: 0, background: 'white', fontFamily: 'Poppins, sans-serif', boxSizing: 'border-box' }}>
@@ -114,7 +117,7 @@ const LandingPage = () => {
                 Create sleek, responsive and stunning professional websites effortlessly—no coding needed. Empower your brand with a website that speaks volumes.!
               </p>
               <button
-                onClick={() => window.location.href = 'https://www.creditoracademy.com/page/show/153520?portal_id=14800'}
+                onClick={() => navigate('/website')}
                 style={{ padding: '12px 24px', background: '#5DADE2', color: '#fff', border: 'none', borderRadius: '25px', cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
                 onMouseOver={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)' }}
                 onMouseOut={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 6px 12px rgba(0,0,0,0.1)' }}
@@ -142,7 +145,7 @@ const LandingPage = () => {
                 Join our interactive live classes every Tuesday & Thursday. Enjoy insights, Q&A and Live sessions featuring deep insights, and hands-on learning.!
               </p>
               <button
-                onClick={() => window.location.href = 'https://www.creditoracademy.com/page/show/152536?portal_id=14800'}
+                onClick={() => navigate('/liveclass')}
                 style={{ padding: '12px 24px', background: '#ff0000', color: '#fff', border: 'none', borderRadius: '25px', cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
                 onMouseOver={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)' }}
                 onMouseOut={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 6px 12px rgba(0,0,0,0.1)' }}
@@ -183,11 +186,8 @@ const LandingPage = () => {
     <p style={{ fontSize: '1rem', color: '#555', marginBottom: '20px' }}>
       Discover tailored payment solutions designed to empower your business with customized, seamless payment solutions.
     </p>
-    <button
-      onClick={() =>
-        (window.location.href =
-          'https://www.creditoracademy.com/page/show/152537?portal_id=14800')
-      }
+     <button
+      onClick={() => navigate('/merchant')}
       style={{
         padding: '12px 24px',
         background: '#5DADE2',
