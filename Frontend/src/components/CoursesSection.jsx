@@ -15,12 +15,14 @@ import seniorImage from '../assets/senior.jpeg';
 import remedyImage from '../assets/remedy.jpg';
 import privateImage from '../assets/private.jpg';
 
+import { useNavigate } from 'react-router-dom';
+
 const courses = [
   {
     title: 'FRESHMAN: Sovereignty 101',
     description: 'Discover how America shifted from liberty to control—and what it takes to reclaim independence once again.',
     image: freshmanImage,
-    link: 'https://www.creditoracademy.com/page/show/152417?portal_id=14800',
+    link: '/sov',
     features: [
       { icon: <FaFileAlt />, text: 'Foundations of American sovereignty and law' },
       { icon: <FaComments />, text: 'Evolution of legal identity post-Civil War' },
@@ -33,7 +35,7 @@ const courses = [
     title: 'SOPHOMORE: Become Private',
     description: 'Learn how to step out of the public and establish your affairs in the private.',
     image: sophomoreImage,
-    link: 'https://www.creditoracademy.com/page/show/152429?portal_id=14800',
+    link: '/sophomore',
     features: [
       { icon: <FaCheckCircle />, text: 'Correct your status and reclaim your lawful standing' },
       { icon: <FaUsers />, text: 'Establish yourself as an American National' },
@@ -46,7 +48,7 @@ const courses = [
     title: 'JUNIOR: Operate Private',
     description: 'Build, manage, and grow an Empire in the private, independent of the public system.',
     image: juniorImage,
-    link: 'https://www.creditoracademy.com/page/show/152427?portal_id=14800',
+    link: '/operateprivate',
     features: [
       { icon: <FaBriefcase />, text: 'Form Private Business Trusts' },
       { icon: <FaHome />, text: 'Private Membership Association' },
@@ -58,7 +60,7 @@ const courses = [
     title: 'SENIOR: PRIVATE BUSINESS CREDIT',
     description: 'Learn how to build unlimited business credit in the Private',
     image: seniorImage,
-    link: 'https://www.creditoracademy.com/page/show/152428?portal_id=14800',
+    link: '/unlimitedcredit',
     features: [
       { icon: <FaListUl />, text: 'Build credit with unincorporated Business Trusts' },
       { icon: <FaFileAlt />, text: 'Access high-limit credit with no PG' },
@@ -71,7 +73,7 @@ const courses = [
     title: 'I WANT REMEDY NOW!',
     description: 'Fast, lawful credit discharge that puts you back in control.',
     image: remedyImage,
-    link: 'https://www.creditoracademy.com/page/show/153492?portal_id=14800',
+    link: '/remedy',
     features: [
       { icon: <FaChartBar />, text: 'Credit Score & Report Fundamentals' },
       { icon: <FaExclamationTriangle />, text: 'Disputes & Legal Notices' },
@@ -84,7 +86,7 @@ const courses = [
     title: 'PRIVATE MERCHANT & PROCESSING',
     description: 'Discover the foundation of private commerce and take control of how you get paid',
     image: privateImage,
-    link: 'https://www.creditoracademy.com/page/show/153757?portal_id=14800',
+    link: '/privatemerchant',
     features: [
       { icon: <FaCreditCard />, text: 'Private Merchant Processing 101' },
       { icon: <FaStore />, text: 'Accept Payments Privately' },
@@ -96,6 +98,8 @@ const courses = [
 ];
 
 const CoursesSection = () => {
+  const navigate = useNavigate(); // ✅ Use inside component
+
   return (
     <section className="courses-section">
       <h2 className="section-heading">
@@ -123,7 +127,12 @@ const CoursesSection = () => {
                   <li key={i}><span className="icon">{feature.icon}</span>{feature.text}</li>
                 ))}
               </ul>
-              <a href={course.link} className="learn-more">LEARN MORE</a>
+              <button
+                className="learn-more"
+                onClick={() => navigate(course.link)} // ✅ Internal navigation
+              >
+                LEARN MORE
+              </button>
             </div>
           </motion.div>
         ))}
