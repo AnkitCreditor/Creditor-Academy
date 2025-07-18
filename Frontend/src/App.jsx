@@ -13,6 +13,8 @@ import Sophomore from './courses/Sophomore'; // adjust path if different
 import LiveClass from './page/LiveClass'; // adjust path if different
 import Senior from './courses/Senior';
 import MerchantProcessing from './page/MerchantProcessing';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermCondition from './components/TermCondition';
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path="/remedy" element={<Remedy/>} />
         <Route path="/unlimitedcredit" element={<Senior/>} />
         <Route path="/pmp" element={<MerchantProcessing/>} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/termcondition"  element={<TermCondition/>}/>
       </Routes>
       <Footer/>
     </Router>
