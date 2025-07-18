@@ -67,7 +67,7 @@ const snapshotItems = [
 const SeniorSnapshot = () => {
   return (
     <section style={{ background: '#f9fafb', padding: '80px 5%', position: 'relative', fontFamily: "'Segoe UI', sans-serif" }}>
-      {/* Decorative BG Bubble */}
+      {/* Decorative BG Bubble
       <div style={{
         position: 'absolute',
         top: '-100px',
@@ -77,7 +77,7 @@ const SeniorSnapshot = () => {
         background: 'radial-gradient(circle, #dbeafe, transparent)',
         zIndex: 0,
         borderRadius: '50%'
-      }} />
+      }} /> */}
 
       {/* Heading */}
       <div style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
