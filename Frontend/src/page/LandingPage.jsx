@@ -14,6 +14,8 @@ import StatsSection from '../components/StatsSection';
 import { useNavigate } from 'react-router-dom'; 
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const carousel = document.getElementById('hero-carousel');
     let idx = 0;
@@ -144,9 +146,7 @@ const LandingPage = () => {
                   boxShadow: '0 12px 24px rgba(0,0,0,0.15)',
                 }}
                 transition={{ type: 'spring', stiffness: 300 }}
-                onClick={() =>
-                  window.location.href =
-                    'https://www.creditoracademy.com/page/show/153492?portal_id=14800'
+                onClick={() => navigate('/remedy')}
                 }
                 style={{
                   padding: '14px 28px',
