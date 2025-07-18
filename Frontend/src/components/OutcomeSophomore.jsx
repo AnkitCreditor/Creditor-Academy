@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { FaIdBadge, FaCheckCircle, FaFileContract, FaShieldAlt, FaUniversity, FaGraduationCap } from "react-icons/fa";
 import CourseSop from "../assets/CourseSop.jpg";
 
 const outcomes = [
-  "Private ID — Filed, Sealed & Verified",
-  "Secured Party Creditor Standing — Fully Executed",
-  "Status Correction Record Binder — Court-Ready",
-  "Irrevocable Trust — Registered with EIN & Security",
-  "UCC Filings — Done Correctly with Full Protections",
-  "Graduate Ready to Operate Fully in the Private",
+  {
+    text: "Private ID — Filed, Sealed & Verified",
+    icon: <FaIdBadge />
+  },
+  {
+    text: "Secured Party Creditor Standing — Fully Executed",
+    icon: <FaShieldAlt />
+  },
+  {
+    text: "Status Correction Record Binder — Court-Ready",
+    icon: <FaFileContract />
+  },
+  {
+    text: "Irrevocable Trust — Registered with EIN & Security",
+    icon: <FaUniversity />
+  },
+  {
+    text: "UCC Filings — Done Correctly with Full Protections",
+    icon: <FaCheckCircle />
+  },
+  {
+    text: "Graduate Ready to Operate Fully in the Private",
+    icon: <FaGraduationCap />
+  },
 ];
 
 const reasons = [
@@ -18,9 +39,12 @@ const reasons = [
 ];
 
 const OutcomeSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <>
-      {/* Divider */}
       <div style={{ height: "60px" }} />
 
       {/* Outcome Section */}
@@ -29,7 +53,7 @@ const OutcomeSection = () => {
           maxWidth: "1200px",
           margin: "auto",
           background: "#eef5ff",
-          padding: "60px 50px",
+          padding: "60px 5%",
           borderRadius: "25px",
           boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
         }}
@@ -37,7 +61,7 @@ const OutcomeSection = () => {
         <h2
           style={{
             textAlign: "center",
-            fontSize: "2.2rem",
+            fontSize: "clamp(1.8rem, 5vw, 2.5rem)",
             color: "#2c3e50",
             fontWeight: "bold",
             marginBottom: "15px",
@@ -49,7 +73,7 @@ const OutcomeSection = () => {
           style={{
             textAlign: "center",
             color: "#595f66",
-            fontSize: "1.05rem",
+            fontSize: "clamp(1rem, 2vw, 1.1rem)",
             marginBottom: "40px",
           }}
         >
@@ -60,17 +84,18 @@ const OutcomeSection = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "30px",
           }}
         >
-          {outcomes.map((text, index) => (
+          {outcomes.map((item, index) => (
             <div
               key={index}
+              data-aos="fade-up"
               style={{
                 background: "#ffffff",
                 borderLeft: "5px solid #3498db",
-                padding: "25px 20px",
+                padding: "20px",
                 borderRadius: "16px",
                 boxShadow: "0 5px 20px rgba(0,0,0,0.05)",
               }}
@@ -81,52 +106,31 @@ const OutcomeSection = () => {
                   fontWeight: 600,
                   display: "flex",
                   alignItems: "center",
-                  gap: "10px",
+                  gap: "12px",
                   margin: 0,
+                  fontSize: "1rem",
                 }}
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="#0056b3"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14"
-                    stroke="#0056b3"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <circle cx="9" cy="9" r="1" fill="#0056b3" />
-                  <circle cx="15" cy="9" r="1" fill="#0056b3" />
-                </svg>
-                {text}
+                <span style={{ fontSize: "1.2rem" }}>{item.icon}</span>
+                {item.text}
               </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Hover Lift Section */}
+      {/* Course Fit Section */}
       <section
         style={{
           padding: "80px 5%",
           background: "#f8fafc",
-          fontFamily: "Segoe UI, sans-serif",
+          fontFamily: "'Segoe UI', sans-serif",
         }}
       >
         <h2
+          data-aos="fade-up"
           style={{
-            fontSize: "2.5rem",
+            fontSize: "clamp(2rem, 6vw, 2.6rem)",
             color: "#0f172a",
             marginBottom: "50px",
             textAlign: "center",
@@ -142,18 +146,18 @@ const OutcomeSection = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "1fr",
             gap: "40px",
-            alignItems: "center",
             maxWidth: "1200px",
             margin: "auto",
           }}
         >
-          {/* Left Text Column */}
+          {/* Text Column */}
           <div>
             {reasons.map((reason, index) => (
               <div
                 key={index}
+                data-aos="fade-right"
                 style={{
                   display: "flex",
                   alignItems: "flex-start",
@@ -180,8 +184,8 @@ const OutcomeSection = () => {
             ))}
           </div>
 
-          {/* Right Image Column */}
-          <div style={{ textAlign: "center" }}>
+          {/* Image Column */}
+          <div data-aos="fade-left" style={{ textAlign: "center" }}>
             <img
               src={CourseSop}
               alt="Empowerment Visual"

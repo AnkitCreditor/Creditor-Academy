@@ -183,11 +183,8 @@ const LandingPage = () => {
     <p style={{ fontSize: '1rem', color: '#555', marginBottom: '20px' }}>
       Discover tailored payment solutions designed to empower your business with customized, seamless payment solutions.
     </p>
-    <button
-      onClick={() =>
-        (window.location.href =
-          'https://www.creditoracademy.com/page/show/152537?portal_id=14800')
-      }
+     <button
+      onClick={() => navigate('/pmp')}
       style={{
         padding: '12px 24px',
         background: '#5DADE2',
