@@ -74,7 +74,7 @@ const LandingPage = () => {
               </p>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
                 <button
-                  onClick={() => window.location.href = 'https://www.creditoracademy.com/page/show/153492?portal_id=14800'}
+                  onClick={() =>  navigate('/remedy')}
                   style={{
                     padding: '15px 25px',
                     fontSize: '16px',
@@ -114,7 +114,7 @@ const LandingPage = () => {
                 Create sleek, responsive and stunning professional websites effortlessly—no coding needed. Empower your brand with a website that speaks volumes.!
               </p>
               <button
-                onClick={() => window.location.href = 'https://www.creditoracademy.com/page/show/153520?portal_id=14800'}
+                onClick={() =>  navigate('/website')}
                 style={{ padding: '12px 24px', background: '#5DADE2', color: '#fff', border: 'none', borderRadius: '25px', cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
                 onMouseOver={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)' }}
                 onMouseOut={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 6px 12px rgba(0,0,0,0.1)' }}
@@ -142,7 +142,7 @@ const LandingPage = () => {
                 Join our interactive live classes every Tuesday & Thursday. Enjoy insights, Q&A and Live sessions featuring deep insights, and hands-on learning.!
               </p>
               <button
-                onClick={() => window.location.href = 'https://www.creditoracademy.com/page/show/152536?portal_id=14800'}
+                onClick={() => navigate('/liveclass')}
                 style={{ padding: '12px 24px', background: '#ff0000', color: '#fff', border: 'none', borderRadius: '25px', cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
                 onMouseOver={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)' }}
                 onMouseOut={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 6px 12px rgba(0,0,0,0.1)' }}
