@@ -6,7 +6,7 @@ import Remedy from './courses/Remedy'
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import { MasterClass } from './page/MasterClass';
-import Sov from './courses/sov';
+import Sov from './courses/Sov';
 import { WebsiteCreation } from './page/WebsiteCreation';
 import OperatePrivate from './courses/OperatePrivate'; 
 import Sophomore from './courses/Sophomore'; // adjust path if different
