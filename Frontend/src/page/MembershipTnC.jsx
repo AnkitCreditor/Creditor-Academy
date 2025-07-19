@@ -85,7 +85,7 @@ const animatedSection = (title, content, index) => (
   </motion.div>
 );
 
-const MembershipTermsAndCondition = () => {
+const MembershipTnC = () => {
   const sections = [
     {
       title: '1. Purpose and Legal Standing',
@@ -232,4 +232,4 @@ const MembershipTermsAndCondition = () => {
   );
 };
 
-export default MembershipTermsAndCondition;
+export default MembershipTnC;

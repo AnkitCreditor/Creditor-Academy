@@ -36,7 +36,7 @@ function App() {
         <Route path="/remedy" element={<Remedy/>} />
         <Route path="/unlimitedcredit" element={<Senior/>} />
         <Route path="/pmp" element={<MerchantProcessing/>} />
-        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy/>} />
         <Route path="/termcondition"  element={<TermCondition/>}/>
         <Route path="/returnrefund" element={<ReturnRefund/>} />
         <Route path="/mtc" element={<MembershipTnC/>} />
