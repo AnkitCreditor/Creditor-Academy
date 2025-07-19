@@ -1,5 +1,5 @@
 import React from 'react'
-import MasterHero from '../components/masterhero'
+import MasterHero from '../components/MasterHero'
 import GameBanner from '../components/GameBanner'
 import CommitToGrowth from '../components/CommitToGrowth'
 import OptionMC from '../components/OptionMC'
