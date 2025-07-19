@@ -5,7 +5,7 @@ import PrivateMerchant from './courses/PrivateMerchant' // adjust path if differ
 import Remedy from './courses/Remedy'
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
-import { Masterclass } from './page/Masterclass';
+import { MasterClass } from './page/MasterClass';
 import Sov from './courses/sov';
 import { WebsiteCreation } from './page/WebsiteCreation';
 import OperatePrivate from './courses/OperatePrivate'; 
@@ -27,7 +27,7 @@ function App() {
         
         <Route path="/" element={<LandingPage />} />
         <Route path="/privatemerchant" element={<PrivateMerchant/>} />
-        <Route path="/masterclass" element={<Masterclass />}/>
+        <Route path="/masterclass" element={<MasterClass />}/>
         <Route path="/sov" element={<Sov/>}/>
         <Route path="/website" element={<WebsiteCreation/>}/>
         <Route path="/operateprivate" element={<OperatePrivate />} />

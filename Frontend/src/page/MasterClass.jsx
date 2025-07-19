@@ -7,10 +7,10 @@ import { MCmembership } from '../components/MCmembership'
 import { MCwho } from '../components/MCwho'
 
 
-export const Masterclass = () => {
+export const MasterClass = () => {
   return (
     <div>
-        <MasterHero/>
+    <MasterHero/>
     <GameBanner/>
     <CommitToGrowth/>
     <OptionMC/>
