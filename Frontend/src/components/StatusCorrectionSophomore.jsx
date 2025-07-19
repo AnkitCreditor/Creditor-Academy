@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import PartySop from '../assets/PartySop.jpg';
-import StatusSop from '../assets/StatusSop.jpg';
+import StatusSop from '../assets/statusSop.jpg';
 
 const StatusCorrection = () => {
   useEffect(() => {
