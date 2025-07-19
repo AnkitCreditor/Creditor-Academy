@@ -16,7 +16,7 @@ const OperatePrivate = () => {
       <WhatYouBuild />
       <GameBanner />
       <VideoOP />
-    <CourseEndAndTestimonials />
+      <CourseEndAndTestimonials />
 
     </div>
   );

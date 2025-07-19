@@ -4,16 +4,29 @@ import { motion } from "framer-motion";
 const InfoOp = () => {
   const fadeIn = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' }
+    }
   };
 
   const listItemAnim = {
-    hidden: { opacity: 0, x: -30 },
+    hidden: { opacity: 0, x: -20 },
     visible: (i) => ({
       opacity: 1,
       x: 0,
-      transition: { delay: i * 0.1, duration: 0.4 }
+      transition: { delay: i * 0.15, duration: 0.4 }
     })
+  };
+
+  const containerStagger = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
   };
 
   return (
@@ -41,12 +54,25 @@ const InfoOp = () => {
             textAlign: "center"
           }}
         >
-          <motion.h1 style={{ fontSize: "3em", marginBottom: "10px", fontWeight: "bold" }}>
+          <motion.h1
+            style={{ fontSize: "3em", marginBottom: "10px", fontWeight: "bold" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <span style={{ color: "rgb(0, 86, 179)" }}>OPERATE PRIVATE</span>
           </motion.h1>
-          <p style={{ fontSize: "1.3em", marginBottom: "20px" }}>
+          <motion.p
+            style={{ fontSize: "1.3em", marginBottom: "20px" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
             Start Operating Outside the Public System.
-          </p>
+          </motion.p>
+
           <motion.div
             style={{
               position: "relative",
@@ -60,6 +86,7 @@ const InfoOp = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
+            viewport={{ once: true }}
           >
             <div style={{ position: "relative", paddingTop: "56.25%", height: 0 }}>
               <iframe
@@ -82,13 +109,19 @@ const InfoOp = () => {
       </motion.div>
 
       {/* Two Column Section */}
-      <div style={{
-        display: "flex",
-        flexWrap: "wrap",
-        padding: "60px 5%",
-        background: "#f0f9ff",
-        gap: "30px"
-      }}>
+      <motion.div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          padding: "60px 5%",
+          background: "#f0f9ff",
+          gap: "30px"
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={containerStagger}
+      >
         {/* The Problem */}
         <motion.div
           style={{
@@ -99,9 +132,6 @@ const InfoOp = () => {
             padding: "25px",
             boxShadow: "0 10px 20px rgba(0,0,0,0.05)"
           }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           variants={fadeIn}
         >
           <h2 style={{ fontSize: "1.7em", color: "#e11d48", marginBottom: "16px" }}>The Problem</h2>
@@ -117,14 +147,17 @@ const InfoOp = () => {
             ].map((text, i) => (
               <motion.li
                 key={i}
+                custom={i}
+                variants={listItemAnim}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 style={{
                   marginBottom: "12px",
                   display: "flex",
                   alignItems: "center",
                   color: "#444"
                 }}
-                custom={i}
-                variants={listItemAnim}
               >
                 <svg
                   style={{ fill: "#e11d48", width: "18px", height: "18px", marginRight: "10px" }}
@@ -158,9 +191,6 @@ const InfoOp = () => {
             padding: "25px",
             boxShadow: "0 10px 20px rgba(0,0,0,0.05)"
           }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           variants={fadeIn}
         >
           <h2 style={{ fontSize: "1.7em", color: "#10b981", marginBottom: "16px" }}>The Private Solution</h2>
@@ -177,14 +207,17 @@ const InfoOp = () => {
             ].map((item, i) => (
               <motion.li
                 key={i}
+                custom={i}
+                variants={listItemAnim}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 style={{
                   marginBottom: "12px",
                   display: "flex",
                   alignItems: "center",
                   color: "#444"
                 }}
-                custom={i}
-                variants={listItemAnim}
               >
                 <svg
                   style={{ fill: "#10b981", width: "18px", height: "18px", marginRight: "10px" }}
@@ -197,7 +230,7 @@ const InfoOp = () => {
             ))}
           </ul>
         </motion.div>
-      </div>
+      </motion.div>
     </>
   );
 };

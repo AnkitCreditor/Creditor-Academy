@@ -1,5 +1,6 @@
 import React from "react";
-import image from "../assets/arab-businessman-private-jet-generative-ai.jpg"; // Update path if needed
+import { motion } from "framer-motion";
+import image from "../assets/arab-businessman-private-jet-generative-ai.jpg"; // Update if needed
 
 const WhatYouBuild = () => {
   const items = [
@@ -41,19 +42,89 @@ const WhatYouBuild = () => {
     },
   ];
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.1, duration: 0.5 }
+    })
+  };
+
   return (
-    <div style={{ background: "#e0f2fe", padding: "80px 5%", fontFamily: "'Segoe UI', sans-serif", boxSizing: "border-box" }}>
-      <h2 style={{ textAlign: "center", fontSize: "2.5em", marginBottom: "60px", color: "#0f172a" }}>
+    <div
+      style={{
+        background: "#e0f2fe",
+        padding: "80px 5%",
+        fontFamily: "'Segoe UI', sans-serif",
+        boxSizing: "border-box"
+      }}
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{
+          textAlign: "center",
+          fontSize: "2.5em",
+          marginBottom: "60px",
+          color: "#0f172a"
+        }}
+      >
         WHAT YOU BUILD IN THIS COURSE
-      </h2>
-      <div style={{ maxWidth: "1300px", margin: "auto", display: "flex", flexWrap: "wrap", gap: "40px", alignItems: "flex-start", flexDirection: "row" }}>
+      </motion.h2>
+
+      <div
+        style={{
+          maxWidth: "1300px",
+          margin: "auto",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "40px",
+          alignItems: "flex-start",
+          flexDirection: "row"
+        }}
+      >
         {/* Left Column */}
-        <div style={{ flex: "1 1 600px", minWidth: "300px", position: "relative", borderLeft: "4px solid #38bdf8", paddingLeft: "30px", boxSizing: "border-box" }}>
+        <div
+          style={{
+            flex: "1 1 600px",
+            minWidth: "300px",
+            borderLeft: "4px solid #38bdf8",
+            paddingLeft: "30px",
+            boxSizing: "border-box"
+          }}
+        >
           {items.map((item, index) => (
-            <div key={index} style={{ position: "relative", marginBottom: "50px" }}>
-              <div style={{ position: "absolute", left: "-17px", top: 0, width: "34px", height: "34px", background: "#38bdf8", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg viewBox="0 0 24 24" style={{ width: "20px", height: "20px", fill: "white" }}>
-                  <path d="M9 16.2L4.8 12l-1.4 1.4L9 19l12-12-1.4-1.4z"></path>
+            <motion.div
+              key={index}
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              style={{ position: "relative", marginBottom: "50px" }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  left: "-17px",
+                  top: 0,
+                  width: "34px",
+                  height: "34px",
+                  background: "#38bdf8",
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  style={{ width: "20px", height: "20px", fill: "white" }}
+                >
+                  <path d="M9 16.2L4.8 12l-1.4 1.4L9 19l12-12-1.4-1.4z" />
                 </svg>
               </div>
               <h3 style={{ margin: 0, fontSize: "1.3em", color: "#0f172a" }}>
@@ -62,18 +133,35 @@ const WhatYouBuild = () => {
               <p style={{ margin: "5px 0 0", color: "#334155" }}>
                 &nbsp;&nbsp;&nbsp; {item.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Right Column */}
-        <div style={{ flex: "1 1 500px", minWidth: "280px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          style={{
+            flex: "1 1 500px",
+            minWidth: "280px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
           <img
             src={image}
             alt="Trust Binder Example"
-            style={{ width: "100%", maxWidth: "500px", borderRadius: "16px", boxShadow: "0 12px 24px rgba(0,0,0,0.1)" }}
+            style={{
+              width: "100%",
+              maxWidth: "500px",
+              borderRadius: "16px",
+              boxShadow: "0 12px 24px rgba(0,0,0,0.1)"
+            }}
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

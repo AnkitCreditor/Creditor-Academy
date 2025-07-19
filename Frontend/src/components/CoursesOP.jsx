@@ -40,9 +40,27 @@ const CoursesUSP = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+  };
+
   return (
     <section style={{ background: "#f0f9ff", padding: "60px 5%" }}>
-      <h2
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         style={{
           textAlign: "center",
           fontSize: "2.5em",
@@ -52,8 +70,13 @@ const CoursesUSP = () => {
         }}
       >
         What Makes <span style={{ color: "#0ea5e9" }}>OPERATE PRIVATE</span> Different
-      </h2>
-      <div
+      </motion.h2>
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -66,11 +89,8 @@ const CoursesUSP = () => {
         {cards.map((card, index) => (
           <motion.div
             key={index}
+            variants={cardVariants}
             whileHover={{ scale: 1.04 }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
             style={{
               background: "white",
               borderRadius: "14px",
@@ -78,9 +98,9 @@ const CoursesUSP = () => {
               boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
               display: "flex",
               gap: "12px",
-              width: "calc(25% - 30px)",
-              minWidth: "260px",
-              flex: "1 1 calc(25% - 30px)",
+              width: "calc(33.33% - 30px)",
+              minWidth: "280px",
+              flex: "1 1 calc(33.33% - 30px)",
               boxSizing: "border-box",
               cursor: "pointer",
               transition: "all 0.3s ease"
@@ -124,7 +144,7 @@ const CoursesUSP = () => {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

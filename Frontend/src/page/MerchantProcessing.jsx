@@ -22,46 +22,81 @@ const MerchantProcessing = () => {
 
   return (
     <div style={{ fontFamily: 'Segoe UI, sans-serif', background: '#eef5ff', overflowX: 'hidden' }}>
-      {/* Banner */}
-      <motion.div
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        style={{ width: '100%', height: 400, position: 'relative', overflow: 'hidden' }}
-      >
-        <img
-          src={Banner}
-          alt="Banner"
-          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-        />
-      </motion.div>
+  {/* Banner */}
+  <motion.div
+    initial={{ opacity: 0, y: -40 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    style={{
+      width: '100%',
+      height: 'auto',
+      position: 'relative',
+      overflow: 'hidden',
+    }}
+  >
+    <img
+      src={Banner}
+      alt="Banner"
+      style={{
+        width: '100%',
+        height: 'auto',
+        maxHeight: '400px',
+        objectFit: 'cover',
+        display: 'block',
+      }}
+    />
 
-      {/* CTA Button */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 20, margin: '40px 0' }}>
-        <a
-          href="http://dashboard.elitepay.pro/form/creditor-academy-paulr-prevet"
-          style={{
-            backgroundColor: '#5dade2',
-            color: 'white',
-            padding: '16px 32px',
-            fontSize: 18,
-            fontWeight: 'bold',
-            borderRadius: 8,
-            textDecoration: 'none',
-            transition: 'all 0.3s ease-out',
-          }}
-          onMouseOver={(e) => {
-            e.target.style.transform = 'scale(1.07)';
-            e.target.style.boxShadow = '0 6px 18px rgba(0,0,0,0.3)';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.transform = 'scale(1)';
-            e.target.style.boxShadow = 'none';
-          }}
-        >
-          Apply Now
-        </a>
-      </div>
+    {/* Responsive Decorative Bubble */}
+    <div
+      style={{
+        position: 'absolute',
+        top: 'clamp(-140px, -20vw, -80px)',
+        right: 'clamp(-100px, -15vw, -40px)',
+        width: 'clamp(150px, 30vw, 300px)',
+        height: 'clamp(150px, 30vw, 300px)',
+        background: 'radial-gradient(circle, #dbeafe, transparent)',
+        zIndex: 0,
+        borderRadius: '50%',
+        pointerEvents: 'none',
+      }}
+    />
+  </motion.div>
+
+  {/* CTA Button */}
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      gap: 20,
+      margin: 'clamp(20px, 5vw, 60px) 0',
+      padding: '0 5%',
+    }}
+  >
+    <a
+      href="http://dashboard.elitepay.pro/form/creditor-academy-paulr-prevet"
+      style={{
+        backgroundColor: '#5dade2',
+        color: 'white',
+        padding: '16px 32px',
+        fontSize: 18,
+        fontWeight: 'bold',
+        borderRadius: 8,
+        textDecoration: 'none',
+        transition: 'all 0.3s ease-out',
+        display: 'inline-block',
+      }}
+      onMouseOver={(e) => {
+        e.target.style.transform = 'scale(1.07)';
+        e.target.style.boxShadow = '0 6px 18px rgba(0,0,0,0.3)';
+      }}
+      onMouseOut={(e) => {
+        e.target.style.transform = 'scale(1)';
+        e.target.style.boxShadow = 'none';
+      }}
+    >
+      Apply Now
+    </a>
+  </div>
 
       {/* Header Section */}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 20px', textAlign: 'center' }}>

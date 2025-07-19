@@ -11,7 +11,7 @@ const cardVariants = {
       duration: 0.6,
       ease: "easeOut"
     }
-  }),
+  })
 };
 
 const testimonialVariants = {
@@ -24,7 +24,7 @@ const testimonialVariants = {
       duration: 0.5,
       ease: "easeOut"
     }
-  }),
+  })
 };
 
 const CourseEndAndTestimonials = () => {
@@ -71,18 +71,33 @@ const CourseEndAndTestimonials = () => {
 
   return (
     <>
-      {/* Course End Section */}
-      <section style={{ background: "#f0f9ff", padding: "80px 5%", fontFamily: "'Segoe UI', sans-serif" }}>
-        <h2 style={{ textAlign: "center", fontSize: "2.6em", marginBottom: "50px", color: "#0284c7" }}>
-          <strong><span style={{ color: "rgb(0, 86, 179)" }}>By the End of This Course, You Will…</span></strong>
+      {/* Course Outcome Section */}
+      <section
+        style={{
+          background: "#f0f9ff",
+          padding: "80px 5%",
+          fontFamily: "'Segoe UI', sans-serif"
+        }}
+      >
+        <h2
+          style={{
+            textAlign: "center",
+            fontSize: "2.6em",
+            marginBottom: "50px",
+            color: "#0056b3"
+          }}
+        >
+          <strong>By the End of This Course, You Will…</strong>
         </h2>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "24px",
-          maxWidth: "1200px",
-          margin: "auto"
-        }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "24px",
+            maxWidth: "1200px",
+            margin: "auto"
+          }}
+        >
           {courseCards.map((item, index) => (
             <motion.div
               key={index}
@@ -105,29 +120,40 @@ const CourseEndAndTestimonials = () => {
                 <path d={item.iconPath}></path>
               </svg>
               <h3 style={{ margin: 0, fontSize: "1.2rem", color: "#1e293b" }}>{item.title}</h3>
-              <p style={{ margin: 0, color: "#475569" }}>{item.desc}</p>
+              <p style={{ margin: 0, color: "#475569", fontSize: "1rem" }}>{item.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section style={{
-        background: "linear-gradient(to bottom, #e0f2fe, #f8fafc)",
-        padding: "100px 5%",
-        fontFamily: "'Segoe UI', sans-serif",
-        color: "#1e293b"
-      }}>
-        <h2 style={{ textAlign: "center", fontSize: "2.8em", marginBottom: "60px", color: "#0ea5e9" }}>
-          <strong><span style={{ color: "rgb(0, 86, 179)" }}>REAL STUDENTS. REAL RESULTS.</span></strong>
+      <section
+        style={{
+          background: "linear-gradient(to bottom, #e0f2fe, #f8fafc)",
+          padding: "100px 5%",
+          fontFamily: "'Segoe UI', sans-serif",
+          color: "#1e293b"
+        }}
+      >
+        <h2
+          style={{
+            textAlign: "center",
+            fontSize: "2.8em",
+            marginBottom: "60px",
+            color: "#0056b3"
+          }}
+        >
+          <strong>REAL STUDENTS. REAL RESULTS.</strong>
         </h2>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "40px",
-          maxWidth: "1200px",
-          margin: "auto"
-        }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "40px",
+            maxWidth: "1200px",
+            margin: "auto"
+          }}
+        >
           {testimonials.map((item, index) => (
             <motion.div
               key={index}
@@ -136,25 +162,37 @@ const CourseEndAndTestimonials = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
+              whileHover={{ scale: 1.03 }}
               style={{
                 background: `linear-gradient(to bottom right, #f0f9ff, #dbeafe)`,
                 borderRadius: "20px",
                 padding: "30px",
                 boxShadow: "0 10px 30px rgba(15, 23, 42, 0.12)",
-                position: "relative"
+                position: "relative",
+                transition: "all 0.3s ease"
               }}
             >
-              <svg viewBox="0 0 24 24" style={{
-                position: "absolute",
-                top: "-20px",
-                left: "20px",
-                width: "50px",
-                height: "50px",
-                fill: item.color
-              }}>
+              <svg
+                viewBox="0 0 24 24"
+                style={{
+                  position: "absolute",
+                  top: "-20px",
+                  left: "20px",
+                  width: "50px",
+                  height: "50px",
+                  fill: item.color
+                }}
+              >
                 <path d="M9 11H7c0-2.8 1.2-4.2 4-4.9V4C6.3 4.7 4 7 4 11v6h5v-6zm10 0h-2c0-2.8 1.2-4.2 4-4.9V4c-4.7.7-7 3-7 7v6h5v-6z"></path>
               </svg>
-              <p style={{ fontSize: "1.08rem", lineHeight: 1.6, marginTop: "30px", marginBottom: "20px" }}>
+              <p
+                style={{
+                  fontSize: "1.08rem",
+                  lineHeight: 1.6,
+                  marginTop: "30px",
+                  marginBottom: "20px"
+                }}
+              >
                 “{item.quote}”
               </p>
               <p style={{ fontWeight: 600, color: "#0f172a" }}>— {item.name}</p>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import img1 from '../assets/car.jpg';
 import img2 from '../assets/couple.png';
@@ -11,11 +12,9 @@ import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
 import StatsSection from '../components/StatsSection';
-import { useNavigate } from 'react-router-dom'; 
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  
   useEffect(() => {
     const carousel = document.getElementById('hero-carousel');
     let idx = 0;
@@ -28,7 +27,6 @@ const LandingPage = () => {
   }, []);
 
   const sliderImages = [img1, img2, img3, img4];
-  const navigate = useNavigate();
 
   return (
     <>
@@ -147,7 +145,6 @@ const LandingPage = () => {
                 }}
                 transition={{ type: 'spring', stiffness: 300 }}
                 onClick={() => navigate('/remedy')}
-                }
                 style={{
                   padding: '14px 28px',
                   fontSize: '1rem',
@@ -246,7 +243,7 @@ const LandingPage = () => {
                   Discover tailored payment solutions designed to empower your business with customized, seamless payment solutions.
                 </p>
                 <motion.button
-                  onClick={() => navigate('/merchant')}
+                  onClick={() => navigate('/pmp')}
                   whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0,0,0,0.15)' }}
                   transition={{ type: 'spring', stiffness: 300 }}
                   style={{ padding: '12px 24px', background: '#5DADE2', color: '#fff', border: 'none', borderRadius: '25px', cursor: 'pointer' }}
