@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Operate from '../assets/Operate Private Football.png';
+import { motion } from 'framer-motion';
+import Operate from '../assets/OperatePrivateFootball.png';
 
 const AppointmentBanner = () => {
   const [agreed, setAgreed] = useState(false);
@@ -15,19 +16,36 @@ const AppointmentBanner = () => {
   };
 
   return (
-    <div>
-      {/* Full-Width Responsive Banner Image */}
-      <div style={{ width: '100%', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}>
+      {/* ✅ Animated Banner Image */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{ width: '100%', overflow: 'hidden' }}
+      >
         <img
           src={Operate}
           alt="OperateP"
           style={{ width: '100%', height: 'auto', display: 'block' }}
         />
-      </div>
+      </motion.div>
 
-      {/* Checkbox and Book Appointment Button */}
-      <div style={{ textAlign: 'center', padding: '20px 0' }}>
-        {/* Checkbox */}
+      {/* ✅ Terms + CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        style={{
+          textAlign: 'center',
+          padding: '20px 10px',
+          maxWidth: '800px',
+          margin: '0 auto',
+        }}
+      >
+        {/* Terms Checkbox */}
         <div style={{ marginBottom: '20px' }}>
           <input
             type="checkbox"
@@ -39,7 +57,6 @@ const AppointmentBanner = () => {
           <label
             htmlFor="termsCheckbox"
             style={{
-              fontFamily: 'Poppins, sans-serif',
               fontSize: '1.1rem',
               color: '#333',
             }}
@@ -61,40 +78,37 @@ const AppointmentBanner = () => {
           </label>
         </div>
 
-        {/* Book Appointment Button */}
-        <button
+        {/* CTA Button */}
+        <motion.button
           onClick={handleClick}
           disabled={!agreed}
+          whileHover={
+            agreed
+              ? {
+                  scale: 1.05,
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+                }
+              : {}
+          }
+          whileTap={agreed ? { scale: 0.98 } : {}}
+          transition={{ type: 'spring', stiffness: 300 }}
           style={{
-            display: 'inline-block',
             background: agreed ? '#1890FF' : '#ccc',
             color: 'white',
-            padding: '18px 40px',
+            padding: '16px 30px',
             borderRadius: '10px',
-            fontSize: '1.3rem',
-            fontFamily: 'Poppins, sans-serif',
+            fontSize: '1.1rem',
             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            opacity: agreed ? '1' : '0.5',
+            opacity: agreed ? '1' : '0.6',
             cursor: agreed ? 'pointer' : 'not-allowed',
             border: 'none',
-            transition: 'all 0.3s ease',
-          }}
-          onMouseOver={(e) => {
-            if (agreed) {
-              e.currentTarget.style.transform = 'scale(1.05)';
-              e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
-            }
-          }}
-          onMouseOut={(e) => {
-            if (agreed) {
-              e.currentTarget.style.transform = 'none';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-            }
+            width: '100%',
+            maxWidth: '380px',
           }}
         >
           Book an Appointment with Counselor
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
     </div>
   );
 };

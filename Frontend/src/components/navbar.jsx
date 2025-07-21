@@ -85,7 +85,6 @@ const Navbar = () => {
             <img src={logo} alt="Creditor Academy" className="nav-logo" />
           </Link>
         </div>
-
         {!isMobile && (
           <nav className="nav-main-menu">
             <div
@@ -101,6 +100,7 @@ const Navbar = () => {
                 <NavLink to="/senioryear" className="nav-dropdown-link cool-underline">SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
                 <NavLink to="/remedy" className="nav-dropdown-link cool-underline">I WANT REMEDY NOW!</NavLink>
                 <NavLink to="/privatemerchant" className="nav-dropdown-link cool-underline">Private Merchant & Processing</NavLink>
+
               </div>
             </div>
             <div
@@ -113,6 +113,7 @@ const Navbar = () => {
                 <NavLink to="/masterclass" className="nav-dropdown-link cool-underline">Membership</NavLink>
                 <NavLink to="/website" className="nav-dropdown-link cool-underline">Website Creation</NavLink>
                 <NavLink to="/merchantprocessing" className="nav-dropdown-link cool-underline">Merchant Processing</NavLink>
+
               </div>
             </div>
             <NavLink to="/contact" className="nav-link cool-underline">Contact</NavLink>

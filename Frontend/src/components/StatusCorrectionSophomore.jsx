@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import PartySop from '../assets/PartySop.jpg';
-import StatusSop from '../assets/StatusSop.jpg';
+import StatusSop from '../assets/statusSop.jpg';
 
 const StatusCorrection = () => {
   useEffect(() => {
@@ -12,43 +12,43 @@ const StatusCorrection = () => {
   const cards = [
     {
       title: 'Status Correction',
-      image: StatusSop
+      image: StatusSop,
     },
     {
-      title: 'Secured Party Creditor Processes',
-      image: PartySop
+      title: 'Secured Party Creditor (SPC) Processes',
+      image: PartySop,
     },
   ];
 
   return (
     <section style={{
-      padding: '40px 8%',
-      background: 'linear-gradient(135deg, #eef5ff 0%, #f8fbff 100%)',
+      padding: '60px 5%',
+      background: 'linear-gradient(135deg, #eef5ff, #f8fbff)',
       fontFamily: "'Poppins', sans-serif",
     }}>
       <div style={{
         maxWidth: '1200px',
-        margin: 'auto',
+        margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
-        gap: '80px',
+        gap: '50px',
       }}>
         {/* Header */}
         <div style={{ textAlign: 'center' }}>
           <h2 style={{
-            fontSize: '2.6rem',
+            fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
             color: '#1a2b5f',
-            fontWeight: 'bold',
+            fontWeight: '700',
             marginBottom: '15px',
-            letterSpacing: '-0.5px',
+            lineHeight: '1.2',
           }}>
             <span style={{ color: 'rgb(0, 86, 179)' }}>SPC + Status Correction Mastery</span>
           </h2>
           <p style={{
             color: '#5a6a85',
-            fontSize: '1.1rem',
+            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
             maxWidth: '700px',
-            margin: '0 auto 55px',
+            margin: '0 auto',
             lineHeight: '1.6',
           }}>
             Go step-by-step through every lawful declaration, filing, and notarization to correct your status and secure your estate.
@@ -57,24 +57,21 @@ const StatusCorrection = () => {
 
         {/* Cards */}
         <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '40px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '30px',
         }}>
           {cards.map((card, index) => (
             <div
               key={index}
-              data-aos="fade-up"
+              data-aos="zoom-in-up"
               style={{
                 position: 'relative',
-                width: '100%',
-                maxWidth: '400px',
-                aspectRatio: '4 / 3',
                 borderRadius: '20px',
                 overflow: 'hidden',
-                boxShadow: 'rgba(0, 0, 0, 0.1) 0px 15px 30px',
+                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
                 transition: 'transform 0.4s ease',
+                cursor: 'pointer',
               }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
               onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -85,8 +82,8 @@ const StatusCorrection = () => {
                 style={{
                   width: '100%',
                   height: '100%',
+                  aspectRatio: '4 / 3',
                   objectFit: 'cover',
-                  transition: 'transform 0.3s ease',
                 }}
               />
               <div style={{
@@ -94,16 +91,12 @@ const StatusCorrection = () => {
                 bottom: 0,
                 left: 0,
                 width: '100%',
-                height: '50%',
-                background: 'rgba(0, 86, 179, 0.4)',
-                color: 'white',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '10px 15px',
+                padding: '15px',
+                background: 'rgba(0, 86, 179, 0.6)',
+                color: '#fff',
                 textAlign: 'center',
-                fontSize: '1.3rem',
-                fontWeight: 600,
+                fontSize: '1.2rem',
+                fontWeight: '600',
               }}>
                 {card.title}
               </div>
