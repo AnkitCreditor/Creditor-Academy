@@ -153,12 +153,13 @@ const Navbar = () => {
               </button>
               {showServices && (
                 <div className="nav-mobile-dropdown-content">
-                  <NavLink to="/masterclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Membership</NavLink>
+                  <NavLink to="/liveclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Live Class</NavLink>
                   <NavLink to="/website" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Website Creation</NavLink>
-                  <NavLink to="/merchantprocessing" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Merchant Processing</NavLink>
+                  <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Merchant Processing</NavLink>
                 </div>
               )}
             </div>
+            <NavLink to="/masterclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Membership</NavLink>
             <NavLink to="/contact" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Contact</NavLink>
             <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>I want Remedy NOW</NavLink>
           </div>
