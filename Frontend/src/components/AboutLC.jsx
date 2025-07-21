@@ -19,62 +19,77 @@ const features = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
 const LiveClassesSection = () => {
   return (
-    <div>
-      {/* About Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
+    <div style={{ backgroundColor: "#f7f9fb", padding: "60px 20px" }}>
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         style={{
-          padding: "50px 20px",
           textAlign: "center",
-          backgroundColor: "white",
+          maxWidth: "800px",
+          margin: "auto",
+          marginBottom: "40px",
         }}
       >
-        <h2 style={{ fontSize: "28px", marginBottom: "15px" }}>
+        <h2 style={{ fontSize: "32px", marginBottom: "12px", color: "#111" }}>
           Why Join Our Live Classes?
         </h2>
-        <p
-          style={{
-            maxWidth: "700px",
-            margin: "auto",
-            fontSize: "16px",
-            color: "#555",
-          }}
-        >
+        <p style={{ fontSize: "18px", color: "#555" }}>
           Get real-time answers to your questions, interact with experienced
           mentors, and build your skills through engaging sessions every week.
         </p>
-      </motion.section>
+      </motion.div>
 
-      {/* Features Section */}
-      <section
+      {/* Feature Cards */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
         style={{
           display: "flex",
-          justifyContent: "center",
-          gap: "20px",
-          padding: "30px 20px",
-          backgroundColor: "#f1f1f1",
           flexWrap: "wrap",
+          gap: "25px",
+          justifyContent: "center",
+          maxWidth: "1200px",
+          margin: "auto",
         }}
       >
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            whileHover={{ scale: 1.05 }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            viewport={{ once: true }}
+            variants={cardVariants}
+            whileHover={{
+              scale: 1.03,
+              rotate: 0.5,
+              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+            }}
+            transition={{ type: "spring", stiffness: 200, damping: 12 }}
             style={{
+              background: "#fff",
+              borderRadius: "16px",
               width: "300px",
-              background: "white",
-              borderRadius: "10px",
               padding: "20px",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
               textAlign: "center",
+              boxShadow: "0 6px 16px rgba(0,0,0,0.05)",
               cursor: "pointer",
             }}
           >
@@ -83,17 +98,21 @@ const LiveClassesSection = () => {
               alt={feature.title}
               style={{
                 width: "100%",
-                height: "199px",
+                height: "200px",
                 objectFit: "cover",
+                borderRadius: "12px",
                 marginBottom: "15px",
-                borderRadius: "5px",
               }}
             />
-            <h3 style={{ marginBottom: "10px" }}>{feature.title}</h3>
-            <p style={{ color: "#555" }}>{feature.desc}</p>
+            <h3 style={{ fontSize: "20px", marginBottom: "10px", color: "#222" }}>
+              {feature.title}
+            </h3>
+            <p style={{ color: "#666", fontSize: "15px", lineHeight: "1.5" }}>
+              {feature.desc}
+            </p>
           </motion.div>
         ))}
-      </section>
+      </motion.div>
     </div>
   );
 };
