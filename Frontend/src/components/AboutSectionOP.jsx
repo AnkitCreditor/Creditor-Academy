@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Operate from '../assets/Operate Private Football.png';
+import Operate from '../assets/OperatePrivateFootball.png';
 
 const AppointmentBanner = () => {
   const [agreed, setAgreed] = useState(false);

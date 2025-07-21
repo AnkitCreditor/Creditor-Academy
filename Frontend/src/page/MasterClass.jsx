@@ -1,5 +1,5 @@
 import React from 'react'
-import MasterHero from '../components/masterhero'
+import MasterHero from '../components/MasterHero'
 import GameBanner from '../components/GameBanner'
 import CommitToGrowth from '../components/CommitToGrowth'
 import OptionMC from '../components/OptionMC'
@@ -7,10 +7,10 @@ import { MCmembership } from '../components/MCmembership'
 import { MCwho } from '../components/MCwho'
 
 
-export const Masterclass = () => {
+export const MasterClass = () => {
   return (
     <div>
-        <MasterHero/>
+    <MasterHero/>
     <GameBanner/>
     <CommitToGrowth/>
     <OptionMC/>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaGamepad, FaMedal, FaUsers } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import GBanner from '../assets/game_banner.png';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -128,7 +129,7 @@ const GameBanner = () => {
         viewport={{ once: false, amount: 0.2 }}
         style={{
           position: 'relative',
-          background: `url('https://www.creditoracademy.com/files/8178604/new_game_hero.png') center center / cover no-repeat`,
+          background: `url(${GBanner}) center center / cover no-repeat`,
           padding: '100px 5%',
           fontFamily: 'Poppins, sans-serif',
           color: 'white',
