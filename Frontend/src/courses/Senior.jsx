@@ -128,25 +128,27 @@ const Senior = () => {
       <section
         style={{
           display: 'flex',
-          flexWrap: 'wrap',
+          flexDirection: 'column',
           gap: '40px',
           padding: '60px 5%',
           background: '#f0f9ff',
+          boxSizing: 'border-box',
         }}
       >
         {/* Problem */}
-        <motion.div
+        <div
           whileInView={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: -40 }}
           transition={{ duration: 0.8 }}
           style={{
-            flex: 1,
-            minWidth: '300px',
             background: 'white',
             borderLeft: '6px solid #e11d48',
             borderRadius: '12px',
             padding: '30px',
             boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
+            width: '100%',
+            maxWidth: '100%',
+            boxSizing: 'border-box',
           }}
         >
           <h2 style={{ fontSize: '2em', color: '#e11d48', marginBottom: '20px' }}>The Problem</h2>
@@ -171,21 +173,22 @@ const Senior = () => {
           <div style={{ marginTop: '20px', fontWeight: 'bold', background: '#fffbea', padding: '12px 20px', borderLeft: '4px solid #facc15', borderRadius: '6px' }}>
             There’s a third path. <span style={{ color: '#e11d48' }}>The Private Path.</span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Solution */}
-        <motion.div
+        <div
           whileInView={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: 40 }}
           transition={{ duration: 0.8 }}
           style={{
-            flex: 1,
-            minWidth: '300px',
             background: 'white',
             borderLeft: '6px solid #10b981',
             borderRadius: '12px',
             padding: '30px',
             boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
+            width: '100%',
+            maxWidth: '100%',
+            boxSizing: 'border-box',
           }}
         >
           <h2 style={{ fontSize: '2em', color: '#10b981', marginBottom: '20px' }}>The Private Solution</h2>
@@ -208,7 +211,7 @@ const Senior = () => {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </section>
       <USP/>
       <GameBanner/>
