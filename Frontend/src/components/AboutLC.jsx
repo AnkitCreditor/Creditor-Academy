@@ -19,9 +19,18 @@ const features = [
   },
 ];
 
-const containerVariants = {
+const containerVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
+const cardContainerVariants = {
   hidden: { opacity: 0 },
-  show: {
+  visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.25,
@@ -29,9 +38,18 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+const cardVariant = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.2,
+      ease: "easeOut",
+    },
+  }),
 };
 
 const LiveClassesSection = () => {
@@ -48,46 +66,24 @@ const LiveClassesSection = () => {
     }
   }, [isInView, controls]);
 
-  const containerVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
-  const cardVariant = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        delay: i * 0.2,
-        ease: "easeOut",
-      },
-    }),
-  };
-
   return (
     <div style={{ backgroundColor: "#f7f9fb", padding: "60px 20px" }}>
       {/* Header */}
       <motion.section
+        ref={sectionRef}
         variants={containerVariant}
         initial="hidden"
         animate={controls}
         style={{
           padding: "60px 20px",
-          background: "linear-gradient(145deg, #0f2027, #203a43, #2c5364)",
+          background: "linear-gradient(145deg, #2b5a6eff, #36a3c8ff, #0d4157ff)",
           fontFamily: "Poppins, sans-serif",
           textAlign: "center",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Floating Blobs or Reflection Background */}
+        {/* Blobs */}
         <div
           style={{
             position: "absolute",
@@ -101,7 +97,6 @@ const LiveClassesSection = () => {
             zIndex: 0,
           }}
         ></div>
-
         <div
           style={{
             position: "absolute",
@@ -116,6 +111,7 @@ const LiveClassesSection = () => {
           }}
         ></div>
 
+        {/* Heading and Text */}
         <div
           style={{
             maxWidth: "900px",
@@ -160,18 +156,18 @@ const LiveClassesSection = () => {
               boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
             }}
           >
-            Get real-time answers to your questions, interact with experienced mentors, and build your skills through engaging sessions every week — all from the comfort of your home.
+            Get real-time answers to your questions, interact with experienced
+            mentors, and build your skills through engaging sessions every week —
+            all from the comfort of your home.
           </motion.p>
         </div>
       </motion.section>
 
-
       {/* Feature Cards */}
       <motion.div
-        variants={containerVariants}
+        variants={cardContainerVariants}
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
+        animate="visible"
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -179,18 +175,15 @@ const LiveClassesSection = () => {
           justifyContent: "center",
           maxWidth: "1200px",
           margin: "auto",
+          marginTop: "40px",
         }}
       >
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            variants={cardVariants}
-            whileHover={{
-              scale: 1.03,
-              rotate: 0.5,
-              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
-            }}
-            transition={{ type: "spring", stiffness: 200, damping: 12 }}
+            custom={index}
+            variants={cardVariant}
+            whileHover={{ scale: 1.03, rotate: 0.5 }}
             style={{
               background: "#fff",
               borderRadius: "16px",
@@ -213,10 +206,22 @@ const LiveClassesSection = () => {
                 marginBottom: "15px",
               }}
             />
-            <h3 style={{ fontSize: "20px", marginBottom: "10px", color: "#222" }}>
+            <h3
+              style={{
+                fontSize: "20px",
+                marginBottom: "10px",
+                color: "#222",
+              }}
+            >
               {feature.title}
             </h3>
-            <p style={{ color: "#666", fontSize: "15px", lineHeight: "1.5" }}>
+            <p
+              style={{
+                color: "#666",
+                fontSize: "15px",
+                lineHeight: "1.5",
+              }}
+            >
               {feature.desc}
             </p>
           </motion.div>
