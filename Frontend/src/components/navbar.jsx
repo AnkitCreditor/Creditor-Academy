@@ -97,7 +97,7 @@ const Navbar = () => {
                 <NavLink to="/sov" className="nav-dropdown-link cool-underline">FRESHMAN: Sovereignty 101</NavLink>
                 <NavLink to="/sophomore" className="nav-dropdown-link cool-underline">SOPHOMORE: Become Private</NavLink>
                 <NavLink to="/operateprivate" className="nav-dropdown-link cool-underline">JUNIOR: Operate Private</NavLink>
-                <NavLink to="/senioryear" className="nav-dropdown-link cool-underline">SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
+                <NavLink to="/unlimitedcredit" className="nav-dropdown-link cool-underline">SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
                 <NavLink to="/remedy" className="nav-dropdown-link cool-underline">I WANT REMEDY NOW!</NavLink>
                 <NavLink to="/privatemerchant" className="nav-dropdown-link cool-underline">Private Merchant & Processing</NavLink>
 
@@ -110,14 +110,15 @@ const Navbar = () => {
             >
               <span className="nav-link cool-underline">Services ▾</span>
               <div className={`nav-dropdown${showServices ? ' visible' : ''}`}>
-                <NavLink to="/masterclass" className="nav-dropdown-link cool-underline">Membership</NavLink>
+                <NavLink to="/liveclass" className="nav-dropdown-link cool-underline">Live Class</NavLink>
                 <NavLink to="/website" className="nav-dropdown-link cool-underline">Website Creation</NavLink>
-                <NavLink to="/merchantprocessing" className="nav-dropdown-link cool-underline">Merchant Processing</NavLink>
+                <NavLink to="/pmp" className="nav-dropdown-link cool-underline">Merchant Processing</NavLink>
 
               </div>
             </div>
+            <NavLink to="/masterclass" className="nav-link cool-underline">Membership</NavLink>
             <NavLink to="/contact" className="nav-link cool-underline">Contact</NavLink>
-            <NavLink to="/remedy" className="nav-link cool-underline">I want Remedy NOW</NavLink>
+            <NavLink to="/remedy" className="nav-link cool-underline">Remedy NOW</NavLink>
             {loginButton()}
           </nav>
         )}
@@ -138,7 +139,7 @@ const Navbar = () => {
                   <NavLink to="/sov" className="nav-mobile-link cool-underline" onClick={toggleMenu}>FRESHMAN: Sovereignty 101</NavLink>
                   <NavLink to="/sophomore" className="nav-mobile-link cool-underline" onClick={toggleMenu}>SOPHOMORE: Become Private</NavLink>
                   <NavLink to="/operateprivate" className="nav-mobile-link cool-underline" onClick={toggleMenu}>JUNIOR: Operate Private</NavLink>
-                  <NavLink to="/senioryear" className="nav-mobile-link cool-underline" onClick={toggleMenu}>SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
+                  <NavLink to="/unlimitedcredit" className="nav-mobile-link cool-underline" onClick={toggleMenu}>SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
                   <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>I WANT REMEDY NOW!</NavLink>
                   <NavLink to="/privatemerchant" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Private Merchant & Processing</NavLink>
                 </div>
@@ -153,7 +154,7 @@ const Navbar = () => {
               </button>
               {showServices && (
                 <div className="nav-mobile-dropdown-content">
-                  <NavLink to="/liveclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Live Class</NavLink>
+                  <NavLink to="/liveclass"   className="nav-mobile-link cool-underline" onClick={toggleMenu}>Live Class</NavLink>
                   <NavLink to="/website" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Website Creation</NavLink>
                   <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Merchant Processing</NavLink>
                 </div>
@@ -161,7 +162,7 @@ const Navbar = () => {
             </div>
             <NavLink to="/masterclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Membership</NavLink>
             <NavLink to="/contact" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Contact</NavLink>
-            <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>I want Remedy NOW</NavLink>
+            <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Remedy NOW</NavLink>
           </div>
         )}
       </header>
