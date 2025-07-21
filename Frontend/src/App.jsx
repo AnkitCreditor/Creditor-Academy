@@ -5,8 +5,8 @@ import PrivateMerchant from './courses/PrivateMerchant' // adjust path if differ
 import Remedy from './courses/Remedy'
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
-import { MasterClass } from './page/MasterClass';
-import Sov from './courses/Sov';
+import MasterClass from './page/MasterClass';
+import Sov from './courses/sov';
 import { WebsiteCreation } from './page/WebsiteCreation';
 import OperatePrivate from './courses/OperatePrivate'; 
 import Sophomore from './courses/Sophomore'; // adjust path if different
@@ -17,6 +17,8 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermCondition from './components/TermCondition';
 import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
+//import PrivacyPolicy from './components/PrivacyPolicy';
+//import TermCondition from './components/TermCondition';
 
 function App() {
   return (
@@ -27,7 +29,7 @@ function App() {
         
         <Route path="/" element={<LandingPage />} />
         <Route path="/privatemerchant" element={<PrivateMerchant/>} />
-        <Route path="/masterclass" element={<MasterClass />}/>
+        <Route path="/masterclass" element={<MasterClass/>}/>
         <Route path="/sov" element={<Sov/>}/>
         <Route path="/website" element={<WebsiteCreation/>}/>
         <Route path="/operateprivate" element={<OperatePrivate />} />
@@ -36,10 +38,8 @@ function App() {
         <Route path="/remedy" element={<Remedy/>} />
         <Route path="/unlimitedcredit" element={<Senior/>} />
         <Route path="/pmp" element={<MerchantProcessing/>} />
-        <Route path="/privacypolicy" element={<PrivacyPolicy/>} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/termcondition"  element={<TermCondition/>}/>
-        <Route path="/returnrefund" element={<ReturnRefund/>} />
-        <Route path="/mtc" element={<MembershipTnC/>} />
       </Routes>
       <Footer/>
     </Router>
