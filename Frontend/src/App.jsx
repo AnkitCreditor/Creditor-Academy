@@ -18,12 +18,15 @@ import TermCondition from './components/TermCondition';
 import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
 import ContactSection from './components/ContactSection'; // adjust path if different
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   return (
     
     <Router>
      
       <Navbar/>
+      <ScrollToTop />
       <Routes>
         
         <Route path="/" element={<LandingPage />} />
