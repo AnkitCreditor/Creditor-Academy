@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useEffect } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const features = [
   {
@@ -35,6 +35,42 @@ const cardVariants = {
 };
 
 const LiveClassesSection = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { threshold: 0.3, once: false });
+
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [isInView, controls]);
+
+  const containerVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
+  const cardVariant = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        delay: i * 0.2,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
     <div style={{ backgroundColor: "#f7f9fb", padding: "60px 20px" }}>
       {/* Header */}
@@ -91,6 +127,7 @@ const LiveClassesSection = () => {
               textAlign: "center",
               boxShadow: "0 6px 16px rgba(0,0,0,0.05)",
               cursor: "pointer",
+              transition: "all 0.3s ease",
             }}
           >
             <img
