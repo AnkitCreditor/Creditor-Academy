@@ -13,6 +13,7 @@ import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
+import ContactSection from '../components/ContactSection.jsx';
 
 const LandingPage = () => {
   const navigate = useNavigate();

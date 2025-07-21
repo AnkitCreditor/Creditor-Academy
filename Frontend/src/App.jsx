@@ -17,12 +17,12 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermCondition from './components/TermCondition';
 import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
-
-
+import ContactSection from './components/ContactSection'; // adjust path if different
 function App() {
   return (
     
     <Router>
+     
       <Navbar/>
       <Routes>
         
@@ -41,6 +41,7 @@ function App() {
         <Route path="/termcondition"  element={<TermCondition/>}/>
         <Route path="/returnrefund" element={<ReturnRefund/>} />
         <Route path="/mtc" element={<MembershipTnC/>} />
+        <Route path="/ContactSection" element={<ContactSection/>} />
       </Routes>
       <Footer/>
     </Router>

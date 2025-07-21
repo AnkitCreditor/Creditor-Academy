@@ -92,7 +92,8 @@ const Navbar = () => {
               onMouseEnter={handleCoursesEnter}
               onMouseLeave={handleCoursesLeave}
             >
-              <span className="nav-link cool-underline">Courses ▾</span>
+          <span id="nav-courses" className="nav-link cool-underline">Courses ▾</span>
+
               <div className={`nav-dropdown${showCourses ? ' visible' : ''}`}>
                 <NavLink to="/sov" className="nav-dropdown-link cool-underline">FRESHMAN: Sovereignty 101</NavLink>
                 <NavLink to="/sophomore" className="nav-dropdown-link cool-underline">SOPHOMORE: Become Private</NavLink>
@@ -117,7 +118,7 @@ const Navbar = () => {
               </div>
             </div>
             <NavLink to="/masterclass" className="nav-link cool-underline">Membership</NavLink>
-            <NavLink to="/contact" className="nav-link cool-underline">Contact</NavLink>
+            <NavLink to="/ContactSection" className="nav-link cool-underline">Contact</NavLink>
             <NavLink to="/remedy" className="nav-link cool-underline">Remedy NOW</NavLink>
             {loginButton()}
           </nav>
@@ -161,7 +162,7 @@ const Navbar = () => {
               )}
             </div>
             <NavLink to="/masterclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Membership</NavLink>
-            <NavLink to="/contact" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Contact</NavLink>
+            <NavLink to="/ContactSection" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Contact</NavLink>
             <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Remedy NOW</NavLink>
           </div>
         )}
