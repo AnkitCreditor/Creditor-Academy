@@ -26,6 +26,7 @@ const SOVhero = () => {
       transition={{ duration: 0.8 }}
       style={{ maxWidth: '100%', position: 'relative', overflow: 'hidden' }}
     >
+
       <img
         src={sovbanner}
         alt="Sovereignty 101 Banner"
