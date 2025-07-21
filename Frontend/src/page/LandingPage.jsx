@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import img1 from '../assets/car.jpg';
-import img2 from '../assets/couple.png';
-import img3 from '../assets/man.png';
-import img4 from '../assets/yatch.png';
+// import img1 from '../assets/carluxury.jpg';
+// import img2 from '../assets/happy-couple-laughing-against-luxurious-backdrop (1) (1).jpg';
+// import img3 from '../assets/businessman-dressed-suit-relaxes-inside-luxurious-private-jet (1).jpg';
+// import img4 from '../assets/luxurious-sunset-view-infinity-pool-yacht-showcasing-elegance-tranquility-warm-eve.jpg';
 import website from '../assets/Website_banner_2(2).jpg';
 import privateMerchant from '../assets/merchant (1).jpg';
 import GameBanner from '../components/GameBanner.jsx';
@@ -12,55 +12,19 @@ import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
 import StatsSection from '../components/StatsSection';
+import HeroCarousel from '../components/HeroCarousel.jsx';
 
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
-    const carousel = document.getElementById('hero-carousel');
-    let idx = 0;
-    const total = 4;
-    const interval = setInterval(() => {
-      idx = (idx + 1) % total;
-      carousel.style.transform = `translateX(-${(idx * 100) / total}%)`;
-    }, 4000);
-    return () => clearInterval(interval);
+    window.scrollTo(0, 0); // Optional: scroll to top on mount
   }, []);
-
-  const sliderImages = [img1, img2, img3, img4];
-
   return (
     <>
-      {/* Image Slider Only */}
-      <div
-        style={{
-          position: 'relative',
-          overflow: 'hidden',
-          width: '100%',
-          height: '90vh',
-          fontFamily: 'Poppins, sans-serif',
-        }}
-      >
-        <div
-          id="hero-carousel"
-          style={{
-            display: 'flex',
-            width: `${sliderImages.length * 100}%`,
-            height: '100%',
-            transition: 'transform 1s ease',
-          }}
-        >
-          {sliderImages.map((bg, index) => (
-            <div
-              key={index}
-              style={{
-                flex: `0 0 ${100 / sliderImages.length}%`,
-                background: `url(${bg}) center/cover no-repeat`,
-              }}
-            ></div>
-          ))}
-        </div>
-      </div>
+    
+      <HeroCarousel />
       <AboutSection /> 
       <MasterclassBanner />
       <CoursesSection />
