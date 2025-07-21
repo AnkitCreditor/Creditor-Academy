@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import logo from '../assets/creditorlogo.png';
 import AdminModal from './AdminModal';
-import './Navbar.css';
+import './navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
