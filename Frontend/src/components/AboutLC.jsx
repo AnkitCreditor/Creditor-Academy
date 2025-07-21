@@ -19,9 +19,18 @@ const features = [
   },
 ];
 
-const containerVariants = {
+const containerVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
+const cardContainerVariants = {
   hidden: { opacity: 0 },
-  show: {
+  visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.25,
@@ -29,9 +38,18 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+const cardVariant = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.2,
+      ease: "easeOut",
+    },
+  }),
 };
 
 const LiveClassesSection = () => {
@@ -48,58 +66,108 @@ const LiveClassesSection = () => {
     }
   }, [isInView, controls]);
 
-  const containerVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
-  const cardVariant = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        delay: i * 0.2,
-        ease: "easeOut",
-      },
-    }),
-  };
-
   return (
     <div style={{ backgroundColor: "#f7f9fb", padding: "60px 20px" }}>
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+      <motion.section
+        ref={sectionRef}
+        variants={containerVariant}
+        initial="hidden"
+        animate={controls}
         style={{
+          padding: "60px 20px",
+          background: "linear-gradient(145deg, #2b5a6eff, #36a3c8ff, #0d4157ff)",
+          fontFamily: "Poppins, sans-serif",
           textAlign: "center",
-          maxWidth: "800px",
-          margin: "auto",
-          marginBottom: "40px",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <h2 style={{ fontSize: "32px", marginBottom: "12px", color: "#111" }}>
-          Why Join Our Live Classes?
-        </h2>
-        <p style={{ fontSize: "18px", color: "#555" }}>
-          Get real-time answers to your questions, interact with experienced
-          mentors, and build your skills through engaging sessions every week.
-        </p>
-      </motion.div>
+        {/* Blobs */}
+        <div
+          style={{
+            position: "absolute",
+            top: "-100px",
+            left: "-100px",
+            width: "300px",
+            height: "300px",
+            background: "rgba(255,255,255,0.05)",
+            filter: "blur(100px)",
+            borderRadius: "50%",
+            zIndex: 0,
+          }}
+        ></div>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-80px",
+            right: "-80px",
+            width: "250px",
+            height: "250px",
+            background: "rgba(255,255,255,0.04)",
+            filter: "blur(80px)",
+            borderRadius: "50%",
+            zIndex: 0,
+          }}
+        ></div>
+
+        {/* Heading and Text */}
+        <div
+          style={{
+            maxWidth: "900px",
+            margin: "0 auto",
+            padding: "0 10px",
+            position: "relative",
+            zIndex: 2,
+          }}
+        >
+          <motion.h2
+            whileHover={{ scale: 1.05, rotateX: 15 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            style={{
+              fontSize: "clamp(1.8rem, 5vw, 2.5rem)",
+              fontWeight: 600,
+              color: "#ffffff",
+              marginBottom: "20px",
+              perspective: "1000px",
+              transformStyle: "preserve-3d",
+            }}
+          >
+            Why Join Our Live Classes?
+          </motion.h2>
+
+          <motion.p
+            whileHover={{
+              scale: 1.02,
+              rotateX: -8,
+              transformOrigin: "top",
+            }}
+            transition={{ duration: 0.4 }}
+            style={{
+              fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+              color: "#ddd",
+              lineHeight: "1.8",
+              background:
+                "linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(255,255,255,0))",
+              padding: "20px",
+              borderRadius: "12px",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+            }}
+          >
+            Get real-time answers to your questions, interact with experienced
+            mentors, and build your skills through engaging sessions every week —
+            all from the comfort of your home.
+          </motion.p>
+        </div>
+      </motion.section>
 
       {/* Feature Cards */}
       <motion.div
-        variants={containerVariants}
+        variants={cardContainerVariants}
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
+        animate="visible"
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -107,18 +175,15 @@ const LiveClassesSection = () => {
           justifyContent: "center",
           maxWidth: "1200px",
           margin: "auto",
+          marginTop: "40px",
         }}
       >
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            variants={cardVariants}
-            whileHover={{
-              scale: 1.03,
-              rotate: 0.5,
-              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
-            }}
-            transition={{ type: "spring", stiffness: 200, damping: 12 }}
+            custom={index}
+            variants={cardVariant}
+            whileHover={{ scale: 1.03, rotate: 0.5 }}
             style={{
               background: "#fff",
               borderRadius: "16px",
@@ -141,10 +206,22 @@ const LiveClassesSection = () => {
                 marginBottom: "15px",
               }}
             />
-            <h3 style={{ fontSize: "20px", marginBottom: "10px", color: "#222" }}>
+            <h3
+              style={{
+                fontSize: "20px",
+                marginBottom: "10px",
+                color: "#222",
+              }}
+            >
               {feature.title}
             </h3>
-            <p style={{ color: "#666", fontSize: "15px", lineHeight: "1.5" }}>
+            <p
+              style={{
+                color: "#666",
+                fontSize: "15px",
+                lineHeight: "1.5",
+              }}
+            >
               {feature.desc}
             </p>
           </motion.div>
