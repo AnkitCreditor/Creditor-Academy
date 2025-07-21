@@ -18,27 +18,28 @@ const SOVhero = () => {
   };
 
   return (
-    <div style={{ fontFamily: 'Poppins, sans-serif' }}>
-      {/* Banner with framer-motion animation */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        style={{ maxWidth: '100%', position: 'relative', overflow: 'hidden' }}
-      >
-        <img
-          src={sovbanner}
-          alt="Sovereignty 101 Banner"
-          style={{
-            width: '100%',
-            height: 'auto',
-            objectFit: 'cover',
-            display: 'block',
-            borderRadius: '8px',
-            maxHeight: '420px'
-          }}
-        />
-      </motion.div>
+  <div style={{ fontFamily: 'Poppins, sans-serif' }}>
+    {/* Banner with framer-motion animation */}
+    <motion.div
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      style={{ maxWidth: '100%', position: 'relative', overflow: 'hidden' }}
+    >
+      <img
+        src={sovbanner}
+        alt="Sovereignty 101 Banner"
+        style={{
+          width: '100%',
+          height: 'auto',
+          objectFit: 'cover',
+          display: 'block',
+          borderRadius: '8px',
+          maxHeight: '420px'
+        }}
+      />
+    </motion.div>
+
 
       {/* Sign Up Button */}
       <div style={{ textAlign: 'center', marginTop: '-7px', padding: '20px 0' }}>
