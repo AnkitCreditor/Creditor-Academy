@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaEye, FaCircle, FaUsers, FaYoutube } from "react-icons/fa";
 
-// 🔐 Replace these with your actual API key and Channel ID
 const API_KEY = "AIzaSyCJKDRtak743c9fOKLhZYnnZi_PncFjov0";
 const CHANNEL_ID = "UCl_FM9KmhMA-DV6OTgr42Dw";
 
@@ -38,7 +37,7 @@ const StatHighlights = () => {
 
   const stats = [
     {
-      icon: <FaEye size={30} />,
+      icon: <FaEye size={28} />,
       label: "YouTube Views",
       value: youtubeData.viewCount,
       color: "#0abde3",
@@ -46,17 +45,17 @@ const StatHighlights = () => {
     {
       icon: <FaCircle size={20} />,
       label: "Live Learners",
-      value: "1673",
+      value: "1,673",
       color: "#1dd1a1",
     },
     {
-      icon: <FaUsers size={30} />,
+      icon: <FaUsers size={28} />,
       label: "Total Debt Eliminated",
       value: "1,275,432",
       color: "#54a0ff",
     },
     {
-      icon: <FaYoutube size={30} />,
+      icon: <FaYoutube size={28} />,
       label: "YouTube Subscribers",
       value: youtubeData.subscriberCount,
       color: "#ff6b6b",
@@ -70,7 +69,7 @@ const StatHighlights = () => {
       y: 0,
       transition: {
         staggerChildren: 0.2,
-        duration: 0.6,
+        duration: 0.8,
         ease: "easeOut",
       },
     },
@@ -86,18 +85,14 @@ const StatHighlights = () => {
       variants={containerVariant}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.3 }}
+      viewport={{ once: false, amount: 0.2 }}
       style={{
-        background: `
-          radial-gradient(circle at top left, #dff9fb 0%, transparent 30%),
-          radial-gradient(circle at bottom right, #c8dfff 0%, transparent 40%),
-          linear-gradient(135deg, #e0f7ff, #f5fcff 60%, #d6eaff)
-        `,
+        background: "linear-gradient(135deg, #f0f4f8, #e1e8ef)",
         padding: "60px 20px",
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "center",
         flexWrap: "wrap",
-        gap: "25px",
+        gap: "30px",
         fontFamily: "'Poppins', sans-serif",
       }}
     >
@@ -107,24 +102,27 @@ const StatHighlights = () => {
           variants={cardVariant}
           whileHover={{
             scale: 1.05,
-            boxShadow: `0 0 25px ${stat.color}`,
+            boxShadow: `0 8px 25px ${stat.color}55`,
+          }}
+          animate={{
+            y: [0, -5, 0],
+            transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
           }}
           style={{
             background: "#ffffff",
-            borderRadius: "16px",
-            padding: "30px 40px",
+            borderRadius: "18px",
+            padding: "32px 40px",
             minWidth: "220px",
             textAlign: "center",
             color: stat.color,
-            boxShadow: `0 4px 10px rgba(0, 0, 0, 0.08)`,
+            boxShadow: `0 4px 20px rgba(0,0,0,0.08)`,
             transition: "all 0.3s ease",
-            fontFamily: "'Poppins', sans-serif",
           }}
         >
-          <div style={{ marginBottom: "12px" }}>{stat.icon}</div>
+          <div style={{ marginBottom: "14px" }}>{stat.icon}</div>
           <div
             style={{
-              fontSize: "26px",
+              fontSize: "28px",
               fontWeight: 700,
               color: "#2c3e50",
             }}
@@ -134,7 +132,7 @@ const StatHighlights = () => {
           <div
             style={{
               fontSize: "15px",
-              marginTop: "8px",
+              marginTop: "6px",
               color: "#7f8c8d",
             }}
           >

@@ -14,6 +14,7 @@ import CoursesSection from '../components/CoursesSection';
 import StatsSection from '../components/StatsSection';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
+import ContactSection from '../components/ContactSection.jsx';
 
 const LandingPage = () => {
   const navigate = useNavigate();
