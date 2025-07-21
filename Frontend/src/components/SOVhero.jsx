@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import sovbanner from '../assets/Sov_101_football.png';
+import { motion } from 'framer-motion';
 
 const SOVhero = () => {
   const handleButtonClick = () => {
