@@ -11,7 +11,6 @@ import GameBanner from '../components/GameBanner.jsx';
 import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
-import StatsSection from '../components/StatsSection';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
 
@@ -220,8 +219,6 @@ const LandingPage = () => {
 
           </div>
         </section>
-
-      <StatsSection />
       
     </>
   );
