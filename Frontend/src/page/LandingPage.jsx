@@ -15,6 +15,7 @@ import StatsSection from '../components/StatsSection';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
 
+
 const LandingPage = () => {
   const navigate = useNavigate();
 
@@ -222,6 +223,7 @@ const LandingPage = () => {
         </section>
 
       <StatsSection />
+      {/* <Mascot/> */}
       
     </>
   );
