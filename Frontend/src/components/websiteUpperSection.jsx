@@ -10,10 +10,16 @@ import CustomBrand from '../assets/CustomBrand.jpg';
 import Ongoing from '../assets/Ongoing.jpg';
 import SecureHosting from '../assets/SecureHosting.jpg';
 import FastLoading from '../assets/FastLoadingg.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const WebsiteUpperSection = () => {
   // Animation controls for different sections
   const controls = useAnimation();
+   const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/ContactSection'); // Adjust this to your actual route
+  };
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: false
@@ -175,15 +181,28 @@ const WebsiteUpperSection = () => {
             variants={textVariants}
             style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '20px' }}
           >
-            <motion.a 
-              href="https://www.creditoracademy.com/contact_visitor" 
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              style={{ display: 'inline-block', background: 'linear-gradient(to right, #3498db, #2980b9)', color: 'white', padding: '18px 48px', borderRadius: '50px', fontWeight: 'bold', fontSize: '1.1rem', textDecoration: 'none', border: '2px solid transparent', boxShadow: '0 6px 20px rgba(0,0,0,0.2)' }}
-            >
-              Enroll Now!
-            </motion.a>
+          <motion.button
+      onClick={handleClick}
+      variants={buttonVariants}
+      whileHover="hover"
+      whileTap="tap"
+      style={{
+        display: 'inline-block',
+        background: 'linear-gradient(to right, #3498db, #2980b9)',
+        color: 'white',
+        padding: '18px 48px',
+        borderRadius: '50px',
+        fontWeight: 'bold',
+        fontSize: '1.1rem',
+        textDecoration: 'none',
+        border: '2px solid transparent',
+        boxShadow: '0 6px 20px rgba(0,0,0,0.2)',
+        cursor: 'pointer',
+      }}
+    >
+      Enroll Now!
+    </motion.button>
+
           </motion.div>
         </motion.div>
       </motion.section>

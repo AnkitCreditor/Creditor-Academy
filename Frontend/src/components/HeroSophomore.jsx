@@ -1,7 +1,11 @@
 import React from "react";
 import { FaDesktop, FaBook, FaClock, FaFileAlt, FaIdCard } from 'react-icons/fa'
-
+import {useNavigate } from 'react-router-dom';
 const HeroSectionPrivate = () => {
+  const navigate = useNavigate();
+   const handleClick = () => {
+    navigate('/ContactSection'); // Make sure this route exists
+  };
   return (
     <div style={{ fontFamily: "'Segoe UI', sans-serif" }}>
       {/* INFO HEADER */}
@@ -161,30 +165,24 @@ const HeroSectionPrivate = () => {
 
     {/* CTA Button */}
     <div style={{ marginTop: '50px' }} data-aos="zoom-in" data-aos-delay="600">
-      <a
-        href="https://www.creditoracademy.com/contact_visitor"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ textDecoration: 'none' }}
-      >
-        <button
-          style={{
-            padding: '14px 28px',
-            fontSize: '1rem',
-            background: '#3498db',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontWeight: '600',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-          }}
-          onMouseOver={(e) => (e.target.style.background = '#2c80b4')}
-          onMouseOut={(e) => (e.target.style.background = '#3498db')}
-        >
-          Connect with us!
-        </button>
-      </a>
+       <button
+      onClick={handleClick}
+      style={{
+        padding: '14px 28px',
+        fontSize: '1rem',
+        background: '#3498db',
+        color: 'white',
+        border: 'none',
+        borderRadius: '8px',
+        fontWeight: '600',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+      }}
+      onMouseOver={(e) => (e.target.style.background = '#2c80b4')}
+      onMouseOut={(e) => (e.target.style.background = '#3498db')}
+    >
+      Connect with us!
+    </button>
     </div>
   </div>
 </section>
