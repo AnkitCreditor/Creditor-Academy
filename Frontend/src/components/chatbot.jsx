@@ -14,12 +14,10 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll to latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Predefined responses with rich formatting
   const botResponses = {
     courses: `📚 **Course Catalog** ✨\n\n` +
       `▸ Sovereignty 101 - Master legal identity foundations\n` +
@@ -55,7 +53,6 @@ const Chatbot = () => {
       id: Date.now() 
     }]);
 
-    // Bot response with delay
     setTimeout(() => {
       const responseKey = message.toLowerCase().includes('course') ? 'courses' :
                          message.toLowerCase().includes('pric') ? 'pricing' :
