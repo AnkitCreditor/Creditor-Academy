@@ -1,10 +1,12 @@
 import React from 'react';
 import sovbanner from '../assets/Sov_101_football.png';
 import { motion } from 'framer-motion';
-
+import { useNavigate } from 'react-router-dom';
+import MasterTnc from '../page/MasterTnc';
 const SOVhero = () => {
+  const navigate = useNavigate();
   const handleButtonClick = () => {
-    window.open('https://www.creditoracademy.com/page/show/153616?portal_id=14800', '_blank');
+    navigate('/mastertnc');
   };
 
   const handleMouseOver = (e) => {

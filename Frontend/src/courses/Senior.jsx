@@ -5,8 +5,13 @@ import USP from '../components/Senior_CourseUSP'
 import GameBanner from '../components/GameBanner';
 import Snapshot from '../components/Senior_Snapshot';
 import Testimonial from '../components/Senior_Testimonial';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Senior = () => {
+  const navigate = useNavigate();
+
+
   return (
     <div style={{ fontFamily: "'Segoe UI', sans-serif", background: 'linear-gradient(to bottom, #eef5ff, #ffffff)' }}>
       
@@ -46,19 +51,19 @@ const Senior = () => {
           />
           <label htmlFor="termsCheckbox" style={{ fontSize: '1.1rem', color: '#333' }}>
             I agree to the{' '}
-            <a
-              href="https://creditoracademy.matrixlms.com/page/show/152426?portal_id=14800"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: '#5dade2', textDecoration: 'none' }}
-            >
-              Terms and Conditions
-            </a>
+            <Link
+    to="/mtc"
+    style={{ color: '#5dade2', textDecoration: 'none' }}
+    onMouseOver={(e) => (e.target.style.color = '#1890FF')}
+    onMouseOut={(e) => (e.target.style.color = '#5dade2')}
+  >
+    Terms and Conditions
+  </Link>
           </label>
         </div>
-        <motion.button
+ <motion.button
           id="appointmentButton"
-          disabled
+        
           whileHover={{ scale: 1.05 }}
           style={{
             background: '#ccc',
@@ -73,11 +78,12 @@ const Senior = () => {
             border: 'none',
           }}
           onClick={() =>
-            window.open('https://creditoracademy.matrixlms.com/contact_visitor?portal_id=14800', '_blank')
+            navigate('/ContactSection')
           }
         >
           Book an Appointment with Counselor
         </motion.button>
+
       </div>
 
       {/* Section Title + Video */}
