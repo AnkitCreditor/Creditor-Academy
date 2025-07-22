@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Operate from '../assets/OperatePrivateFootball.png';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import MembershipTnC from '../page/MembershipTnC';
 
 const AppointmentBanner = () => {
   const [agreed, setAgreed] = useState(false);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (e) => {
     setAgreed(e.target.checked);
@@ -11,7 +15,7 @@ const AppointmentBanner = () => {
 
   const handleClick = () => {
     if (agreed) {
-      window.open('https://creditoracademy.matrixlms.com/contact_visitor?portal_id=14800', '_blank');
+      navigate('/ContactSection');
     }
   };
 
@@ -62,19 +66,17 @@ const AppointmentBanner = () => {
             }}
           >
             I agree to the{' '}
-            <a
-              href="https://creditoracademy.matrixlms.com/page/show/152426?portal_id=14800"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#5dade2',
-                textDecoration: 'none',
-              }}
-              onMouseOver={(e) => (e.target.style.color = '#1890FF')}
-              onMouseOut={(e) => (e.target.style.color = '#5DADE2')}
-            >
-              Terms and Conditions
-            </a>
+               <Link
+            to="/mtc"
+            style={{
+              color: '#5dade2',
+              textDecoration: 'none',
+            }}
+            onMouseOver={(e) => (e.target.style.color = '#1890FF')}
+            onMouseOut={(e) => (e.target.style.color = '#5DADE2')}
+          >
+            Terms and Conditions
+          </Link>
           </label>
         </div>
 
