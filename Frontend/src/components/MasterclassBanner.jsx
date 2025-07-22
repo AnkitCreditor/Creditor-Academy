@@ -3,21 +3,12 @@ import { motion } from 'framer-motion';
 import masterclassBanner from '../assets/masterclass_football.png';
 import './MasterclassBanner.css';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< Updated upstream
-
-const MasterclassBanner = () => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-  
-=======
 
 
 const MasterclassBanner = () => {
 const navigate = useNavigate();
 
   const handleClick = () => {
->>>>>>> Stashed changes
     navigate('/masterclass');
   };
   return (
@@ -51,11 +42,7 @@ const navigate = useNavigate();
             <span className="highlight-word">Everything</span> You Need to Go <span className="highlight-word">Private</span> — All in One Place
           </p>
 
-<<<<<<< Updated upstream
             <button onClick={handleClick} className="masterclass-hero-button">
-=======
-         <button onClick={handleClick} className="masterclass-hero-button">
->>>>>>> Stashed changes
       Learn More
     </button>
         </motion.div>
