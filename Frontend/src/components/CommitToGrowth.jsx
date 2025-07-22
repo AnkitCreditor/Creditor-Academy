@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 const CommitToGrowth = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -41,42 +42,65 @@ const CommitToGrowth = () => {
 
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <GrowthSection>
-      <SectionTitle>
-        <span>Commit to Growth –</span> <Highlight>Pick 1 of 3 Limited Time Offers</Highlight>
-      </SectionTitle>
-      <SectionDescription>
-        Sign up for a full year of Masterclass membership $828 annually and choose ONE of these powerful bonuses:
-      </SectionDescription>
+    <GrowthSection
+      as={motion.section}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      viewport={{ once: false, amount: 0.2 }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        <SectionTitle>
+          <span>Commit to Growth –</span> <Highlight>Pick 1 of 3 Limited Time Offers</Highlight>
+        </SectionTitle>
+      </motion.div>
 
-      <CountdownContainer>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        <SectionDescription>
+          Sign up for a full year of Masterclass membership $828 annually and choose ONE of these powerful bonuses:
+        </SectionDescription>
+      </motion.div>
+
+      <CountdownContainer
+        as={motion.div}
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+      >
         {offerExpired ? (
           <ExpiredMessage>Offer Expired!</ExpiredMessage>
         ) : (
           <>
             <CountdownHeader>⏳ Hurry! Offer Ends in:</CountdownHeader>
             <CountdownTimer>
-              <TimeUnit>
-                <TimeValue>{timeLeft.days}</TimeValue>
-                <TimeLabel>Days</TimeLabel>
-              </TimeUnit>
-              <TimeUnit>
-                <TimeValue>{timeLeft.hours}</TimeValue>
-                <TimeLabel>Hours</TimeLabel>
-              </TimeUnit>
-              <TimeUnit>
-                <TimeValue>{timeLeft.minutes}</TimeValue>
-                <TimeLabel>Minutes</TimeLabel>
-              </TimeUnit>
-              <TimeUnit>
-                <TimeValue>{timeLeft.seconds}</TimeValue>
-                <TimeLabel>Seconds</TimeLabel>
-              </TimeUnit>
+              {['days', 'hours', 'minutes', 'seconds'].map((unit, idx) => (
+                <TimeUnit key={idx}>
+                  <AnimatedTimeValue
+                    key={timeLeft[unit]}
+                    initial={{ y: -10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {timeLeft[unit]}
+                  </AnimatedTimeValue>
+                  <TimeLabel>{unit.charAt(0).toUpperCase() + unit.slice(1)}</TimeLabel>
+                </TimeUnit>
+              ))}
             </CountdownTimer>
           </>
         )}
@@ -90,6 +114,7 @@ const GrowthSection = styled.section`
   max-width: 1200px;
   margin: auto;
   padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
 `;
 
 const SectionTitle = styled.h2`
@@ -100,6 +125,10 @@ const SectionTitle = styled.h2`
 
   span {
     color: rgb(52, 73, 94);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.7rem;
   }
 `;
 
@@ -113,15 +142,16 @@ const SectionDescription = styled.p`
   font-size: 16px;
   color: #555;
   text-align: center;
+  padding: 0 10px;
 `;
 
 const CountdownContainer = styled.div`
   text-align: center;
-  margin-bottom: 40px;
   background: #f8f9fa;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 40px;
 `;
 
 const CountdownHeader = styled.p`
@@ -134,26 +164,28 @@ const CountdownHeader = styled.p`
 const CountdownTimer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
   font-size: 24px;
   font-weight: bold;
   color: #2c3e50;
+  flex-wrap: wrap;
 `;
 
 const TimeUnit = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 60px;
 `;
 
-const TimeValue = styled.span`
-  font-size: 24px;
+const AnimatedTimeValue = styled(motion.span)`
+  font-size: 28px;
 `;
 
 const TimeLabel = styled.p`
   font-size: 14px;
   color: #555;
-  margin: 5px 0 0;
+  margin-top: 4px;
 `;
 
 const ExpiredMessage = styled.p`

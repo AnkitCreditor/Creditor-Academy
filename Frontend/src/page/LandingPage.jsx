@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-// import img1 from '../assets/carluxury.jpg';
-// import img2 from '../assets/happy-couple-laughing-against-luxurious-backdrop (1) (1).jpg';
-// import img3 from '../assets/businessman-dressed-suit-relaxes-inside-luxurious-private-jet (1).jpg';
-// import img4 from '../assets/luxurious-sunset-view-infinity-pool-yacht-showcasing-elegance-tranquility-warm-eve.jpg';
 import website from '../assets/Website_banner_2(2).jpg';
 import privateMerchant from '../assets/merchant (1).jpg';
 import GameBanner from '../components/GameBanner.jsx';
 import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
-import StatsSection from '../components/StatsSection';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
+import ContactSection from '../components/ContactSection.jsx';
 
 
 const LandingPage = () => {
@@ -221,7 +217,6 @@ const LandingPage = () => {
 
           </div>
         </section>
-
       <StatsSection />
       {/* <Mascot/> */}
       
