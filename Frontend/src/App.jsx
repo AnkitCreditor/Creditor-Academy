@@ -20,7 +20,7 @@ import MembershipTnC from './page/MembershipTnC';
 import ContactSection from './components/ContactSection';
 import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/chatbot'; // Import the Chatbot component
-
+import RemedyTC from './components/RemedyTC';
 
 function App() {
   
@@ -46,6 +46,7 @@ function App() {
         <Route path="/returnrefund" element={<ReturnRefund/>} />
         <Route path="/mtc" element={<MembershipTnC/>} />
         <Route path="/ContactSection" element={<ContactSection/>} />
+        <Route path="/remedytnc" element={<RemedyTC />} />
       </Routes>
       <Footer />
       <Chatbot /> {/* Add Chatbot here to render on all pages */}
