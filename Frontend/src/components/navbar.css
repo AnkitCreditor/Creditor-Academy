@@ -307,6 +307,100 @@
   font-weight: 700;
 }
 
+.tour-highlight {
+  outline: 3px dashed #3498db;
+  border-radius: 6px;
+  position: relative;
+  z-index: 9998;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* DARK OVERLAY */
+.tour-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.7);
+  z-index: 9990;
+}
+
+/* FOCUSED GLOW CIRCLE */
+.tour-focus-circle {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6), 0 0 30px rgba(52, 152, 219, 0.9);
+  transition: all 0.3s ease;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+/* FIXED MASCOT BOX */
+.tour-mascot-box {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 260px;
+  background: #fff;
+  border: 2px solid #3498db;
+  border-radius: 12px;
+  padding: 16px;
+  z-index: 10000;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.tour-mascot-box img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.tour-mascot-box p {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.tour-mascot-box .tour-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tour-mascot-box .tour-actions button {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.tour-mascot-box .skip {
+  background: none;
+  color: #999;
+}
+
+.tour-mascot-box .next {
+  background: #3498db;
+  color: #fff;
+}
+
+.tour-highlight {
+  position: relative;
+  z-index: 10001 !important;
+}
+
 /* --- Utility and spacing --- */
 body, #root {
   scroll-padding-top: 100px;

@@ -171,7 +171,7 @@ const Senior = () => {
             <p style={{ color: '#e11d48', fontWeight: 'bold' }}>❌ Or give up the dream entirely</p>
           </div>
           <div style={{ marginTop: '20px', fontWeight: 'bold', background: '#fffbea', padding: '12px 20px', borderLeft: '4px solid #facc15', borderRadius: '6px' }}>
-            There’s a third path. <span style={{ color: '#e11d48' }}>The Private Path.</span>
+            There's a third path. <span style={{ color: '#e11d48' }}>The Private Path.</span>
           </div>
         </div>
 

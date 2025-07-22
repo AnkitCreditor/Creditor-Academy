@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
 import { 
   FaExclamationTriangle, 
   FaCheckCircle,
@@ -7,17 +7,34 @@ import {
 } from 'react-icons/fa';
 
 const PrivateMerchantSection = () => {
+  useEffect(() => {
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
-      <HeroSection>
+      <HeroSection className="animate-on-scroll">
         <HeroContent>
           <HeroTitle>
-            Accept Payments Privately. <br />
-            Launch a Merchant Business. <br />
-            <Highlight>Bring Others Into Your Private Gateway.</Highlight>
+            <AnimatedText>Accept Payments Privately.</AnimatedText> <br />
+            <AnimatedText delay="0.2s">Launch a Merchant Business.</AnimatedText> <br />
+            <Highlight className="highlight-animate">Bring Others Into Your Private Gateway.</Highlight>
           </HeroTitle>
-          <HeroDescription>
+          <HeroDescription className="animate-on-scroll" style={{ animationDelay: '0.4s' }}>
             <strong>A revolutionary course</strong> that teaches you to set up your own private payment processing system — <em>outside traditional banks</em>, beyond Stripe & PayPal. Discover a powerful new income stream.
           </HeroDescription>
         </HeroContent>
@@ -26,17 +43,17 @@ const PrivateMerchantSection = () => {
       {/* Two Column Section */}
       <TwoColumnSection>
         {/* Problem Card */}
-        <ProblemCard>
+        <ProblemCard className="animate-on-scroll">
           <ProblemTitle>
-            <FaExclamationTriangle />
-            The Problem: Merchant Accounts Are Broken
+            <FaExclamationTriangle className="icon-float" />
+            <span>The Problem: Merchant Accounts Are Broken</span>
           </ProblemTitle>
           <ProblemList>
-            <li><FaCheck /> Frozen payments</li>
-            <li><FaCheck /> Chargebacks with no recourse</li>
-            <li><FaCheck /> KYC headaches and data exposure</li>
-            <li><FaCheck /> Account shutdowns without warning</li>
-            <li><FaCheck /> Zero control. High risk</li>
+            <li><FaCheck className="icon-pulse" /> Frozen payments</li>
+            <li><FaCheck className="icon-pulse" /> Chargebacks with no recourse</li>
+            <li><FaCheck className="icon-pulse" /> KYC headaches and data exposure</li>
+            <li><FaCheck className="icon-pulse" /> Account shutdowns without warning</li>
+            <li><FaCheck className="icon-pulse" /> Zero control. High risk</li>
           </ProblemList>
           <ProblemConclusion>
             Whether you're selling online, accepting client payments, or operating as a PMA, you're at the mercy of Stripe, PayPal, Square and others. <br /><br />
@@ -46,15 +63,15 @@ const PrivateMerchantSection = () => {
         </ProblemCard>
 
         {/* Solution Card */}
-        <SolutionCard>
+        <SolutionCard className="animate-on-scroll" style={{ animationDelay: '0.2s' }}>
           <SolutionTitle>
-            <FaCheckCircle />
-            The Solution: Become Your Own Merchant
+            <FaCheckCircle className="icon-float" />
+            <span>The Solution: Become Your Own Merchant</span>
           </SolutionTitle>
           <SolutionList>
-            <li><FaCheck /> Accept payments via Trust or PMA</li>
-            <li><FaCheck /> Use ACH, Crypto, Invoices & Direct Transfer</li>
-            <li><FaCheck /> Build a business or become a reseller</li>
+            <li><FaCheck className="icon-pulse" /> Accept payments via Trust or PMA</li>
+            <li><FaCheck className="icon-pulse" /> Use ACH, Crypto, Invoices & Direct Transfer</li>
+            <li><FaCheck className="icon-pulse" /> Build a business or become a reseller</li>
           </SolutionList>
           <SolutionConclusion>
             This course doesn't just show you how to get paid.<br />
@@ -66,11 +83,51 @@ const PrivateMerchantSection = () => {
   );
 };
 
-// Styled Components
+// Animation Keyframes
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const slideUp = keyframes`
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const float = keyframes`
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+`;
+
+const pulse = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+`;
+
+const highlight = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+// Styled Components with Animations
 const HeroSection = styled.section`
   padding: 100px 5%;
   background: linear-gradient(to bottom, #f8fafc, #e0f2fe);
   font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+
+  &.animate {
+    animation: ${fadeIn} 0.8s ease-out forwards;
+  }
 `;
 
 const HeroContent = styled.div`
@@ -79,15 +136,38 @@ const HeroContent = styled.div`
   text-align: center;
 `;
 
+const AnimatedText = styled.span`
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: ${slideUp} 0.8s forwards;
+  animation-delay: ${props => props.delay || '0s'};
+`;
+
 const HeroTitle = styled.h2`
   font-size: 2.8rem;
   font-weight: 800;
   margin-bottom: 20px;
   line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const Highlight = styled.span`
   color: #0ea5e9;
+  position: relative;
+  display: inline-block;
+
+  &.highlight-animate {
+    animation: ${highlight} 8s ease infinite;
+    background: linear-gradient(90deg, #0ea5e9, #3b82f6, #0ea5e9);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 `;
 
 const HeroDescription = styled.p`
@@ -95,9 +175,19 @@ const HeroDescription = styled.p`
   color: #475569;
   max-width: 800px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+
+  &.animate {
+    animation: ${slideUp} 0.8s ease-out forwards;
+  }
 
   strong {
     color: #0ea5e9;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
   }
 `;
 
@@ -117,10 +207,17 @@ const CardBase = styled.div`
   border-radius: 14px;
   padding: 40px 30px;
   position: relative;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+
+  &.animate {
+    animation: ${slideUp} 0.8s ease-out forwards;
+  }
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -146,6 +243,18 @@ const ProblemTitle = styled.h2`
     height: 24px;
     margin-right: 12px;
   }
+
+  span {
+    display: inline-block;
+  }
+
+  .icon-float {
+    animation: ${float} 3s ease-in-out infinite;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+  }
 `;
 
 const SolutionTitle = styled.h2`
@@ -160,6 +269,18 @@ const SolutionTitle = styled.h2`
     height: 24px;
     margin-right: 12px;
   }
+
+  span {
+    display: inline-block;
+  }
+
+  .icon-float {
+    animation: ${float} 3s ease-in-out infinite 0.5s;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+  }
 `;
 
 const ListBase = styled.ul`
@@ -171,12 +292,21 @@ const ListBase = styled.ul`
     margin-bottom: 12px;
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: translateX(5px);
+    }
   }
 
   svg {
     margin-right: 10px;
     width: 18px;
     height: 18px;
+  }
+
+  .icon-pulse {
+    animation: ${pulse} 1.5s ease infinite;
   }
 `;
 

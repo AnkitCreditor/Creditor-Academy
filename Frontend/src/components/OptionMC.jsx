@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import option1 from '../assets/option1.jpg';
 import option2 from '../assets/option2.jpg';
 import option3 from '../assets/option3.jpg';
@@ -29,17 +30,31 @@ const OptionMC = () => {
       alt: "Option 3",
       title: "Option 3:",
       subtitle: "Cadillac Website, Get 50% Off on Setup Fee",
-      description: "Launch your cadillac website for $499 down payment (normally $1,000 setup). Just pay $49 per month for system support and hosting.",
+      description: "Launch your Cadillac website for $499 down (normally $1,000). Pay $49/month for support and hosting.",
       savings: "($501 instant savings)",
       link: "https://quickclick.com/r/rb2jlzfzukvlhucyksh35imhlmu85c"
     }
   ];
 
   return (
-    <OffersSection>
+    <OffersSection
+      as={motion.section}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: false, amount: 0.2 }}
+    >
       <OffersContainer>
         {offers.map((offer, index) => (
-          <OfferCard key={index}>
+          <CardWrapper
+            key={index}
+            as={motion.div}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2, duration: 0.5 }}
+            viewport={{ once: false, amount: 0.3 }}
+            whileHover={{ scale: 1.03 }}
+          >
             <CardContent>
               <ImageContainer>
                 <OfferImage src={offer.image} alt={offer.alt} />
@@ -48,16 +63,11 @@ const OptionMC = () => {
               <OfferSubtitle>{offer.subtitle}</OfferSubtitle>
               <OfferDescription>{offer.description}</OfferDescription>
               <OfferSavings>{offer.savings}</OfferSavings>
-              <JoinButton 
-                href={offer.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                disabled
-              >
+              <JoinButton href={offer.link} target="_blank" rel="noopener noreferrer">
                 Join Now
               </JoinButton>
             </CardContent>
-          </OfferCard>
+          </CardWrapper>
         ))}
       </OffersContainer>
     </OffersSection>
@@ -68,33 +78,33 @@ const OptionMC = () => {
 const OffersSection = styled.section`
   padding: 40px 5%;
   background: #f9fcff;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
 `;
 
 const OffersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 24px;
   justify-content: center;
-
-  @media (min-width: 768px) {
-    flex-wrap: nowrap;
-  }
 `;
 
-const OfferCard = styled.section`
+const CardWrapper = styled(motion.section)`
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   padding: 20px;
   width: 100%;
-  flex: 1 1 300px;
-  max-width: 340px;
+  flex: 1 1 280px;
+  max-width: 360px;
   text-align: center;
   display: flex;
   flex-direction: column;
-`;
+  transition: all 0.3s ease;
 
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+`;
 
 const CardContent = styled.div`
   display: flex;
@@ -105,8 +115,12 @@ const CardContent = styled.div`
 const ImageContainer = styled.div`
   height: 180px;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 15px;
+
+  @media (max-width: 480px) {
+    height: 160px;
+  }
 `;
 
 const OfferImage = styled.img`
@@ -117,14 +131,15 @@ const OfferImage = styled.img`
 
 const OfferTitle = styled.h3`
   font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-weight: 600;
+  margin-bottom: 8px;
 `;
 
-const OfferSubtitle = styled.h3`
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+const OfferSubtitle = styled.h4`
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #007acc;
 `;
 
 const OfferDescription = styled.p`
@@ -134,22 +149,26 @@ const OfferDescription = styled.p`
 
 const OfferSavings = styled.p`
   font-size: 15px;
-  color: #444;
+  color: #28a745;
   font-weight: bold;
+  margin-top: 10px;
 `;
 
 const JoinButton = styled.a`
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #3bbcf8;
+  padding: 12px 24px;
+  background-color: #1890ff;
   color: white;
-  border-radius: 20px;
+  border-radius: 25px;
   font-size: 15px;
   text-decoration: none;
   margin-top: auto;
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: not-allowed;
+  font-weight: 600;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background-color: #007be5;
+  }
 `;
 
 export default OptionMC;
