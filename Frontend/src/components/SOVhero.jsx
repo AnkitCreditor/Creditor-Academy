@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import sovbanner from '../assets/Sov_101_football.png';
 import { motion } from 'framer-motion';
 
@@ -8,39 +7,14 @@ const SOVhero = () => {
     window.open('https://www.creditoracademy.com/page/show/153616?portal_id=14800', '_blank');
   };
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
+  const handleMouseOver = (e) => {
+    e.currentTarget.style.transform = 'scale(1.05)';
+    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
   };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { duration: 0.5 }
-    }
-  };
-
-  const fadeIn = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { duration: 0.8 }
-    }
-  };
-
-  const scaleUp = {
-    hover: { 
-      scale: 1.05,
-      boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
-      transition: { duration: 0.3 }
-    },
-    tap: { scale: 0.98 }
+  const handleMouseOut = (e) => {
+    e.currentTarget.style.transform = 'none';
+    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
   };
 
   return (
@@ -82,12 +56,13 @@ const SOVhero = () => {
             border: 'none',
             cursor: 'pointer'
           }}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
           onClick={handleButtonClick}
         >
           Sign up at $69/month
-        </motion.button>
-      </motion.div>
-
+        </button>
+      </div>
 
       {/* Title + Tagline */}
       <div style={{
@@ -113,8 +88,8 @@ const SOVhero = () => {
           marginTop: '10px'
         }}>
           "Learn the Law. Know the Difference."
-        </motion.p>
-      </motion.div>
+        </p>
+      </div>
 
       {/* Intro Video */}
       <section style={{
@@ -193,7 +168,6 @@ const SOVhero = () => {
         `}
       </style>
     </div>
-
   );
 };
 
