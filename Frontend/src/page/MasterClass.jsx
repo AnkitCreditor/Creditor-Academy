@@ -7,7 +7,7 @@ import { MCmembership } from '../components/MCmembership'
 import { MCwho } from '../components/MCwho'
 
 
-export const MasterClass = () => {
+const MasterClass = () => {
   return (
     <div>
     <MasterHero/>
@@ -17,5 +17,6 @@ export const MasterClass = () => {
     <MCmembership/>
     <MCwho/>
     </div>
-  )
-}
+  );
+};
+export default MasterClass;

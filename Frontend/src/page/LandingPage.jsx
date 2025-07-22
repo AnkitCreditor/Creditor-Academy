@@ -10,6 +10,9 @@ import CoursesSection from '../components/CoursesSection';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
 import ContactSection from '../components/ContactSection.jsx';
+import StatsSection from '../components/StatsSection.jsx';
+
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -216,6 +219,8 @@ const LandingPage = () => {
 
           </div>
         </section>
+      <StatsSection />
+      {/* <Mascot/> */}
       
     </>
   );

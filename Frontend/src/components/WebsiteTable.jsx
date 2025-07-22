@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLayerGroup, FaCheck } from 'react-icons/fa';
+import { FaLayerGroup, FaCheck, FaArrowRight } from 'react-icons/fa';
 
 const WebsiteTable = () => {
-  // Animation variants
+  // Enhanced Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -17,60 +17,76 @@ const WebsiteTable = () => {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5,
-        ease: "easeOut"
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1]
       }
     }
   };
 
   const rowVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: -30 },
     visible: (i) => ({
       opacity: 1,
       x: 0,
       transition: {
         delay: i * 0.05,
-        duration: 0.4
+        duration: 0.5,
+        ease: "backOut"
       }
     }),
     hover: {
       scale: 1.02,
-      boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-      transition: { duration: 0.2 }
+      boxShadow: "0 8px 25px rgba(0,0,0,0.12)",
+      transition: { 
+        duration: 0.3,
+        ease: "easeOut"
+      }
     }
   };
 
   const promoVariants = {
-    hidden: { scale: 0.95, opacity: 0 },
+    hidden: { scale: 0.95, opacity: 0, y: 20 },
     visible: {
       scale: 1,
       opacity: 1,
+      y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         type: "spring",
-        stiffness: 100
+        stiffness: 100,
+        damping: 10
       }
     },
     hover: {
       scale: 1.02,
-      boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
+      boxShadow: "0 15px 35px rgba(0,0,0,0.15)",
+      transition: { 
+        duration: 0.3,
+        ease: "easeOut"
+      }
     }
   };
 
   const checkMarkVariants = {
-    hidden: { scale: 0 },
+    hidden: { scale: 0, rotate: -90 },
     visible: {
       scale: 1,
+      rotate: 0,
       transition: {
         type: "spring",
         stiffness: 500,
-        damping: 15
+        damping: 15,
+        delay: 0.2
       }
+    },
+    hover: {
+      scale: 1.2,
+      transition: { duration: 0.2 }
     }
   };
 
@@ -79,10 +95,29 @@ const WebsiteTable = () => {
     visible: {
       backgroundPosition: '100% 50%',
       transition: {
-        duration: 3,
+        duration: 4,
         repeat: Infinity,
         repeatType: 'reverse',
         ease: 'linear'
+      }
+    }
+  };
+
+  const iconContainerVariants = {
+    hover: {
+      rotate: 10,
+      scale: 1.1,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const arrowVariants = {
+    hover: {
+      x: 5,
+      transition: { 
+        repeat: Infinity,
+        repeatType: 'reverse',
+        duration: 0.8
       }
     }
   };
@@ -208,6 +243,22 @@ const WebsiteTable = () => {
     fontSize: '1.2rem',
   };
 
+  const ctaButtonStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    background: 'linear-gradient(to right, #0284c7, #0ea5e9)',
+    color: 'white',
+    padding: '12px 24px',
+    borderRadius: '50px',
+    fontWeight: 'bold',
+    fontSize: '1rem',
+    textDecoration: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    marginTop: '20px',
+    boxShadow: '0 4px 15px rgba(2, 132, 199, 0.3)'
+  };
+
   return (
     <motion.div 
       style={containerStyle}
@@ -229,10 +280,17 @@ const WebsiteTable = () => {
         </motion.span> Offers
       </motion.h2>
 
-      <motion.div style={tableContainerStyle} variants={itemVariants}>
+      <motion.div 
+        style={tableContainerStyle} 
+        variants={itemVariants}
+        whileHover={{ 
+          boxShadow: '0 15px 35px rgba(0,0,0,0.12)',
+          transition: { duration: 0.3 }
+        }}
+      >
         <table style={tableStyle}>
           <thead style={theadStyle}>
-            <tr>
+            <motion.tr variants={itemVariants}>
               <th style={thStyle}>
                 <h3 style={{ color: 'rgb(255, 255, 255)' }} aria-label="Website Components">
                   <strong>Website Components</strong>
@@ -243,7 +301,7 @@ const WebsiteTable = () => {
                   <strong>Other Professionals</strong>
                 </h3>
               </th>
-            </tr>
+            </motion.tr>
           </thead>
           <tbody>
             {[
@@ -265,9 +323,13 @@ const WebsiteTable = () => {
                 whileHover="hover"
               >
                 <td style={tdStyle}>
-                  <div style={iconContainerStyle}>
+                  <motion.div 
+                    style={iconContainerStyle}
+                    variants={iconContainerVariants}
+                    whileHover="hover"
+                  >
                     <FaLayerGroup size={18} color="#0369a1" />
-                  </div>
+                  </motion.div>
                   <div style={textStyle}>{item.feature}</div>
                 </td>
                 <td style={centerTextStyle}>{item.price}</td>
@@ -276,9 +338,13 @@ const WebsiteTable = () => {
             <motion.tr 
               style={totalRowStyle}
               variants={itemVariants}
+              whileHover={{ 
+                backgroundColor: '#f0f9ff',
+                transition: { duration: 0.3 }
+              }}
             >
-              <td style={{ padding: '16px 20px' }}>Total Market Cost</td>
-              <td style={centerTextStyle}>$4000</td>
+              <td style={{ padding: '16px 20px', fontWeight: 'bold' }}>Total Market Cost</td>
+              <td style={{ ...centerTextStyle, fontWeight: 'bold', fontSize: '1.1rem' }}>$4000</td>
             </motion.tr>
           </tbody>
         </table>
@@ -294,11 +360,24 @@ const WebsiteTable = () => {
           <p style={{ fontSize: '1.1rem', marginTop: '12px', color: '#4a5568', fontFamily: "'Inter', sans-serif" }}>
             Get starter features for <strong style={{ color: '#0284c7', fontSize: '1.2rem' }}>just $100 + $49 Monthly</strong> — No hidden costs!
           </p>
+          <motion.button
+            style={ctaButtonStyle}
+            whileHover={{
+              background: 'linear-gradient(to right, #0ea5e9, #0284c7)',
+              boxShadow: '0 6px 20px rgba(2, 132, 199, 0.4)'
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Get Started Now
+            <motion.span style={{ marginLeft: '8px' }} variants={arrowVariants} whileHover="hover">
+              <FaArrowRight />
+            </motion.span>
+          </motion.button>
         </motion.div>
 
         <table style={secondTableStyle}>
           <thead>
-            <tr>
+            <motion.tr variants={itemVariants}>
               <th style={{ ...thStyleSecondTable, textAlign: 'left' }} aria-label="Feature">
                 Feature
               </th>
@@ -308,7 +387,7 @@ const WebsiteTable = () => {
               <th style={thStyleSecondTable} aria-label="$1000 Cadillac Plan">
                 $1000 Cadillac Plan
               </th>
-            </tr>
+            </motion.tr>
           </thead>
           <tbody>
             {[
@@ -343,11 +422,15 @@ const WebsiteTable = () => {
                 <td style={centerTextStyle}>
                   {item.isCheck ? (
                     item.starter === "✅" ? (
-                      <motion.span style={checkStyle} variants={checkMarkVariants}>
-                        {item.starter}
-                      </motion.span>
+                      <motion.div 
+                        style={{ display: 'inline-block' }}
+                        variants={checkMarkVariants}
+                        whileHover="hover"
+                      >
+                        <FaCheck color="#10b981" />
+                      </motion.div>
                     ) : item.starter === "❌" ? (
-                      <span style={crossStyle}>{item.starter}</span>
+                      <span style={crossStyle}>✕</span>
                     ) : (
                       item.starter
                     )
@@ -355,9 +438,13 @@ const WebsiteTable = () => {
                 </td>
                 <td style={centerTextStyle}>
                   {item.isCheck ? (
-                    <motion.span style={checkStyle} variants={checkMarkVariants}>
-                      {item.cadillac}
-                    </motion.span>
+                    <motion.div 
+                      style={{ display: 'inline-block' }}
+                      variants={checkMarkVariants}
+                      whileHover="hover"
+                    >
+                      <FaCheck color="#10b981" />
+                    </motion.div>
                   ) : item.cadillac}
                 </td>
               </motion.tr>
