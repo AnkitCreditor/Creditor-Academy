@@ -259,6 +259,82 @@ const Navbar = () => {
             );
           })()}
 
+          {/* Curved Arrow from Mascot to Edge of Highlighted Circle */}
+          {(() => {
+            const rect = getCurrentRect();
+            if (!rect) return null;
+
+            const mascotX = 140; // center of mascot box (adjust to match image)
+            const mascotY = window.innerHeight - 100; // slightly above mascot bottom
+
+            // Center of the highlight circle
+            const centerX = rect.left + rect.width / 2 + window.scrollX;
+            const centerY = rect.top + rect.height / 2 + window.scrollY;
+
+            // Radius of the circle (matching the highlight ring)
+            const radius = Math.max(rect.width, rect.height) / 2 + 15;
+
+            // Calculate direction vector
+            const dx = centerX - mascotX;
+            const dy = centerY - mascotY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            // Normalize and scale to stop at the edge of the circle
+            const unitX = dx / dist;
+            const unitY = dy / dist;
+
+            const targetX = centerX - unitX * radius;
+            const targetY = centerY - unitY * radius;
+
+            // Smooth upward curve
+            const controlOffsetY = Math.min(100, dist / 2); // dynamic control height
+            const controlPoint1 = `${mascotX},${mascotY - controlOffsetY}`;
+            const controlPoint2 = `${targetX},${mascotY - controlOffsetY}`;
+
+            const path = `M ${mascotX},${mascotY}
+                          C ${controlPoint1}, ${controlPoint2}, ${targetX},${targetY}`;
+
+            return (
+              <svg
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100vw',
+                  height: '100vh',
+                  zIndex: 9999,
+                  pointerEvents: 'none',
+                }}
+              >
+                <defs>
+                  <marker
+                    id="arrowhead"
+                    markerWidth="10"
+                    markerHeight="7"
+                    refX="0"
+                    refY="3.5"
+                    orient="auto"
+                    fill="#ffffff"
+                  >
+                    <polygon points="0 0, 10 3.5, 0 7" />
+                  </marker>
+                </defs>
+                <path
+                  d={path}
+                  stroke="#ffffff"
+                  strokeWidth="3"
+                  fill="none"
+                  markerEnd="url(#arrowhead)"
+                  style={{
+                    filter: 'drop-shadow(0 0 6px #3498db)',
+                    strokeDasharray: '6,4',
+                    transition: 'all 0.4s ease'
+                  }}
+                />
+              </svg>
+            );
+          })()}
+
           {/* Mascot Box with Avatar & Animation */}
           <div style={{
             position: 'fixed',
@@ -274,7 +350,7 @@ const Navbar = () => {
             boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
             zIndex: 10000,
             width: '300px',
-            minHeight: '150px',
+            minHeight: '180px',
             height: 'auto',
             color: '#fff',
             transform: animateIn ? 'translateY(0)' : 'translateY(40px)',
@@ -298,7 +374,7 @@ const Navbar = () => {
             {/* Mascot Image - aligned left and outside */}
             <img src={mascot} alt="Mascot" style={{
               width: 'auto',
-              height: '140px',
+              height: '180px',
               position: 'absolute',
               left: '0px',
               bottom: '20px',
