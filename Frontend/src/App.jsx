@@ -19,21 +19,21 @@ import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
 import ContactSection from './components/ContactSection';
 import ScrollToTop from './components/ScrollToTop';
+import Chatbot from './components/chatbot'; // Import the Chatbot component
+
 
 function App() {
   return (
-    
     <Router>
      
       <Navbar/>
       <ScrollToTop />
       <Routes>
-        
         <Route path="/" element={<LandingPage />} />
-        <Route path="/privatemerchant" element={<PrivateMerchant/>} />
-        <Route path="/masterclass" element={<MasterClass/>}/>
-        <Route path="/sov" element={<Sov/>}/>
-        <Route path="/website" element={<WebsiteCreation/>}/>
+        <Route path="/privatemerchant" element={<PrivateMerchant />} />
+        <Route path="/masterclass" element={<MasterClass />} />
+        <Route path="/sov" element={<Sov />} />
+        <Route path="/website" element={<WebsiteCreation />} />
         <Route path="/operateprivate" element={<OperatePrivate />} />
         <Route path="/sophomore" element={<Sophomore />} />
         <Route path="/liveclass" element={<LiveClass />} />
@@ -46,7 +46,8 @@ function App() {
         <Route path="/mtc" element={<MembershipTnC/>} />
         <Route path="/ContactSection" element={<ContactSection/>} />
       </Routes>
-      <Footer/>
+      <Footer />
+      <Chatbot /> {/* Add Chatbot here to render on all pages */}
     </Router>
   );
 }
