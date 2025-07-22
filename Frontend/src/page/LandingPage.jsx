@@ -10,15 +10,13 @@ import CoursesSection from '../components/CoursesSection';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
 import ContactSection from '../components/ContactSection.jsx';
-import StatsSection from '../components/StatsSection.jsx';
-
 
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Optional: scroll to top on mount
+    window.scrollTo(0, 0);
   }, []);
   return (
     <>
@@ -219,7 +217,7 @@ const LandingPage = () => {
 
           </div>
         </section>
-      <StatsSection />
+      {/*<StatsSection />*/}
       {/* <Mascot/> */}
       
     </>
