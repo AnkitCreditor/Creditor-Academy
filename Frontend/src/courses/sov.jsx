@@ -6,7 +6,7 @@ import GameBanner from '../components/GameBanner';
 import SOVtestimonials from '../components/SOVtestimonials';
 import JourneySOVpage from '../components/journeySOVpage';
 
-const Sov = () => {
+const sov = () => {
   return (
     <div>
         <SOVhero/>
@@ -18,4 +18,4 @@ const Sov = () => {
     </div>
   );
 };
-export default Sov;
+export default sov;
