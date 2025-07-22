@@ -2,8 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import masterclassBanner from '../assets/masterclass_football.png';
 import './MasterclassBanner.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const MasterclassBanner = () => {
+const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/masterclass');
+  };
   return (
     <section className="masterclass-hero-section">
       <div className="masterclass-hero-wrapper">
@@ -35,12 +42,9 @@ const MasterclassBanner = () => {
             <span className="highlight-word">Everything</span> You Need to Go <span className="highlight-word">Private</span> — All in One Place
           </p>
 
-          <a
-            href="https://www.creditoracademy.com/page/show/152454?portal_id=14800"
-            className="masterclass-hero-button"
-          >
-            Learn More
-          </a>
+            <button onClick={handleClick} className="masterclass-hero-button">
+      Learn More
+    </button>
         </motion.div>
       </div>
     </section>

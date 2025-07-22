@@ -5,6 +5,7 @@ import SEOoptimized from '../assets/SEOoptimized.jpg';
 import BusinessFunctionality from '../assets/BusinessFunctionality.jpg';
 import MonthlyMaintainance from '../assets/MonthlyMaintainance.jpg';
 import CustomWebsite from '../assets/CustomWebsite.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const WebsiteEndSection = () => {
   // Animation variants
@@ -18,7 +19,10 @@ const WebsiteEndSection = () => {
       }
     }
   };
-
+ const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/ContactSection'); // Make sure this route exists in your app
+  };
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -816,12 +820,24 @@ const WebsiteEndSection = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <a 
-              href="https://www.creditoracademy.com/contact_visitor" 
-              style={{ display: 'inline-block', background: 'white', color: '#30a1e3', padding: '18px 48px', borderRadius: '50px', fontWeight: 'bold', fontSize: '1.1rem', textDecoration: 'none', border: '2px solid transparent', boxShadow: '0 6px 20px rgba(0,0,0,0.2)' }}
-            >
-              Get Started Today
-            </a>
+         <button 
+      onClick={handleClick}
+      style={{
+        display: 'inline-block',
+        background: 'white',
+        color: '#30a1e3',
+        padding: '18px 48px',
+        borderRadius: '50px',
+        fontWeight: 'bold',
+        fontSize: '1.1rem',
+        textDecoration: 'none',
+        border: '2px solid transparent',
+        boxShadow: '0 6px 20px rgba(0,0,0,0.2)',
+        cursor: 'pointer'
+      }}
+    >
+      Get Started Today
+    </button>
           </motion.div>
         </div>
       </motion.section>

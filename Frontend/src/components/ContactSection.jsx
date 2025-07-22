@@ -12,8 +12,8 @@ const ContactSection = () => {
 
   return (
     <section id="contact" style={{ padding: '60px 20px', background: 'linear-gradient(to right, #e0f7ff, #f0faff)' }}>
-    
-      <div style={{ maxWidth: '800px', margin: 'auto', height: '500px' }}>
+     
+      <div style={{ maxWidth: '800px', margin: 'auto', height: '550px' }}>
         <iframe
           src="https://api.wonderengine.ai/widget/form/o69tKOXv3NV8GnS4aGls"
           style={{
