@@ -21,6 +21,7 @@ import ContactSection from './components/ContactSection';
 import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/chatbot'; // Import the Chatbot component
 import RemedyTC from './components/RemedyTC';
+import MasterTnc from '../src/page/MasterTnc';
 
 function App() {
   
@@ -47,6 +48,8 @@ function App() {
         <Route path="/mtc" element={<MembershipTnC/>} />
         <Route path="/ContactSection" element={<ContactSection/>} />
         <Route path="/remedytnc" element={<RemedyTC />} />
+        <Route path="/mastertnc" element={<MasterTnc />} />
+
       </Routes>
       <Footer />
       <Chatbot /> {/* Add Chatbot here to render on all pages */}

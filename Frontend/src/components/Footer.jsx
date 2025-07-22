@@ -2,6 +2,8 @@ import React from 'react';
 import PrivacyPolicy from '../components/PrivacyPolicy';
 import { Link } from 'react-router-dom';
 import TermCondition from '../components/TermCondition';
+import ReturnRefund from '../page/ReturnRefund';
+import MembershipTnC from '../page/MembershipTnC';
 
 const Footer = () => {
   return (
@@ -27,8 +29,12 @@ const Footer = () => {
           <p> <Link to="/termcondition" style={{ color: '#fff', textDecoration: 'none' }}>
     Terms and Condition
   </Link></p>
-          <p><a href="https://www.creditoracademy.com/page/show/152418?portal_id=14800" style={{ color: '#fff', textDecoration: 'none' }}>Return and Refunds</a></p>
-          <p><a href="https://www.creditoracademy.com/page/show/152426?portal_id=14800" style={{ color: '#fff', textDecoration: 'none' }}>Membership Terms and Conditions</a></p>
+  <p> <Link to="/returnrefund" style={{ color: '#fff', textDecoration: 'none' }}>
+    Return and Refunds
+  </Link></p>
+  <p> <Link to="/mtc" style={{ color: '#fff', textDecoration: 'none' }}>
+    Membership Terms and Conditions
+  </Link></p>
         </div>
 
         {/* Column 2: Contact Us */}

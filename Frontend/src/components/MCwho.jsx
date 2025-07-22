@@ -6,8 +6,11 @@ import businessOwner from '../assets/businessOwners.jpg';
 import entrepreneurs from '../assets/entrepreneurs.jpg';
 import sovereignty from '../assets/sovereignty.jpg';
 import you from '../assets/you.jpg';
+import MasterTnc from '../page/MasterTnc';
+import { useNavigate } from 'react-router-dom';
 
 export const MCwho = () => {
+  const navigate = useNavigate();
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -298,7 +301,7 @@ export const MCwho = () => {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            window.open('https://www.creditoracademy.com/page/show/153616?portal_id=14800', '_blank');
+            navigate('/mastertnc');
           }}
           style={{
             display: 'inline-block',
