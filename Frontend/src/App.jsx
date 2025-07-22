@@ -1,29 +1,32 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './page/LandingPage';
-import PrivateMerchant from './courses/PrivateMerchant' // adjust path if different
-import Remedy from './courses/Remedy'
+import PrivateMerchant from './courses/PrivateMerchant';
+import Remedy from './courses/Remedy';
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import { MasterClass } from './page/MasterClass';
 import Sov from './courses/Sov';
 import { WebsiteCreation } from './page/WebsiteCreation';
 import OperatePrivate from './courses/OperatePrivate'; 
-import Sophomore from './courses/Sophomore'; // adjust path if different
-import LiveClass from './page/LiveClass'; // adjust path if different
+import Sophomore from './courses/Sophomore';
+import LiveClass from './page/LiveClass';
 import Senior from './courses/Senior';
 import MerchantProcessing from './page/MerchantProcessing';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermCondition from './components/TermCondition';
 import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
-import ContactSection from './components/ContactSection'; // adjust path if different
+import ContactSection from './components/ContactSection';
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   return (
     
     <Router>
      
       <Navbar/>
+      <ScrollToTop />
       <Routes>
         
         <Route path="/" element={<LandingPage />} />
