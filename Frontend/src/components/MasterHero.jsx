@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import masterclassMembership from '../assets/masteclassmembership.png';
+import { useNavigate } from 'react-router-dom';
 
 const MasterHero = () => {
+  const navigate = useNavigate();
   const handleSignUp = () => {
-    window.open('https://www.creditoracademy.com/page/show/153616?portal_id=14800', '_blank');
+    navigate('/mastertnc');
   };
 
   return (
@@ -19,7 +21,8 @@ const MasterHero = () => {
         <BannerImage src={masterclassMembership} alt="Masterclass Banner" />
       </MotionBannerContainer>
 
-      {/* Enroll Button with Motion */}
+    
+       {/* Enroll Button with Motion */}
       <ButtonContainer>
         <MotionSignUpButton
           whileHover={{ scale: 1.08 }}
