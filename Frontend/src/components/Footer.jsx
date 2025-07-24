@@ -259,8 +259,8 @@ const Footer = () => {
                     )}
                   </div>
                   <span style={{
-                    fontWeight: 500,
-                    fontSize: '1.1rem',
+                    fontWeight: 400,
+                    fontSize: '1rem',
                     lineHeight: 1.4
                   }}>{item.text}</span>
                 </li>

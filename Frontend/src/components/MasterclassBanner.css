@@ -34,14 +34,14 @@
 }
 
 .masterclass-hero-text {
-  padding: 30px 20px 40px;
+  padding: 0px 20px 40px;
 }
 
 .masterclass-hero-subtitle {
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.5;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: #1f1f1f;
   text-align: center;
   background: #343535;
@@ -67,7 +67,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 
 .masterclass-hero-button {
   display: inline-block;

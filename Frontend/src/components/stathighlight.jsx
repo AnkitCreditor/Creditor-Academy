@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import { FaEye, FaCircle, FaUsers, FaYoutube } from "react-icons/fa";
 
 const API_KEY = "AIzaSyCJKDRtak743c9fOKLhZYnnZi_PncFjov0";
@@ -7,9 +7,12 @@ const CHANNEL_ID = "UCl_FM9KmhMA-DV6OTgr42Dw";
 
 const StatHighlights = () => {
   const [youtubeData, setYoutubeData] = useState({
-    viewCount: "Loading...",
-    subscriberCount: "Loading...",
+    viewCount: 0,
+    subscriberCount: 0,
   });
+  const [isLoaded, setIsLoaded] = useState(false);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
 
   useEffect(() => {
     const fetchYouTubeStats = async () => {
@@ -20,20 +23,43 @@ const StatHighlights = () => {
         const data = await res.json();
         const stats = data.items[0].statistics;
         setYoutubeData({
-          viewCount: Number(stats.viewCount).toLocaleString(),
-          subscriberCount: Number(stats.subscriberCount).toLocaleString(),
+          viewCount: parseInt(stats.viewCount, 10),
+          subscriberCount: parseInt(stats.subscriberCount, 10),
         });
+        setIsLoaded(true);
       } catch (error) {
         console.error("Error fetching YouTube stats:", error);
-        setYoutubeData({
-          viewCount: "Unavailable",
-          subscriberCount: "Unavailable",
-        });
+        setIsLoaded(true);
       }
     };
 
     fetchYouTubeStats();
   }, []);
+
+  const Counter = ({ target, trigger }) => {
+    const count = useMotionValue(0);
+    const display = useTransform(count, (val) =>
+      Math.floor(val).toLocaleString()
+    );
+
+    useEffect(() => {
+      if (trigger) {
+        const controls = animate(count, target, {
+          duration: 2,
+          ease: "easeOut",
+        });
+        return () => controls.stop();
+      }
+    }, [trigger, target]);
+
+    return (
+      <motion.div
+        style={{ fontSize: "28px", fontWeight: 700, color: "#2c3e50" }}
+      >
+        {display}
+      </motion.div>
+    );
+  };
 
   const stats = [
     {
@@ -45,13 +71,13 @@ const StatHighlights = () => {
     {
       icon: <FaCircle size={20} />,
       label: "Live Learners",
-      value: "1,673",
+      value: 1673,
       color: "#1dd1a1",
     },
     {
       icon: <FaUsers size={28} />,
       label: "Total Debt Eliminated",
-      value: "1,275,432",
+      value: 1275432,
       color: "#54a0ff",
     },
     {
@@ -80,8 +106,12 @@ const StatHighlights = () => {
     visible: { opacity: 1, y: 0 },
   };
 
+  const getGradient = (base) =>
+    `linear-gradient(135deg, ${base}22, ${base}33, #ffffff)`;
+
   return (
     <motion.section
+      ref={sectionRef}
       variants={containerVariant}
       initial="hidden"
       whileInView="visible"
@@ -109,7 +139,7 @@ const StatHighlights = () => {
             transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
           }}
           style={{
-            background: "#ffffff",
+            background: getGradient(stat.color),
             borderRadius: "18px",
             padding: "32px 40px",
             minWidth: "220px",
@@ -120,15 +150,19 @@ const StatHighlights = () => {
           }}
         >
           <div style={{ marginBottom: "14px" }}>{stat.icon}</div>
-          <div
-            style={{
-              fontSize: "28px",
-              fontWeight: 700,
-              color: "#2c3e50",
-            }}
-          >
-            {stat.value}
-          </div>
+          {isLoaded ? (
+            <Counter target={stat.value} trigger={isInView} />
+          ) : (
+            <div
+              style={{
+                fontSize: "28px",
+                fontWeight: 700,
+                color: "#2c3e50",
+              }}
+            >
+              Loading...
+            </div>
+          )}
           <div
             style={{
               fontSize: "15px",
