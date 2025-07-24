@@ -1,148 +1,224 @@
 import React, { useEffect, useState } from 'react';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 
 const RemedyOfferSection = () => {
-  const [visible, setVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
-    const handleNavigate = () => {
-    navigate('/remedytnc');
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: false });
+  const [ref2, inView2] = useInView({ threshold: 0.1, triggerOnce: false });
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
   };
 
-  useEffect(() => {
-    const scrollHandler = () => {
-      if (window.scrollY > 600) setVisible(true);
-    };
-    window.addEventListener('scroll', scrollHandler);
-    return () => window.removeEventListener('scroll', scrollHandler);
-  }, []);
-
-  // Inject animations
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.innerHTML = `
-      @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
       }
+    }
+  };
 
-      @keyframes pulseZoom {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.08); }
+  const fadeInUp = {
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
       }
+    }
+  };
 
-      .fade-in-up {
-        animation: fadeInUp 1s ease-out forwards;
-      }
+  const pulseAnimation = {
+    scale: [1, 1.05, 1],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  };
 
-      .pulse-zoom {
-        animation: pulseZoom 2.5s infinite;
-      }
-
-      .animate-button:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(41, 121, 255, 0.4);
-      }
-
-      @media (max-width: 768px) {
-        .responsive-flex {
-          flex-direction: column;
-          padding: 30px 5% !important;
-        }
-        .responsive-half {
-          width: 100% !important;
-          padding: 0 !important;
-        }
-        .responsive-offer {
-          padding-top: 40px !important;
-        }
-        .price-section {
-          font-size: 2em !important;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-    return () => document.head.removeChild(style);
-  }, []);
-
-  const fadeIn = visible ? 'fade-in-up' : '';
+  const handleNavigate = () => {
+    navigate('/remedytnc');
+  };
 
   return (
     <>
       {/* Take the First Step Section */}
-      <section
+      <motion.section
         style={{
-          padding: '80px 6%',
+          padding: isMobile ? '50px 5%' : '80px 6%',
           background: 'linear-gradient(to bottom, #f0f4f8, #e0f2fe)',
           fontFamily: "'Poppins', sans-serif",
         }}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={containerVariants}
+        ref={ref}
       >
-        <div
-          className={fadeIn}
+        <motion.div
+          variants={fadeInUp}
           style={{
             maxWidth: '900px',
             margin: '0 auto',
             textAlign: 'center',
             background: '#ffffffcc',
             borderRadius: '16px',
-            padding: '50px 30px',
+            padding: isMobile ? '30px 20px' : '50px 30px',
             boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(40px)',
-            transition: 'all 0.8s ease',
           }}
+          whileHover={{ y: -5 }}
+          transition={{ type: 'spring', stiffness: 300 }}
         >
-          <h2 style={{ fontSize: '2rem', color: '#0f172a', marginBottom: '20px' }}>
+          <motion.h2 
+            style={{ 
+              fontSize: isMobile ? '1.6rem' : '2rem', 
+              color: '#0f172a', 
+              marginBottom: '20px' 
+            }}
+            variants={itemVariants}
+          >
             <strong style={{ color: 'rgb(53, 152, 219)' }}> TAKE THE FIRST STEP TO REMEDY</strong>
-          </h2>
-          <p style={{ fontSize: '1rem', color: '#334155', marginBottom: '18px' }}>
-            It’s time to stop being the debtor — and start being the decision-maker.
-          </p>
-          <p style={{ fontSize: '1rem', color: '#334155', marginBottom: '18px' }}>
-            Don’t beg the system for forgiveness.
+          </motion.h2>
+          
+          <motion.p 
+            style={{ 
+              fontSize: '1rem', 
+              color: '#334155', 
+              marginBottom: '18px' 
+            }}
+            variants={itemVariants}
+          >
+            It's time to stop being the debtor — and start being the decision-maker.
+          </motion.p>
+          
+          <motion.p 
+            style={{ 
+              fontSize: '1rem', 
+              color: '#334155', 
+              marginBottom: '18px' 
+            }}
+            variants={itemVariants}
+          >
+            Don't beg the system for forgiveness.
             <br />
             <strong style={{ color: 'rgb(53, 152, 219)' }}>Command your remedy with confidence.</strong>
-          </p>
-          <p style={{ fontSize: '1rem', color: '#334155', marginBottom: '30px' }}>
-            Let’s fix your credit the right way — the lawful way — starting now.
-          </p>
-          <p style={{ fontSize: '1.1rem', color: '#0f172a', fontWeight: 600 }}>
+          </motion.p>
+          
+          <motion.p 
+            style={{ 
+              fontSize: '1rem', 
+              color: '#334155', 
+              marginBottom: '30px' 
+            }}
+            variants={itemVariants}
+          >
+            Let's fix your credit the right way — the lawful way — starting now.
+          </motion.p>
+          
+          <motion.p 
+            style={{ 
+              fontSize: '1.1rem', 
+              color: '#0f172a', 
+              fontWeight: 600 
+            }}
+            variants={itemVariants}
+          >
             <span style={{ color: 'rgb(53, 152, 219)' }}>Creditors Academy</span>
-          </p>
-          <p style={{ fontSize: '1rem', color: '#475569', fontStyle: 'italic' }}>Where Knowledge Becomes Power.</p>
-        </div>
-      </section>
+          </motion.p>
+          
+          <motion.p 
+            style={{ 
+              fontSize: '1rem', 
+              color: '#475569', 
+              fontStyle: 'italic' 
+            }}
+            variants={itemVariants}
+          >
+            Where Knowledge Becomes Power.
+          </motion.p>
+        </motion.div>
+      </motion.section>
 
       {/* What You'll Learn + Offer */}
-      <section
-        className="responsive-flex"
+      <motion.section
         style={{
           display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
           flexWrap: 'wrap',
           justifyContent: 'space-between',
-          padding: '60px 6%',
+          padding: isMobile ? '40px 5%' : '60px 6%',
           maxWidth: '1200px',
           margin: 'auto',
           fontFamily: "'Poppins', sans-serif",
         }}
+        initial="hidden"
+        animate={inView2 ? "visible" : "hidden"}
+        variants={containerVariants}
+        ref={ref2}
       >
         {/* Learn Column */}
-        <div className="responsive-half"
+        <motion.div
           style={{
             flex: 1,
-            minWidth: '300px',
-            paddingRight: '30px',
-            marginBottom: '30px',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'all 0.8s ease',
+            minWidth: isMobile ? '100%' : '300px',
+            paddingRight: isMobile ? 0 : '30px',
+            marginBottom: isMobile ? '40px' : '30px',
           }}
+          variants={itemVariants}
         >
-          <h2 style={{ fontSize: '1.8em', color: '#0f172a', marginBottom: '30px' }}>
+          <motion.h2 
+            style={{ 
+              fontSize: isMobile ? '1.6em' : '1.8em', 
+              color: '#0f172a', 
+              marginBottom: '30px' 
+            }}
+            whileHover={{ scale: 1.02 }}
+          >
             <span style={{ color: '#34495e' }}>
               What You'll <span style={{ color: 'rgb(0, 86, 179)' }}>Learn</span>
             </span>
-          </h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+          </motion.h2>
+          
+          <motion.ul 
+            style={{ 
+              listStyle: 'none', 
+              padding: 0 
+            }}
+            variants={containerVariants}
+          >
             {[
               { title: 'Step-by-step Credit Repair Blueprint', desc: 'Remove negative items and rebuild credit step-by-step.' },
               { title: 'Credit Monitoring Tools & Strategies', desc: 'Track and protect your credit using expert tools.' },
@@ -150,7 +226,7 @@ const RemedyOfferSection = () => {
               { title: 'Building Positive Credit History', desc: 'Establish habits that boost long-term credit health.' },
               { title: 'Your Legal Rights & Protections', desc: 'Understand and use credit laws to your advantage.' },
             ].map((item, idx) => (
-              <li
+              <motion.li
                 key={idx}
                 style={{
                   marginBottom: '20px',
@@ -161,8 +237,14 @@ const RemedyOfferSection = () => {
                   borderRadius: '12px',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
                 }}
+                variants={itemVariants}
+                whileHover={{ 
+                  y: -5,
+                  boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+                }}
+                transition={{ type: 'spring', stiffness: 300 }}
               >
-                <span
+                <motion.span
                   style={{
                     marginRight: '16px',
                     background: '#28a745',
@@ -173,23 +255,32 @@ const RemedyOfferSection = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
                 >
                   <svg width="14" height="14" fill="#fff" viewBox="0 0 16 16">
                     <path d="M13.485 1.929a1 1 0 010 1.414L6.414 10.414 2.515 6.515a1 1 0 10-1.414 1.414l4.95 4.95a1 1 0 001.414 0l7.95-7.95a1 1 0 10-1.414-1.414z" />
                   </svg>
-                </span>
+                </motion.span>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: '1rem', color: '#334155' }}>{item.title}</div>
                   <div style={{ fontSize: '0.9rem', color: '#64748b' }}>{item.desc}</div>
                 </div>
-              </li>
+              </motion.li>
             ))}
-          </ul>
-        </div>
+          </motion.ul>
+        </motion.div>
 
         {/* Offer Column */}
-        <div className="responsive-half responsive-offer" style={{ flex: 1, minWidth: '300px', paddingLeft: '30px' }}>
-          <div
+        <motion.div 
+          style={{ 
+            flex: 1, 
+            minWidth: isMobile ? '100%' : '300px', 
+            paddingLeft: isMobile ? 0 : '30px' 
+          }}
+          variants={itemVariants}
+        >
+          <motion.div
             style={{
               backgroundImage: 'url(https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)',
               backgroundSize: 'cover',
@@ -203,6 +294,8 @@ const RemedyOfferSection = () => {
               overflow: 'hidden',
               boxShadow: '0 10px 30px rgba(0,123,255,0.2)',
             }}
+            animate={pulseAnimation}
+            whileHover={{ scale: 1.02 }}
           >
             <div
               style={{
@@ -216,7 +309,7 @@ const RemedyOfferSection = () => {
               }}
             />
             <div style={{ position: 'relative', zIndex: 2 }}>
-              <div style={{ fontWeight: 'bold', fontSize: '1.4em' }} className="pulse-zoom">
+              <div style={{ fontWeight: 'bold', fontSize: isMobile ? '1.2em' : '1.4em' }}>
                 Credit Score: <span style={{
                   background: 'rgba(0,0,0,0.3)',
                   padding: '2px 10px',
@@ -224,78 +317,124 @@ const RemedyOfferSection = () => {
                 }}>750+</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <h3 style={{ margin: '10px 0', fontSize: '1.4em', textAlign: 'center', color: '#000' }}>
+          <motion.h3 
+            style={{ 
+              margin: '10px 0', 
+              fontSize: isMobile ? '1.3em' : '1.4em', 
+              textAlign: 'center', 
+              color: '#000' 
+            }}
+            whileHover={{ scale: 1.02 }}
+          >
             Transform Your Financial Future
-          </h3>
+          </motion.h3>
 
-          <p style={{ color: '#666', marginBottom: '15px', textAlign: 'center', fontSize: '1rem' }}>
+          <motion.p 
+            style={{ 
+              color: '#666', 
+              marginBottom: '15px', 
+              textAlign: 'center', 
+              fontSize: '1rem' 
+            }}
+            variants={itemVariants}
+          >
             Unlock the path to better credit—offline, hands-on, and fully supported.
-          </p>
+          </motion.p>
 
-          <div style={{ position: 'relative', margin: '25px 0', textAlign: 'center' }}>
-            <div className="price-section" style={{
-              fontSize: '2.6em',
-              fontWeight: 'bold',
-              color: '#00bfff',
-              animation: 'pulseZoom 2.5s infinite'
-            }}>
+          <motion.div 
+            style={{ 
+              position: 'relative', 
+              margin: '25px 0', 
+              textAlign: 'center' 
+            }}
+            variants={itemVariants}
+          >
+            <motion.div 
+              style={{
+                fontSize: isMobile ? '2em' : '2.6em',
+                fontWeight: 'bold',
+                color: '#00bfff',
+              }}
+              animate={pulseAnimation}
+            >
               $399
-            </div>
-            <div style={{
-              position: 'absolute',
-              top: '-10px',
-              right: '20%',
-              background: '#ff4757',
-              color: 'white',
-              padding: '3px 15px',
-              borderRadius: '20px',
-              fontSize: '0.75em',
-              fontWeight: 'bold',
-              transform: 'rotate(10deg)',
-            }}>
+            </motion.div>
+            <motion.div 
+              style={{
+                position: 'absolute',
+                top: '-10px',
+                right: isMobile ? '10%' : '20%',
+                background: '#ff4757',
+                color: 'white',
+                padding: '3px 15px',
+                borderRadius: '20px',
+                fontSize: '0.75em',
+                fontWeight: 'bold',
+                transform: 'rotate(10deg)',
+              }}
+              whileHover={{ rotate: [10, -10, 10] }}
+              transition={{ duration: 0.6 }}
+            >
               SAVE $200
-            </div>
-            <div style={{ textDecoration: 'line-through', color: '#999', fontSize: '1.1em', marginTop: '5px' }}>
+            </motion.div>
+            <motion.div 
+              style={{ 
+                textDecoration: 'line-through', 
+                color: '#999', 
+                fontSize: '1.1em', 
+                marginTop: '5px' 
+              }}
+              variants={itemVariants}
+            >
               $597
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-        <button
-      onClick={handleNavigate}
-      className="animate-button"
-      style={{
-        background: 'linear-gradient(to right, #00bfff, #2979ff)',
-        color: 'white',
-        fontWeight: 600,
-        border: 'none',
-        borderRadius: '8px',
-        padding: '14px 20px',
-        fontSize: '1.05em',
-        cursor: 'pointer',
-        width: '100%',
-        boxShadow: '0 5px 15px rgba(41,121,255,0.3)',
-      }}
-    >
-      Enroll Now – Limited Seats
-    </button>
+          <motion.button
+            onClick={handleNavigate}
+            style={{
+              background: 'linear-gradient(to right, #00bfff, #2979ff)',
+              color: 'white',
+              fontWeight: 600,
+              border: 'none',
+              borderRadius: '8px',
+              padding: '14px 20px',
+              fontSize: '1.05em',
+              cursor: 'pointer',
+              width: '100%',
+              boxShadow: '0 5px 15px rgba(41,121,255,0.3)',
+            }}
+            whileHover={{ 
+              y: -4,
+              scale: 1.02,
+              boxShadow: '0 10px 25px rgba(41, 121, 255, 0.4)'
+            }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 400 }}
+          >
+            Enroll Now – Limited Seats
+          </motion.button>
 
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: '20px',
-            fontSize: '0.85em',
-            color: '#666',
-            flexWrap: 'wrap',
-            gap: '10px'
-          }}>
+          <motion.div 
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: '20px',
+              fontSize: '0.85em',
+              color: '#666',
+              flexWrap: 'wrap',
+              gap: '10px'
+            }}
+            variants={itemVariants}
+          >
             <span>✅ Learn. Apply. Transform.</span>
             <span>🔒 Secure Payment</span>
-          </div>
-        </div>
-      </section>
+          </motion.div>
+        </motion.div>
+      </motion.section>
     </>
   );
 };
