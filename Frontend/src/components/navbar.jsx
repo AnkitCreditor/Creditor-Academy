@@ -169,6 +169,7 @@ const Navbar = () => {
               <span id="nav-services" className="nav-link cool-underline">Services ▾</span>
               <div className={`nav-dropdown${showServices ? ' visible' : ''}`}>
                 <NavLink to="/liveclass" className="nav-dropdown-link cool-underline">Live Class</NavLink>
+                <NavLink to="/athena" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Athena LMS</NavLink>
                 <NavLink to="/website" className="nav-dropdown-link cool-underline">Website Creation</NavLink>
                 <NavLink to="/pmp" className="nav-dropdown-link cool-underline">Merchant Processing</NavLink>
               </div>
@@ -210,6 +211,7 @@ const Navbar = () => {
               {showServices && (
                 <div className="nav-mobile-dropdown-content">
                   <NavLink to="/liveclass"   className="nav-mobile-link cool-underline" onClick={toggleMenu}>Live Class</NavLink>
+                  <NavLink to="/athena" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Athena LMS</NavLink>
                   <NavLink to="/website" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Website Creation</NavLink>
                   <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Merchant Processing</NavLink>
                 </div>

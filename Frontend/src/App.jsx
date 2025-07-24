@@ -18,6 +18,7 @@ import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
 import RemedyTC from './page/RemedyTC';
 import MasterTnc from '../src/page/MasterTnc';
+<<<<<<< Updated upstream
 //Imports from Courses
 import Sov from './courses/sov';
 import Sophomore from './courses/Sophomore';
@@ -25,6 +26,8 @@ import OperatePrivate from './courses/OperatePrivate';
 import Senior from './courses/Senior';
 import Remedy from './courses/Remedy';
 import PrivateMerchant from './courses/PrivateMerchant';
+import FeaturesLMS from './components/featureslms';
+import Athena from './page/Athena';
 
 function App() {
   
@@ -52,6 +55,7 @@ function App() {
         <Route path="/ContactSection" element={<ContactSection/>} />
         <Route path="/remedytnc" element={<RemedyTC />} />
         <Route path="/mastertnc" element={<MasterTnc />} />
+        <Route path="/athena" element={<Athena/>}/>
 
       </Routes>
       <Footer />
