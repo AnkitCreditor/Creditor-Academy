@@ -18,7 +18,6 @@ import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
 import RemedyTC from './page/RemedyTC';
 import MasterTnc from '../src/page/MasterTnc';
-<<<<<<< Updated upstream
 //Imports from Courses
 import Sov from './courses/sov';
 import Sophomore from './courses/Sophomore';
@@ -28,6 +27,7 @@ import Remedy from './courses/Remedy';
 import PrivateMerchant from './courses/PrivateMerchant';
 import FeaturesLMS from './components/featureslms';
 import Athena from './page/Athena';
+
 
 function App() {
   
