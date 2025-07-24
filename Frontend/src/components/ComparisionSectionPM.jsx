@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import ContactSection from './ContactSection';
 import { 
   FaInfoCircle,
   FaCheck,
@@ -9,6 +11,7 @@ import {
 } from 'react-icons/fa';
 
 const ComparisonSectionPM = () => {
+  const navigate = useNavigate();
   return (
     <>
       {/* Unique Difference Comparison Section */}
@@ -80,7 +83,7 @@ const ComparisonSectionPM = () => {
             <h3>Ready to Monetize?</h3>
             <p>Gain lifetime tools & start offering white-glove setups to your clients immediately.</p>
             <MonetizationButton 
-              onClick={() => window.open('https://creditoracademy.matrixlms.com/contact_visitor?portal_id=14800', '_blank')}
+              onClick={() => navigate('/ContactSection')}
             >
               Bring Others Into Your Private Gateway <FaArrowRight />
             </MonetizationButton>

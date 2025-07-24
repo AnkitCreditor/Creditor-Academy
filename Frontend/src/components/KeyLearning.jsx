@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import begin from '../assets/begin.jpg';
 import how from '../assets/how.jpg';
 import acting from '../assets/acting.jpg';
@@ -8,18 +9,57 @@ import publicc from '../assets/public.jpg';
 import law from '../assets/law.jpg';
 
 const KeyLearning = () => {
-  const handleMouseOver = (e) => {
-    e.currentTarget.style.transform = 'scale(1.05)';
-    e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,123,255,0.2)';
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        when: "beforeChildren"
+      }
+    }
   };
 
-  const handleMouseOut = (e) => {
-    e.currentTarget.style.transform = 'scale(1)';
-    e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,123,255,0.15)';
+  const cardVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      y: -10,
+      scale: 1.03,
+      boxShadow: "0 15px 30px rgba(0,123,255,0.25)",
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
   };
 
   return (
-    <div>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+    >
       {/* Grid of Key Learnings */}
       <div style={{ 
         background: '#e8f4fd', 
@@ -36,20 +76,21 @@ const KeyLearning = () => {
           margin: '0 auto' 
         }}>
           {/* Card 1 */}
-          <div 
+          <motion.div 
+            variants={cardVariants}
+            whileHover="hover"
             style={{ 
               background: 'white', 
               borderRadius: '16px', 
               padding: '20px', 
               boxShadow: '0 5px 20px rgba(0,123,255,0.1)',
               transition: 'all 0.3s ease',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              cursor: 'pointer'
             }}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
           >
             <div style={{ marginBottom: '15px', textAlign: 'center' }}>
-              <img 
+              <motion.img 
                 src={understand} 
                 alt="True History" 
                 style={{ 
@@ -57,7 +98,9 @@ const KeyLearning = () => {
                   height: '180px', 
                   objectFit: 'cover', 
                   borderRadius: '12px'
-                }} 
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               />
             </div>
             <h3 style={{ fontWeight: 'bold', color: '#0056b3', marginBottom: '10px', textAlign: 'center' }}>
@@ -66,23 +109,24 @@ const KeyLearning = () => {
             <p style={{ fontSize: '14px', color: '#333', textAlign: 'center' }}>
               See the foundational difference between public identity and your sovereign private self.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 2 */}
-          <div 
+          <motion.div 
+            variants={cardVariants}
+            whileHover="hover"
             style={{ 
               background: 'white', 
               borderRadius: '16px', 
               padding: '20px', 
               boxShadow: '0 5px 20px rgba(0,123,255,0.1)',
               transition: 'all 0.3s ease',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              cursor: 'pointer'
             }}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
           >
             <div style={{ marginBottom: '15px', textAlign: 'center' }}>
-              <img 
+              <motion.img 
                 src={how} 
                 alt="legal" 
                 style={{ 
@@ -90,7 +134,9 @@ const KeyLearning = () => {
                   height: '180px', 
                   objectFit: 'cover', 
                   borderRadius: '12px'
-                }} 
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               />
             </div>
             <h3 style={{ fontWeight: 'bold', color: '#0056b3', marginBottom: '10px', textAlign: 'center' }}>
@@ -99,23 +145,24 @@ const KeyLearning = () => {
             <p style={{ fontSize: '14px', color: '#333', textAlign: 'center' }}>
               Understand the legal tricks and historical shifts that quietly removed your freedom.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 3 */}
-          <div 
+          <motion.div 
+            variants={cardVariants}
+            whileHover="hover"
             style={{ 
               background: 'white', 
               borderRadius: '16px', 
               padding: '20px', 
               boxShadow: '0 5px 20px rgba(0,123,255,0.1)',
               transition: 'all 0.3s ease',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              cursor: 'pointer'
             }}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
           >
             <div style={{ marginBottom: '15px', textAlign: 'center' }}>
-              <img 
+              <motion.img 
                 src={acting} 
                 alt="operatee" 
                 style={{ 
@@ -123,7 +170,9 @@ const KeyLearning = () => {
                   height: '180px', 
                   objectFit: 'cover', 
                   borderRadius: '12px'
-                }} 
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               />
             </div>
             <h3 style={{ fontWeight: 'bold', color: '#0056b3', marginBottom: '10px', textAlign: 'center' }}>
@@ -132,23 +181,24 @@ const KeyLearning = () => {
             <p style={{ fontSize: '14px', color: '#333', textAlign: 'center' }}>
               Reveal why most citizens unknowingly operate as assets of the public system.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 4 */}
-          <div 
+          <motion.div 
+            variants={cardVariants}
+            whileHover="hover"
             style={{ 
               background: 'white', 
               borderRadius: '16px', 
               padding: '20px', 
               boxShadow: '0 5px 20px rgba(0,123,255,0.1)',
               transition: 'all 0.3s ease',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              cursor: 'pointer'
             }}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
           >
             <div style={{ marginBottom: '15px', textAlign: 'center' }}>
-              <img 
+              <motion.img 
                 src={begin} 
                 alt="women" 
                 style={{ 
@@ -156,7 +206,9 @@ const KeyLearning = () => {
                   height: '180px', 
                   objectFit: 'cover', 
                   borderRadius: '12px'
-                }} 
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               />
             </div>
             <h3 style={{ fontWeight: 'bold', color: '#0056b3', marginBottom: '10px', textAlign: 'center' }}>
@@ -165,23 +217,28 @@ const KeyLearning = () => {
             <p style={{ fontSize: '14px', color: '#333', textAlign: 'center' }}>
               Get equipped to enter the next phase — living lawfully and privately, with clarity.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* What You'll Learn in Sovereignty 101 - Static Responsive Version */}
-      <section style={{ 
-        background: '#e8f4fd', 
-        padding: '60px 5%', 
-        fontFamily: "'Segoe UI', sans-serif" 
-      }}>
+      {/* What You'll Learn in Sovereignty 101 */}
+      <motion.section 
+        style={{ 
+          background: '#e8f4fd', 
+          padding: '60px 5%', 
+          fontFamily: "'Segoe UI', sans-serif" 
+        }}
+      >
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ color: '#007bff', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', marginBottom: '40px' }}>
+          <motion.h2 
+            variants={titleVariants}
+            style={{ color: '#007bff', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', marginBottom: '40px' }}
+          >
             <strong>
               <span style={{ color: 'rgb(126, 140, 141)' }}>What You'll Learn in</span>{' '}
               <span style={{ color: '#0056b3' }}>Sovereignty 101</span>
             </strong>
-          </h2>
+          </motion.h2>
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
@@ -189,19 +246,20 @@ const KeyLearning = () => {
             justifyContent: 'center'
           }}>
             {/* Card 1 */}
-            <div 
+            <motion.div 
+              variants={cardVariants}
+              whileHover="hover"
               style={{ 
                 background: 'white', 
                 borderRadius: '20px', 
                 padding: '25px 20px', 
                 boxShadow: '0 10px 30px rgba(0,123,255,0.15)', 
                 transition: 'all 0.3s ease',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                cursor: 'pointer'
               }}
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
             >
-              <img 
+              <motion.img 
                 src={truee} 
                 alt="True History" 
                 style={{ 
@@ -210,7 +268,9 @@ const KeyLearning = () => {
                   objectFit: 'cover', 
                   borderRadius: '12px', 
                   marginBottom: '15px' 
-                }} 
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               />
               <h3 style={{ color: '#0056b3', marginBottom: '10px', textAlign: 'center' }}>
                 <strong>True American History</strong>
@@ -218,22 +278,23 @@ const KeyLearning = () => {
               <p style={{ fontSize: '14px', color: '#333', textAlign: 'center' }}>
                 Discover the real story of America: sovereignty, consent, and freedom before the corporate system took over.
               </p>
-            </div>
+            </motion.div>
 
             {/* Card 2 */}
-            <div 
+            <motion.div 
+              variants={cardVariants}
+              whileHover="hover"
               style={{ 
                 background: 'white', 
                 borderRadius: '20px', 
                 padding: '25px 20px', 
                 boxShadow: '0 10px 30px rgba(0,123,255,0.15)', 
                 transition: 'all 0.3s ease',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                cursor: 'pointer'
               }}
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
             >
-              <img 
+              <motion.img 
                 src={publicc} 
                 alt="Public vs Private" 
                 style={{ 
@@ -242,7 +303,9 @@ const KeyLearning = () => {
                   objectFit: 'cover', 
                   borderRadius: '12px', 
                   marginBottom: '15px' 
-                }} 
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               />
               <h3 style={{ color: '#0056b3', marginBottom: '10px', textAlign: 'center' }}>
                 <strong>Public vs Private</strong>
@@ -250,22 +313,23 @@ const KeyLearning = () => {
               <p style={{ fontSize: '14px', color: '#333', textAlign: 'center' }}>
                 Learn how your identity was turned into a legal fiction and how to stand in your true, private status.
               </p>
-            </div>
+            </motion.div>
 
             {/* Card 3 */}
-            <div 
+            <motion.div 
+              variants={cardVariants}
+              whileHover="hover"
               style={{ 
                 background: 'white', 
                 borderRadius: '20px', 
                 padding: '25px 20px', 
                 boxShadow: '0 10px 30px rgba(0,123,255,0.15)', 
                 transition: 'all 0.3s ease',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                cursor: 'pointer'
               }}
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
             >
-              <img 
+              <motion.img 
                 src={law} 
                 alt="Law & Jurisdiction" 
                 style={{ 
@@ -274,7 +338,9 @@ const KeyLearning = () => {
                   objectFit: 'cover', 
                   borderRadius: '12px', 
                   marginBottom: '15px' 
-                }} 
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               />
               <h3 style={{ color: '#0056b3', marginBottom: '10px', textAlign: 'center' }}>
                 <strong>Law & Jurisdiction</strong>
@@ -282,11 +348,11 @@ const KeyLearning = () => {
               <p style={{ fontSize: '14px', color: '#333', textAlign: 'center' }}>
                 Understand the shift from common law to admiralty and how modern courts operate by contract.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
-    </div>
+      </motion.section>
+    </motion.div>
   );
 };
 

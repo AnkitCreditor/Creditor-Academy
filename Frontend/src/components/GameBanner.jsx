@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaGamepad, FaMedal, FaUsers } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import GBanner from '../assets/game_banner.png';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -22,13 +23,13 @@ const GameBanner = () => {
         viewport={{ once: false, amount: 0.2 }}
         style={{
           padding: '80px 6%',
-          background: 'linear-gradient(to bottom right, #eef5ff, #ffffff)',
+          background: 'linear-gradient(to bottom right, #c8ddfaff, #9abcd2ff)',
           fontFamily: 'Poppins, sans-serif',
         }}
       >
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <h2 style={{ fontSize: '2.5rem', color: '#0056b3', fontWeight: 'bold', marginBottom: '10px' }}>
-            <span style={{ color: 'rgb(35, 111, 161)' }}>
+          <h2 style={{ fontSize: '2.5rem', color: '#003772ff', fontWeight: 'bold', marginBottom: '10px' }}>
+            <span style={{ color: 'rgba(0, 61, 102, 1)' }}>
               The First-Ever Gamified Sovereignty Academy
             </span>
           </h2>
@@ -48,53 +49,102 @@ const GameBanner = () => {
 
         {/* Grid Cards */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '30px',
-            marginBottom: '60px',
-          }}
-        >
-          {[
-            {
-              title: 'Real Simulation Games',
-              desc: 'Experience learning by playing with engaging, real-world legal scenarios.',
-              icon: <FaGamepad size={40} color="#0056b3" />,
-            },
-            {
-              title: 'Earn XP & Unlock Badges',
-              desc: 'Answer questions to unlock badges, contracts, docs & exclusive templates.',
-              icon: <FaMedal size={40} color="#0056b3" />,
-            },
-            {
-              title: 'Interactive Experience',
-              desc: 'Engage with sound, effects, leaderboards, and multiplayer challenges.',
-              icon: <FaUsers size={40} color="#0056b3" />,
-            },
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              variants={fadeUpVariant}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.2 }}
-              transition={{ delay: index * 0.1 }}
-              style={{
-                background: '#fff',
-                padding: '25px',
-                borderRadius: '14px',
-                boxShadow: '0 6px 18px rgba(0,0,0,0.05)',
-                transition: 'all 0.3s ease',
-                textAlign: 'center',
-              }}
-              whileHover={{ y: -5, boxShadow: '0 12px 24px rgba(0,0,0,0.08)' }}
-            >
-              <div style={{ marginBottom: '15px' }}>{item.icon}</div>
-              <h3 style={{ color: '#0056b3', fontSize: '1.2rem', marginBottom: '10px' }}>{item.title}</h3>
-              <p style={{ color: '#000', fontSize: '0.95rem' }}>{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '30px',
+              marginBottom: '20px',
+            }}
+          >
+            {[
+              {
+                title: 'Real Simulation Games',
+                desc: 'Experience learning by playing with engaging, real-world legal scenarios.',
+                icon: <FaGamepad size={30} color="#fff" />,
+              },
+              {
+                title: 'Earn XP & Unlock Badges',
+                desc: 'Answer questions to unlock badges, contracts, docs & exclusive templates.',
+                icon: <FaMedal size={30} color="#fff" />,
+              },
+              {
+                title: 'Interactive Experience',
+                desc: 'Engage with sound, effects, leaderboards, and multiplayer challenges.',
+                icon: <FaUsers size={30} color="#fff" />,
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                variants={fadeUpVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                whileHover={{
+                  y: -6,
+                  scale: 1.03,
+                  background: 'linear-gradient(135deg, #0e2e89ff, #2858a5ff)',
+                  boxShadow: '0 12px 28px rgba(0, 0, 0, 0.12)',
+                  color: '#ffffff', // <-- this changes all text to white on hover
+                  transition: { duration: 0, ease: 'easeOut' },
+                }}
+                style={{
+                  background: 'linear-gradient(135deg, #fdfdfd, #eef3fb)',
+                  padding: '30px',
+                  borderRadius: '20px',
+                  boxShadow: '0 6px 18px rgba(0,0,0,0.06)',
+                  transition: 'all 0.25s ease-in-out',
+                  textAlign: 'center',
+                  border: '1px solid #e0e6f0',
+                  backdropFilter: 'blur(6px)',
+                  color: '#2c3e50', // <-- default text color
+                }}
+              >
+                {/* Icon Wrapper */}
+                <div
+                  style={{
+                    marginBottom: '18px',
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(145deg, #0056b3, #007BFF)',
+                    boxShadow: '0 0 16px #0056b355',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginInline: 'auto',
+                  }}
+                >
+                  {item.icon}
+                </div>
+
+                {/* Title */}
+                <h3
+                  style={{
+                    fontSize: '1.3rem',
+                    fontWeight: 600,
+                    marginBottom: '10px',
+                    transition: 'color 0.3s ease',
+                  }}
+                >
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p
+                  style={{
+                    fontSize: '0.96rem',
+                    lineHeight: '1.5',
+                    maxWidth: '90%',
+                    margin: '0 auto',
+                    transition: 'color 0.3s ease',
+                  }}
+                >
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
       </motion.section>
 
       {/* ✅ Game of the Month */}
@@ -109,13 +159,13 @@ const GameBanner = () => {
           marginBottom: '20px'
         }}
       >
-        <h2 style={{ color: '#0056b3', fontSize: '2rem', marginBottom: '10px' }}>
+        <h2 style={{ fontFamily: 'Poppins, sans-serif', color: '#0056b3', fontSize: '2.5rem', marginBottom: '10px' }}>
           <strong>
             <span style={{ color: 'rgb(0, 0, 0)' }}>Game of the Month:</span>{' '}
             <span style={{ color: 'rgb(35, 111, 161)' }}>Creditor Football</span>
           </strong>
         </h2>
-        <p style={{ color: 'rgb(126, 140, 141)', fontSize: '1rem' }}>
+        <p style={{ color: 'rgba(105, 111, 111, 1)', fontSize: '1rem' }}>
           Play your way to private power with football-themed quizzes and XP boosts.
         </p>
       </motion.div>
@@ -128,7 +178,7 @@ const GameBanner = () => {
         viewport={{ once: false, amount: 0.2 }}
         style={{
           position: 'relative',
-          background: `url('https://www.creditoracademy.com/files/8178604/new_game_hero.png') center center / cover no-repeat`,
+          background: `url(${GBanner}) center center / cover no-repeat`,
           padding: '100px 5%',
           fontFamily: 'Poppins, sans-serif',
           color: 'white',
@@ -207,9 +257,10 @@ const GameBanner = () => {
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         style={{
-          padding: '20px 6%',
+          padding: '30px 6%',
           background: 'linear-gradient(to bottom right, #eef5ff, #ffffff)',
           fontFamily: 'Poppins, sans-serif',
+          marginBottom: '50px'
         }}
       >
         <div

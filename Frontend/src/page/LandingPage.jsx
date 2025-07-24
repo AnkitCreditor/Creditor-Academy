@@ -1,65 +1,28 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import img1 from '../assets/car.jpg';
-import img2 from '../assets/couple.png';
-import img3 from '../assets/man.png';
-import img4 from '../assets/yatch.png';
 import website from '../assets/Website_banner_2(2).jpg';
 import privateMerchant from '../assets/merchant (1).jpg';
 import GameBanner from '../components/GameBanner.jsx';
 import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
 import CoursesSection from '../components/CoursesSection';
-import StatsSection from '../components/StatsSection';
+import HeroCarousel from '../components/HeroCarousel.jsx';
+import StatHighlights from '../components/stathighlight.jsx';
+import ContactSection from '../components/ContactSection.jsx';
+import HomeSlider from '../components/home_slider.jsx';
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
-    const carousel = document.getElementById('hero-carousel');
-    let idx = 0;
-    const total = 4;
-    const interval = setInterval(() => {
-      idx = (idx + 1) % total;
-      carousel.style.transform = `translateX(-${(idx * 100) / total}%)`;
-    }, 4000);
-    return () => clearInterval(interval);
+    window.scrollTo(0, 0);
   }, []);
-
-  const sliderImages = [img1, img2, img3, img4];
-
   return (
     <>
-      {/* Image Slider Only */}
-      <div
-        style={{
-          position: 'relative',
-          overflow: 'hidden',
-          width: '100%',
-          height: '90vh',
-          fontFamily: 'Poppins, sans-serif',
-        }}
-      >
-        <div
-          id="hero-carousel"
-          style={{
-            display: 'flex',
-            width: `${sliderImages.length * 100}%`,
-            height: '100%',
-            transition: 'transform 1s ease',
-          }}
-        >
-          {sliderImages.map((bg, index) => (
-            <div
-              key={index}
-              style={{
-                flex: `0 0 ${100 / sliderImages.length}%`,
-                background: `url(${bg}) center/cover no-repeat`,
-              }}
-            ></div>
-          ))}
-        </div>
-      </div>
+      <HeroCarousel />
+      <StatHighlights />
       <AboutSection /> 
       <MasterclassBanner />
       <CoursesSection />
@@ -162,6 +125,8 @@ const LandingPage = () => {
           </div>
         </section>
 
+        <HomeSlider/ >
+
         {/* Services Section */}
         <section style={{ padding: '60px 5%', background: '#f5f5f5', fontFamily: 'Poppins, sans-serif', boxSizing: 'border-box' }}>
           <div style={{ maxWidth: '1200px', margin: 'auto', display: 'flex', flexWrap: 'wrap', gap: '30px', justifyContent: 'center', boxSizing: 'border-box' }}>
@@ -255,8 +220,8 @@ const LandingPage = () => {
 
           </div>
         </section>
-
-      <StatsSection />
+      {/*<StatsSection />*/}
+      {/* <Mascot/> */}
       
     </>
   );
