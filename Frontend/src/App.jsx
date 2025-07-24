@@ -19,8 +19,8 @@ import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
 import ContactSection from './components/ContactSection';
 import ScrollToTop from './components/ScrollToTop';
-import Chatbot from './components/chatbot'; // Import the Chatbot component
-import RemedyTC from './components/RemedyTC';
+import Chatbot from './components/chatbot';
+import RemedyTC from './page/RemedyTC';
 import MasterTnc from '../src/page/MasterTnc';
 
 function App() {
