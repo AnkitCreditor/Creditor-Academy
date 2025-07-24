@@ -6,7 +6,7 @@ const LMSHowItWorks = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.2,
-    triggerOnce: false
+    triggerOnce: true
   });
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const LMSHowItWorks = () => {
         </svg>
       ),
       color: "#4fc3f7",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=500&q=80"
     },
     {
       title: "Knowledge Check",
@@ -39,7 +39,7 @@ const LMSHowItWorks = () => {
         </svg>
       ),
       color: "#29b6f6",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.pexels.com/photos/4145193/pexels-photo-4145193.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
       title: "Earn Badges",
@@ -51,7 +51,7 @@ const LMSHowItWorks = () => {
         </svg>
       ),
       color: "#039be5",
-      image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.pexels.com/photos/4145197/pexels-photo-4145197.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
       title: "Get Certified",
@@ -66,12 +66,12 @@ const LMSHowItWorks = () => {
         </svg>
       ),
       color: "#0288d1",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=500&q=80"
     }
   ];
 
   return (
-    <div 
+    <div
       ref={ref}
       style={{
         padding: "100px 0",
@@ -81,22 +81,29 @@ const LMSHowItWorks = () => {
       }}
     >
       {/* Background pattern */}
-      <div style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyLDEzNiwyMDksMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=')"
-      }}></div>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage:
+            "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyLDEzNiwyMDksMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=')",
+          opacity: 0.12,
+          zIndex: 0
+        }}
+      ></div>
 
-      <div style={{
-        maxWidth: "1200px",
-        margin: "0 auto",
-        padding: "0 20px",
-        position: "relative",
-        zIndex: "2"
-      }}>
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 20px",
+          position: "relative",
+          zIndex: 2
+        }}
+      >
         {/* Section Header */}
         <motion.div
           initial="hidden"
@@ -111,177 +118,214 @@ const LMSHowItWorks = () => {
             marginBottom: "60px"
           }}
         >
-          <h2 style={{
-            fontSize: "2.8rem",
-            color: "#333",
-            marginBottom: "15px"
-          }}>
+          <h2
+            style={{
+              fontSize: "2.8rem",
+              color: "#333",
+              marginBottom: "15px"
+            }}
+          >
             How <span style={{ color: "#0288d1", fontWeight: "700" }}>Athena LMS</span> Works
           </h2>
-          <p style={{
-            fontSize: "1.2rem",
-            color: "#555",
-            maxWidth: "600px",
-            margin: "0 auto"
-          }}>
+          <p
+            style={{
+              fontSize: "1.2rem",
+              color: "#555",
+              maxWidth: "600px",
+              margin: "0 auto"
+            }}
+          >
             Your journey from learning to certification in 4 simple steps
           </p>
         </motion.div>
 
         {/* Timeline Container */}
-        <div style={{
-          position: "relative",
-          maxWidth: "1000px",
-          margin: "0 auto",
-          padding: "40px 0"
-        }}>
+        <div
+          style={{
+            position: "relative",
+            maxWidth: "1000px",
+            margin: "0 auto",
+            padding: "40px 0"
+          }}
+        >
           {/* Timeline Line */}
-          <div style={{
-            position: "absolute",
-            top: 0,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "4px",
-            height: "100%",
-            background: "linear-gradient(to bottom, #4fc3f7, #0288d1)",
-            borderRadius: "10px",
-            zIndex: "1"
-          }}></div>
-          
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "6px",
+              height: "100%",
+              background: "linear-gradient(to bottom, #4fc3f7, #0288d1)",
+              borderRadius: "10px",
+              zIndex: 1,
+              filter: "drop-shadow(0 0 6px rgba(2,136,209,0.3))"
+            }}
+          ></div>
+
           {/* Timeline Steps */}
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              style={{
-                position: "relative",
-                display: "flex",
-                width: "100%",
-                marginBottom: "60px",
-                zIndex: "2",
-                alignItems: "center",
-                flexDirection: index % 2 === 0 ? "row" : "row-reverse"
-              }}
-              initial="hidden"
-              animate={controls}
-              variants={{
-                hidden: { opacity: 0, y: 50 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.2,
-                type: "spring",
-                stiffness: 100
-              }}
-              whileHover={{ scale: 1.02 }}
-            >
-              {/* Image Container */}
-              <motion.div 
+          {steps.map((step, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <motion.div
+                key={index}
                 style={{
-                  flex: "1",
                   position: "relative",
-                  borderRadius: "10px",
-                  overflow: "hidden",
-                  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
-                  transition: "all 0.3s ease"
+                  display: "flex",
+                  width: "100%",
+                  marginBottom: "60px",
+                  zIndex: 2,
+                  alignItems: "center",
+                  flexDirection: isEven ? "row" : "row-reverse"
                 }}
-                whileHover={{ scale: 1.03 }}
+                initial="hidden"
+                animate={controls}
+                variants={{
+                  hidden: { opacity: 0, y: 50 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ scale: 1.02 }}
               >
-                <img 
-                  src={step.image} 
-                  alt={step.title} 
+                {/* Image Container */}
+                <motion.div
                   style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
+                    flex: "1",
+                    position: "relative",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.12)",
+                    cursor: "pointer",
                     transition: "transform 0.3s ease"
                   }}
-                />
-                <motion.div 
-                  style={{
-                    position: "absolute",
-                    bottom: "-25px",
-                    right: index % 2 === 0 ? "25px" : "auto",
-                    left: index % 2 !== 0 ? "25px" : "auto",
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "white",
-                    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.15)",
-                    zIndex: "3",
-                    transition: "all 0.3s ease",
-                    backgroundColor: step.color
-                  }}
-                  whileHover={{ rotate: 15, scale: 1.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  tabIndex={0}
+                  aria-label={step.title}
                 >
-                  {step.icon}
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    loading="lazy"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      display: "block",
+                      transition: "transform 0.3s ease"
+                    }}
+                  />
+                  <motion.div
+                    style={{
+                      position: "absolute",
+                      bottom: "-20px",
+                      right: isEven ? "25px" : "auto",
+                      left: !isEven ? "25px" : "auto",
+                      width: "72px",
+                      height: "72px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "white",
+                      boxShadow: "0 10px 26px rgba(0, 0, 0, 0.16)",
+                      zIndex: "3",
+                      backgroundColor: step.color,
+                      userSelect: "none"
+                    }}
+                    whileHover={{ rotate: 15, scale: 1.15 }}
+                    aria-hidden="true"
+                  >
+                    {step.icon}
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-              
-              {/* Content Container */}
-              <div style={{
-                flex: "1",
-                background: "white",
-                padding: "30px",
-                borderRadius: "10px",
-                boxShadow: "0 5px 25px rgba(0, 0, 0, 0.08)",
-                margin: index % 2 === 0 ? "0 30px 0 50px" : "0 50px 0 30px",
-                position: "relative"
-              }}>
-                <div style={{
-                  position: "absolute",
-                  top: "50%",
-                  [index % 2 === 0 ? "left" : "right"]: "-10px",
-                  width: "20px",
-                  height: "20px",
-                  background: "white",
-                  transform: "translateY(-50%) rotate(45deg)"
-                }}></div>
-                
-                <div style={{ 
-                  color: step.color,
-                  fontSize: "1.2rem",
-                  fontWeight: "700",
-                  marginBottom: "10px"
-                }}>
-                  0{index + 1}
+
+                {/* Content Container */}
+                <div
+                  style={{
+                    flex: "1",
+                    background: "white",
+                    padding: "30px",
+                    borderRadius: "10px",
+                    boxShadow: "0 5px 30px rgba(0, 0, 0, 0.1)",
+                    margin: isEven
+                      ? "0 30px 0 50px"
+                      : "0 50px 0 30px",
+                    position: "relative"
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      [isEven ? "left" : "right"]: "-15px",
+                      width: "30px",
+                      height: "30px",
+                      background: "white",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      boxShadow: "0 0 8px rgba(0,0,0,0.06)"
+                    }}
+                  ></div>
+
+                  <div
+                    style={{
+                      color: step.color,
+                      fontSize: "1.25rem",
+                      fontWeight: "700",
+                      marginBottom: "12px"
+                    }}
+                  >
+                    0{index + 1}
+                  </div>
+                  <h3
+                    style={{
+                      fontSize: "1.5rem",
+                      marginBottom: "12px",
+                      color: "#222"
+                    }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p
+                    style={{
+                      color: "#555",
+                      lineHeight: "1.65",
+                      fontSize: "1.05rem"
+                    }}
+                  >
+                    {step.description}
+                  </p>
+                  <div
+                    style={{
+                      height: "4px",
+                      width: "60px",
+                      borderRadius: "3px",
+                      marginTop: "20px",
+                      backgroundColor: step.color,
+                      boxShadow: `0 4px 6px ${step.color}70`
+                    }}
+                  ></div>
                 </div>
-                <h3 style={{
-                  fontSize: "1.4rem",
-                  marginBottom: "10px",
-                  color: "#333"
-                }}>
-                  {step.title}
-                </h3>
-                <p style={{
-                  color: "#666",
-                  lineHeight: "1.6"
-                }}>
-                  {step.description}
-                </p>
-                <div style={{
-                  height: "4px",
-                  width: "60px",
-                  borderRadius: "2px",
-                  marginTop: "15px",
-                  backgroundColor: step.color
-                }}></div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* CTA Button */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={controls}
+          variants={{
+            visible: { opacity: 1, y: 0 }
+          }}
+          transition={{ delay: 0.85, duration: 0.7 }}
           style={{
             textAlign: "center",
-            marginTop: "80px"
+            marginTop: "90px"
           }}
         >
           <motion.a
@@ -291,25 +335,41 @@ const LMSHowItWorks = () => {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              padding: "15px 30px",
+              padding: "16px 36px",
               background: "#0288d1",
               color: "white",
               borderRadius: "50px",
               textDecoration: "none",
-              fontWeight: "600",
-              fontSize: "1.1rem",
-              boxShadow: "0 5px 15px rgba(2, 136, 209, 0.2)"
+              fontWeight: "700",
+              fontSize: "1.18rem",
+              userSelect: "none",
+              boxShadow: "0 6px 18px rgba(2, 136, 209, 0.25)"
             }}
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 10px 20px rgba(2, 136, 209, 0.3)"
+            whileHover={{
+              scale: 1.07,
+              boxShadow: "0 9px 28px rgba(2, 136, 209, 0.35)"
             }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.97 }}
+            aria-label="Start Learning Journey"
           >
             Start Learning Journey
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: "10px" }}>
-              <path d="M5 12h13M12 5l7 7-7 7"></path>
-            </svg>
+            <motion.svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ marginLeft: "14px" }}
+              animate={{ x: [0, 6, 0] }}
+              transition={{ repeat: Infinity, duration: 1.4 }}
+            >
+              <path d="M5 12h13"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </motion.svg>
           </motion.a>
         </motion.div>
       </div>
