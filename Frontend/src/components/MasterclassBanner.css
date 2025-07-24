@@ -1,10 +1,28 @@
 .masterclass-hero-section {
+  position: relative;
   width: 100%;
-  background: linear-gradient(135deg, #e8f0ff, #ffffff);
+  background-image: url('../assets/mc_bg.jpg');
+  background-size: cover;
+  background-position: center;
   padding: 60px 0px;
   display: flex;
   justify-content: center;
   font-family: 'Poppins', sans-serif;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.masterclass-hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(2, 11, 37, 0.2); /* dark blue with transparency */
+  z-index: 0;
+}
+
+.masterclass-hero-section > * {
+  position: relative;
+  z-index: 1; /* to show above overlay */
 }
 
 .masterclass-hero-wrapper {
@@ -34,7 +52,7 @@
 }
 
 .masterclass-hero-text {
-  padding: 0px 20px 40px;
+  padding:  0px 20px 40px;
 }
 
 .masterclass-hero-subtitle {

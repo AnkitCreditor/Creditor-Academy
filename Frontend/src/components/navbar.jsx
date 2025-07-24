@@ -175,7 +175,7 @@ const Navbar = () => {
             </div>
             <NavLink id="nav-membership" to="/masterclass" className="nav-link cool-underline">Membership</NavLink>
             <NavLink id="nav-contact" to="/ContactSection" className="nav-link cool-underline">Contact</NavLink>
-            <NavLink id="nav-remedy" to="/remedy" className="nav-link cool-underline">Remedy NOW</NavLink>
+            <NavLink id="nav-remedy" to="/remedy" className="nav-link cool-underline">I Want Remedy NOW !</NavLink>
             {loginButton()}
           </nav>
         )}
@@ -217,7 +217,7 @@ const Navbar = () => {
             </div>
             <NavLink to="/masterclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Membership</NavLink>
             <NavLink to="/ContactSection" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Contact</NavLink>
-            <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Remedy NOW</NavLink>
+            <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>I Want Remedy NOW !</NavLink>
           </div>
         )}
       </header>
