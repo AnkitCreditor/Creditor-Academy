@@ -274,7 +274,7 @@ const Navbar = () => {
             boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
             zIndex: 10000,
             width: '300px',
-            minHeight: '150px',
+            minHeight: '180px',
             height: 'auto',
             color: '#fff',
             transform: animateIn ? 'translateY(0)' : 'translateY(40px)',
@@ -298,7 +298,7 @@ const Navbar = () => {
             {/* Mascot Image - aligned left and outside */}
             <img src={mascot} alt="Mascot" style={{
               width: 'auto',
-              height: '140px',
+              height: '180px',
               position: 'absolute',
               left: '0px',
               bottom: '20px',
