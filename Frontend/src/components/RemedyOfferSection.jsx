@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RemedyOfferSection = () => {
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
+    const handleNavigate = () => {
+    navigate('/remedytnc');
+  };
 
   useEffect(() => {
     const scrollHandler = () => {
@@ -257,30 +262,24 @@ const RemedyOfferSection = () => {
             </div>
           </div>
 
-          <a
-            href="https://www.creditoracademy.com/page/show/153618?portal_id=14800"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: 'none' }}
-          >
-            <button
-              className="animate-button"
-              style={{
-                background: 'linear-gradient(to right, #00bfff, #2979ff)',
-                color: 'white',
-                fontWeight: 600,
-                border: 'none',
-                borderRadius: '8px',
-                padding: '14px 20px',
-                fontSize: '1.05em',
-                cursor: 'pointer',
-                width: '100%',
-                boxShadow: '0 5px 15px rgba(41,121,255,0.3)',
-              }}
-            >
-              Enroll Now – Limited Seats
-            </button>
-          </a>
+        <button
+      onClick={handleNavigate}
+      className="animate-button"
+      style={{
+        background: 'linear-gradient(to right, #00bfff, #2979ff)',
+        color: 'white',
+        fontWeight: 600,
+        border: 'none',
+        borderRadius: '8px',
+        padding: '14px 20px',
+        fontSize: '1.05em',
+        cursor: 'pointer',
+        width: '100%',
+        boxShadow: '0 5px 15px rgba(41,121,255,0.3)',
+      }}
+    >
+      Enroll Now – Limited Seats
+    </button>
 
           <div style={{
             display: 'flex',

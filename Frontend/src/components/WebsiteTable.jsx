@@ -1,8 +1,128 @@
-
 import React from 'react';
-import { FaLayerGroup, FaCheck } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaLayerGroup, FaCheck, FaArrowRight } from 'react-icons/fa';
 
 const WebsiteTable = () => {
+  // Enhanced Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        when: "beforeChildren",
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    }
+  };
+
+  const rowVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: i * 0.05,
+        duration: 0.5,
+        ease: "backOut"
+      }
+    }),
+    hover: {
+      scale: 1.02,
+      boxShadow: "0 8px 25px rgba(0,0,0,0.12)",
+      transition: { 
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const promoVariants = {
+    hidden: { scale: 0.95, opacity: 0, y: 20 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    },
+    hover: {
+      scale: 1.02,
+      boxShadow: "0 15px 35px rgba(0,0,0,0.15)",
+      transition: { 
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const checkMarkVariants = {
+    hidden: { scale: 0, rotate: -90 },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 500,
+        damping: 15,
+        delay: 0.2
+      }
+    },
+    hover: {
+      scale: 1.2,
+      transition: { duration: 0.2 }
+    }
+  };
+
+  const gradientTextVariants = {
+    hidden: { backgroundPosition: '0% 50%' },
+    visible: {
+      backgroundPosition: '100% 50%',
+      transition: {
+        duration: 4,
+        repeat: Infinity,
+        repeatType: 'reverse',
+        ease: 'linear'
+      }
+    }
+  };
+
+  const iconContainerVariants = {
+    hover: {
+      rotate: 10,
+      scale: 1.1,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const arrowVariants = {
+    hover: {
+      x: 5,
+      transition: { 
+        repeat: Infinity,
+        repeatType: 'reverse',
+        duration: 0.8
+      }
+    }
+  };
+
+  // Styles (same as before)
   const containerStyle = {
     maxWidth: '1200px',
     margin: '30px auto',
@@ -123,15 +243,54 @@ const WebsiteTable = () => {
     fontSize: '1.2rem',
   };
 
+  const ctaButtonStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    background: 'linear-gradient(to right, #0284c7, #0ea5e9)',
+    color: 'white',
+    padding: '12px 24px',
+    borderRadius: '50px',
+    fontWeight: 'bold',
+    fontSize: '1rem',
+    textDecoration: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    marginTop: '20px',
+    boxShadow: '0 4px 15px rgba(2, 132, 199, 0.3)'
+  };
+
   return (
-    <div style={containerStyle}>
-      <h2 style={headingStyle}>
-        What <span style={{ color: '#0284c7' }}>Creditor Academy</span> Offers
-      </h2>
-      <div style={tableContainerStyle}>
+    <motion.div 
+      style={containerStyle}
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.h2 style={headingStyle} variants={itemVariants}>
+        What <motion.span 
+          style={{ 
+            background: 'linear-gradient(90deg, #0284c7, #0ea5e9, #0284c7)',
+            backgroundSize: '200% auto',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent'
+          }}
+          variants={gradientTextVariants}
+        >
+          Creditor Academy
+        </motion.span> Offers
+      </motion.h2>
+
+      <motion.div 
+        style={tableContainerStyle} 
+        variants={itemVariants}
+        whileHover={{ 
+          boxShadow: '0 15px 35px rgba(0,0,0,0.12)',
+          transition: { duration: 0.3 }
+        }}
+      >
         <table style={tableStyle}>
           <thead style={theadStyle}>
-            <tr>
+            <motion.tr variants={itemVariants}>
               <th style={thStyle}>
                 <h3 style={{ color: 'rgb(255, 255, 255)' }} aria-label="Website Components">
                   <strong>Website Components</strong>
@@ -142,117 +301,83 @@ const WebsiteTable = () => {
                   <strong>Other Professionals</strong>
                 </h3>
               </th>
-            </tr>
+            </motion.tr>
           </thead>
           <tbody>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
+            {[
+              { feature: "Logo Design", price: "$400" },
+              { feature: "UI/UX Design", price: "$500" },
+              { feature: "Membership Login", price: "$800" },
+              { feature: "Policy Pages", price: "$1200" },
+              { feature: "Bank Credit Approval", price: "NA" },
+              { feature: "Hosting & Deployment", price: "$400" },
+              { feature: "Maintenance", price: "$300" }
+            ].map((item, index) => (
+              <motion.tr
+                key={index}
+                style={rowStyle}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={rowVariants}
+                whileHover="hover"
+              >
+                <td style={tdStyle}>
+                  <motion.div 
+                    style={iconContainerStyle}
+                    variants={iconContainerVariants}
+                    whileHover="hover"
+                  >
+                    <FaLayerGroup size={18} color="#0369a1" />
+                  </motion.div>
+                  <div style={textStyle}>{item.feature}</div>
+                </td>
+                <td style={centerTextStyle}>{item.price}</td>
+              </motion.tr>
+            ))}
+            <motion.tr 
+              style={totalRowStyle}
+              variants={itemVariants}
+              whileHover={{ 
+                backgroundColor: '#f0f9ff',
+                transition: { duration: 0.3 }
+              }}
             >
-              <td style={tdStyle}>
-                <div style={iconContainerStyle}>
-                  <FaLayerGroup size={18} color="#0369a1" />
-                </div>
-                <div style={textStyle}>Logo Design</div>
-              </td>
-              <td style={centerTextStyle}>$400</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={tdStyle}>
-                <div style={iconContainerStyle}>
-                  <FaLayerGroup size={18} color="#0369a1" />
-                </div>
-                <div style={textStyle}>UI/UX Design</div>
-              </td>
-              <td style={centerTextStyle}>$500</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={tdStyle}>
-                <div style={iconContainerStyle}>
-                  <FaLayerGroup size={18} color="#0369a1" />
-                </div>
-                <div style={textStyle}>Membership Login</div>
-              </td>
-              <td style={centerTextStyle}>$800</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={tdStyle}>
-                <div style={iconContainerStyle}>
-                  <FaLayerGroup size={18} color="#0369a1" />
-                </div>
-                <div style={textStyle}>Policy Pages</div>
-              </td>
-              <td style={centerTextStyle}>$1200</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={tdStyle}>
-                <div style={iconContainerStyle}>
-                  <FaLayerGroup size={18} color="#0369a1" />
-                </div>
-                <div style={textStyle}>Bank Credit Approval</div>
-              </td>
-              <td style={centerTextStyle}>NA</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={tdStyle}>
-                <div style={iconContainerStyle}>
-                  <FaLayerGroup size={18} color="#0369a1" />
-                </div>
-                <div style={textStyle}>Hosting & Deployment</div>
-              </td>
-              <td style={centerTextStyle}>$400</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={tdStyle}>
-                <div style={iconContainerStyle}>
-                  <FaLayerGroup size={18} color="#0369a1" />
-                </div>
-                <div style={textStyle}>Maintenance</div>
-              </td>
-              <td style={centerTextStyle}>$300</td>
-            </tr>
-            <tr style={totalRowStyle}>
-              <td style={{ padding: '16px 20px' }}>Total Market Cost</td>
-              <td style={centerTextStyle}>$4000</td>
-            </tr>
+              <td style={{ padding: '16px 20px', fontWeight: 'bold' }}>Total Market Cost</td>
+              <td style={{ ...centerTextStyle, fontWeight: 'bold', fontSize: '1.1rem' }}>$4000</td>
+            </motion.tr>
           </tbody>
         </table>
-        <div style={promoStyle}>
+
+        <motion.div 
+          style={promoStyle}
+          variants={promoVariants}
+          whileHover="hover"
+        >
           <h3 style={{ fontSize: '1.75rem', margin: 0, color: '#1a202c', fontWeight: 'bold', fontFamily: "'Poppins', sans-serif" }}>
             Choose the <span style={{ color: '#0284c7' }}>Basic Plan</span> and Save Over $3900!
           </h3>
           <p style={{ fontSize: '1.1rem', marginTop: '12px', color: '#4a5568', fontFamily: "'Inter', sans-serif" }}>
             Get starter features for <strong style={{ color: '#0284c7', fontSize: '1.2rem' }}>just $100 + $49 Monthly</strong> — No hidden costs!
           </p>
-        </div>
+          <motion.button
+            style={ctaButtonStyle}
+            whileHover={{
+              background: 'linear-gradient(to right, #0ea5e9, #0284c7)',
+              boxShadow: '0 6px 20px rgba(2, 132, 199, 0.4)'
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Get Started Now
+            <motion.span style={{ marginLeft: '8px' }} variants={arrowVariants} whileHover="hover">
+              <FaArrowRight />
+            </motion.span>
+          </motion.button>
+        </motion.div>
+
         <table style={secondTableStyle}>
           <thead>
-            <tr>
+            <motion.tr variants={itemVariants}>
               <th style={{ ...thStyleSecondTable, textAlign: 'left' }} aria-label="Feature">
                 Feature
               </th>
@@ -262,200 +387,72 @@ const WebsiteTable = () => {
               <th style={thStyleSecondTable} aria-label="$1000 Cadillac Plan">
                 $1000 Cadillac Plan
               </th>
-            </tr>
+            </motion.tr>
           </thead>
           <tbody>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Number of Pages</td>
-              <td style={centerTextStyle}>2-3 pages</td>
-              <td style={centerTextStyle}>5-7+ custom pages</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Custom Logo</td>
-              <td style={centerTextStyle}>Basic text/logo</td>
-              <td style={centerTextStyle}>Premium design with revisions</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Policy Pages</td>
-              <td style={centerTextStyle}>Basic templates</td>
-              <td style={centerTextStyle}>Custom-written & formatted</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Contact Form</td>
-              <td style={centerTextStyle}>Basic with auto-email</td>
-              <td style={centerTextStyle}>Advanced with CRM sync</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>UI/UX Design</td>
-              <td style={centerTextStyle}>Clean layout</td>
-              <td style={centerTextStyle}>Brand-aligned premium design</td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Security (SSL)</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅ HTTPS</span>
-              </td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅ HTTPS + Extra layers</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Detail User Dashboard</td>
-              <td style={{ ...centerTextStyle, ...crossStyle }}>❌</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Underwriter-Ready Structure</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Mobile Responsive</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Hosting & Maintenance</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅ Monthly</span>
-              </td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅ Monthly</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Member Login/Portal</td>
-              <td style={{ ...centerTextStyle, ...crossStyle }}>❌</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Backend Integration</td>
-              <td style={{ ...centerTextStyle, ...crossStyle }}>❌</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅ Admin/CMS</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Blog/Resource Section</td>
-              <td style={{ ...centerTextStyle, ...crossStyle }}>❌</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Chatbot/Live Chat</td>
-              <td style={{ ...centerTextStyle, ...crossStyle }}>❌</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Appointment Booking</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅</span>
-              </td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅ (e.g., Calendly)</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>SEO Optimization</td>
-              <td style={{ ...centerTextStyle, ...crossStyle }}>❌</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅ Basic SEO setup</span>
-              </td>
-            </tr>
-            <tr
-              style={rowStyle}
-              onMouseOver={(e) => (e.currentTarget.style.background = '#f0f9ff')}
-              onMouseOut={(e) => (e.currentTarget.style.background = 'white')}
-            >
-              <td style={featureTdStyle}>Client Training/Walkthrough</td>
-              <td style={{ ...centerTextStyle, ...crossStyle }}>❌</td>
-              <td style={centerTextStyle}>
-                <span style={checkStyle}>✅ One-time call</span>
-              </td>
-            </tr>
+            {[
+              { feature: "Number of Pages", starter: "2-3 pages", cadillac: "5-7+ custom pages" },
+              { feature: "Custom Logo", starter: "Basic text/logo", cadillac: "Premium design with revisions" },
+              { feature: "Policy Pages", starter: "Basic templates", cadillac: "Custom-written & formatted" },
+              { feature: "Contact Form", starter: "Basic with auto-email", cadillac: "Advanced with CRM sync" },
+              { feature: "UI/UX Design", starter: "Clean layout", cadillac: "Brand-aligned premium design" },
+              { feature: "Security (SSL)", starter: "✅ HTTPS", cadillac: "✅ HTTPS + Extra layers" },
+              { feature: "Detail User Dashboard", starter: "❌", cadillac: "✅", isCheck: true },
+              { feature: "Underwriter-Ready Structure", starter: "✅", cadillac: "✅", isCheck: true },
+              { feature: "Mobile Responsive", starter: "✅", cadillac: "✅", isCheck: true },
+              { feature: "Hosting & Maintenance", starter: "✅ Monthly", cadillac: "✅ Monthly" },
+              { feature: "Member Login/Portal", starter: "❌", cadillac: "✅", isCheck: true },
+              { feature: "Backend Integration", starter: "❌", cadillac: "✅ Admin/CMS", isCheck: true },
+              { feature: "Blog/Resource Section", starter: "❌", cadillac: "✅", isCheck: true },
+              { feature: "Chatbot/Live Chat", starter: "❌", cadillac: "✅", isCheck: true },
+              { feature: "Appointment Booking", starter: "✅", cadillac: "✅ (e.g., Calendly)", isCheck: true },
+              { feature: "SEO Optimization", starter: "❌", cadillac: "✅ Basic SEO setup", isCheck: true },
+              { feature: "Client Training/Walkthrough", starter: "❌", cadillac: "✅ One-time call", isCheck: true }
+            ].map((item, index) => (
+              <motion.tr
+                key={index}
+                style={rowStyle}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={rowVariants}
+                whileHover="hover"
+              >
+                <td style={featureTdStyle}>{item.feature}</td>
+                <td style={centerTextStyle}>
+                  {item.isCheck ? (
+                    item.starter === "✅" ? (
+                      <motion.div 
+                        style={{ display: 'inline-block' }}
+                        variants={checkMarkVariants}
+                        whileHover="hover"
+                      >
+                        <FaCheck color="#10b981" />
+                      </motion.div>
+                    ) : item.starter === "❌" ? (
+                      <span style={crossStyle}>✕</span>
+                    ) : (
+                      item.starter
+                    )
+                  ) : item.starter}
+                </td>
+                <td style={centerTextStyle}>
+                  {item.isCheck ? (
+                    <motion.div 
+                      style={{ display: 'inline-block' }}
+                      variants={checkMarkVariants}
+                      whileHover="hover"
+                    >
+                      <FaCheck color="#10b981" />
+                    </motion.div>
+                  ) : item.cadillac}
+                </td>
+              </motion.tr>
+            ))}
           </tbody>
         </table>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const testimonials = [
   {
@@ -24,6 +25,12 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/ContactSection'); // Make sure this route exists
+  };
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
@@ -265,24 +272,24 @@ const TestimonialsSection = () => {
           Games | 100% Executed Record. You can’t file your way into sovereignty.
           You have to know who you are first.
         </p>
-        <a
-          href="https://www.creditoracademy.com/contact_visitor?portal_id=14800"
-          target="_blank"
-          rel="noopener"
-          style={{
-            display: "inline-block",
-            padding: "18px 40px",
-            background: "linear-gradient(135deg, #3498db, #5dade2)",
-            color: "white",
-            fontSize: "1.2rem",
-            fontWeight: "bold",
-            borderRadius: "10px",
-            textDecoration: "none",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-          }}
-        >
-          Enroll Now
-        </a>
+   <button
+      onClick={handleClick}
+      style={{
+        display: "inline-block",
+        padding: "18px 40px",
+        background: "linear-gradient(135deg, #3498db, #5dade2)",
+        color: "white",
+        fontSize: "1.2rem",
+        fontWeight: "bold",
+        borderRadius: "10px",
+        textDecoration: "none",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+        border: "none",
+        cursor: "pointer"
+      }}
+    >
+      Enroll Now
+    </button>
         <p
           style={{
             fontSize: "1.1rem",
