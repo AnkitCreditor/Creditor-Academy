@@ -12,23 +12,19 @@ const AdminModal = ({ isOpen, onClose }) => {
       <div style={modalContainerStyle}>
         <div style={modalStyle}>
           <button style={closeBtnStyle} onClick={onClose}>×</button>
-
           <h2 style={headingStyle}>
             {isLogin ? " Welcome " : " Create Account"}
           </h2>
-
           <form style={formStyle}>
             {!isLogin && (
               <input type="text" placeholder=" Full Name" style={inputStyle} />
             )}
             <input type="email" placeholder=" Email" style={inputStyle} />
             <input type="password" placeholder=" Password" style={inputStyle} />
-
             <button type="submit" style={submitBtnStyle}>
               {isLogin ? "Login →" : "Register →"}
             </button>
           </form>
-
           <p style={toggleTextStyle}>
             {isLogin ? "New here?" : "Already registered?"}{" "}
             <span style={toggleLinkStyle} onClick={toggleMode}>
@@ -56,9 +52,15 @@ const overlayStyle = {
   zIndex: 9999,
 };
 
+// Added maxWidth/minWidth/media query for perfect mobile centering
 const modalContainerStyle = {
   animation: "fadeIn 0.3s ease-in-out",
   transition: "all 0.3s ease-in-out",
+  width: "100vw",
+  minHeight: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
 };
 
 const modalStyle = {
@@ -66,13 +68,15 @@ const modalStyle = {
   backdropFilter: "blur(30px)",
   borderRadius: "20px",
   padding: "50px 35px",
-  width: "95%",
-  maxWidth: "500px",
+  width: "100%",
+  maxWidth: "400px",
+  minWidth: "0",
   boxShadow: "0 25px 45px rgba(0,0,0,0.3)",
   color: "#fff",
   position: "relative",
   fontFamily: "'Poppins', sans-serif",
   border: "1px solid rgba(255,255,255,0.1)",
+  margin: "16px"
 };
 
 const closeBtnStyle = {
@@ -142,6 +146,17 @@ const fadeInKeyframes = `
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive for smaller screens/mobile */
+@media (max-width: 600px) {
+  .admin-modal {
+    width: 98vw !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    margin: 8px !important;
+    padding: 40px 12px !important;
+  }
 }
 `;
 
