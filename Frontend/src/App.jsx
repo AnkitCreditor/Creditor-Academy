@@ -25,7 +25,7 @@ import OperatePrivate from './courses/OperatePrivate';
 import Senior from './courses/Senior';
 import Remedy from './courses/Remedy';
 import PrivateMerchant from './courses/PrivateMerchant';
-import FeaturesLMS from './components/featureslms';
+import FeaturesLMS from './components/FeaturesLMS';
 import Athena from './page/Athena';
 
 

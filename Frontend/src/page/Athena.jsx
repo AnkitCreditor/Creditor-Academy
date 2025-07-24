@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroLMS from '../components/HeroLMS';
-import FeaturesLMS from '../components/featureslms';
+import FeaturesLMS from '../components/FeaturesLMS';
 import LMSAbout from '../components/LMSAbout';
 import LMSCTA from '../components/LMSCTA';
 import LMSHowItWorks from '../components/LMSHowItWorks';
