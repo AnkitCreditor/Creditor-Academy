@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, TrendingUp, MessageCircle, DollarSign, Handshake, Star } from "lucide-react";
+import lmso1 from '../assets/lmso1.jpg';
+import lmso2 from '../assets/lmso2.jpg';
+import lmso3 from '../assets/lmso3.jpg';
+import lmso4 from '../assets/lmso4.jpg';
+import lmso5 from '../assets/lmso5.jpg';
 
 const trainingCategories = [
   {
@@ -22,8 +27,7 @@ const trainingCategories = [
       "Report and measure results",
       "Improve business performance",
     ],
-    image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80", // Compliance: business meeting/documents
+    image:lmso1, // Compliance: business meeting/documents
   },
   {
     id: "employee-dev",
@@ -39,8 +43,7 @@ const trainingCategories = [
     description:
       "Empower your employees to develop their skills, advance their careers, and drive your business forward. Join over 4,000 top-performing companies who trust Athena LMS to engage and retain their talent.",
     benefits: ["Improve skills", "Support career growth", "Improve business performance"],
-    image:
-      "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80", // Employee development: group training
+    image: lmso5, // Employee development: group training
   },
   {
     id: "onboarding",
@@ -61,8 +64,7 @@ const trainingCategories = [
       "Higher retention rates",
       "Improved engagement",
     ],
-    image:
-      "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80", // Onboarding: welcome/handshake
+    image: lmso2, // Onboarding: welcome/handshake
   },
   {
     id: "revenue",
@@ -83,8 +85,7 @@ const trainingCategories = [
       "Improve win rates",
       "Scale best practices",
     ],
-    image:
-      "https://images.unsplash.com/photo-1556740772-1a741367b93e?auto=format&fit=crop&w=600&q=80", // Revenue: financial chart
+    image: lmso3, // Revenue: financial chart
   },
   {
     id: "customer",
@@ -105,8 +106,7 @@ const trainingCategories = [
       "Increase customer satisfaction",
       "Drive expansion revenue",
     ],
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80", // Customer: support/help
+    image: lmso4, // Customer: support/help
   },
   {
     id: "member",
@@ -127,8 +127,7 @@ const trainingCategories = [
       "Build stronger communities",
       "Drive membership growth",
     ],
-    image:
-      "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=600&q=80", // Member: community/group
+    image: lmso5, // Member: community/group
   },
 ];
 
