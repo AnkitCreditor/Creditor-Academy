@@ -176,7 +176,7 @@ const Navbar = () => {
             </div>
             <NavLink id="nav-membership" to="/masterclass" className="nav-link cool-underline">Membership</NavLink>
             <NavLink id="nav-contact" to="/ContactSection" className="nav-link cool-underline">Contact</NavLink>
-            <NavLink id="nav-remedy" to="/remedy" className="nav-link cool-underline">I Want Remedy NOW !</NavLink>
+            <NavLink id="nav-remedy" to="/remedy" className="nav-link cool-underline">Remedy NOW</NavLink>
             {loginButton()}
           </nav>
         )}

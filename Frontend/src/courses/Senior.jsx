@@ -68,7 +68,7 @@ const Senior = () => {
           style={{
             background: '#ccc',
             color: 'white',
-            padding: '16px 36px',
+            padding: '16px 36px', 
             fontSize: '1.2rem',
             borderRadius: '10px',
             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
