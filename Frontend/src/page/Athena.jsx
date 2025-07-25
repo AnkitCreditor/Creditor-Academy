@@ -5,15 +5,18 @@ import LMSAbout from '../components/LMSAbout';
 import LMSCTA from '../components/LMSCTA';
 import LMSHowItWorks from '../components/LMSHowItWorks';
 import LmsOutcome from '../components/LmsOutcome';
-
+import LMSFAQs from '../components/LMSFAQs';
+import AthenaRoadmap from '../components/AthenaRoadmap';
 const Athena = () => {
   return (
     <div>
         <HeroLMS/>
         <LMSAbout/>
+        <AthenaRoadmap/>
         <FeaturesLMS/>
         <LmsOutcome/>
         <LMSHowItWorks/>
+        <LMSFAQs/>
         <LMSCTA/>
     </div>
   );
