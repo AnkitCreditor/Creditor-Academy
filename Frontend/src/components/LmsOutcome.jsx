@@ -43,7 +43,7 @@ const trainingCategories = [
     description:
       "Empower your employees to develop their skills, advance their careers, and drive your business forward. Join over 4,000 top-performing companies who trust Athena LMS to engage and retain their talent.",
     benefits: ["Improve skills", "Support career growth", "Improve business performance"],
-    image: lmso5, // Employee development: group training
+    image: lmso6, // Employee development: group training
   },
   {
     id: "onboarding",
