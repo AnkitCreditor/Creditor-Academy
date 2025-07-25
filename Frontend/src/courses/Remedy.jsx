@@ -1,34 +1,103 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
 import remedyBanner from '../assets/iwrn_banner.png';
 import flexImage from '../assets/flex.jpg';
+
 import RemedyOfferSection from '../components/RemedyOfferSection';
 import GameBanner from '../components/GameBanner';
 import RemedyMaster from '../components/RemedyMaster';
 import RemedyResult from '../components/RemedyResult';
 
 const Remedy = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: false });
 
   useEffect(() => {
-    const onScroll = () => {
-      const scrollY = window.scrollY;
-      if (scrollY > 300) {
-        setIsVisible(true);
-      }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
     };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const fadeInStyle = {
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-    transition: 'all 0.8s ease-out',
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2
+      }
+    }
   };
 
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
+
+  const fadeInUp = {
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const zoomIn = {
+    hidden: { scale: 0.95, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const slideIn = (direction = 'left') => ({
+    hidden: {
+      x: direction === 'left' ? -100 : 100,
+      opacity: 0
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 15
+      }
+    }
+  });
+
   const sectionStyle = {
-    padding: '80px 6%',
+    padding: isMobile ? '50px 5%' : '80px 6%',
     background: '#f4f6f8',
     fontFamily: "'Poppins', sans-serif",
   };
@@ -37,17 +106,22 @@ const Remedy = () => {
     maxWidth: '1200px',
     margin: 'auto',
     display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    gap: '50px',
-    ...fadeInStyle,
+    gap: isMobile ? '30px' : '50px',
   };
 
   const imageContainerStyle = {
     flex: 1,
-    minWidth: '280px',
+    minWidth: isMobile ? '100%' : '280px',
     display: 'flex',
     justifyContent: 'center',
+  };
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
   };
 
   const imageStyle = {
@@ -59,16 +133,16 @@ const Remedy = () => {
 
   const textContainerStyle = {
     flex: 1,
-    minWidth: '280px',
+    minWidth: isMobile ? '100%' : '280px',
   };
 
   const boxStyle = {
     background: '#ffffff',
     borderLeft: '4px solid #3498db',
-    padding: '20px',
+    padding: isMobile ? '15px' : '20px',
     borderRadius: '10px',
     boxShadow: '0 6px 18px rgba(0,0,0,0.05)',
-    fontSize: '0.95rem',
+    fontSize: isMobile ? '0.9rem' : '0.95rem',
     color: '#2c3e50',
     lineHeight: '1.6',
   };
@@ -77,13 +151,13 @@ const Remedy = () => {
     <>
       {/* Banner Image */}
       <motion.section
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
       >
         <div style={{ width: '100%', height: 'auto', position: 'relative', overflow: 'hidden' }}>
-          <img
+          <motion.img
             src={remedyBanner}
             alt="I Want Remedy Now Banner"
             style={{
@@ -91,8 +165,11 @@ const Remedy = () => {
               height: 'auto',
               objectFit: 'cover',
               display: 'block',
-              borderRadius: '8px'
+              borderRadius: '8px',
             }}
+            initial={{ scale: 1.05 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 1.2 }}
           />
         </div>
       </motion.section>
@@ -100,120 +177,179 @@ const Remedy = () => {
       {/* Remedy Video Section */}
       <motion.section
         style={{
-          padding: '80px 6%',
+          padding: isMobile ? '50px 5%' : '80px 6%',
           background: 'linear-gradient(to right, #eef5ff, #ffffff)',
-          fontFamily: "'Poppins', sans-serif"
+          fontFamily: "'Poppins', sans-serif",
         }}
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
       >
-        <div style={{ maxWidth: '800px', margin: '0 auto 50px', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2.5rem', color: '#0056b3', marginBottom: '20px', lineHeight: '1.4' }}>
-            <span style={{ color: '#3598db', fontWeight: 'bold' }}>I WANT A REMEDY NOW <span style={{ color: '#3598db' }}>!!</span></span>
-          </h2>
-          <p style={{ color: '#595f66', fontSize: '1.1rem', marginTop: '10px' }}>
+        <motion.div
+          variants={itemVariants}
+          style={{ 
+            maxWidth: '800px', 
+            margin: '0 auto 50px', 
+            textAlign: 'center' 
+          }}
+        >
+          <motion.h2 
+            style={{ 
+              fontSize: isMobile ? '1.8rem' : '2.5rem', 
+              color: '#0056b3', 
+              marginBottom: '20px', 
+              lineHeight: '1.4' 
+            }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <span style={{ color: '#3598db', fontWeight: 'bold' }}>
+              I WANT A REMEDY NOW <span style={{ color: '#3598db' }}>!!</span>
+            </span>
+          </motion.h2>
+          <motion.p 
+            style={{ 
+              color: '#595f66', 
+              fontSize: isMobile ? '1rem' : '1.1rem', 
+              marginTop: '10px' 
+            }}
+            variants={fadeInUp}
+          >
             Restore Your Credit. Discharge Debt. Take Your Power Back.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div style={{
-          width: '100%',
-          maxWidth: '960px',
-          margin: '40px auto',
-          borderRadius: '20px',
-          overflow: 'hidden',
-          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)'
-        }}>
+        <motion.div
+          variants={zoomIn}
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.98 }}
+          style={{
+            width: '100%',
+            maxWidth: '960px',
+            margin: '40px auto',
+            borderRadius: '20px',
+            overflow: 'hidden',
+            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+          }}
+        >
           <div style={{ position: 'relative', paddingTop: '56.25%', height: 0 }}>
             <iframe
               src="https://drive.google.com/file/d/1nzMTFFILh8d21_FUF0VuD9I0kJiLVMCp/preview"
               allow="autoplay; encrypted-media"
               allowFullScreen
               title="Remedy Video"
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              style={{ 
+                position: 'absolute', 
+                top: 0, 
+                left: 0, 
+                width: '100%', 
+                height: '100%', 
+                border: 'none' 
+              }}
             />
           </div>
-        </div>
+        </motion.div>
       </motion.section>
 
       {/* Take Your Power Back Section */}
       <motion.section
         style={sectionStyle}
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2 }}
-        viewport={{ once: true }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={containerVariants}
       >
-        <div style={contentGridStyle}>
-          <div style={imageContainerStyle}>
-            <motion.img
-              src={flexImage}
-              alt="Take Your Power Back"
-              style={imageStyle}
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-            />
-          </div>
-          <motion.div
-            style={textContainerStyle}
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            <div style={boxStyle}>
-              <p style={{ margin: 0 }}>
-                <strong>Tired of Being Denied, Deceived, or Drowned in Debt?</strong><br /><br />
-                You’re not the problem — the system is rigged.<br /><br />
-                But now… <strong>you hold the remedy</strong>.<br /><br />
-                This isn’t another “credit repair” scheme.<br />
-                It’s <strong>legal, psychological, and spiritual financial warfare</strong> — built to liberate you from the contracts and collections that trap millions.
-              </p>
-            </div>
-          </motion.div>
-        </div>
+        <motion.div style={contentGridStyle}>
+          <AnimatePresence>
+            <motion.div
+              style={imageContainerStyle}
+              variants={slideIn('right')}
+              key="image"
+            >
+              <motion.img
+                src={flexImage}
+                alt="Take Your Power Back"
+                style={imageStyle}
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ 
+                  scale: { duration: 0.3 },
+                  opacity: { duration: 0.8 }
+                }}
+                viewport={{ once: false, amount: 0.2 }}
+              />
+            </motion.div>
+            <motion.div
+              style={textContainerStyle}
+              variants={slideIn('left')}
+              key="text"
+            >
+              <motion.div
+                style={boxStyle}
+                whileHover={{ 
+                  y: -5,
+                  boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <p style={{ margin: 0 }}>
+                  <strong>Tired of Being Denied, Deceived, or Drowned in Debt?</strong><br /><br />
+                  You're not the problem — the system is rigged.<br /><br />
+                  But now… <strong>you hold the remedy</strong>.<br /><br />
+                  This isn't another "credit repair" scheme.<br />
+                  It's <strong>legal, psychological, and spiritual financial warfare</strong> — built to liberate you from the contracts and collections that trap millions.
+                </p>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
       </motion.section>
 
-      {/* Other animated sections */}
-      <motion.div
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
+      {/* Other Sections with Staggered Animations */}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
       >
-        <RemedyOfferSection />
-      </motion.div>
+        <motion.div variants={itemVariants}>
+          <RemedyOfferSection isMobile={isMobile} />
+        </motion.div>
+      </motion.section>
 
-      <motion.div
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        viewport={{ once: true }}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
       >
-        <GameBanner />
-      </motion.div>
+        <motion.div variants={itemVariants}>
+          <GameBanner isMobile={isMobile} />
+        </motion.div>
+      </motion.section>
 
-      <motion.div
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        viewport={{ once: true }}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
       >
-      <RemedyMaster />
-      </motion.div>
+        <motion.div variants={itemVariants}>
+          <RemedyMaster isMobile={isMobile} />
+        </motion.div>
+      </motion.section>
 
-      <motion.div
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.4 }}
-        viewport={{ once: true }}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
       >
-      <RemedyResult />
-      </motion.div>
+        <motion.div variants={itemVariants}>
+          <RemedyResult isMobile={isMobile} />
+        </motion.div>
+      </motion.section>
     </>
   );
 };

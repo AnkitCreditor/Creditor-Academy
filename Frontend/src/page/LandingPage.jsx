@@ -10,6 +10,7 @@ import CoursesSection from '../components/CoursesSection';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
 import ContactSection from '../components/ContactSection.jsx';
+import HomeSlider from '../components/home_slider.jsx';
 
 
 const LandingPage = () => {
@@ -123,6 +124,8 @@ const LandingPage = () => {
             </motion.div>
           </div>
         </section>
+
+        <HomeSlider/ >
 
         {/* Services Section */}
         <section style={{ padding: '60px 5%', background: '#f5f5f5', fontFamily: 'Poppins, sans-serif', boxSizing: 'border-box' }}>

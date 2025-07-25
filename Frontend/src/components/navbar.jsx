@@ -169,13 +169,14 @@ const Navbar = () => {
               <span id="nav-services" className="nav-link cool-underline">Services ▾</span>
               <div className={`nav-dropdown${showServices ? ' visible' : ''}`}>
                 <NavLink to="/liveclass" className="nav-dropdown-link cool-underline">Live Class</NavLink>
+                <NavLink to="/athena" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Athena LMS</NavLink>
                 <NavLink to="/website" className="nav-dropdown-link cool-underline">Website Creation</NavLink>
                 <NavLink to="/pmp" className="nav-dropdown-link cool-underline">Merchant Processing</NavLink>
               </div>
             </div>
             <NavLink id="nav-membership" to="/masterclass" className="nav-link cool-underline">Membership</NavLink>
             <NavLink id="nav-contact" to="/ContactSection" className="nav-link cool-underline">Contact</NavLink>
-            <NavLink id="nav-remedy" to="/remedy" className="nav-link cool-underline">Remedy NOW</NavLink>
+            <NavLink id="nav-remedy" to="/remedy" className="nav-link cool-underline">I Want Remedy NOW !</NavLink>
             {loginButton()}
           </nav>
         )}
@@ -210,6 +211,7 @@ const Navbar = () => {
               {showServices && (
                 <div className="nav-mobile-dropdown-content">
                   <NavLink to="/liveclass"   className="nav-mobile-link cool-underline" onClick={toggleMenu}>Live Class</NavLink>
+                  <NavLink to="/athena" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Athena LMS</NavLink>
                   <NavLink to="/website" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Website Creation</NavLink>
                   <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Merchant Processing</NavLink>
                 </div>
@@ -217,7 +219,7 @@ const Navbar = () => {
             </div>
             <NavLink to="/masterclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Membership</NavLink>
             <NavLink to="/ContactSection" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Contact</NavLink>
-            <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Remedy NOW</NavLink>
+            <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>I Want Remedy NOW !</NavLink>
           </div>
         )}
       </header>

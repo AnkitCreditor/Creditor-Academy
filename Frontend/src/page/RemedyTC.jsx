@@ -2,7 +2,7 @@ import React from 'react';
 
 const RemedyTC = () => {
   return (
-    <section style={{ padding: '60px 5%', maxWidth: '900px', margin: '0 auto', background: 'white', boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)', borderRadius: '10px' }}>
+    <section style={{ padding: '60px 5%', maxWidth: '900px', margin: '60px auto', background: 'white', boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)', borderRadius: '10px', fontFamily: "'Poppins', sans-serif" }}>
       <h1 style={{ fontSize: '2.5rem', textAlign: 'center', color: '#5dade2', marginBottom: '20px', fontWeight: 'bold' }}>Creditor Academy</h1>
       <h2 style={{ fontSize: '1.8rem', textAlign: 'center', color: '#333', marginBottom: '40px', fontWeight: 'normal' }}>CREDITOR ACADEMY - A Private Montessori Association</h2>
       <p style={{ fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '30px', textAlign: 'center' }}>
