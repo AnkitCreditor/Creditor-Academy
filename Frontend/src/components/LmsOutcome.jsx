@@ -6,6 +6,7 @@ import lmso2 from '../assets/lmso2.jpg';
 import lmso3 from '../assets/lmso3.jpg';
 import lmso4 from '../assets/lmso4.jpg';
 import lmso5 from '../assets/lmso5.jpg';
+import lmso6 from '../assets/lmso6.jpg';
 
 const trainingCategories = [
   {
