@@ -15,10 +15,9 @@ const Sophomore = () => {
       <LearnSophomore />
       <StatusCorrectionSophomore />
       <GameBanner />
-    <VideoSophomore />
-        <OutcomeSophomore />
-        <TestimonialSophomore />
-        
+      <VideoSophomore />
+      <OutcomeSophomore />
+      <TestimonialSophomore />
     </div>
   );
 };
