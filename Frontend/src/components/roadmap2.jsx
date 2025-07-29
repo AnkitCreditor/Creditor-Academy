@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiArrowRight, FiBookOpen, FiShield, FiHome, FiUsers, FiDollarSign } from 'react-icons/fi';
+import Junior from '../assets/junior.jpg';
 
 const RoadmapStepTwo = () => {
   return (
@@ -68,79 +69,124 @@ const RoadmapStepTwo = () => {
         </motion.p>
       </div>
 
-      {/* Course Cards - Stack on mobile */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '20px',
-        marginBottom: '40px'
-      }}>
-        {/* Become Private Card */}
-        <motion.div 
-          whileHover={{ y: -5 }}
-          style={{
-            backgroundColor: 'white',
-            borderRadius: '12px',
-            overflow: 'hidden',
-            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-            transition: 'all 0.3s ease'
-          }}
-        >
+      {/* Course Card - Operate Private with Image */}
+      <motion.div 
+        whileHover={{ y: -5 }}
+        style={{
+          width: '100%',
+          maxWidth: '400px',
+          backgroundColor: 'white',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+          transition: 'all 0.3s ease',
+          margin: '0 auto 40px',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        {/* Image Header Section */}
+        <div style={{
+          height: '180px',
+          backgroundImage: `url(${Junior})`, // Replace with your image URL
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          alignItems: 'flex-end',
+          position: 'relative'
+        }}>
+          {/* Dark overlay for better text visibility */}
           <div style={{
-            height: '140px',
-            background: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)',
-            position: 'relative'
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
+          }}></div>
+          
+          {/* Premium Course Badge */}
+          <div style={{
+            position: 'absolute',
+            top: '12px',
+            left: '12px',
+            backgroundColor: 'rgba(255,255,255,0.2)',
+            padding: '4px 8px',
+            borderRadius: '20px',
+            color: 'white',
+            fontSize: '12px',
+            fontWeight: 600,
+            backdropFilter: 'blur(5px)',
+            zIndex: 1
           }}>
-            <div style={{
-              position: 'absolute',
-              top: '12px',
-              left: '12px',
-              backgroundColor: 'rgba(255,255,255,0.2)',
-              padding: '4px 8px',
-              borderRadius: '20px',
-              color: 'white',
-              fontSize: '12px',
-              fontWeight: 600
-            }}>
-              Course
-            </div>
-            <div style={{
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white'
-            }}>
-              <FiBookOpen style={{ fontSize: '32px', marginBottom: '8px' }} />
-              <h3 style={{ fontSize: '18px', fontWeight: 600, margin: 0 }}>Become Private</h3>
-            </div>
+            Premium Course
           </div>
-          <div style={{ padding: '20px' }}>
-            <p style={{
-              fontSize: '14px',
-              color: '#6b7280',
-              lineHeight: 1.5,
-              marginBottom: '15px'
+          
+          {/* Title Section */}
+          <div style={{
+            color: 'white',
+            padding: '20px',
+            position: 'relative',
+            zIndex: 1,
+            width: '100%',
+            textAlign: 'center'
+          }}>
+            <h3 style={{ 
+              fontSize: '22px', 
+              fontWeight: 600, 
+              margin: '0 0 8px',
+              textShadow: '0 1px 3px rgba(0,0,0,0.3)'
             }}>
-              Reclaim your legal identity and exit the public system through status correction.
+              Operate Private
+            </h3>
+            <p style={{ 
+              fontSize: '14px', 
+              opacity: 0.9, 
+              margin: 0,
+              textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+            }}>
+              Financial Sovereignty Masterclass
             </p>
-            <a href="/become-private" style={{
-              display: 'inline-block',
-              padding: '8px 16px',
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div style={{ 
+          padding: '25px',
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <p style={{
+            fontSize: '15px',
+            color: '#6b7280',
+            lineHeight: 1.6,
+            marginBottom: '20px',
+            flex: 1
+          }}>
+            Build, manage, and grow an Empire in the private, independent of the public system.
+          </p>
+          <div style={{ marginTop: 'auto' }}>
+            <a href="/operateprivate" style={{
+              display: 'block',
+              padding: '12px 20px',
               backgroundColor: '#3b82f6',
               color: 'white',
               borderRadius: '6px',
-              fontSize: '14px',
-              fontWeight: 500,
-              textDecoration: 'none'
+              fontSize: '15px',
+              fontWeight: 600,
+              textDecoration: 'none',
+              textAlign: 'center',
+              transition: 'all 0.2s ease',
+              ':hover': {
+                backgroundColor: '#2563eb'
+              }
             }}>
               Learn More
             </a>
           </div>
-        </motion.div>
-      </div>
-
+        </div>
+      </motion.div>
       {/* Course Overview */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -367,18 +413,25 @@ const RoadmapStepTwo = () => {
               <div style={{ fontSize: '12px', opacity: 0.8 }}>Course Price</div>
               <div style={{ fontSize: '24px', fontWeight: 700 }}>$49</div>
             </div>
-            <button style={{
-              padding: '10px 20px',
-              backgroundColor: 'white',
-              color: '#1e40af',
-              border: 'none',
-              borderRadius: '6px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              fontSize: '14px'
-            }}>
-              Contact Counselor
-            </button>
+            <a href="/ContactSection" style={{ textDecoration: 'none' }}>
+              <button style={{
+                padding: '10px 20px',
+                backgroundColor: 'white',
+                color: '#1e40af',
+                border: 'none',
+                borderRadius: '6px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                fontSize: '14px',
+                transition: 'all 0.2s ease',
+                ':hover': {
+                  backgroundColor: '#f3f4f6',
+                  transform: 'translateY(-1px)'
+                }
+              }}>
+                Contact Counselor
+              </button>
+            </a>
           </div>
         </div>
       </motion.div>

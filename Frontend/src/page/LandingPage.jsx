@@ -27,7 +27,6 @@ const LandingPage = () => {
       <AboutSection /> 
       <MasterclassBanner />
       <Roadmap />
-      <CoursesSection />
       <GameBanner />
 
         {/* Merged Remedy Section */}
