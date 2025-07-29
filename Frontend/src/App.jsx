@@ -1,27 +1,34 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './page/LandingPage';
-import PrivateMerchant from './courses/PrivateMerchant';
-import Remedy from './courses/Remedy';
+//Imports from components 
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import Chatbot from './components/chatbot';
+import ContactSection from './components/ContactSection';
+import FeaturesLMS from './components/FeaturesLMS';
+//Imports from Page
+import LandingPage from './page/LandingPage';
 import MasterClass from './page/MasterClass';
-import Sov from './courses/sov';
 import { WebsiteCreation } from './page/WebsiteCreation';
-import OperatePrivate from './courses/OperatePrivate'; 
-import Sophomore from './courses/Sophomore';
 import LiveClass from './page/LiveClass';
-import Senior from './courses/Senior';
 import MerchantProcessing from './page/MerchantProcessing';
 import PrivacyPolicy from './page/PrivacyPolicy';
 import TermCondition from './page/TermCondition';
 import ReturnRefund from './page/ReturnRefund';
 import MembershipTnC from './page/MembershipTnC';
-import ContactSection from './components/ContactSection';
-import ScrollToTop from './components/ScrollToTop';
-import Chatbot from './components/chatbot';
 import RemedyTC from './page/RemedyTC';
-import MasterTnc from '../src/page/MasterTnc';
+import MasterTnc from './page/MasterTnc';
+import Athena from './page/Athena';
+//Imports from Courses
+import Sov from './courses/sov';
+import Sophomore from './courses/Sophomore';
+import OperatePrivate from './courses/OperatePrivate';
+import Senior from './courses/Senior';
+import Remedy from './courses/Remedy';
+import PrivateMerchant from './courses/PrivateMerchant';
+
+
 
 function App() {
   
@@ -49,6 +56,7 @@ function App() {
         <Route path="/ContactSection" element={<ContactSection/>} />
         <Route path="/remedytnc" element={<RemedyTC />} />
         <Route path="/mastertnc" element={<MasterTnc />} />
+        <Route path="/athena" element={<Athena />} />
 
       </Routes>
       <Footer />

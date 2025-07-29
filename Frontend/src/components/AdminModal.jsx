@@ -25,12 +25,6 @@ const AdminModal = ({ isOpen, onClose }) => {
               {isLogin ? "Login →" : "Register →"}
             </button>
           </form>
-          <p style={toggleTextStyle}>
-            {isLogin ? "New here?" : "Already registered?"}{" "}
-            <span style={toggleLinkStyle} onClick={toggleMode}>
-              {isLogin ? "Register Now" : "Login"}
-            </span>
-          </p>
         </div>
       </div>
     </div>

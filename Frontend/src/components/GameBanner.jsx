@@ -228,7 +228,7 @@ const GameBanner = () => {
             Master private concepts through the excitement of football. Build your private
             literacy while having fun in this immersive learning experience.
           </p>
-          <a href="#"
+          <a href="https://creditorfootball.netlify.app/"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+
 import remedyBanner from '../assets/iwrn_banner.png';
 import flexImage from '../assets/flex.jpg';
+
 import RemedyOfferSection from '../components/RemedyOfferSection';
 import GameBanner from '../components/GameBanner';
 import RemedyMaster from '../components/RemedyMaster';
