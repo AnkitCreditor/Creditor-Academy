@@ -11,6 +11,7 @@ import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
 import ContactSection from '../components/ContactSection.jsx';
 import HomeSlider from '../components/home_slider.jsx';
+import Roadmap from '../components/roadmap.jsx'
 
 
 const LandingPage = () => {
@@ -25,7 +26,7 @@ const LandingPage = () => {
       <StatHighlights />
       <AboutSection /> 
       <MasterclassBanner />
-      <CoursesSection />
+      <Roadmap />
       <GameBanner />
 
         {/* Merged Remedy Section */}
