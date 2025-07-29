@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiArrowRight, FiBookOpen } from 'react-icons/fi';
 import BecomePrivate from '../assets/sophomore.jpg';
@@ -72,252 +73,258 @@ const RoadmapStepOne = () => {
       </div>
 
       {/* Two Card Row - Matching Operate Private Style */}
-<div style={{
-  display: 'flex',
-  gap: '20px',
-  marginBottom: '40px',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexWrap: 'wrap',
-  '@media (min-width: 768px)': {
-    flexDirection: 'row',
-    justifyContent: 'center'
-  }
-}}>
-{/* Card 1 - Become Private with Image */}
-<motion.div 
-  whileHover={{ y: -5 }}
-  style={{
-    width: '500px',
-    maxWidth: '100%',
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    overflow: 'hidden',
-    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-    transition: 'all 0.3s ease',
-    display: 'flex',
-    flexDirection: 'column'
-  }}
->
-  {/* Image Header Section */}
-  <div style={{
-    height: '180px',
-    backgroundImage: `url(${BecomePrivate})`, // Replace with your image URL
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    display: 'flex',
-    alignItems: 'flex-end',
-    position: 'relative'
-  }}>
-    {/* Dark overlay for better text visibility */}
-    <div style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
-    }}></div>
-    
-    {/* Premium Course Badge */}
-    <div style={{
-      position: 'absolute',
-      top: '12px',
-      left: '12px',
-      backgroundColor: 'rgba(255,255,255,0.2)',
-      padding: '4px 8px',
-      borderRadius: '20px',
-      color: 'white',
-      fontSize: '12px',
-      fontWeight: 600,
-      backdropFilter: 'blur(5px)',
-      zIndex: 1
-    }}>
-      Premium Course
-    </div>
-    
-    {/* Title Section */}
-    <div style={{
-      color: 'white',
-      padding: '20px',
-      position: 'relative',
-      zIndex: 1,
-      width: '100%'
-    }}>
-      <h3 style={{ 
-        fontSize: '22px', 
-        fontWeight: 600, 
-        margin: '0 0 8px',
-        textShadow: '0 1px 3px rgba(0,0,0,0.3)'
-      }}>
-        Become Private
-      </h3>
-      <p style={{ 
-        fontSize: '14px', 
-        opacity: 0.9, 
-        margin: 0,
-        textShadow: '0 1px 2px rgba(0,0,0,0.3)'
-      }}>
-        Status Correction Masterclass
-      </p>
-    </div>
-  </div>
-
-  {/* Content Section */}
-  <div style={{ 
-    padding: '25px',
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column'
-  }}>
-    <p style={{
-      fontSize: '15px',
-      color: '#6b7280',
-      lineHeight: 1.6,
-      marginBottom: '20px',
-      flex: 1
-    }}>
-      Reclaim your legal identity and exit the public system through proper status correction.
-    </p>
-    <div style={{ marginTop: 'auto' }}>
-      <a href="/sophomore" style={{
-        display: 'block',
-        padding: '12px 20px',
-        backgroundColor: '#3b82f6',
-        color: 'white',
-        borderRadius: '6px',
-        fontSize: '15px',
-        fontWeight: 600,
-        textDecoration: 'none',
-        textAlign: 'center',
-        transition: 'all 0.2s ease',
-        ':hover': {
-          backgroundColor: '#2563eb'
+      <div style={{
+        display: 'flex',
+        gap: '20px',
+        marginBottom: '40px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        '@media (min-width: 768px)': {
+          flexDirection: 'row',
+          justifyContent: 'center'
         }
       }}>
-        Learn More
-      </a>
-    </div>
-  </div>
-</motion.div>
+      {/* Card 1 - Become Private with Image */}
+      <motion.div 
+        whileHover={{ y: -5 }}
+        style={{
+          width: '500px',
+          maxWidth: '100%',
+          backgroundColor: 'white',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+          transition: 'all 0.3s ease',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        {/* Image Header Section */}
+        <div style={{
+          height: '180px',
+          backgroundImage: `url(${BecomePrivate})`, // Replace with your image URL
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          alignItems: 'flex-end',
+          position: 'relative'
+        }}>
+          {/* Dark overlay for better text visibility */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
+          }}></div>
+          
+          {/* Premium Course Badge */}
+          <div style={{
+            position: 'absolute',
+            top: '12px',
+            left: '12px',
+            backgroundColor: 'rgba(255,255,255,0.2)',
+            padding: '4px 8px',
+            borderRadius: '20px',
+            color: 'white',
+            fontSize: '12px',
+            fontWeight: 600,
+            backdropFilter: 'blur(5px)',
+            zIndex: 1
+          }}>
+            Premium Course
+          </div>
+          
+          {/* Title Section */}
+          <div style={{
+            color: 'white',
+            padding: '20px',
+            position: 'relative',
+            zIndex: 1,
+            width: '100%'
+          }}>
+            <h3 style={{ 
+              fontSize: '22px', 
+              fontWeight: 600, 
+              margin: '0 0 8px',
+              textShadow: '0 1px 3px rgba(0,0,0,0.3)'
+            }}>
+              Become Private
+            </h3>
+            <p style={{ 
+              fontSize: '14px', 
+              opacity: 0.9, 
+              margin: 0,
+              textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+            }}>
+              Status Correction Masterclass
+            </p>
+          </div>
+        </div>
 
-  {/* Card 2 - New SOV 101 with Image */}
-<motion.div 
-  whileHover={{ y: -5 }}
-  style={{
-    width: '500px',
-    maxWidth: '100%',
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    overflow: 'hidden',
-    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-    transition: 'all 0.3s ease',
-    display: 'flex',
-    flexDirection: 'column'
-  }}
->
-  {/* Image Header Section */}
-  <div style={{
-    height: '180px',
-    backgroundImage: `url(${SOV})`, // Replace with your image URL
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    display: 'flex',
-    alignItems: 'flex-end',
-    position: 'relative'
-  }}>
-    {/* Dark overlay for better text visibility */}
-    <div style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
-    }}></div>
-    
-    {/* Premium Course Badge */}
-    <div style={{
-      position: 'absolute',
-      top: '12px',
-      left: '12px',
-      backgroundColor: 'rgba(255,255,255,0.2)',
-      padding: '4px 8px',
-      borderRadius: '20px',
-      color: 'white',
-      fontSize: '12px',
-      fontWeight: 600,
-      backdropFilter: 'blur(5px)',
-      zIndex: 1
-    }}>
-      Premium Course
-    </div>
-    
-    {/* Title Section */}
-    <div style={{
-      color: 'white',
-      padding: '20px',
-      position: 'relative',
-      zIndex: 1,
-      width: '100%'
-    }}>
-      <h3 style={{ 
-        fontSize: '22px', 
-        fontWeight: 600, 
-        margin: '0 0 8px',
-        textShadow: '0 1px 3px rgba(0,0,0,0.3)'
-      }}>
-        New SOV 101
-      </h3>
-      <p style={{ 
-        fontSize: '14px', 
-        opacity: 0.9, 
-        margin: 0,
-        textShadow: '0 1px 2px rgba(0,0,0,0.3)'
-      }}>
-        Sovereignty Foundations
-      </p>
-    </div>
-  </div>
+        {/* Content Section */}
+        <div style={{ 
+          padding: '25px',
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <p style={{
+            fontSize: '15px',
+            color: '#6b7280',
+            lineHeight: 1.6,
+            marginBottom: '20px',
+            flex: 1
+          }}>
+            Reclaim your legal identity and exit the public system through proper status correction.
+          </p>
+          <div style={{ marginTop: 'auto' }}>
+            <Link 
+              to="/sophomore"
+              style={{
+                display: 'block',
+                padding: '12px 20px',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                borderRadius: '6px',
+                fontSize: '15px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                textAlign: 'center',
+                transition: 'all 0.2s ease',
+                ':hover': {
+                  backgroundColor: '#2563eb'
+                }
+              }}
+            >
+              Learn More
+            </Link>
+          </div>
+        </div>
+      </motion.div>
 
-  {/* Content Section */}
-  <div style={{ 
-    padding: '25px',
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column'
-  }}>
-    <p style={{
-      fontSize: '15px',
-      color: '#6b7280',
-      lineHeight: 1.6,
-      marginBottom: '20px',
-      flex: 1
-    }}>
-      Master the principles of sovereignty and how to rebut legal presumptions effectively.
-    </p>
-    <div style={{ marginTop: 'auto' }}>
-      <a href="/sov" style={{
-        display: 'block',
-        padding: '12px 20px',
-        backgroundColor: '#6366f1',
-        color: 'white',
-        borderRadius: '6px',
-        fontSize: '15px',
-        fontWeight: 600,
-        textDecoration: 'none',
-        textAlign: 'center',
-        transition: 'all 0.2s ease',
-        ':hover': {
-          backgroundColor: '#4f46e5'
-        }
-      }}>
-        Learn More
-      </a>
-    </div>
-  </div>
-</motion.div>
-</div>
+      {/* Card 2 - New SOV 101 with Image */}
+      <motion.div 
+        whileHover={{ y: -5 }}
+        style={{
+          width: '500px',
+          maxWidth: '100%',
+          backgroundColor: 'white',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+          transition: 'all 0.3s ease',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        {/* Image Header Section */}
+        <div style={{
+          height: '180px',
+          backgroundImage: `url(${SOV})`, // Replace with your image URL
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          alignItems: 'flex-end',
+          position: 'relative'
+        }}>
+          {/* Dark overlay for better text visibility */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
+          }}></div>
+          
+          {/* Premium Course Badge */}
+          <div style={{
+            position: 'absolute',
+            top: '12px',
+            left: '12px',
+            backgroundColor: 'rgba(255,255,255,0.2)',
+            padding: '4px 8px',
+            borderRadius: '20px',
+            color: 'white',
+            fontSize: '12px',
+            fontWeight: 600,
+            backdropFilter: 'blur(5px)',
+            zIndex: 1
+          }}>
+            Premium Course
+          </div>
+          
+          {/* Title Section */}
+          <div style={{
+            color: 'white',
+            padding: '20px',
+            position: 'relative',
+            zIndex: 1,
+            width: '100%'
+          }}>
+            <h3 style={{ 
+              fontSize: '22px', 
+              fontWeight: 600, 
+              margin: '0 0 8px',
+              textShadow: '0 1px 3px rgba(0,0,0,0.3)'
+            }}>
+              New SOV 101
+            </h3>
+            <p style={{ 
+              fontSize: '14px', 
+              opacity: 0.9, 
+              margin: 0,
+              textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+            }}>
+              Sovereignty Foundations
+            </p>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div style={{ 
+          padding: '25px',
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <p style={{
+            fontSize: '15px',
+            color: '#6b7280',
+            lineHeight: 1.6,
+            marginBottom: '20px',
+            flex: 1
+          }}>
+            Master the principles of sovereignty and how to rebut legal presumptions effectively.
+          </p>
+          <div style={{ marginTop: 'auto' }}>
+            <Link 
+              to="/sov"
+              style={{
+                display: 'block',
+                padding: '12px 20px',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                borderRadius: '6px',
+                fontSize: '15px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                textAlign: 'center',
+                transition: 'all 0.2s ease',
+                ':hover': {
+                  backgroundColor: '#2563eb'
+                }
+              }}
+            >
+              Learn More
+            </Link>
+          </div>
+        </div>
+      </motion.div>
+      </div>
 
       {/* Content Section - Stack on mobile */}
       <div style={{
