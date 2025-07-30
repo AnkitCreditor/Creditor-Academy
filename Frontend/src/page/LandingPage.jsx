@@ -11,8 +11,9 @@ import HeroCarousel from '../components/HeroCarousel.jsx';
 import StatHighlights from '../components/stathighlight.jsx';
 import ContactSection from '../components/ContactSection.jsx';
 import HomeSlider from '../components/home_slider.jsx';
-import Roadmap from '../components/roadmap.jsx'
-
+import CreditorPaulintro from '../components/CreditorPaulintro.jsx';
+import Teaching from '../components/Teaching.jsx';
+import Roadmap from '../components/roadmap.jsx';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ const LandingPage = () => {
       <HeroCarousel />
       <StatHighlights />
       <AboutSection /> 
+      <CreditorPaulintro />
+      <Teaching />
       <MasterclassBanner />
       <Roadmap />
       <GameBanner />
