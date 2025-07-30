@@ -31,6 +31,8 @@ import Operate from './courses/Operate';
 import Senior from './courses/Senior';
 import Remedy from './courses/Remedy';
 import PrivateMerchant from './courses/PrivateMerchant';
+import Private from './courses/PrivateBusiness';
+import PrivateBusiness from './courses/PrivateBusiness';
 
 
 
@@ -61,6 +63,8 @@ function App() {
         <Route path="/remedytnc" element={<RemedyTC />} />
         <Route path="/mastertnc" element={<MasterTnc />} />
         <Route path="/athena" element={<Athena />} />
+        <Route path="/private" element={<PrivateBusiness />} />
+        
         
 
       </Routes>
