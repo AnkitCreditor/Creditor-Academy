@@ -313,7 +313,7 @@ const Teaching = () => {
             margin: "0 auto 30px",
             position: "relative"
           }}>
-            Paulmicheal is leading a financial sovereignty movement. Whether you're looking to eliminate debt, 
+            Paulmichael is leading a financial sovereignty movement. Whether you're looking to eliminate debt, 
             launch a business, or step fully into the private, he provides the complete roadmap to achieve it 
             legally, quickly, and powerfully.
           </p>
@@ -355,7 +355,7 @@ const Teaching = () => {
               opacity: 0
             }}></span>
           </button>
-        </div>
+        </div>  
     </section>
   );
 };
