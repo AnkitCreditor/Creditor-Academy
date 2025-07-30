@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import masterclassMembership from '../assets/masteclassmembership.png';
+import masterclassMembership from '../assets/Masterclass.png';
 import { useNavigate } from 'react-router-dom';
 
 const MasterHero = () => {
