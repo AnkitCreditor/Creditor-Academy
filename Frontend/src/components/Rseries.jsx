@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for routing
 
 // Import your images (replace with actual image imports)
-import img1 from "../assets/Sophomore.jpg";
+import img1 from "../assets/sophomore.jpg";
 import img2 from "../assets/junior.jpg";
 import img3 from "../assets/private.jpg";
 
