@@ -57,7 +57,7 @@ const CreditorPaulintro = () => {
         }}
       >
         <h2 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
-          Meet <span style={{ color: "#0284c7" }}>Paulmicheal Rowland</span>
+          Meet <span style={{ color: "#0284c7" }}>Paulmichael Rowland</span>
         </h2>
         <h4 style={{ fontSize: "1.3rem", marginBottom: "20px", color: "#0f172a" }}>
           Founder, Creditor Academy | Business Credit Architect | Sovereignty Strategist
