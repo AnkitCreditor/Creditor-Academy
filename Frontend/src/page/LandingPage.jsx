@@ -14,6 +14,8 @@ import HomeSlider from '../components/home_slider.jsx';
 import CreditorPaulintro from '../components/CreditorPaulintro.jsx';
 import Teaching from '../components/Teaching.jsx';
 import Roadmap from '../components/roadmap.jsx';
+import Rseries from '../components/Rseries.jsx';
+// import RHead from '../components/RHead.jsx';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -30,6 +32,8 @@ const LandingPage = () => {
       <Teaching />
       <MasterclassBanner />
       <Roadmap />
+      {/* <RHead /> */}
+      <Rseries />
       <GameBanner />
 
         {/* Merged Remedy Section */}

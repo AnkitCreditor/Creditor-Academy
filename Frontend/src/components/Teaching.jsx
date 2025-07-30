@@ -119,5 +119,6 @@ const EmpowermentSlider = () => {
     </section>
   );
 };
-
 export default EmpowermentSlider;
+
+
