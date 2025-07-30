@@ -159,7 +159,7 @@ const Navbar = () => {
               <div className={`nav-dropdown${showCourses ? ' visible' : ''}`}>
                 <NavLink to="/sov" className="nav-dropdown-link cool-underline">FRESHMAN: Sovereignty 101</NavLink>
                 <NavLink to="/sophomore" className="nav-dropdown-link cool-underline">SOPHOMORE: Become Private</NavLink>
-                <NavLink to="/operateprivate" className="nav-dropdown-link cool-underline">JUNIOR: Operate Private</NavLink>
+                <NavLink to="/operate" className="nav-dropdown-link cool-underline">JUNIOR: Operate Private</NavLink>
                 <NavLink to="/unlimitedcredit" className="nav-dropdown-link cool-underline">SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
                 <NavLink to="/remedy" className="nav-dropdown-link cool-underline">I WANT REMEDY NOW!</NavLink>
                 <NavLink to="/privatemerchant" className="nav-dropdown-link cool-underline">Private Merchant & Processing</NavLink>
@@ -194,7 +194,7 @@ const Navbar = () => {
                 <div className="nav-mobile-dropdown-content">
                   <NavLink to="/sov" className="nav-mobile-link cool-underline" onClick={toggleMenu}>FRESHMAN: Sovereignty 101</NavLink>
                   <NavLink to="/sophomore" className="nav-mobile-link cool-underline" onClick={toggleMenu}>SOPHOMORE: Become Private</NavLink>
-                  <NavLink to="/operateprivate" className="nav-mobile-link cool-underline" onClick={toggleMenu}>JUNIOR: Operate Private</NavLink>
+                  <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={toggleMenu}>JUNIOR: Operate Private</NavLink>
                   <NavLink to="/unlimitedcredit" className="nav-mobile-link cool-underline" onClick={toggleMenu}>SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
                   <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>I WANT REMEDY NOW!</NavLink>
                   <NavLink to="/privatemerchant" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Private Merchant & Processing</NavLink>

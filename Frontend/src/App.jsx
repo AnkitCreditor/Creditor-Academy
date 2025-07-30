@@ -24,7 +24,7 @@ import Athena from './page/Athena';
 //Imports from Courses
 import Sov from './courses/sov';
 import Sophomore from './courses/Sophomore';
-import OperatePrivate from './courses/OperatePrivate';
+import Operate from './courses/Operate';
 import Senior from './courses/Senior';
 import Remedy from './courses/Remedy';
 import PrivateMerchant from './courses/PrivateMerchant';
@@ -44,7 +44,7 @@ function App() {
         <Route path="/masterclass" element={<MasterClass />} />
         <Route path="/sov" element={<Sov />} />
         <Route path="/website" element={<WebsiteCreation />} />
-        <Route path="/operateprivate" element={<OperatePrivate />} />
+        <Route path="/operate" element={<Operate />} />
         <Route path="/sophomore" element={<Sophomore />} />
         <Route path="/liveclass" element={<LiveClass />} />
         <Route path="/remedy" element={<Remedy/>} />
