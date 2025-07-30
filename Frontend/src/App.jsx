@@ -20,6 +20,7 @@ import MembershipTnC from './page/MembershipTnC';
 import RemedyTC from './page/RemedyTC';
 import MasterTnc from './page/MasterTnc';
 import Athena from './page/Athena';
+
 //Imports from Courses
 import Sov from './courses/sov';
 import Sophomore from './courses/Sophomore';
@@ -57,6 +58,7 @@ function App() {
         <Route path="/remedytnc" element={<RemedyTC />} />
         <Route path="/mastertnc" element={<MasterTnc />} />
         <Route path="/athena" element={<Athena />} />
+        
 
       </Routes>
       <Footer />
