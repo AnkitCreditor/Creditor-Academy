@@ -10,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/chatbot';
 import ContactSection from './components/ContactSection';
 import FeaturesLMS from './components/FeaturesLMS';
+
 //Imports from Page
 import LandingPage from './page/LandingPage';
 import MasterClass from './page/MasterClass';
@@ -33,6 +34,7 @@ import Remedy from './courses/Remedy';
 import PrivateMerchant from './courses/PrivateMerchant';
 import Private from './courses/PrivateBusiness';
 import PrivateBusiness from './courses/PrivateBusiness';
+import DemoSOV from './courses/become_sov';
 
 
 
@@ -66,6 +68,7 @@ function App() {
         <Route path="/private" element={<PrivateBusiness />} />
         
         
+        <Route path="/newsov" element={<DemoSOV />} />
 
       </Routes>
       <Footer />
