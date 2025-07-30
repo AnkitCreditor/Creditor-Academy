@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -8,113 +7,117 @@ import { EffectCoverflow, Navigation } from 'swiper/modules';
 
 import img1 from '../assets/anyone.jpg';
 import img2 from '../assets/private.jpg';
-import img3 from '../assets/BecomePrivateBanner.png';
+import img3 from '../assets/IdentitySop.jpg';
 import img4 from '../assets/junior.jpg';
 import img5 from '../assets/launch.jpg';
 
-const EmpowermentSection = () => {
-  const cards = [
-    {
-      img: img1,
-      title: 'Business Credit Mastery',
-      text: 'Unlock vendor lines, revolving credit, and high-limit cards to fund your business or side hustle—without touching personal savings.'
-    },
-    {
-      img: img2,
-      title: 'Personal Credit Repair',
-      text: 'Dispute, delete, and rebuild your credit profile using proven strategies that restore your financial reputation and open new doors.'
-    },
-    {
-      img: img3,
-      title: 'Become Private',
-      text: 'Shift your legal status, file your SPC, get private EINs, and reclaim your sovereignty under the law—with full paperwork and support.'
-    },
-    {
-      img: img4,
-      title: 'Operate Private',
-      text: 'Run your business through trusts, PMAs, and private contracts to shield assets, minimize taxes, and exit the public system.'
-    },
-    {
-      img: img5,
-      title: 'Business-in-a-Box Coaching',
-      text: 'Plug-and-play launch plans for real businesses—like car rentals, digital agencies, and tax prep—ready to start in just days.'
-    }
-  ];
+const cardData = [
+  {
+    image: img1,
+    title: 'Personal Credit Repair',
+    text: 'Dispute, delete, and rebuild negative items using process strategies designed for financial reputation and open credit.',
+  },
+  {
+    image: img2,
+    title: 'Become Private',
+    text: 'Shift your legal status, file your SPC, get private EINs, and reclaim your sovereignty under the law—with full paperwork and support.',
+  },
+  {
+    image: img3,
+    title: 'Operate Private',
+    text: 'Run your business through trusts, PMAs, and private contracts to shield assets, minimize taxes, and exit the public system.',
+  },
+  {
+    image: img4,
+    title: 'Business-in-a-Box Coaching',
+    text: 'Plug-and-play launch plans for real businesses—like car rentals, digital agencies, and tax prep—ready to start in just days.',
+  },
+  {
+    image: img5,
+    title: 'Credit Mastery',
+    text: 'Unlock secrets in revolving credit, and installment funding to launch your business or side hustle—without using personal savings.',
+  },
+];
 
+const EmpowermentSlider = () => {
   return (
-    <section style={{ padding: '60px 20px', background: '#f0f9ff' }}>
-      <h2 style={{
-        fontSize: '2.2rem',
-        textAlign: 'center',
-        marginBottom: '40px',
-        fontWeight: '800',
-        background: 'linear-gradient(90deg, #075985, #0284c7)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent'
-      }}>
-        What He Empowers You With
-      </h2>
+    <section style={{ background: '#eaf6ff', padding: '80px 20px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '60px', color: '#0369a1' }}>
+          What He Empowers You With
+        </h2>
 
-      <Swiper
-        effect="coverflow"
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView="auto"
-        loop={true}
-        navigation
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 300,
-          modifier: 1.5,
-          slideShadows: false
-        }}
-        modules={[EffectCoverflow, Navigation]}
-        style={{ paddingBottom: '60px' }}
-      >
-        {cards.map((card, index) => (
-          <SwiperSlide
-            key={index}
+        <div style={{ position: 'relative' }}>
+          <Swiper
+            effect="coverflow"
+            grabCursor
+            loop
+            slidesPerView="auto"
+            centeredSlides={false}
+            spaceBetween={20}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 180,
+              modifier: 2.2,
+              slideShadows: false,
+            }}
+            navigation
+            modules={[EffectCoverflow, Navigation]}
             style={{
-              background: '#fff',
-              borderRadius: '20px',
-              width: '300px',
-              padding: '20px',
-              boxShadow: '0 15px 35px rgba(0,0,0,0.15)',
-              display: 'flex',
-              flexDirection: 'column',
-              height: '430px',
-              justifyContent: 'space-between'
+              padding: '40px 20px',
+              overflow: 'visible',
             }}
           >
-            <div style={{
-              borderRadius: '12px',
-              overflow: 'hidden',
-              height: '180px',
-              marginBottom: '16px'
-            }}>
-              <img src={card.img} alt={card.title} style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover'
-              }} />
-            </div>
-            <h3 style={{
-              fontSize: '1.2rem',
-              fontWeight: 'bold',
-              marginBottom: '10px',
-              color: '#0f172a'
-            }}>{card.title}</h3>
-            <p style={{
-              fontSize: '1rem',
-              color: '#334155',
-              lineHeight: 1.5
-            }}>{card.text}</p>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            {cardData.map((card, index) => (
+              <SwiperSlide
+                key={index}
+                style={{
+                  width: '260px',
+                  background: '#fff',
+                  borderRadius: '20px',
+                  boxShadow: '0 6px 18px rgba(0,0,0,0.1)',
+                  overflow: 'hidden',
+                  transition: 'transform 0.3s ease',
+                }}
+              >
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  style={{
+                    width: '100%',
+                    height: '160px',
+                    objectFit: 'cover',
+                    borderTopLeftRadius: '20px',
+                    borderTopRightRadius: '20px',
+                  }}
+                />
+                <div style={{ padding: '16px' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '8px' }}>{card.title}</h3>
+                  <p style={{ fontSize: '0.85rem', color: '#555', lineHeight: '1.4' }}>{card.text}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Optional: Custom Navigation Style Fix */}
+          <style>{`
+            .swiper-button-next,
+            .swiper-button-prev {
+              color: #0369a1;
+              top: 45%;
+            }
+            .swiper-button-next {
+              right: 10px;
+            }
+            .swiper-button-prev {
+              left: 10px;
+            }
+          `}</style>
+        </div>
+      </div>
     </section>
   );
 };
 
-export default EmpowermentSection; 
+export default EmpowermentSlider;
