@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import paul from "../assets/Paul.png";
 
 const CreditorPaulintro = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowWidth <= 768;
+  const isTablet = windowWidth > 768 && windowWidth <= 1024;
+
   return (
     <div style={{
       fontFamily: "'Poppins', sans-serif",
       background: "linear-gradient(145deg, #ffffff 0%, #f8faff 100%)",
-      padding: "80px 5%",
+      padding: isMobile ? "40px 5%" : "80px 5%",
       width: "100%",
       margin: "0 auto",
       display: "grid",
-      gridTemplateColumns: "minmax(300px, 1fr) minmax(300px, 1fr)",
-      gap: "60px",
+      gridTemplateColumns: isMobile ? "1fr" : "minmax(300px, 1fr) minmax(300px, 1fr)",
+      gap: isMobile ? "40px" : "60px",
       alignItems: "center",
       position: "relative",
       overflow: "hidden",
       boxSizing: "border-box"
     }}>
-      {/* Background elements */}
       <div style={{
         position: "absolute",
         top: "-100px",
@@ -28,29 +38,34 @@ const CreditorPaulintro = () => {
         borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%",
         zIndex: 0
       }}></div>
-      
-      {/* Content Left Side - Now spans full available width */}
-      <div style={{ 
-        position: "relative", 
+
+      {/* Left Content */}
+      <div style={{
+        position: "relative",
         zIndex: 2,
         maxWidth: "700px",
-        justifySelf: "center"
+        justifySelf: "center",
+        textAlign: isMobile ? "center" : "left"
       }}>
-        <h1 style={{ 
-          fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
+        <h1 style={{
+          fontSize: isMobile ? "2rem" : "clamp(2.5rem, 5vw, 3.5rem)",
           fontWeight: 700,
           lineHeight: 1.2,
-          color: "#0f172a",
-          marginBottom: "15px",
           background: "linear-gradient(90deg, #0f172a 0%, #0284c7 100%)",
           WebkitBackgroundClip: "text",
           backgroundClip: "text",
-          color: "transparent"
+          color: "transparent",
+          marginBottom: "15px"
         }}>
           Paulmichael Rowland
         </h1>
-        
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "30px" }}>
+
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: isMobile ? "center" : "flex-start",
+          marginBottom: "30px"
+        }}>
           <div style={{
             width: "80px",
             height: "4px",
@@ -67,13 +82,13 @@ const CreditorPaulintro = () => {
             FOUNDER & VISIONARY
           </h2>
         </div>
-        
-        {/* Credentials */}
-        <div style={{ 
-          display: "flex", 
+
+        <div style={{
+          display: "flex",
           flexWrap: "wrap",
           gap: "10px",
-          marginBottom: "30px"
+          marginBottom: "30px",
+          justifyContent: isMobile ? "center" : "flex-start"
         }}>
           {["Founder, Creditor Academy", "Business Credit Architect", "Sovereignty Strategist"].map((item, index) => (
             <div key={index} style={{
@@ -83,21 +98,20 @@ const CreditorPaulintro = () => {
               borderRadius: "20px",
               fontSize: "0.9rem",
               fontWeight: 600,
-              transition: "all 0.3s ease",
               whiteSpace: "nowrap"
             }}>
               {item}
             </div>
           ))}
         </div>
-        
-        <p style={{ 
-          fontSize: "1.1rem",
+
+        <p style={{
+          fontSize: "1.05rem",
           lineHeight: 1.8,
           color: "#334155",
           marginBottom: "40px"
         }}>
-          The architect behind <strong style={{ 
+          The architect behind <strong style={{
             color: "#0284c7",
             fontWeight: 600,
             position: "relative"
@@ -114,11 +128,10 @@ const CreditorPaulintro = () => {
             Creditor Academy
           </strong>, transforming how entrepreneurs access capital and build financial independence.
         </p>
-        
-        {/* Stats - Made more prominent */}
+
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(150px, 1fr))",
           gap: "20px",
           marginBottom: "40px"
         }}>
@@ -133,7 +146,6 @@ const CreditorPaulintro = () => {
               borderRadius: "12px",
               boxShadow: "0 5px 15px rgba(0,0,0,0.05)",
               textAlign: "center",
-              transition: "transform 0.3s ease",
               minWidth: "150px"
             }}>
               <div style={{
@@ -150,8 +162,7 @@ const CreditorPaulintro = () => {
             </div>
           ))}
         </div>
-        
-        {/* Philosophy - Wider to fill space */}
+
         <div style={{
           background: "white",
           padding: "30px",
@@ -167,7 +178,7 @@ const CreditorPaulintro = () => {
             height: "100%",
             background: "linear-gradient(to bottom, #0284c7, #7dd3fc)"
           }}></div>
-          <h3 style={{ 
+          <h3 style={{
             fontSize: "1.3rem",
             fontWeight: 600,
             color: "#0f172a",
@@ -176,7 +187,7 @@ const CreditorPaulintro = () => {
           }}>
             The Creditor Philosophy
           </h3>
-          <p style={{ 
+          <p style={{
             fontSize: "1.05rem",
             lineHeight: 1.8,
             color: "#475569",
@@ -187,10 +198,10 @@ const CreditorPaulintro = () => {
           </p>
         </div>
       </div>
-      
-      {/* Content Right Side - Adjusted for better balance */}
-      <div style={{ 
-        position: "relative", 
+
+      {/* Right Side */}
+      <div style={{
+        position: "relative",
         zIndex: 1,
         display: "flex",
         flexDirection: "column",
@@ -198,7 +209,6 @@ const CreditorPaulintro = () => {
         maxWidth: "600px",
         justifySelf: "center"
       }}>
-        {/* Image - Larger on bigger screens */}
         <div style={{
           position: "relative",
           display: "inline-block",
@@ -226,8 +236,7 @@ const CreditorPaulintro = () => {
             }}
           />
         </div>
-        
-        {/* Expertise - Wider to match image */}
+
         <div style={{
           background: "white",
           padding: "30px",
@@ -250,7 +259,7 @@ const CreditorPaulintro = () => {
             listStyle: "none",
             padding: 0,
             margin: 0,
-            columns: "2",
+            columns: isMobile ? "1" : "2",
             gap: "20px"
           }}>
             {[
