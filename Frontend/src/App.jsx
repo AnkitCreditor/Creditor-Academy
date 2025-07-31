@@ -10,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/chatbot';
 import ContactSection from './components/ContactSection';
 import FeaturesLMS from './components/FeaturesLMS';
+
 //Imports from Page
 import LandingPage from './page/LandingPage';
 import MasterClass from './page/MasterClass';
@@ -27,10 +28,13 @@ import Athena from './page/Athena';
 //Imports from Courses
 import Sov from './courses/sov';
 import Sophomore from './courses/Sophomore';
-import OperatePrivate from './courses/OperatePrivate';
+import Operate from './courses/Operate';
 import Senior from './courses/Senior';
 import Remedy from './courses/Remedy';
 import PrivateMerchant from './courses/PrivateMerchant';
+import Private from './courses/PrivateBusiness';
+import PrivateBusiness from './courses/PrivateBusiness';
+import DemoSOV from './courses/become_sov';
 
 
 
@@ -47,7 +51,7 @@ function App() {
         <Route path="/masterclass" element={<MasterClass />} />
         <Route path="/sov" element={<Sov />} />
         <Route path="/website" element={<WebsiteCreation />} />
-        <Route path="/operateprivate" element={<OperatePrivate />} />
+        <Route path="/operate" element={<Operate />} />
         <Route path="/sophomore" element={<Sophomore />} />
         <Route path="/liveclass" element={<LiveClass />} />
         <Route path="/remedy" element={<Remedy/>} />
@@ -61,7 +65,10 @@ function App() {
         <Route path="/remedytnc" element={<RemedyTC />} />
         <Route path="/mastertnc" element={<MasterTnc />} />
         <Route path="/athena" element={<Athena />} />
+        <Route path="/private" element={<PrivateBusiness />} />
         
+        
+        <Route path="/newsov" element={<DemoSOV />} />
 
       </Routes>
       <Footer />
