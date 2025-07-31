@@ -278,11 +278,6 @@ const AboutPrivateBusiness = () => {
                 </div>
             </section>
 
-            {/* Main Content */}
-            <main style={{
-                padding: '60px 0',
-                position: 'relative'
-            }}>
                 <motion.div
                     style={{
                         Width: '1200px',
@@ -300,6 +295,7 @@ const AboutPrivateBusiness = () => {
                 <motion.section 
                     style={{
                         ...glassCardStyle,
+                        marginTop: '40px',
                         padding: '60px 30px',
                         borderRadius: '24px',
                         backdropFilter: 'blur(12px)',
@@ -785,113 +781,103 @@ const AboutPrivateBusiness = () => {
 
                     {/* Features Section */}
                     <motion.section 
-                        style={{
-                            ...glassCardStyle,
-                            marginTop: '40px'
-                        }}
-                        variants={scaleUp}
+                    style={{
+                        ...glassCardStyle,
+                        marginTop: '40px'
+                    }}
+                    variants={scaleUp}
                     >
-                        <motion.h2 
-                            style={{
-                                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                                fontWeight: '700',
-                                color: colors.dark,
-                                marginBottom: '40px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center', // 👈 center the icon + text
-                                gap: '12px',
-                                width: '100%',            // 👈 ensures it spans full width
-                                textAlign: 'center'
-                            }}
-                            variants={slideUp}
-                        >
-                            <CheckCircle size={28} color={colors.secondary} />
-                            What You'll Master:
-                        </motion.h2>
-                        
+                    <motion.h2 
+                        style={{
+                        fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                        fontWeight: '700',
+                        color: colors.dark,
+                        marginBottom: '40px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '12px',
+                        width: '100%',
+                        textAlign: 'center'
+                        }}
+                        variants={slideUp}
+                    >
+                        <CheckCircle size={28} color={colors.secondary} />
+                        What You'll Master:
+                    </motion.h2>
+                    
+                    <motion.div
+                        style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                        gap: '20px'
+                        }}
+                        variants={containerVariants}
+                    >
+                        {features.map((feature, index) => (
                         <motion.div
+                            key={index}
                             style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                                gap: '20px'
+                            background: colors.light,
+                            borderRadius: '16px',
+                            padding: '20px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '16px',
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                            border: `1px solid ${colors.primaryLight}`,
                             }}
-                            variants={containerVariants}
+                            variants={itemVariants}
+                            whileHover={{ y: -5 }}
                         >
-                            {features.map((feature, index) => (
-                                <motion.div
-                                    key={index}
-                                    style={{
-                                        background: colors.light,
-                                        borderRadius: '16px',
-                                        padding: '20px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: '16px',
-                                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-                                        border: `1px solid ${colors.primaryLight}`,
-                                        cursor: 'pointer'
-                                    }}
-                                    variants={itemVariants}
-                                    whileHover={{ y: -5 }}
-                                    onClick={() => setActiveFeature(activeFeature === index ? null : index)}
-                                >
-                                    <img 
-                                        src={feature.image} 
-                                        alt={feature.title}
-                                        style={{
-                                            width: '100%',
-                                            height: '160px',
-                                            objectFit: 'cover',
-                                            borderRadius: '12px'
-                                        }}
-                                    />
-                                    
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                        <div style={{
-                                            background: 'rgba(14, 165, 233, 0.1)',
-                                            padding: '10px',
-                                            borderRadius: '8px'
-                                        }}>
-                                            {feature.icon}
-                                        </div>
-                                        <p style={{
-                                            fontSize: '16px',
-                                            fontWeight: '500',
-                                            flex: 1
-                                        }}>
-                                            {feature.title}
-                                        </p>
-                                    </div>
-                                    
-                                    <AnimatePresence>
-                                        {activeFeature === index && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                style={{ overflow: 'hidden' }}
-                                            >
-                                                <div style={{
-                                                    padding: '12px',
-                                                    background: 'rgba(14, 165, 233, 0.05)',
-                                                    borderRadius: '8px',
-                                                    borderLeft: `3px solid ${colors.secondary}`
-                                                }}>
-                                                    <p style={{
-                                                        fontSize: '14px',
-                                                        lineHeight: '1.6'
-                                                    }}>
-                                                        Detailed explanation about this feature and how it benefits your business.
-                                                    </p>
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </motion.div>
-                            ))}
+                            <img 
+                            src={feature.image} 
+                            alt={feature.title}
+                            style={{
+                                width: '100%',
+                                height: '160px',
+                                objectFit: 'cover',
+                                borderRadius: '12px'
+                            }}
+                            />
+                            
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{
+                                background: 'rgba(14, 165, 233, 0.1)',
+                                padding: '10px',
+                                borderRadius: '8px'
+                            }}>
+                                {feature.icon}
+                            </div>
+                            <p style={{
+                                fontSize: '16px',
+                                fontWeight: '500',
+                                flex: 1
+                            }}>
+                                {feature.title}
+                            </p>
+                            </div>
+
+                            {/* Always-visible description */}
+                            <div style={{
+                            padding: '12px',
+                            background: 'rgba(14, 165, 233, 0.05)',
+                            borderRadius: '8px',
+                            borderLeft: `3px solid ${colors.secondary}`
+                            }}>
+                            <p style={{
+                                fontSize: '14px',
+                                lineHeight: '1.6',
+                                color: colors.text
+                            }}>
+                                {feature.description || "Detailed explanation about this feature and how it benefits your business."}
+                            </p>
+                            </div>
                         </motion.div>
+                        ))}
+                    </motion.div>
                     </motion.section>
+
 
                     <GameBanner />
 
@@ -1253,7 +1239,6 @@ const AboutPrivateBusiness = () => {
                         </motion.button>
                     </motion.section>
                 </motion.div>
-            </main>
         </div>
     );
 };
