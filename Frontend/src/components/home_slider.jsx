@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
+
 import mcbanner from '../assets/Masterclass.png';
 import sovbanner from '../assets/BPSOV_Banner.png';
 // import becomeprivatebanner from '../assets/BecomePrivateBanner.png';
@@ -10,18 +11,18 @@ import opbanner from '../assets/OperateBanner.png';
 import seniorbanner from '../assets/PrivateBusiness.png';
 import iwrnbanner from '../assets/iwrn_banner.png';
 // import pmcbanner from '../assets/PrivateMerchantFootball.png';
-
 const courseSlides = [
   {
     title: "Masterclass",
     description: "Learn how to set up your trust, your private identity and Business Credit step-by-step.",
     price: "Only $69/month",
-    banner: mcbanner,
+    banner: masterclassBanner,
     link: "/masterclass" // Add your actual route here
   },
   {
     title: "Become Private + New SOV 101",
     description: "Correct your status and exit public contracts to reclaim sovereignty.",
+
     price: "View More",
     banner: sovbanner,
     link: "/newsov"
@@ -40,7 +41,22 @@ const courseSlides = [
     banner: opbanner,
     link: "/operate"
   },
+  // {
+  //   title: "SENIOR: Private Business Credit",
+  //   description: "Learn how to build unlimited business credit in the Private.",
+  //   price: "Connect with Us",
+  //   banner: seniorbanner,
+  //   link: "/unlimitedcredit"
+  // },
+  // {
+  //   title: "I Want Remedy Now!",
+  //   description: "Fast, lawful credit discharge that puts you back in control.",
+  //   price: "Offer Price $399",
+  //   banner: iwrnbanner,
+  //   link: "/remedy"
+  // },
   {
+
     title: "SENIOR: Private Business Credit",
     description: "Build business credit through UBOT Trusts and private processing.",
     price: "View More",
@@ -61,6 +77,7 @@ const courseSlides = [
   //   banner: pmcbanner,
   //   link: "/privatemerchant"
   // }
+
 ];
 
 const HomeSlider = () => {
