@@ -163,7 +163,7 @@ const RoadmapSeries = () => {
             overflow: 'hidden',
             display: 'flex',
             flexWrap: 'wrap',
-            justifyContent: 'center'
+            justifyContent: 'center',
             flexDirection: 'column', // Always column on mobile, we'll use media query for desktop
             '@media (min-width: 768px)': { // Media query for desktop
               flexDirection: 'row'
@@ -184,7 +184,7 @@ const RoadmapSeries = () => {
             alignItems: 'center',
             justifyContent: 'center',
 
-            padding: '30px'
+            padding: '30px',
 
             padding: '2rem 1rem', // Reduced padding on mobile
             '@media (min-width: 768px)': {
