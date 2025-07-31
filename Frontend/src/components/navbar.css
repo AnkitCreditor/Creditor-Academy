@@ -411,3 +411,71 @@ body, #root {
     scroll-padding-top: 70px;
   }
 }
+
+/* Update the mobile login button styles */
+.nav-login-btn.mobile {
+  width: auto; /* Change from 68vw to auto */
+  max-width: none; /* Remove max-width restriction */
+  min-width: auto; /* Remove min-width restriction */
+  padding: 7px 16px 8px; /* Add horizontal padding */
+  margin: 12px 3vw 0 auto; /* Adjust margins */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Ensure the logo and login button stay on one line */
+.nav-logo-wrap {
+  flex: 1;
+  min-width: 0; /* Allow items to shrink */
+}
+
+/* Make sure the navbar items don't overflow */
+.nav-root {
+  min-width: 0; /* Allow the navbar to shrink */
+}
+
+/* Adjust the mobile menu button to be more compact */
+.nav-menu-btn {
+  margin-right: 4px;
+  padding: 5px;
+}
+
+
+/* For very small screens (under 400px) */
+@media (max-width: 400px) {
+  .nav-logo {
+    height: 40px; /* Make logo slightly smaller */
+  }
+  
+  .nav-login-btn.mobile {
+    font-size: 0.9rem;
+    padding: 6px 12px 7px;
+  }
+  
+  .nav-menu-btn {
+    padding: 4px;
+  }
+}
+
+/* For extremely small screens (under 350px) */
+@media (max-width: 350px) {
+  .nav-logo {
+    height: 36px;
+  }
+  
+  .nav-login-btn.mobile {
+    font-size: 0.85rem;
+    padding: 5px 10px 6px;
+    margin-right: 0;
+  }
+  
+  .nav-root {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+}
+
+/* Add this to prevent any text replacement */
+.nav-logo-link::after {
+  content: none !important;
+}
+
