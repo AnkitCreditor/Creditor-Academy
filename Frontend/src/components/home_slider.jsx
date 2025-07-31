@@ -3,12 +3,14 @@ import { motion, useInView } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import masterclassBanner from '../assets/Masterclass.png';
-import Banner from '../assets/BPSOV_Banner.png'
+
+import mcbanner from '../assets/Masterclass.png';
+import sovbanner from '../assets/BPSOV_Banner.png';
+// import becomeprivatebanner from '../assets/BecomePrivateBanner.png';
 import opbanner from '../assets/OperateBanner.png';
-// import seniorbanner from '../assets/Unlimited_Credit_Banner.png';
-// import iwrnbanner from '../assets/iwrn_banner.png';
-import PrivateBusiness from '../assets/PrivateBusiness.png';
+import seniorbanner from '../assets/PrivateBusiness.png';
+import iwrnbanner from '../assets/iwrn_banner.png';
+// import pmcbanner from '../assets/PrivateMerchantFootball.png';
 const courseSlides = [
   {
     title: "Masterclass",
@@ -20,17 +22,24 @@ const courseSlides = [
   {
     title: "Become Private + New SOV 101",
     description: "Correct your status and exit public contracts to reclaim sovereignty.",
-    price: "Connect with Us",
-    banner: Banner,
-    link: "/newsov" 
-  },
 
+    price: "View More",
+    banner: sovbanner,
+    link: "/newsov"
+  },
+  // {
+  //   title: "SOPHOMORE: Become Private",
+  //   description: "Discover the ideal structure for your business success.",
+  //   price: "Connect with Us",
+  //   banner: becomeprivatebanner,
+  //   link: "/sophomore"
+  // },
   {
     title: "JUNIOR: Operate Private",
-    description: "Build, manage, and grow an Empire in the private, independent of the public system.",
-    price: "Connect with Us",
+    description: "Build trusts and PMAs to operate without state oversight.",
+    price: "View More",
     banner: opbanner,
-    link: "/operateprivate"
+    link: "/operate"
   },
   // {
   //   title: "SENIOR: Private Business Credit",
@@ -47,12 +56,28 @@ const courseSlides = [
   //   link: "/remedy"
   // },
   {
-    title: "Private Business Credit",
-    description: "Build business credit through UBOT Trusts and private processing",
-    price: "Connect with Us",
-    banner: PrivateBusiness,
+
+    title: "SENIOR: Private Business Credit",
+    description: "Build business credit through UBOT Trusts and private processing.",
+    price: "View More",
+    banner: seniorbanner,
     link: "/private"
-  }
+  },
+  {
+    title: "I Want Remedy Now!",
+    description: "Fast, lawful credit discharge that puts you back in control.",
+    price: "Offer Price $399",
+    banner: iwrnbanner,
+    link: "/remedy"
+  },
+  // {
+  //   title: "Private Merchant Course",
+  //   description: "Discover the foundation of private commerce and take control of how you get paid",
+  //   price: "Connect with Us",
+  //   banner: pmcbanner,
+  //   link: "/privatemerchant"
+  // }
+
 ];
 
 const HomeSlider = () => {
@@ -160,8 +185,10 @@ const HomeSlider = () => {
                     width: '100%',
                     height: bannerHeight,
                     backgroundImage: `url(${slide.banner})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundSize: isMobile ? 'contain' : 'cover',
+                    backgroundPosition: isMobile ? 'center center' : 'center top',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundColor: '#f8f9fa',
                   }}
                 />
                 {isInView && (
