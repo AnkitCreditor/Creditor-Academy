@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 import roadmapImg from '../assets/logo_roadmap.png';
 import Banner from '../assets/roadmap-banner.png';
 
+//import Try from './roadmap_try.jsx';
+//import FirstStep from '../components/roadmap1';
+//import SecondStep from '../components/roadmap2';
+//import ThirdStep from '../components/roadmap3';
+
 const RoadmapSeries = () => {
   return (
     <section style={{

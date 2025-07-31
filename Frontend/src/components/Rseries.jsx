@@ -33,7 +33,7 @@ const CourseRoadmap = () => {
           ]}
           badge="FOUNDATION"
         
-          onLearnMore={() => navigate("/become-private")} // Add click handler
+          onLearnMore={() => navigate("/newsov")} // Add click handler
         />
         
         {/* Card 2 */}
