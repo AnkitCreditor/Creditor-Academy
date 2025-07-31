@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   PlayCircle, CheckCircle, ArrowRight, DollarSign, Phone,
@@ -49,6 +49,8 @@ const AboutPrivateBusiness = () => {
   ];
 
   const [expandedIdeas, setExpandedIdeas] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   // Animation Variants
   const containerVariants = {
@@ -97,6 +99,32 @@ const AboutPrivateBusiness = () => {
     const b = parseInt(hex.length === 3 ? hex[2].repeat(2) : hex.slice(4, 6), 16);
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   };
+
+  // Slider navigation
+  const getMaxSlides = () => {
+    if (windowWidth >= 1024) return Math.max(0, features.length - 3); // 3 cards visible
+    if (windowWidth >= 640) return Math.max(0, features.length - 2); // 2 cards visible
+    return Math.max(0, features.length - 1); // 1 card visible
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => Math.min(prev + 1, getMaxSlides()));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => Math.max(prev - 1, 0));
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div
@@ -194,7 +222,7 @@ const AboutPrivateBusiness = () => {
         </div>
       </section>
 
-      {/* Main Content Container with fixed maxWidth corrected */}
+      {/* Main Content Container */}
       <motion.div
         style={{
           width: '100%',
@@ -339,89 +367,183 @@ const AboutPrivateBusiness = () => {
           </div>
         </motion.section>
 
-        {/* Features Section */}
-        <motion.section style={glassCardStyle} variants={scaleUp}>
-          <motion.h2
-            style={{
-              fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-              fontWeight: 700,
-              color: colors.dark,
-              marginBottom: 40,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 12,
-              width: '100%',
-              textAlign: 'center',
-            }}
-            variants={slideUp}
-          >
-            <CheckCircle size={28} color={colors.secondary} />
-            What You'll Master:
-          </motion.h2>
+        {/* Features Section (Slider) */}
+        {/* Features Section (Slider) */}
+<motion.section style={glassCardStyle} variants={scaleUp}>
+  <motion.h2
+    style={{
+      fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+      fontWeight: 700,
+      color: colors.dark,
+      marginBottom: 40,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 12,
+      width: '100%',
+      textAlign: 'center',
+    }}
+    variants={slideUp}
+  >
+    <CheckCircle size={28} color={colors.secondary} />
+    What You'll Master:
+  </motion.h2>
 
-          <motion.div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: 20,
-            }}
-            variants={containerVariants}
-          >
-            {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                style={{
-                  background: colors.light,
-                  borderRadius: 16,
-                  padding: 20,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 16,
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-                  border: `1px solid ${colors.primaryLight}`,
-                }}
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-              >
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  style={{ width: '100%', height: 160, objectFit: 'cover', borderRadius: 12 }}
-                  loading="lazy"
-                />
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div
-                    style={{
-                      background: 'rgba(14, 165, 233, 0.1)',
-                      padding: 10,
-                      borderRadius: 8,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {feature.icon}
-                  </div>
-                  <p style={{ fontSize: 16, fontWeight: 500, flex: 1 }}>{feature.title}</p>
-                </div>
-                <div
-                  style={{
-                    padding: 12,
-                    background: 'rgba(14, 165, 233, 0.05)',
-                    borderRadius: 8,
-                    borderLeft: `3px solid ${colors.secondary}`,
-                  }}
-                >
-                  <p style={{ fontSize: 14, lineHeight: 1.6, color: colors.text }}>
-                    Detailed explanation about this feature and how it benefits your business.
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.section>
+  <div style={{
+    position: 'relative',
+    maxWidth: '100%',
+    margin: '0 auto',
+    overflow: 'hidden'
+  }}>
+    <motion.button
+      onClick={prevSlide}
+      disabled={currentSlide === 0}
+      whileHover={{ scale: currentSlide === 0 ? 1 : 1.1 }}
+      whileTap={{ scale: currentSlide === 0 ? 1 : 0.9 }}
+      style={{
+        position: 'absolute',
+        left: '10px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        zIndex: 10,
+        width: '40px',
+        height: '40px',
+        borderRadius: '50%',
+        background: colors.light,
+        border: 'none',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: currentSlide === 0 ? 'not-allowed' : 'pointer',
+        opacity: currentSlide === 0 ? 0.5 : 1
+      }}
+      aria-label="Previous slide"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke={colors.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </motion.button>
 
+    <div
+      style={{
+        display: 'flex',
+        gap: '20px',
+        padding: '20px 0',
+        transition: 'transform 0.5s ease-in-out',
+        transform: `translateX(calc(-${currentSlide * (280 + 20)}px))`, // 280px card width + 20px gap
+        width: 'fit-content'
+      }}
+    >
+      {features.map((feature, i) => (
+        <motion.div
+          key={i}
+          style={{
+            width: '280px',
+            background: colors.light,
+            borderRadius: 16,
+            padding: 20,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 16,
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+            border: `1px solid ${colors.primaryLight}`,
+            margin: '0 10px'
+          }}
+          variants={itemVariants}
+          whileHover={{ y: -5 }}
+        >
+          <img
+            src={feature.image}
+            alt={feature.title}
+            style={{ width: '100%', height: 160, objectFit: 'cover', borderRadius: 12 }}
+            loading="lazy"
+          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div
+              style={{
+                background: 'rgba(14, 165, 233, 0.1)',
+                padding: 10,
+                borderRadius: 8,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {feature.icon}
+            </div>
+            <p style={{ fontSize: 16, fontWeight: 500, flex: 1 }}>{feature.title}</p>
+          </div>
+          <div
+            style={{
+              padding: 12,
+              background: 'rgba(14, 165, 233, 0.05)',
+              borderRadius: 8,
+              borderLeft: `3px solid ${colors.secondary}`,
+            }}
+          >
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: colors.text }}>
+              Detailed explanation about this feature and how it benefits your business.
+            </p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+
+    <motion.button
+      onClick={nextSlide}
+      disabled={currentSlide >= getMaxSlides()}
+      whileHover={{ scale: currentSlide >= getMaxSlides() ? 1 : 1.1 }}
+      whileTap={{ scale: currentSlide >= getMaxSlides() ? 1 : 0.9 }}
+      style={{
+        position: 'absolute',
+        right: '10px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        zIndex: 10,
+        width: '40px',
+        height: '40px',
+        borderRadius: '50%',
+        background: colors.light,
+        border: 'none',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: currentSlide >= getMaxSlides() ? 'not-allowed' : 'pointer',
+        opacity: currentSlide >= getMaxSlides() ? 0.5 : 1
+      }}
+      aria-label="Next slide"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18L15 12L9 6" stroke={colors.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </motion.button>
+  </div>
+
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '10px',
+    marginTop: '20px'
+  }}>
+    {Array.from({ length: getMaxSlides() + 1 }).map((_, index) => (
+      <motion.div
+        key={index}
+        whileHover={{ scale: 1.2 }}
+        onClick={() => goToSlide(index)}
+        style={{
+          width: '10px',
+          height: '10px',
+          borderRadius: '50%',
+          background: index === currentSlide ? colors.primary : 'rgba(0,0,0,0.1)',
+          cursor: 'pointer',
+          transition: 'background 0.3s ease'
+        }}
+      />
+    ))}
+  </div>
+</motion.section>
         {/* GameBanner */}
         <GameBanner />
 
@@ -568,7 +690,6 @@ const AboutPrivateBusiness = () => {
                       overflow: 'hidden',
                     }}
                   >
-                    {/* Notch */}
                     <div
                       style={{
                         position: 'absolute',
