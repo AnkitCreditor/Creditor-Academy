@@ -3,11 +3,6 @@ import { motion } from 'framer-motion';
 import roadmapImg from '../assets/logo_roadmap.png';
 import Banner from '../assets/roadmap-banner.png';
 
-//import Try from './roadmap_try.jsx';
-//import FirstStep from '../components/roadmap1';
-//import SecondStep from '../components/roadmap2';
-//import ThirdStep from '../components/roadmap3';
-
 const RoadmapSeries = () => {
   return (
     <section style={{
@@ -167,24 +162,36 @@ const RoadmapSeries = () => {
             boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
             overflow: 'hidden',
             display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
             flexDirection: 'column', // Always column on mobile, we'll use media query for desktop
             '@media (min-width: 768px)': { // Media query for desktop
               flexDirection: 'row'
             }
+
           }}
         >
           {/* Logo */}
           <div style={{
+
+            flex: '1 1 240px',
+            minWidth: '260px',
+
             flex: '0 0 auto', // Changed for mobile
+
             background: '#eee',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+
+            padding: '30px'
+
             padding: '2rem 1rem', // Reduced padding on mobile
             '@media (min-width: 768px)': {
               flex: '0 0 240px',
               padding: '40px'
             }
+
           }}>
             <motion.img
               src={roadmapImg}
@@ -204,8 +211,13 @@ const RoadmapSeries = () => {
 
           {/* Description */}
           <div style={{
+
+            flex: '2 1 320px',
+            padding: '30px',
+
             flex: 1,
             padding: '1.5rem', // Reduced padding on mobile
+
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -266,6 +278,9 @@ const RoadmapSeries = () => {
           </div>
         </motion.div>
 
+
+        {/* CTA Section */}
+
         {/* Testimonial */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -317,6 +332,7 @@ const RoadmapSeries = () => {
         </motion.div>
 
         {/* CTA Button */}
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -368,7 +384,6 @@ const RoadmapSeries = () => {
             Get The Roadmap Series Now
           </motion.button>
         </motion.div>
-
       </div>
     </section>
   );

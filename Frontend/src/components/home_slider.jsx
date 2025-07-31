@@ -3,36 +3,28 @@ import { motion, useInView } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import mcbanner from '../assets/masteclassmembership.png';
-import sovbanner from '../assets/Sov_101_football.png';
-import becomeprivatebanner from '../assets/BecomePrivateBanner.png';
-import opbanner from '../assets/OperatePrivateFootball.png';
-import seniorbanner from '../assets/Unlimited_Credit_Banner.png';
-import iwrnbanner from '../assets/iwrn_banner.png';
-import pmcbanner from '../assets/PrivateMerchantFootball.png';
-
+import masterclassBanner from '../assets/Masterclass.png';
+import Banner from '../assets/BPSOV_Banner.png'
+import opbanner from '../assets/OperateBanner.png';
+// import seniorbanner from '../assets/Unlimited_Credit_Banner.png';
+// import iwrnbanner from '../assets/iwrn_banner.png';
+import PrivateBusiness from '../assets/PrivateBusiness.png';
 const courseSlides = [
   {
     title: "Masterclass",
     description: "Learn how to set up your trust, your private identity and Business Credit step-by-step.",
     price: "Only $69/month",
-    banner: mcbanner,
+    banner: masterclassBanner,
     link: "/masterclass" // Add your actual route here
   },
   {
-    title: "FRESHMAN: Sovereignty 101",
-    description: "Discover how America shifted from liberty to control—and what it takes to reclaim independence once again.",
-    price: "Special Offer: With Masterclass Membership",
-    banner: sovbanner,
-    link: "/sov"
-  },
-  {
-    title: "SOPHOMORE: Become Private",
-    description: "Discover the ideal structure for your business success.",
+    title: "Become Private + New SOV 101",
+    description: "Correct your status and exit public contracts to reclaim sovereignty.",
     price: "Connect with Us",
-    banner: becomeprivatebanner,
-    link: "/sophomore"
+    banner: Banner,
+    link: "/newsov" 
   },
+
   {
     title: "JUNIOR: Operate Private",
     description: "Build, manage, and grow an Empire in the private, independent of the public system.",
@@ -40,26 +32,26 @@ const courseSlides = [
     banner: opbanner,
     link: "/operateprivate"
   },
+  // {
+  //   title: "SENIOR: Private Business Credit",
+  //   description: "Learn how to build unlimited business credit in the Private.",
+  //   price: "Connect with Us",
+  //   banner: seniorbanner,
+  //   link: "/unlimitedcredit"
+  // },
+  // {
+  //   title: "I Want Remedy Now!",
+  //   description: "Fast, lawful credit discharge that puts you back in control.",
+  //   price: "Offer Price $399",
+  //   banner: iwrnbanner,
+  //   link: "/remedy"
+  // },
   {
-    title: "SENIOR: Private Business Credit",
-    description: "Learn how to build unlimited business credit in the Private.",
+    title: "Private Business Credit",
+    description: "Build business credit through UBOT Trusts and private processing",
     price: "Connect with Us",
-    banner: seniorbanner,
-    link: "/unlimitedcredit"
-  },
-  {
-    title: "I Want Remedy Now!",
-    description: "Fast, lawful credit discharge that puts you back in control.",
-    price: "Offer Price $399",
-    banner: iwrnbanner,
-    link: "/remedy"
-  },
-  {
-    title: "Private Merchant Course",
-    description: "Discover the foundation of private commerce and take control of how you get paid",
-    price: "Connect with Us",
-    banner: pmcbanner,
-    link: "/privatemerchant"
+    banner: PrivateBusiness,
+    link: "/private"
   }
 ];
 
