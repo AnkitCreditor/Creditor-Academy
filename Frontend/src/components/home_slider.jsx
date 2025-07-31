@@ -16,7 +16,7 @@ const courseSlides = [
     title: "Masterclass",
     description: "Learn how to set up your trust, your private identity and Business Credit step-by-step.",
     price: "Only $69/month",
-    banner: masterclassBanner,
+    banner: mcbanner,
     link: "/masterclass" // Add your actual route here
   },
   {
