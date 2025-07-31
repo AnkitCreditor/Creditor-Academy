@@ -148,7 +148,7 @@ const RoadmapSeries = () => {
       <div style={{
         maxWidth: '1280px',
         margin: '0 auto',
-        padding: '64px 20px'
+        padding: '2rem 1.25rem' // Reduced padding on mobile
       }}>
 
         {/* Feature Card */}
@@ -164,25 +164,45 @@ const RoadmapSeries = () => {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center'
+            flexDirection: 'column', // Always column on mobile, we'll use media query for desktop
+            '@media (min-width: 768px)': { // Media query for desktop
+              flexDirection: 'row'
+            }
+
           }}
         >
           {/* Logo */}
           <div style={{
+
             flex: '1 1 240px',
             minWidth: '260px',
+
+            flex: '0 0 auto', // Changed for mobile
+
             background: '#eee',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+
             padding: '30px'
+
+            padding: '2rem 1rem', // Reduced padding on mobile
+            '@media (min-width: 768px)': {
+              flex: '0 0 240px',
+              padding: '40px'
+            }
+
           }}>
             <motion.img
               src={roadmapImg}
               alt="Atlas Logo"
               style={{
                 width: '100%',
-                maxWidth: '160px',
-                height: 'auto'
+                maxWidth: '120px', // Smaller on mobile
+                height: 'auto',
+                '@media (min-width: 768px)': {
+                  maxWidth: '160px'
+                }
               }}
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -191,45 +211,64 @@ const RoadmapSeries = () => {
 
           {/* Description */}
           <div style={{
+
             flex: '2 1 320px',
             padding: '30px',
+
+            flex: 1,
+            padding: '1.5rem', // Reduced padding on mobile
+
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            '@media (min-width: 768px)': {
+              padding: '30px'
+            }
           }}>
             <h3 style={{
-              fontSize: 'clamp(1.25rem, 4vw, 1.75rem)',
+              fontSize: '1.5rem', // Fixed size on mobile
               fontWeight: 700,
               color: '#111827',
-              marginBottom: '16px',
+              marginBottom: '1rem',
               lineHeight: 1.3,
+              '@media (min-width: 768px)': {
+                fontSize: '1.75rem'
+              }
             }}>
               Start Your Journey to <span style={{ color: '#0e6297ff' }}>Private Wealth</span>, Legal Freedom & Credit Power
             </h3>
             <p style={{
-              fontSize: '1rem',
+              fontSize: '0.9rem', // Slightly smaller on mobile
               color: '#4b5563',
-              marginBottom: '20px',
-              lineHeight: 1.6
+              marginBottom: '1rem',
+              lineHeight: 1.6,
+              '@media (min-width: 768px)': {
+                fontSize: '1rem'
+              }
             }}>
               The Roadmap Series by Paulmichael is your gateway to exiting the public system, restoring your private status, and building real businesses using credit and trust law.
             </p>
             <div style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '8px'
+              gap: '0.5rem',
+              '@media (max-width: 480px)': { // Stack tags vertically on very small screens
+                flexDirection: 'column',
+                alignItems: 'flex-start'
+              }
             }}>
               {['Sovereignty', 'Credit Mastery', 'Trust Operations', 'Private Commerce'].map((item, index) => (
                 <motion.span
                   key={index}
                   whileHover={{ scale: 1.05 }}
                   style={{
-                    padding: '6px 12px',
+                    padding: '0.375rem 0.75rem',
                     backgroundColor: '#dbeafe',
                     color: '#0e5988ff',
                     borderRadius: '9999px',
                     fontSize: '0.75rem',
-                    fontWeight: 500
+                    fontWeight: 500,
+                    whiteSpace: 'nowrap'
                   }}
                 >
                   {item}
@@ -239,21 +278,81 @@ const RoadmapSeries = () => {
           </div>
         </motion.div>
 
+
         {/* CTA Section */}
+
+        {/* Testimonial */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          style={{
+            background: 'linear-gradient(135deg, #0e63a9ff 0%, #237fe1ff 100%)',
+            borderRadius: '20px',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            overflow: 'hidden',
+            marginTop: '2rem', // Reduced on mobile
+            '@media (min-width: 768px)': {
+              marginTop: '4rem'
+            }
+          }}
+        >
+          <div style={{
+            padding: '2rem 1.25rem', // Reduced on mobile
+            textAlign: 'center',
+            '@media (min-width: 768px)': {
+              padding: '3rem 1.25rem'
+            }
+          }}>
+            <div style={{
+              width: '48px',
+              height: '48px',
+              margin: '0 auto 1.25rem',
+              color: 'white',
+              opacity: 0.5
+            }}>
+              <svg viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <p style={{
+              fontSize: '1rem', // Smaller on mobile
+              color: 'white',
+              fontWeight: 500,
+              maxWidth: '800px',
+              margin: '0 auto',
+              lineHeight: 1.6,
+              '@media (min-width: 768px)': {
+                fontSize: '1.1rem'
+              }
+            }}>
+              "Whether you're just getting started or ready to scale, this series gives you the full blueprint — from sovereignty and credit to trust operations and private commerce."
+            </p>
+          </div>
+        </motion.div>
+
+        {/* CTA Button */}
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           style={{
             textAlign: 'center',
-            marginTop: '64px'
+            marginTop: '2rem', // Reduced on mobile
+            '@media (min-width: 768px)': {
+              marginTop: '4rem'
+            }
           }}
         >
           <h3 style={{
-            fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+            fontSize: '1.5rem', // Fixed size on mobile
             fontWeight: 700,
             color: '#111827',
-            marginBottom: '24px'
+            marginBottom: '1.5rem',
+            '@media (min-width: 768px)': {
+              fontSize: '2rem'
+            }
           }}>
             Ready to Transform Your Financial Future?
           </h3>
@@ -264,15 +363,22 @@ const RoadmapSeries = () => {
             }}
             whileTap={{ scale: 0.95 }}
             style={{
-              padding: '16px 32px',
+              padding: '0.75rem 1.5rem', // Smaller on mobile
               background: 'linear-gradient(135deg, #3799daff 0%, #1d84d8ff 100%)',
               color: 'white',
               fontWeight: 700,
               borderRadius: '9999px',
-              fontSize: '1.125rem',
+              fontSize: '1rem', // Smaller on mobile
               border: 'none',
               cursor: 'pointer',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              width: '100%', // Full width on mobile
+              maxWidth: '320px', // But not too wide
+              '@media (min-width: 768px)': {
+                padding: '1rem 2rem',
+                fontSize: '1.125rem',
+                width: 'auto'
+              }
             }}
           >
             Get The Roadmap Series Now
