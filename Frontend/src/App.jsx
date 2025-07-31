@@ -66,8 +66,6 @@ function App() {
         <Route path="/mastertnc" element={<MasterTnc />} />
         <Route path="/athena" element={<Athena />} />
         <Route path="/private" element={<PrivateBusiness />} />
-        
-        
         <Route path="/newsov" element={<DemoSOV />} />
 
       </Routes>
