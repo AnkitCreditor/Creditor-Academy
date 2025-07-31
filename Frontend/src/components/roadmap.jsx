@@ -3,11 +3,6 @@ import { motion } from 'framer-motion';
 import roadmapImg from '../assets/logo_roadmap.png';
 import Banner from '../assets/roadmap-banner.png';
 
-//import Try from './roadmap_try.jsx';
-//import FirstStep from '../components/roadmap1';
-//import SecondStep from '../components/roadmap2';
-//import ThirdStep from '../components/roadmap3';
-
 const RoadmapSeries = () => {
   return (
     <section style={{
@@ -167,17 +162,19 @@ const RoadmapSeries = () => {
             boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
             overflow: 'hidden',
             display: 'flex',
-            flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
           }}
         >
           {/* Logo */}
           <div style={{
-            flex: '0 0 240px',
+            flex: '1 1 240px',
+            minWidth: '260px',
             background: '#eee',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '40px'
+            padding: '30px'
           }}>
             <motion.img
               src={roadmapImg}
@@ -194,7 +191,7 @@ const RoadmapSeries = () => {
 
           {/* Description */}
           <div style={{
-            flex: 1,
+            flex: '2 1 320px',
             padding: '30px',
             display: 'flex',
             flexDirection: 'column',
@@ -242,48 +239,7 @@ const RoadmapSeries = () => {
           </div>
         </motion.div>
 
-        {/* Testimonial */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          style={{
-            background: 'linear-gradient(135deg, #0e63a9ff 0%, #237fe1ff 100%)',
-            borderRadius: '20px',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-            overflow: 'hidden',
-            marginTop: '64px'
-          }}
-        >
-          <div style={{
-            padding: '48px 20px',
-            textAlign: 'center'
-          }}>
-            <div style={{
-              width: '48px',
-              height: '48px',
-              margin: '0 auto 20px',
-              color: 'white',
-              opacity: 0.5
-            }}>
-              <svg viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <p style={{
-              fontSize: '1.1rem',
-              color: 'white',
-              fontWeight: 500,
-              maxWidth: '800px',
-              margin: '0 auto',
-              lineHeight: 1.6
-            }}>
-              "Whether you're just getting started or ready to scale, this series gives you the full blueprint — from sovereignty and credit to trust operations and private commerce."
-            </p>
-          </div>
-        </motion.div>
-
-        {/* CTA Button */}
+        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -322,7 +278,6 @@ const RoadmapSeries = () => {
             Get The Roadmap Series Now
           </motion.button>
         </motion.div>
-
       </div>
     </section>
   );
