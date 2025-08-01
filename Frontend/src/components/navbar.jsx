@@ -15,11 +15,17 @@ const desktopTourSteps = [
   { selector: '#nav-login', text: 'Already a member? Login here.', description: "If you've joined us before, log in to access your dashboard, courses, and exclusive resources." }
 ];
 
+// Updated mobile tour steps for your requested behavior
 const mobileTourSteps = [
   {
     selector: '.nav-menu-btn',
-    text: "🍔 Hamburger Menu",
-    description: "This is the hamburger icon. Tap here to access all important links and navigation options."
+    text: "Hamburger Menu",
+    description: "This is the hamburger icon. Tap here to access Courses, Services & more."
+  },
+  {
+    selector: null,
+    text: "Menu Options",
+    description: "Here you can see the services, courses, and other relevant offerings !."
   },
   {
     selector: '#nav-login.mobile',
@@ -53,6 +59,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const isMobileTablet = width <= 1024;
 
+  // Tour state
   const [tourStep, setTourStep] = useState(0);
   const [tourActive, setTourActive] = useState(true);
   const [animateIn, setAnimateIn] = useState(false);
@@ -101,6 +108,48 @@ const Navbar = () => {
     return () => { document.body.style.overflow = ""; };
   }, [isMenuOpen, isMobileTablet]);
 
+  // CONTROL MENU AND DROPDOWNS BASED ON TOUR STEP - Mobile simplified version
+  useEffect(() => {
+    if (!isMobileTablet || !tourActive) return;
+
+    /*
+      Step 0: Explain hamburger icon, menu closed
+      Step 1: Open menu, no dropdowns - general explanation
+      Step 2: Login button highlight - menu remains open, dropdowns closed
+      Step 3: Chatbot highlight - menu closed
+      After step 3: close menu and tour ends
+    */
+
+    switch (tourStep) {
+      case 0:
+        setIsMenuOpen(false);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+      case 1:
+        setIsMenuOpen(true);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+      case 2:
+        setIsMenuOpen(true);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+      case 3:
+        setIsMenuOpen(false);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+      default:
+        // Just close menu & dropdowns after tour end or unexpected step
+        setIsMenuOpen(false);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+    }
+  }, [tourStep, tourActive, isMobileTablet]);
+
   const handleCoursesEnter = () => {
     clearTimeout(coursesTimeoutRef.current);
     setShowCourses(true);
@@ -142,6 +191,21 @@ const Navbar = () => {
     </a>
   );
 
+  // For mobile step highlighting the login button
+  // We set id="nav-login.mobile" in the loginButton mobile render for tour selector
+  // So add this here:
+  const loginButtonMobile = (
+    <a
+      id="nav-login.mobile"
+      href="#"
+      onClick={openModal}
+      className="nav-login-btn mobile"
+      style={{ flexShrink: 0, marginLeft: 'auto' }}
+    >
+      Login
+    </a>
+  );
+
   const getCurrentRect = () => {
     const step = tourSteps[tourStep];
     if (!step || !step.selector) return null;
@@ -149,7 +213,7 @@ const Navbar = () => {
     return el?.getBoundingClientRect();
   };
 
-  // Responsive mascot/message box for all device groups
+  // Mascot styles unchanged
   let mascotGuideContainerStyle, mascotImageStyle, messageBoxStyle, textSize, descSize;
   if (deviceGroup === 'mobile') {
     mascotGuideContainerStyle = {
@@ -307,7 +371,8 @@ const Navbar = () => {
             {loginButton()}
           </nav>
         )}
-        {isMobileTablet && loginButton(true)}
+        {isMobileTablet && (tourStep === 2 ? loginButtonMobile : loginButton(true))}
+
         {isMobileTablet && isMenuOpen && (
           <div className="nav-mobile-menu">
             <div className="nav-mobile-dropdown">
@@ -341,6 +406,7 @@ const Navbar = () => {
           </div>
         )}
       </header>
+
       {showMascotGuide && (
         <>
           {/* Overlay */}
@@ -467,6 +533,7 @@ const Navbar = () => {
           </div>
         </>
       )}
+
       <AdminModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );
