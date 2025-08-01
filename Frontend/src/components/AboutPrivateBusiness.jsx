@@ -834,236 +834,238 @@ const AboutPrivateBusiness = () => {
                 }
                 `}</style>
 
-<motion.section 
-  style={{
-    marginTop: '20px', 
-    padding: '50px 0px',
-    position: 'relative',
-    overflow: 'hidden',
-    backgroundColor: '#cbe9ffff'
-  }}
-  variants={scaleUp}
->
-  {/* Title */}
-  <motion.h2 
-    style={{
-      fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-      fontWeight: '700',
-      color: colors.dark,
-      marginBottom: '40px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '12px',
-      width: '100%',
-      textAlign: 'center'
-    }}
-    variants={slideUp}
-  >
-    <CheckCircle size={28} color={colors.secondary} />
-    What You'll Master:
-  </motion.h2>
+                    {/*What You'll Learn */}
+                    <motion.section 
+                    style={{
+                        marginTop: '20px', 
+                        padding: '50px 0px',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        backgroundColor: '#cbe9ffff'
+                    }}
+                    variants={scaleUp}
+                    >
+                    {/* Title */}
+                    <motion.h2 
+                        style={{
+                        fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                        fontWeight: '700',
+                        color: colors.dark,
+                        marginBottom: '40px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '12px',
+                        width: '100%',
+                        textAlign: 'center'
+                        }}
+                        variants={slideUp}
+                    >
+                        <CheckCircle size={28} color={colors.secondary} />
+                        What You'll Master:
+                    </motion.h2>
 
-  {/* Arrow Buttons (Desktop Only) */}
-  {!isMobile && (
-    <>
-      <button 
-        onClick={() => scroll('left')} 
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '20px',
-          transform: 'translateY(-50%)',
-          background: colors.light,
-          border: 'none',
-          boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-          padding: '10px',
-          borderRadius: '50%',
-          cursor: 'pointer',
-          zIndex: 2
-        }}
-      >
-        <ChevronLeft size={24} />
-      </button>
+                    {/* Arrow Buttons (Desktop Only) */}
+                    {!isMobile && (
+                        <>
+                        <button 
+                            onClick={() => scroll('left')} 
+                            style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '20px',
+                            transform: 'translateY(-50%)',
+                            background: colors.light,
+                            border: 'none',
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                            padding: '10px',
+                            borderRadius: '50%',
+                            cursor: 'pointer',
+                            zIndex: 2
+                            }}
+                        >
+                            <ChevronLeft size={24} />
+                        </button>
 
-      <button 
-        onClick={() => scroll('right')} 
-        style={{
-          position: 'absolute',
-          top: '50%',
-          right: '20px',
-          transform: 'translateY(-50%)',
-          background: colors.light,
-          border: 'none',
-          boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-          padding: '10px',
-          borderRadius: '50%',
-          cursor: 'pointer',
-          zIndex: 2
-        }}
-      >
-        <ChevronRight size={24} />
-      </button>
-    </>
-  )}
+                        <button 
+                            onClick={() => scroll('right')} 
+                            style={{
+                            position: 'absolute',
+                            top: '50%',
+                            right: '20px',
+                            transform: 'translateY(-50%)',
+                            background: colors.light,
+                            border: 'none',
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                            padding: '10px',
+                            borderRadius: '50%',
+                            cursor: 'pointer',
+                            zIndex: 2
+                            }}
+                        >
+                            <ChevronRight size={24} />
+                        </button>
+                        </>
+                    )}
 
-  {/* Scrollable Cards */}
-  <motion.div
-  ref={scrollRef}
-  style={{
-    display: 'flex',
-    overflowX: 'auto',
-    gap: '20px',
-    scrollBehavior: 'smooth',
-    paddingBottom: isMobile ? '0' : '8px',
-    WebkitOverflowScrolling: 'touch',
-    scrollbarWidth: 'none',
-    msOverflowStyle: 'none',
-    ...(!isMobile && {  // Only apply margin on desktop
-      margin: '0 80px'
-    }),
-    ...(isMobile && {
-      margin: '0 1rem',
-      scrollbarWidth: 'none',
-      msOverflowStyle: 'none',
-      scrollSnapType: 'x mandatory'
-    })
-  }}
-  variants={containerVariants}
-  onScroll={isMobile ? handleScroll : undefined}
-  onWheel={(e) => e.stopPropagation()}
->
-    {features.map((feature, index) => (
-      <motion.div
-        key={index}
-        style={{
-          width: 'clamp(240px, 80vw, 280px)',
-          flex: '0 0 auto',
-          background: colors.light,
-          borderRadius: '16px',
-          padding: '20px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-          border: `1px solid ${colors.primaryLight}`,
-          ...(isMobile && { scrollSnapAlign: 'start' })
-        }}
-        variants={itemVariants}
-        whileHover={{ y: -5 }}
-      >
-        <img 
-          src={feature.image} 
-          alt={feature.title}
-          style={{
-            width: '100%',
-            height: '160px',
-            objectFit: 'cover',
-            borderRadius: '12px'
-          }}
-        />
-        
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{
-            background: 'rgba(14, 165, 233, 0.1)',
-            padding: '10px',
-            borderRadius: '8px'
-          }}>
-            {feature.icon}
-          </div>
-          <p style={{
-            fontSize: '16px',
-            fontWeight: '500',
-            flex: 1
-          }}>
-            {feature.title}
-          </p>
-        </div>
+                    {/* Scrollable Cards */}
+                    <motion.div
+                    ref={scrollRef}
+                    style={{
+                        display: 'flex',
+                        overflowX: 'auto',
+                        gap: '20px',
+                        scrollBehavior: 'smooth',
+                        paddingBottom: isMobile ? '0' : '8px',
+                        WebkitOverflowScrolling: 'touch',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                        ...(!isMobile && {  // Only apply margin on desktop
+                        margin: '0 80px'
+                        }),
+                        ...(isMobile && {
+                        margin: '0 1rem',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                        scrollSnapType: 'x mandatory'
+                        })
+                    }}
+                    variants={containerVariants}
+                    onScroll={isMobile ? handleScroll : undefined}
+                    onWheel={(e) => e.stopPropagation()}
+                    >
+                        {features.map((feature, index) => (
+                        <motion.div
+                            key={index}
+                            style={{
+                            width: 'clamp(240px, 80vw, 280px)',
+                            flex: '0 0 auto',
+                            background: colors.light,
+                            borderRadius: '16px',
+                            padding: '20px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '16px',
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                            border: `1px solid ${colors.primaryLight}`,
+                            ...(isMobile && { scrollSnapAlign: 'start' })
+                            }}
+                            variants={itemVariants}
+                            whileHover={{ y: -5 }}
+                        >
+                            <img 
+                            src={feature.image} 
+                            alt={feature.title}
+                            style={{
+                                width: '100%',
+                                height: '160px',
+                                objectFit: 'cover',
+                                borderRadius: '12px'
+                            }}
+                            />
+                            
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{
+                                background: 'rgba(14, 165, 233, 0.1)',
+                                padding: '10px',
+                                borderRadius: '8px'
+                            }}>
+                                {feature.icon}
+                            </div>
+                            <p style={{
+                                fontSize: '16px',
+                                fontWeight: '500',
+                                flex: 1
+                            }}>
+                                {feature.title}
+                            </p>
+                            </div>
 
-        <div style={{
-          padding: '12px',
-          background: 'rgba(14, 165, 233, 0.05)',
-          borderRadius: '8px',
-          borderLeft: `3px solid ${colors.secondary}`
-        }}>
-          <p style={{
-            fontSize: '14px',
-            lineHeight: '1.6',
-            color: colors.text
-          }}>
-            {feature.description || "Detailed explanation about this feature and how it benefits your business."}
-          </p>
-        </div>
-      </motion.div>
-    ))}
-  </motion.div>
+                            <div style={{
+                            padding: '12px',
+                            background: 'rgba(14, 165, 233, 0.05)',
+                            borderRadius: '8px',
+                            borderLeft: `3px solid ${colors.secondary}`
+                            }}>
+                            <p style={{
+                                fontSize: '14px',
+                                lineHeight: '1.6',
+                                color: colors.text
+                            }}>
+                                {feature.description || "Detailed explanation about this feature and how it benefits your business."}
+                            </p>
+                            </div>
+                        </motion.div>
+                        ))}
+                    </motion.div>
 
-  {/* Mobile Indicators */}
-  {isMobile && (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      gap: '8px',
-      marginTop: '16px'
-    }}>
-      {/* Dot Indicators */}
-      <div style={{ display: 'flex', gap: '8px' }}>
-        {features.slice(0, 5).map((_, index) => (
-          <div 
-            key={index}
-            style={{
-              width: '10px',
-              height: '10px',
-              borderRadius: '50%',
-              backgroundColor: currentIndex === index ? colors.secondary : '#ddd',
-              transition: 'background-color 0.3s ease'
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Swipe Indicator */}
-      <div
-        style={{
-          textAlign: 'center',
-          fontSize: '14px',
-          color: colors.mutedText || '#888',
-          animation: 'bounceFade 2s infinite',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '6px'
-        }}
-      >
-        <ChevronLeft size={16} />
-        Swipe to explore
-        <ChevronRight size={16} />
-      </div>
-    </div>
-  )}
+                    {/* Mobile Indicators */}
+                    {isMobile && (
+                        <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '8px',
+                        marginTop: '16px'
+                        }}>
+                        {/* Dot Indicators */}
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                            {features.slice(0, 5).map((_, index) => (
+                            <div 
+                                key={index}
+                                style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                backgroundColor: currentIndex === index ? colors.secondary : '#ddd',
+                                transition: 'background-color 0.3s ease'
+                                }}
+                            />
+                            ))}
+                        </div>
+                        
+                        {/* Swipe Indicator */}
+                        <div
+                            style={{
+                            textAlign: 'center',
+                            fontSize: '14px',
+                            color: colors.mutedText || '#888',
+                            animation: 'bounceFade 2s infinite',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '6px'
+                            }}
+                        >
+                            <ChevronLeft size={16} />
+                            Swipe to explore
+                            <ChevronRight size={16} />
+                        </div>
+                        </div>
+                    )}
 
-  {/* Keyframe for mobile animation */}
-  <style>
-    {`
-      @keyframes bounceFade {
-        0%, 100% {
-          opacity: 0.4;
-          transform: translateY(0);
-        }
-        50% {
-          opacity: 1;
-          transform: translateY(-3px);
-        }
-      }
+                    {/* Keyframe for mobile animation */}
+                    <style>
+                        {`
+                        @keyframes bounceFade {
+                            0%, 100% {
+                            opacity: 0.4;
+                            transform: translateY(0);
+                            }
+                            50% {
+                            opacity: 1;
+                            transform: translateY(-3px);
+                            }
+                        }
 
-      /* Hide scrollbar on WebKit */
-      div::-webkit-scrollbar {
-        display: none;
-      }
-    `}
-  </style>
-</motion.section>
+                        /* Hide scrollbar on WebKit */
+                        div::-webkit-scrollbar {
+                            display: none;
+                        }
+                        `}
+                    </style>
+                    </motion.section>
+                    
                     <GameBanner />
 
                     {/* Business Ideas Section */}
