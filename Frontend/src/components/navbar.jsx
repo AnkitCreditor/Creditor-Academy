@@ -163,8 +163,8 @@ const Navbar = () => {
       pointerEvents: 'none'
     };
     mascotImageStyle = {
-      width: '55px',
-      height: '75px',
+      width: '90px',
+      height: '145px',
       objectFit: 'contain',
       pointerEvents: 'none',
       userSelect: 'none'
