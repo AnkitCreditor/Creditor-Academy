@@ -1,20 +1,26 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   PlayCircle, CheckCircle, ArrowRight, DollarSign, Phone, 
-  Briefcase, Star, Search, BarChart2, Settings,
-  Car, Home, CreditCard, MessageSquare, ShoppingCart,
-  Droplet, Mic, FileText, Calendar, BookOpen,
-  Truck, Box, Camera, Activity, Bookmark,
-  Coffee, Scissors, Package, Headphones, PawPrint,
-  ChevronDown, ChevronUp
+  Briefcase, Star, Search, Shield, Lock, Globe, CreditCard,
+  ChevronDown, ChevronUp, Plus, Minus, Zap,
+  Car, Home, Droplet, Mic, FileText, Calendar, BookOpen,
+  MessageSquare, ShoppingCart,
+  // Additional icons needed for business ideas
+  Truck, Box, Camera, Activity, PawPrint,
+  Headphones, Package
 } from 'lucide-react';
+
+import GameBanner from './GameBanner';
+
 import cardaccount from '../assets/cardaccount.jpg';
 import pubiccredit from '../assets/publiccredit.jpg';
 import luxurypersonal from '../assets/luxurypersonal.jpg';
 import acceptpayments from '../assets/acceptpayments.jpg';
 import stack from '../assets/stack.jpg';
 import begin from '../assets/begin.jpg';
+import Remedy from '../assets/Remedy_Result_3.jpg';
+import MP from '../assets/PMP2.jpg';
 
 const AboutPrivateBusiness = () => {
     // Color scheme
@@ -29,523 +35,57 @@ const AboutPrivateBusiness = () => {
         accent: '#38bdf8',
         mutedText: '#64748b',
         success: '#10b981',
-        gradient: 'linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%)'
+        gradient: 'linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%)',
+        gradientHover: 'linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%)'
     };
 
-    // Icon mapping for business ideas
-    const ideaIcons = {
-        "Car Rental (Turo, HyreCar)": <Car size={24} />,
-        "Airbnb / Rental Arbitrage": <Home size={24} />,
-        "Merchant Services / Payment Processing": <CreditCard size={24} />,
-        "Coaching / Consulting": <MessageSquare size={24} />,
-        "E-commerce / Dropshipping": <ShoppingCart size={24} />,
-        "Cleaning Services": <Droplet size={24} />,
-        "Podcast / Digital Studio": <Mic size={24} />,
-        "Credit Repair / Funding Agency": <FileText size={24} />,
-        "Virtual Office / Notary Services": <Calendar size={24} />,
-        "Tax Prep & Bookkeeping": <BookOpen size={24} />,
-        "Mobile Notary": <FileText size={24} />,
-        "Box Truck Freight": <Truck size={24} />,
-        "ATMs": <CreditCard size={24} />,
-        "Funnel Agency": <Box size={24} />,
-        "Event Rentals": <Calendar size={24} />,
-        "Dispatching": <Truck size={24} />,
-        "360 Photo Booths": <Camera size={24} />,
-        "Supplement Brands": <Activity size={24} />,
-        "Print-on-Demand": <Package size={24} />,
-        "Detailing": <Droplet size={24} />,
-        "Subscription Boxes": <Box size={24} />,
-        "Virtual Assistants": <Headphones size={24} />,
-        "Online Courses": <BookOpen size={24} />,
-        "Pet Services & more.": <PawPrint size={24} />
+    // Business icons mapping
+    const businessIcons = {
+        "Car Rental": <Car size={24} color="#3b82f6" />,
+        "Airbnb": <Home size={24} color="#8b5cf6" />,
+        "Payment Processing": <CreditCard size={24} color="#10b981" />,
+        "Coaching": <MessageSquare size={24} color="#ec4899" />,
+        "E-commerce": <ShoppingCart size={24} color="#f59e0b" />,
+        "Cleaning": <Droplet size={24} color="#06b6d4" />,
+        "Podcast": <Mic size={24} color="#ef4444" />,
+        "Credit Repair": <FileText size={24} color="#84cc16" />,
+        "Notary": <Calendar size={24} color="#f97316" />,
+        "Bookkeeping": <BookOpen size={24} color="#6366f1" />
     };
 
-    // Image mapping for feature cards
-    const featureImages = [
-        cardaccount,
-        pubiccredit,
-        luxurypersonal,
-        acceptpayments,
-        stack
-    ];
-
-    // Styles definition
-    const styles = {
-        pageContainer: {
-            backgroundColor: colors.background,
-            fontFamily: "'Inter', sans-serif",
-            minHeight: '100vh'
-        },
-        heroSection: {
-            backgroundColor: colors.dark,
-            color: colors.light,
-            padding: '120px 20px',
-            textAlign: 'center',
-            position: 'relative',
-            overflow: 'hidden',
-            backgroundImage: 'radial-gradient(circle at 25% 50%, rgba(56, 189, 248, 0.15) 0%, transparent 50%)'
-        },
-        heroContent: {
-            maxWidth: '900px',
-            margin: '0 auto',
-            position: 'relative',
-            zIndex: 2,
-        },
-        heroTitle: {
-            fontSize: 'clamp(36px, 5vw, 52px)',
-            fontWeight: '800',
-            marginBottom: '20px',
-            lineHeight: '1.2',
-            color: colors.light,
-            textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
-        },
-        heroSubtitle: {
-            fontSize: 'clamp(18px, 2.5vw, 24px)',
-            fontWeight: '600',
-            color: colors.light,
-            opacity: 0.9,
-            marginBottom: '40px',
-            maxWidth: '700px',
-            marginLeft: 'auto',
-            marginRight: 'auto'
-        },
-        videoPlaceholder: {
-            maxWidth: '800px',
-            margin: '40px auto 0',
-            backgroundColor: '#1e293b',
-            borderRadius: '16px',
-            aspectRatio: '16 / 9',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            border: `2px solid ${colors.secondary}`,
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
-            transition: 'all 0.3s ease',
-            position: 'relative',
-            overflow: 'hidden'
-        },
-        playButton: {
-            position: 'absolute',
-            zIndex: 2,
-            background: 'rgba(255, 255, 255, 0.2)',
-            borderRadius: '50%',
-            padding: '20px',
-            backdropFilter: 'blur(5px)',
-            transition: 'transform 0.3s ease'
-        },
-        mainContentSection: {
-            padding: '80px 20px',
-        },
-        container: {
-            maxWidth: '1200px',
-            margin: '0 auto',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '80px',
-        },
-        infoCard: {
-            backgroundColor: colors.light,
-            borderRadius: '24px',
-            padding: 'clamp(24px, 5vw, 48px)',
-            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05)',
-            border: `1px solid ${colors.primaryLight}`,
-            position: 'relative',
-            overflow: 'hidden'
-        },
-        infoCardBgPattern: {
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            width: '200px',
-            height: '200px',
-            backgroundImage: 'radial-gradient(circle, rgba(14, 165, 233, 0.1) 1px, transparent 1px)',
-            backgroundSize: '20px 20px',
-            opacity: 0.6,
-            zIndex: 0
-        },
-        sectionTitle: {
-            fontSize: 'clamp(28px, 4vw, 40px)',
-            fontWeight: '700',
-            color: colors.dark,
-            marginBottom: '32px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px',
-            position: 'relative',
-            paddingBottom: '16px',
-            zIndex: 1
-        },
-        sectionTitleUnderline: {
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '80px',
-            height: '4px',
-            backgroundColor: colors.secondary,
-            borderRadius: '2px'
-        },
-        description: {
-            fontSize: '18px',
-            color: colors.text,
-            lineHeight: '1.7',
-            marginBottom: '40px',
-            maxWidth: '800px',
-            zIndex: 1,
-            position: 'relative'
-        },
-        highlightedText: {
-            color: colors.primary,
-            fontWeight: '600',
-            backgroundColor: colors.primaryLight,
-            padding: '2px 6px',
-            borderRadius: '4px'
-        },
-        featuresGrid: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '24px',
-            position: 'relative',
-            zIndex: 1
-        },
-        featureItem: {
-            backgroundColor: colors.primaryLight,
-            borderRadius: '16px',
-            padding: '24px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-            border: `1px solid ${colors.secondary}`,
-            position: 'relative',
-            overflow: 'hidden'
-        },
-        featureImage: {
-            width: '100%',
-            height: '180px',
-            objectFit: 'cover',
-            borderRadius: '12px',
-            marginBottom: '16px',
-            border: `1px solid ${colors.secondary}`
-        },
-        featureIcon: {
-            color: colors.primary,
-            flexShrink: 0,
-            marginTop: '4px',
-        },
-        featureText: {
-            fontSize: '16px',
-            color: colors.text,
-            lineHeight: '1.6',
-            fontWeight: '500'
-        },
-        businessIdeasSection: {
-            marginTop: '60px',
-            position: 'relative',
-            zIndex: 1
-        },
-        businessIdeasGrid: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '20px',
-            marginTop: '20px'
-        },
-        ideaCard: {
-            backgroundColor: colors.light,
-            borderRadius: '12px',
-            padding: '20px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-            border: `1px solid ${colors.primaryLight}`,
-            transition: 'all 0.3s ease',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px'
-        },
-        ideaIcon: {
-            color: colors.primary,
-            backgroundColor: colors.primaryLight,
-            padding: '12px',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0
-        },
-        ideaText: {
-            fontSize: '16px',
-            fontWeight: '500',
-            color: colors.text
-        },
-        listTitle: {
-            fontSize: '22px',
-            fontWeight: '600',
-            color: colors.dark,
-            marginBottom: '24px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px'
-        },
-        ctaSection: {
-            backgroundColor: colors.light,
-            borderRadius: '24px',
-            padding: '60px 40px',
-            boxShadow: '0 10px 30px rgba(3, 105, 161, 0.1)',
-            maxWidth: '800px',
-            margin: '0 auto',
-            border: `1px solid ${colors.primaryLight}`,
-            position: 'relative',
-            overflow: 'hidden'
-        },
-        ctaBgPattern: {
-            position: 'absolute',
-            bottom: '-50px',
-            right: '-50px',
-            width: '200px',
-            height: '200px',
-            backgroundImage: 'radial-gradient(circle, rgba(14, 165, 233, 0.1) 1px, transparent 1px)',
-            backgroundSize: '20px 20px',
-            opacity: 0.6,
-            zIndex: 0
-        },
-        ctaTitle: {
-            fontSize: 'clamp(24px, 4vw, 32px)',
-            fontWeight: '700',
-            color: colors.dark,
-            marginBottom: '24px',
-            textAlign: 'center',
-            position: 'relative',
-            paddingBottom: '16px',
-            zIndex: 1
-        },
-        ctaTitleUnderline: {
-            position: 'absolute',
-            bottom: 0,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '80px',
-            height: '4px',
-            backgroundColor: colors.secondary,
-            borderRadius: '2px'
-        },
-        ctaDescription: {
-            fontSize: '18px',
-            color: colors.text,
-            lineHeight: '1.6',
-            marginBottom: '32px',
-            textAlign: 'center',
-            position: 'relative',
-            zIndex: 1
-        },
-        checklist: {
-            listStyle: 'none',
-            padding: 0,
-            margin: '0 auto 32px',
-            maxWidth: '500px',
-            position: 'relative',
-            zIndex: 1
-        },
-        checklistItem: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            fontSize: '16px',
-            color: colors.text,
-            marginBottom: '16px',
-            padding: '12px 16px',
-            borderRadius: '8px',
-            backgroundColor: colors.primaryLight,
-            transition: 'all 0.3s ease',
-            position: 'relative',
-            overflow: 'hidden'
-        },
-        checklistItemBg: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            backgroundColor: colors.success,
-            opacity: 0.1,
-            transition: 'width 0.6s ease'
-        },
-        completedItem: {
-            backgroundColor: '#f0fdf4',
-            color: colors.success,
-            fontWeight: '500'
-        },
-        checkIcon: {
-            color: colors.success,
-            flexShrink: 0
-        },
-        uncheckedIcon: {
-            color: colors.mutedText,
-            flexShrink: 0
-        },
-        divider: {
-            height: '1px',
-            backgroundColor: colors.primaryLight,
-            margin: '24px auto',
-            width: '80%',
-            position: 'relative',
-            zIndex: 1
-        },
-        priceTag: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '10px',
-            fontSize: '20px',
-            fontWeight: '600',
-            color: colors.dark,
-            marginBottom: '24px',
-            position: 'relative',
-            zIndex: 1
-        },
-        dollarIcon: {
-            color: colors.secondary
-        },
-        ctaButton: {
-            background: colors.gradient,
-            color: colors.light,
-            border: 'none',
-            padding: '16px 32px',
-            fontSize: '18px',
-            borderRadius: '12px',
-            cursor: 'pointer',
-            fontWeight: '600',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            boxShadow: `0 10px 20px rgba(14, 165, 233, 0.3)`,
-            width: '100%',
-            maxWidth: '400px',
-            margin: '0 auto',
-            justifyContent: 'center',
-            transition: 'all 0.3s ease',
-            position: 'relative',
-            zIndex: 1,
-            overflow: 'hidden'
-        },
-        ctaButtonHover: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'rgba(255,255,255,0.2)',
-            transform: 'translateX(-100%)',
-            transition: 'transform 0.6s ease'
-        },
-        featureCardContent: {
-            position: 'relative',
-            zIndex: 2
-        },
-        expandableSection: {
-            marginTop: '24px',
-            overflow: 'hidden'
-        },
-        expandButton: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: 'transparent',
-            border: 'none',
-            color: colors.primary,
-            fontWeight: '600',
-            cursor: 'pointer',
-            padding: '8px 0',
-            marginTop: '16px'
-        },
-        floatingShapes: {
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            top: 0,
-            left: 0,
-            pointerEvents: 'none',
-            zIndex: 0,
-            overflow: 'hidden'
-        },
-        floatingShape: {
-            position: 'absolute',
-            borderRadius: '50%',
-            opacity: 0.1,
-            filter: 'blur(20px)'
-        },
-        imageTextContainer: {
-            display: 'flex',
-            flexDirection: 'row',
-            gap: '24px',
-            alignItems: 'center',
-            flexWrap: 'nowrap', // Prevent wrapping
-            maxWidth: '800px',
-            zIndex: 1,
-            position: 'relative'
-        },
-        beginImage: {
-            width: '300px', // Fixed width to ensure same-row layout
-            height: 'auto',
-            borderRadius: '12px',
-            border: `1px solid ${colors.secondary}`,
-            objectFit: 'cover'
-        },
-        textContainer: {
-            flex: 1, // Allow text to take remaining space
-            minWidth: 0 // Prevent overflow issues
-        }
-    };
-
-    const whatYoullMaster = [
+    // Features data
+    const features = [
         {
-            title: "Structure UBOTs to unlock vendor and card accounts (Tier 1—4)",
-            image: cardaccount
+            title: "Structure UBOTs to unlock vendor and card accounts",
+            image: cardaccount,
+            icon: <Shield size={24} color={colors.secondary} />
         },
         {
-            title: "Dispute & fix your public credit file lawfully (no third-party repair scams)",
-            image: pubiccredit
+            title: "Dispute & fix your public credit file lawfully",
+            image: pubiccredit,
+            icon: <Search size={24} color={colors.success} />
         },
         {
-            title: "Improve personal credit for credit cards, personal loans & mortgages",
-            image: luxurypersonal
+            title: "Improve personal credit for loans & mortgages",
+            image: luxurypersonal,
+            icon: <CreditCard size={24} color="#8b5cf6" />
         },
         {
-            title: "Accept payments privately with non-KYC merchant gateways",
-            image: acceptpayments
+            title: "Accept payments privately with non-KYC gateways",
+            image: acceptpayments,
+            icon: <Globe size={24} color="#f59e0b" />
         },
         {
             title: "Stack funding at 0% APR to launch and scale fast",
-            image: stack
+            image: stack,
+            icon: <Zap size={24} color="#ec4899" />
         }
     ];
 
-    const top10Ideas = [
-        "Car Rental (Turo, HyreCar)",
-        "Airbnb / Rental Arbitrage", 
-        "Merchant Services / Payment Processing",
-        "Coaching / Consulting", 
-        "E-commerce / Dropshipping", 
-        "Cleaning Services",
-        "Podcast / Digital Studio", 
-        "Credit Repair / Funding Agency", 
-        "Virtual Office / Notary Services",
-        "Tax Prep & Bookkeeping"
-    ];
-    
-    const plus15More = [
-        "Mobile Notary", 
-        "Box Truck Freight", 
-        "ATMs", 
-        "Funnel Agency", 
-        "Event Rentals", 
-        "Dispatching",
-        "360 Photo Booths", 
-        "Supplement Brands", 
-        "Print-on-Demand", 
-        "Detailing", 
-        "Subscription Boxes",
-        "Virtual Assistants", 
-        "Online Courses", 
-        "Pet Services & more."
+    const businessIdeas = [
+        "Car Rental", "Airbnb", "Payment Processing", "Coaching", 
+        "E-commerce", "Cleaning", "Podcast", "Credit Repair", 
+        "Notary", "Bookkeeping"
     ];
 
     const checklistItems = [
@@ -554,13 +94,18 @@ const AboutPrivateBusiness = () => {
         { text: "Set up your private payment system", completed: true }
     ];
 
+    // State management
+    const [expandedIdeas, setExpandedIdeas] = useState(false);
+    const [activeFeature, setActiveFeature] = useState(null);
+
     // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1
+                staggerChildren: 0.1,
+                delayChildren: 0.2
             }
         }
     };
@@ -572,453 +117,1128 @@ const AboutPrivateBusiness = () => {
             opacity: 1,
             transition: {
                 duration: 0.6,
-                ease: "easeOut"
+                ease: [0.16, 1, 0.3, 1]
             }
         }
     };
 
     const fadeIn = {
         hidden: { opacity: 0 },
-        visible: { opacity: 1 }
+        visible: { 
+            opacity: 1,
+            transition: { duration: 0.8, ease: "easeOut" }
+        }
     };
 
     const scaleUp = {
         hidden: { scale: 0.95, opacity: 0 },
-        visible: { scale: 1, opacity: 1 }
+        visible: { 
+            scale: 1, 
+            opacity: 1,
+            transition: { 
+                duration: 0.8, 
+                ease: [0.16, 1, 0.3, 1] 
+            }
+        }
     };
 
     const slideUp = {
-        hidden: { y: 50, opacity: 0 },
-        visible: { y: 0, opacity: 1 }
+        hidden: { y: 30, opacity: 0 },
+        visible: { 
+            y: 0, 
+            opacity: 1,
+            transition: { 
+                duration: 0.8, 
+                ease: [0.16, 1, 0.3, 1] 
+            }
+        }
     };
 
-    const [expandedIdeas, setExpandedIdeas] = React.useState(false);
+    // Responsive glass card style
+    const glassCardStyle = {
+        background: `linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%)`,
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.2)',
+        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+        borderRadius: '24px',
+        overflow: 'hidden',
+        padding: 'clamp(24px, 5vw, 48px)',
+        margin: '0 16px'
+    };
 
-    // Floating shapes for background decoration
-    const floatingShapes = [
-        { size: '150px', color: colors.primary, top: '10%', left: '5%', animationDelay: '0s' },
-        { size: '200px', color: colors.secondary, top: '60%', left: '80%', animationDelay: '2s' },
-        { size: '100px', color: colors.accent, top: '30%', left: '70%', animationDelay: '1s' },
-        { size: '180px', color: colors.primary, top: '70%', left: '10%', animationDelay: '3s' }
-    ];
+    // Add this utility function at the top of your file
+    const hexToRgba = (hex, alpha = 1) => {
+    // Remove # if present
+    hex = hex.replace('#', '');
+    
+    // Parse r, g, b values
+    const r = parseInt(hex.length === 3 ? hex.slice(0, 1).repeat(2) : hex.slice(0, 2), 16);
+    const g = parseInt(hex.length === 3 ? hex.slice(1, 2).repeat(2) : hex.slice(2, 4), 16);
+    const b = parseInt(hex.length === 3 ? hex.slice(2, 3).repeat(2) : hex.slice(4, 6), 16);
+    
+    // Return rgba string
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    };
 
     return (
-        <div style={styles.pageContainer}>
+        <div style={{
+            backgroundColor: colors.background,
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+            minHeight: '100vh',
+            position: 'relative'
+        }}>
             {/* Hero Section */}
-            <section style={styles.heroSection}>
-                <div style={styles.heroContent}>
+            <section style={{
+                backgroundColor: colors.dark,
+                color: colors.light,
+                padding: '120px 20px 80px',
+                textAlign: 'center',
+                position: 'relative',
+                overflow: 'hidden'
+            }}>
+                <div style={{
+                    maxWidth: '1000px',
+                    margin: '0 auto',
+                    position: 'relative',
+                    zIndex: 2
+                }}>
                     <motion.h1
-                        style={styles.heroTitle}
-                        initial={{ y: 30, opacity: 0 }}
+                        style={{
+                            fontSize: 'clamp(2rem, 6vw, 3.5rem)',
+                            fontWeight: '800',
+                            marginBottom: '20px',
+                            lineHeight: '1.2',
+                            background: 'linear-gradient(90deg, #ffffff, #e0f2fe)',
+                            WebkitBackgroundClip: 'text',
+                            backgroundClip: 'text',
+                            color: 'transparent'
+                        }}
+                        initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0.8, 0.3, 1] }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         SENIOR: Private Business Credit
                     </motion.h1>
+                    
                     <motion.p
-                        style={styles.heroSubtitle}
-                        initial={{ y: 30, opacity: 0 }}
+                        style={{
+                            fontSize: 'clamp(1.1rem, 3vw, 1.5rem)',
+                            fontWeight: '600',
+                            color: 'rgba(255,255,255,0.9)',
+                            marginBottom: '40px',
+                            lineHeight: '1.5'
+                        }}
+                        initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.4, ease: [0.2, 0.8, 0.3, 1] }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                        Build $200K+ in Business Credit — No SSN. No PG. No Banks.
+                        Build $200K+ in Business Credit — <span style={{ color: colors.accent }}>No SSN. No PG. No Banks.</span>
                     </motion.p>
+                    
                     <motion.div
-                        style={styles.videoPlaceholder}
-                        whileHover={{ scale: 1.02, boxShadow: `0 25px 50px rgba(0, 0, 0, 0.4)` }}
-                        whileTap={{ scale: 0.98 }}
+                        style={{
+                            maxWidth: '800px',
+                            margin: '0 auto',
+                            aspectRatio: '16 / 9',
+                            position: 'relative',
+                            cursor: 'pointer',
+                            borderRadius: '16px',
+                            overflow: 'hidden',
+                            border: `2px solid ${colors.secondary}`,
+                            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
+                        }}
+                        whileHover={{ scale: 1.02 }}
                         initial={{ scale: 0.95, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.6, type: 'spring' }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
                         onClick={() => alert("Video player will be implemented here.")}
                     >
-                        <motion.div 
-                            style={styles.playButton}
-                            whileHover={{ scale: 1.1 }}
-                        >
+                        <div style={{
+                            position: 'absolute',
+                            inset: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 2,
+                            background: 'rgba(0,0,0,0.3)'
+                        }}>
                             <PlayCircle size={60} color={colors.light} />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1 }}
+                        </div>
+                        <img 
+                            src={begin} 
+                            alt="Preview" 
                             style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
                                 width: '100%',
                                 height: '100%',
-                                background: 'linear-gradient(45deg, rgba(14, 165, 233, 0.2), rgba(14, 165, 233, 0.1))',
-                                zIndex: 1
+                                objectFit: 'cover'
                             }}
                         />
                     </motion.div>
                 </div>
+            </section>
+
+                <motion.div
+                    style={{
+                        Width: '1200px',
+                        margin: '0 auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '60px'
+                    }}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={containerVariants}
+                >
+                {/* Enhanced Intro Section */}
+                <motion.section 
+                    style={{
+                        ...glassCardStyle,
+                        marginTop: '40px',
+                        padding: '60px 30px',
+                        borderRadius: '24px',
+                        backdropFilter: 'blur(12px)',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)',
+                    }}
+                    variants={scaleUp}
+                >
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: '50px',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                        justifyContent: 'center'
+                    }}>
+                        <motion.div
+                            style={{
+                                flex: 1,
+                                minWidth: '320px',
+                                maxWidth: '480px',
+                                borderRadius: '20px',
+                                overflow: 'hidden',
+                                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25)',
+                                transition: 'transform 0.3s ease',
+                            }}
+                            whileHover={{ scale: 1.02 }}
+                            variants={fadeIn}
+                        >
+                            <img 
+                                src={begin} 
+                                alt="Financial Sovereignty"
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    display: 'block',
+                                    objectFit: 'cover'
+                                }}
+                            />
+                        </motion.div>
+                        
+                        <motion.div 
+                            style={{
+                                flex: 1,
+                                minWidth: '300px',
+                                maxWidth: '600px'
+                            }}
+                            variants={fadeIn}
+                            transition={{ delay: 0.2 }}
+                        >
+                            <p style={{
+                                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+                                color: colors.text,
+                                lineHeight: '1.8',
+                                fontWeight: 500,
+                                marginBottom: '1.5rem'
+                            }}>
+                                This isn't just funding. It's <span style={{
+                                    color: colors.primary,
+                                    fontWeight: '700',
+                                    background: `linear-gradient(120deg, ${colors.primaryLight} 0%, rgba(255,255,255,0) 90%)`,
+                                    padding: '4px 10px',
+                                    borderRadius: '6px',
+                                    display: 'inline-block',
+                                    boxShadow: `0 0 0 3px rgba(0,0,0,0.05)`
+                                }}>
+                                    financial sovereignty
+                                </span>.
+                            </p>
+                            
+                            <p style={{
+                                fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                                color: colors.text,
+                                lineHeight: '1.75',
+                                marginBottom: '1.8rem'
+                            }}>
+                                Learn to build elite business credit with <strong style={{
+                                    color: colors.primary,
+                                    fontWeight: '600'
+                                }}>UBOT Trusts</strong>, repair your personal credit, and establish Private Merchant Processing — no banks, no KYC, no risk of shutdowns.
+                            </p>
+                            
+                            <div style={{
+                                display: 'flex',
+                                gap: '16px',
+                                flexWrap: 'wrap',
+                                marginTop: '35px'
+                            }}>
+                                <motion.button
+                                    whileHover={{ y: -4, boxShadow: '0 10px 20px rgba(0,0,0,0.25)' }}
+                                    whileTap={{ scale: 0.97 }}
+                                    style={{
+                                        padding: '14px 28px',
+                                        background: colors.primary,
+                                        color: '#fff',
+                                        borderRadius: '10px',
+                                        fontWeight: '600',
+                                        fontSize: '1rem',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                >
+                                    Learn More
+                                </motion.button>
+
+                                <motion.button
+                                    whileHover={{ y: -4, boxShadow: `0 10px 20px ${colors.primary}40` }}
+                                    whileTap={{ scale: 0.97 }}
+                                    style={{
+                                        padding: '14px 28px',
+                                        background: 'transparent',
+                                        color: colors.primary,
+                                        border: `2px solid ${colors.primary}`,
+                                        borderRadius: '10px',
+                                        fontWeight: '600',
+                                        fontSize: '1rem',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                >
+                                    Watch Video
+                                </motion.button>
+                            </div>
+                        </motion.div>
+                    </div>
+                </motion.section>
+
+                {/* Courses Section with Creative Layout */}
+                <motion.section
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                style={{
+                    margin: '20px 0',
+                    position: 'relative'
+                }}
+                >
+                {/* Decorative elements */}
+                <div style={{
+                    position: 'absolute',
+                    top: '-50px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '150px',
+                    height: '150px',
+                    borderRadius: '50%',
+                    background: `radial-gradient(circle, ${colors.primaryLight} 0%, rgba(255,255,255,0) 70%)`,
+                    filter: 'blur(30px)',
+                    zIndex: 0
+                }} />
                 
-                {/* Floating background shapes */}
-                <div style={styles.floatingShapes}>
-                    {floatingShapes.map((shape, index) => (
+                {/* Section header */}
+                <motion.h3 
+                    style={{
+                    textAlign: 'center',
+                    fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+                    marginBottom: '60px',
+                    position: 'relative',
+                    color: colors.text
+                    }}
+                    variants={fadeIn}
+                >
+                    Your Path to <span style={{
+                    color: colors.primary,
+                    position: 'relative',
+                    display: 'inline-block'
+                    }}>
+                    Financial Freedom
+                    <motion.span 
+                        style={{
+                        position: 'absolute',
+                        bottom: '-5px',
+                        left: 0,
+                        width: '100%',
+                        height: '3px',
+                        background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
+                        borderRadius: '3px'
+                        }}
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                    />
+                    </span>
+                </motion.h3>
+
+                {/* Courses container */}
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexWrap: 'wrap',
+                    gap: '40px',
+                    position: 'relative',
+                    zIndex: 1
+                }}>
+                    {/* "I Want Remedy Now" Course Card */}
+                    <motion.div
+                    whileHover={{ y: -10 }}
+                    style={{
+                        background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
+                        borderRadius: '20px',
+                        padding: '30px',
+                        width: 'clamp(300px, 30vw, 400px)',
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+                        border: `1px solid ${hexToRgba(colors.primary, 0.2)}`,
+                        position: 'relative',
+                        overflow: 'hidden'
+                    }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    >
+                    {/* Added Image at the Top */}
+                    <div style={{
+                        width: '100%',
+                        height: '220px',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        marginBottom: '20px',
+                        position: 'relative'
+                    }}>
+                        <img 
+                        src={Remedy} 
+                        alt="Credit Repair Illustration"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                        }}
+                        />
+                        <div style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: '40%',
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
+                        }} />
+                    </div>
+
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        width: '100px',
+                        height: '100px',
+                        background: `linear-gradient(45deg, ${colors.primary}, ${colors.secondary})`,
+                        clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
+                        opacity: 0.1
+                    }} />
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '20px'
+                    }}>
+                        <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '15px'
+                        }}>
+                        <div style={{
+                            width: '50px',
+                            height: '50px',
+                            borderRadius: '12px',
+                            background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexShrink: 0
+                        }}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <h4 style={{
+                            fontSize: '1.5rem',
+                            margin: 0,
+                            color: colors.primary,
+                            fontWeight: '700'
+                        }}>I Want Remedy Now</h4>
+                        </div>
+                        <p style={{
+                        color: colors.textSecondary,
+                        lineHeight: '1.7'
+                        }}>
+                        Fix your personal credit with our proven system. Remove negative items, boost your score, and gain financial control.
+                        </p>
+                    </div>
+                    </motion.div>
+
+                    {/* Plus sign connector */}
+                    <motion.div
+                    style={{
+                        width: '60px',
+                        height: '60px',
+                        borderRadius: '50%',
+                        background: colors.primary,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        position: 'relative',
+                        flexShrink: 0
+                    }}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    >
+                    <div style={{
+                        position: 'absolute',
+                        width: '30px',
+                        height: '4px',
+                        background: 'white',
+                        borderRadius: '2px'
+                    }} />
+                    <div style={{
+                        position: 'absolute',
+                        width: '4px',
+                        height: '30px',
+                        background: 'white',
+                        borderRadius: '2px'
+                    }} />
+                    <div style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '50%',
+                        border: `2px dashed ${colors.primary}`,
+                        animation: 'spin 15s linear infinite',
+                        opacity: 0.3
+                    }} />
+                    </motion.div>
+
+                    {/* Private Merchant Processing Course Card */}
+                    <motion.div
+                    whileHover={{ y: -10 }}
+                    style={{
+                        background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
+                        borderRadius: '20px',
+                        padding: '30px',
+                        width: 'clamp(300px, 30vw, 400px)',
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+                        border: `1px solid ${hexToRgba(colors.secondary, 0.2)}`,
+                        position: 'relative',
+                        overflow: 'hidden'
+                    }}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    >
+                    {/* Added Image at the Top */}
+                    <div style={{
+                        width: '100%',
+                        height: '220px',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        marginBottom: '20px',
+                        position: 'relative'
+                    }}>
+                        <img 
+                        src={MP} 
+                        alt="Payment Processing Illustration"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                        }}
+                        />
+                        <div style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: '40%',
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
+                        }} />
+                    </div>
+
+                    <div style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: '100px',
+                        height: '100px',
+                        background: `linear-gradient(45deg, ${colors.secondary}, ${colors.primary})`,
+                        clipPath: 'polygon(0 100%, 100% 0, 0 0)',
+                        opacity: 0.1
+                    }} />
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '20px'
+                    }}>
+                        <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '15px'
+                        }}>
+                        <div style={{
+                            width: '50px',
+                            height: '50px',
+                            borderRadius: '12px',
+                            background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexShrink: 0
+                        }}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="M2 10h20M7 15h1m4 0h1m4 0h1"></path>
+                            </svg>
+                        </div>
+                        <h4 style={{
+                            fontSize: '1.5rem',
+                            margin: 0,
+                            color: colors.secondary,
+                            fontWeight: '700'
+                        }}>Private Merchant Processing</h4>
+                        </div>
+                        <p style={{
+                        color: colors.textSecondary,
+                        lineHeight: '1.7'
+                        }}>
+                        Process payments without banks. No KYC, no shutdowns. Take full control of your financial transactions.
+                        </p>
+                    </div>
+                    </motion.div>
+                </div>
+
+                {/* UBOT Trusts mention at bottom */}
+                <motion.p
+                    style={{
+                    textAlign: 'center',
+                    marginTop: '60px',
+                    fontSize: '1.2rem',
+                    color: colors.text
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    viewport={{ once: true }}
+                >
+                    Plus learn to build business credit with <strong style={{
+                    color: colors.primary,
+                    fontWeight: '600',
+                    position: 'relative'
+                    }}>
+                    UBOT Trusts
+                    <motion.span 
+                        style={{
+                        position: 'absolute',
+                        bottom: '-2px',
+                        left: 0,
+                        width: '100%',
+                        height: '2px',
+                        background: colors.primary,
+                        borderRadius: '2px'
+                        }}
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        viewport={{ once: true }}
+                    />
+                    </strong>
+                </motion.p>
+                </motion.section>
+
+                {/* Add this to your global styles */}
+                <style jsx global>{`
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                `}</style>
+
+                    {/* Features Section */}
+                    <motion.section 
+                    style={{
+                        ...glassCardStyle,
+                        marginTop: '40px'
+                    }}
+                    variants={scaleUp}
+                    >
+                    <motion.h2 
+                        style={{
+                        fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                        fontWeight: '700',
+                        color: colors.dark,
+                        marginBottom: '40px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '12px',
+                        width: '100%',
+                        textAlign: 'center'
+                        }}
+                        variants={slideUp}
+                    >
+                        <CheckCircle size={28} color={colors.secondary} />
+                        What You'll Master:
+                    </motion.h2>
+                    
+                    <motion.div
+                        style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                        gap: '20px'
+                        }}
+                        variants={containerVariants}
+                    >
+                        {features.map((feature, index) => (
                         <motion.div
                             key={index}
                             style={{
-                                ...styles.floatingShape,
-                                width: shape.size,
-                                height: shape.size,
-                                backgroundColor: shape.color,
-                                top: shape.top,
-                                left: shape.left
+                            background: colors.light,
+                            borderRadius: '16px',
+                            padding: '20px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '16px',
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                            border: `1px solid ${colors.primaryLight}`,
                             }}
-                            animate={{
-                                y: [0, -20, 0],
-                                x: [0, 10, 0]
-                            }}
-                            transition={{
-                                duration: 10 + index * 2,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: parseFloat(shape.animationDelay)
-                            }}
-                        />
-                    ))}
-                </div>
-            </section>
-
-            {/* Main Content Section */}
-            <main style={styles.mainContentSection}>
-                <motion.div
-                    style={styles.container}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                    variants={containerVariants}
-                >
-                    <motion.section 
-                        style={styles.infoCard}
-                        variants={scaleUp}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <div style={styles.infoCardBgPattern} />
-                        
-                        <motion.div 
-                            style={styles.imageTextContainer}
-                            variants={fadeIn}
-                            transition={{ delay: 0.2 }}
+                            variants={itemVariants}
+                            whileHover={{ y: -5 }}
                         >
-                            <motion.img 
-                                src={begin} 
-                                alt="Financial Sovereignty"
-                                style={styles.beginImage}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.6 }}
-                                viewport={{ once: true }}
+                            <img 
+                            src={feature.image} 
+                            alt={feature.title}
+                            style={{
+                                width: '100%',
+                                height: '160px',
+                                objectFit: 'cover',
+                                borderRadius: '12px'
+                            }}
                             />
-                            <div style={styles.textContainer}>
-                                <div style={styles.description}>
-                                    This isn't just funding. It's <span style={styles.highlightedText}>financial sovereignty</span>.<br />
-                                    You'll learn how to build business credit using <span style={styles.highlightedText}>UBOT Trusts</span>, fix your personal credit through our "<span style={styles.highlightedText}>I Want Remedy Now</span>" system, and set up Private Merchant Processing — no banks, no KYC, no shutdowns.
-                                </div>
+                            
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{
+                                background: 'rgba(14, 165, 233, 0.1)',
+                                padding: '10px',
+                                borderRadius: '8px'
+                            }}>
+                                {feature.icon}
+                            </div>
+                            <p style={{
+                                fontSize: '16px',
+                                fontWeight: '500',
+                                flex: 1
+                            }}>
+                                {feature.title}
+                            </p>
+                            </div>
+
+                            {/* Always-visible description */}
+                            <div style={{
+                            padding: '12px',
+                            background: 'rgba(14, 165, 233, 0.05)',
+                            borderRadius: '8px',
+                            borderLeft: `3px solid ${colors.secondary}`
+                            }}>
+                            <p style={{
+                                fontSize: '14px',
+                                lineHeight: '1.6',
+                                color: colors.text
+                            }}>
+                                {feature.description || "Detailed explanation about this feature and how it benefits your business."}
+                            </p>
                             </div>
                         </motion.div>
-                        
-                        <div>
-                            <motion.h2 
-                                style={styles.sectionTitle}
-                                variants={slideUp}
-                            >
-                                <motion.span
-                                    animate={{ rotate: [0, 10, -10, 0] }}
-                                    transition={{ duration: 1, delay: 0.5 }}
-                                >
-                                    <CheckCircle size={32} color={colors.secondary} />
-                                </motion.span>
-                                What You'll Master:
-                                <span style={styles.sectionTitleUnderline}></span>
-                            </motion.h2>
-                            
-                            <motion.div
-                                style={styles.featuresGrid}
-                                variants={containerVariants}
-                            >
-                                {whatYoullMaster.map((feature, index) => (
-                                    <motion.div
-                                        key={index}
-                                        style={styles.featureItem}
-                                        variants={itemVariants}
-                                        whileHover={{ 
-                                            y: -10,
-                                            boxShadow: `0 15px 30px rgba(3, 105, 161, 0.15)`
-                                        }}
-                                        transition={{ type: 'spring', stiffness: 300 }}
-                                    >
-                                        <div style={styles.featureCardContent}>
-                                            <motion.img 
-                                                src={feature.image} 
-                                                alt={feature.title}
-                                                style={styles.featureImage}
-                                                initial={{ opacity: 0, scale: 0.9 }}
-                                                whileInView={{ opacity: 1, scale: 1 }}
-                                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                                viewport={{ once: true }}
-                                                whileHover={{ scale: 1.03 }}
-                                            />
-                                            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-                                                <motion.div
-                                                    whileHover={{ scale: 1.1 }}
-                                                    whileTap={{ scale: 0.9 }}
-                                                >
-                                                    <CheckCircle size={24} style={styles.featureIcon} />
-                                                </motion.div>
-                                                <p style={styles.featureText}>{feature.title}</p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </div>
-
-                        <div style={styles.businessIdeasSection}>
-                            <div>
-                                <motion.h2 
-                                    style={styles.sectionTitle}
-                                    variants={slideUp}
-                                >
-                                    <motion.span
-                                        animate={{ rotate: [0, 10, -10, 0] }}
-                                        transition={{ duration: 1, delay: 0.5 }}
-                                    >
-                                        <Briefcase size={32} color={colors.secondary} />
-                                    </motion.span>
-                                    Launch These Businesses Using Business Credit:
-                                    <span style={styles.sectionTitleUnderline}></span>
-                                </motion.h2>
-                                
-                                <motion.h3 
-                                    style={styles.listTitle}
-                                    variants={fadeIn}
-                                    transition={{ delay: 0.2 }}
-                                >
-                                    <motion.span
-                                        animate={{ scale: [1, 1.2, 1] }}
-                                        transition={{ duration: 1, repeat: Infinity, repeatDelay: 3 }}
-                                    >
-                                        <Star size={20} color={colors.secondary} />
-                                    </motion.span>
-                                    Top 10 Ideas:
-                                </motion.h3>
-                                <motion.div
-                                    style={styles.businessIdeasGrid}
-                                    variants={containerVariants}
-                                >
-                                    {top10Ideas.map((idea, index) => (
-                                        <motion.div
-                                            key={`top10-${index}`}
-                                            style={styles.ideaCard}
-                                            variants={itemVariants}
-                                            whileHover={{ 
-                                                y: -5,
-                                                boxShadow: `0 8px 20px rgba(3, 105, 161, 0.15)`
-                                            }}
-                                            transition={{ type: 'spring', stiffness: 300 }}
-                                        >
-                                            <motion.div 
-                                                style={styles.ideaIcon}
-                                                whileHover={{ rotate: 10 }}
-                                            >
-                                                {ideaIcons[idea]}
-                                            </motion.div>
-                                            <p style={styles.ideaText}>{idea}</p>
-                                        </motion.div>
-                                    ))}
-                                </motion.div>
-                                
-                                <motion.div
-                                    style={styles.expandableSection}
-                                    initial={{ height: expandedIdeas ? 'auto' : 0 }}
-                                    animate={{ height: expandedIdeas ? 'auto' : 0 }}
-                                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                                >
-                                    <motion.h3 
-                                        style={{...styles.listTitle, marginTop: '40px'}}
-                                        variants={fadeIn}
-                                        transition={{ delay: 0.2 }}
-                                    >
-                                        <Star size={20} color={colors.secondary} />
-                                        + 15 More Ideas:
-                                    </motion.h3>
-                                    <motion.div
-                                        style={styles.businessIdeasGrid}
-                                        variants={containerVariants}
-                                    >
-                                        {plus15More.map((idea, index) => (
-                                            <motion.div
-                                                key={`plus15-${index}`}
-                                                style={styles.ideaCard}
-                                                variants={itemVariants}
-                                                whileHover={{ 
-                                                    y: -5,
-                                                    boxShadow: `0 8px 20px rgba(3, 105, 161, 0.15)`
-                                                }}
-                                                transition={{ type: 'spring', stiffness: 300 }}
-                                            >
-                                                <motion.div 
-                                                    style={styles.ideaIcon}
-                                                    whileHover={{ rotate: 10 }}
-                                                >
-                                                    {ideaIcons[idea]}
-                                                </motion.div>
-                                                <p style={styles.ideaText}>{idea}</p>
-                                            </motion.div>
-                                        ))}
-                                    </motion.div>
-                                </motion.div>
-                                
-                                <button 
-                                    style={styles.expandButton}
-                                    onClick={() => setExpandedIdeas(!expandedIdeas)}
-                                >
-                                    {expandedIdeas ? (
-                                        <>
-                                            <ChevronUp size={18} />
-                                            Show Less Ideas
-                                        </>
-                                    ) : (
-                                        <>
-                                            <ChevronDown size={18} />
-                                            Show More Ideas
-                                        </>
-                                    )}
-                                </button>
-                            </div>
-                        </div>
+                        ))}
+                    </motion.div>
                     </motion.section>
 
-                    {/* Next Step / CTA Section */}
-                    <motion.section
-                        style={styles.ctaSection}
-                        variants={scaleUp}
-                        transition={{ duration: 0.8 }}
+
+                    <GameBanner />
+
+                    {/* Business Ideas Section */}
+                    <motion.section 
+                    style={{
+                        ...glassCardStyle,
+                        marginTop: '40px',
+                        padding: 'clamp(24px, 5vw, 40px)'
+                    }}
+                    variants={scaleUp}
                     >
-                        <div style={styles.ctaBgPattern} />
-                        <div style={styles.floatingShapes}>
-                            {floatingShapes.slice(0, 2).map((shape, index) => (
+                    <motion.h2 
+                        style={{
+                        fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                        fontWeight: '700',
+                        color: colors.dark,
+                        marginBottom: '30px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px',
+                        justifyContent: 'center', // 👈 center the icon + text
+                        width: '100%',            // 👈 ensures it spans full width
+                        textAlign: 'center'
+                        }}
+                        variants={slideUp}
+                    >
+                        <Briefcase size={28} color={colors.secondary} />
+                        Launch These Businesses Using Business Credit
+                    </motion.h2>
+
+                    {/* Top 10 Ideas */}
+                    <motion.div variants={fadeIn}>
+                        <motion.h3 
+                        style={{
+                            fontSize: '1.25rem',
+                            fontWeight: '600',
+                            color: colors.dark,
+                            marginBottom: '20px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px'
+                        }}
+                        >
+                        <Star size={20} color={colors.secondary} />
+                        Top 10 Ideas:
+                        </motion.h3>
+
+                        <motion.div
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                            gap: '16px',
+                            marginBottom: '30px'
+                        }}
+                        variants={containerVariants}
+                        >
+                        {[
+                            { name: "Car Rental (Turo, HyreCar)", icon: <Car size={20} color="#3b82f6" /> },
+                            { name: "Airbnb / Rental Arbitrage", icon: <Home size={20} color="#8b5cf6" /> },
+                            { name: "Merchant Services / Payment Processing", icon: <CreditCard size={20} color="#10b981" /> },
+                            { name: "Coaching / Consulting", icon: <MessageSquare size={20} color="#ec4899" /> },
+                            { name: "E-commerce / Dropshipping", icon: <ShoppingCart size={20} color="#f59e0b" /> },
+                            { name: "Cleaning Services", icon: <Droplet size={20} color="#06b6d4" /> },
+                            { name: "Podcast / Digital Studio", icon: <Mic size={20} color="#ef4444" /> },
+                            { name: "Credit Repair / Funding Agency", icon: <FileText size={20} color="#84cc16" /> },
+                            { name: "Virtual Office / Notary Services", icon: <Calendar size={20} color="#f97316" /> },
+                            { name: "Tax Prep & Bookkeeping", icon: <BookOpen size={20} color="#6366f1" /> }
+                        ].map((idea, index) => (
+                            <motion.div
+                            key={`top10-${index}`}
+                            style={{
+                                background: colors.light,
+                                borderRadius: '12px',
+                                padding: '16px',
+                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                                border: `1px solid ${colors.primaryLight}`,
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '12px',
+                                transition: 'all 0.3s ease'
+                            }}
+                            variants={itemVariants}
+                            whileHover={{ 
+                                y: -3,
+                                boxShadow: `0 8px 20px rgba(3, 105, 161, 0.15)`,
+                                borderColor: colors.secondary
+                            }}
+                            >
+                            <div style={{
+                                background: 'rgba(14, 165, 233, 0.1)',
+                                padding: '10px',
+                                borderRadius: '8px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                                {idea.icon}
+                            </div>
+                            <span style={{
+                                fontSize: '15px',
+                                fontWeight: '500',
+                                flex: 1
+                            }}>
+                                {idea.name}
+                            </span>
+                            </motion.div>
+                        ))}
+                        </motion.div>
+                    </motion.div>
+
+                    {/* +15 More Ideas - Tag Style */}
+                    <motion.div style={{ marginTop: '24px', position: 'relative' }}>
+                        {/* Tag Button */}
+                        <motion.div
+                            style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            background: colors.primary,
+                            color: colors.light,
+                            borderRadius: '20px',
+                            padding: '8px 16px',
+                            cursor: 'pointer',
+                            boxShadow: `0 2px 8px ${colors.primaryLight}`,
+                            position: 'relative',
+                            zIndex: 2
+                            }}
+                            whileHover={{ 
+                            background: colors.secondary,
+                            scale: 1.05 
+                            }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setExpandedIdeas(!expandedIdeas)}
+                        >
+                            <span style={{ 
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            marginRight: '8px'
+                            }}>
+                            {expandedIdeas ? 'Hide' : '+15 More'}
+                            </span>
+                            {expandedIdeas ? (
+                            <Minus size={16} color={colors.light} />
+                            ) : (
+                            <Plus size={16} color={colors.light} />
+                            )}
+                        </motion.div>
+
+                        {/* Continuous Tag Body */}
+                        <AnimatePresence>
+                            {expandedIdeas && (
+                            <motion.div
+                                initial={{ 
+                                opacity: 0,
+                                height: 0,
+                                marginTop: 0
+                                }}
+                                animate={{ 
+                                opacity: 1,
+                                height: 'auto',
+                                marginTop: '12px'
+                                }}
+                                exit={{ 
+                                opacity: 0,
+                                height: 0,
+                                marginTop: 0
+                                }}
+                                transition={{ duration: 0.3 }}
+                                style={{
+                                background: colors.primaryLight,
+                                borderRadius: '0 16px 16px 16px',
+                                padding: '20px',
+                                position: 'relative',
+                                left: '-16px'
+                                }}
+                            >
+                                {/* Notch effect */}
+                                <div style={{
+                                position: 'absolute',
+                                top: '-12px',
+                                left: '16px',
+                                width: '24px',
+                                height: '12px',
+                                background: colors.primaryLight,
+                                clipPath: 'polygon(0 100%, 50% 0, 100% 100%)'
+                                }}></div>
+
                                 <motion.div
-                                    key={`cta-${index}`}
+                                style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+                                    gap: '12px'
+                                }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                >
+                                {[
+                                    "Mobile Notary", "Box Truck Freight", "ATMs", 
+                                    "Funnel Agency", "Event Rentals", "Dispatching",
+                                    "360 Photo Booths", "Supplement Brands", "Print-on-Demand",
+                                    "Detailing", "Subscription Boxes", "Virtual Assistants",
+                                    "Online Courses", "Pet Services & more"
+                                ].map((idea, index) => (
+                                    <motion.div
+                                    key={`more-${index}`}
                                     style={{
-                                        ...styles.floatingShape,
-                                        width: shape.size,
-                                        height: shape.size,
-                                        backgroundColor: shape.color,
-                                        top: shape.top,
-                                        left: shape.left
+                                        background: colors.light,
+                                        borderRadius: '8px',
+                                        padding: '10px 12px',
+                                        fontSize: '14px',
+                                        fontWeight: '500',
+                                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px'
                                     }}
-                                    animate={{
-                                        y: [0, -20, 0],
-                                        x: [0, 10, 0]
-                                    }}
-                                    transition={{
-                                        duration: 10 + index * 2,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                        delay: parseFloat(shape.animationDelay)
-                                    }}
-                                />
-                            ))}
-                        </div>
-                        
+                                    initial={{ x: -10, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: index * 0.03 }}
+                                    >
+                                    <div style={{
+                                        width: '6px',
+                                        height: '6px',
+                                        borderRadius: '50%',
+                                        background: colors.primary
+                                    }}></div>
+                                    {idea}
+                                    </motion.div>
+                                ))}
+                                </motion.div>
+                            </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </motion.div>
+                    </motion.section>
+
+                    {/* CTA Section */}
+                    <motion.section
+                        style={{
+                            ...glassCardStyle,
+                            marginTop: '40px',
+                            textAlign: 'center'
+                        }}
+                        variants={scaleUp}
+                    >
                         <motion.h2 
-                            style={styles.ctaTitle}
+                            style={{
+                                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                                fontWeight: '700',
+                                color: colors.dark,
+                                marginBottom: '20px'
+                            }}
                             variants={slideUp}
                         >
                             Next Step:
-                            <span style={styles.ctaTitleUnderline}></span>
                         </motion.h2>
                         
                         <motion.p 
-                            style={styles.ctaDescription}
+                            style={{
+                                fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                                color: colors.text,
+                                lineHeight: '1.6',
+                                marginBottom: '24px'
+                            }}
                             variants={fadeIn}
-                            transition={{ delay: 0.2 }}
                         >
-                            Book your $49 Roadmap Session, complete your Business Credit Scorecard, and meet your assigned counselor to:
+                            Book your <strong>$49 Roadmap Session</strong> and meet your assigned counselor to:
                         </motion.p>
                         
                         <motion.ul 
-                            style={styles.checklist}
+                            style={{
+                                listStyle: 'none',
+                                padding: 0,
+                                margin: '0 auto 24px',
+                                maxWidth: '500px'
+                            }}
                             variants={containerVariants}
                         >
                             {checklistItems.map((item, index) => (
                                 <motion.li
                                     key={index}
                                     style={{
-                                        ...styles.checklistItem,
-                                        ...(item.completed ? styles.completedItem : {})
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        fontSize: '15px',
+                                        marginBottom: '12px',
+                                        padding: '12px',
+                                        borderRadius: '8px',
+                                        background: item.completed ? '#f0fdf4' : 'rgba(14, 165, 233, 0.05)',
+                                        border: `1px solid ${item.completed ? '#10b981' : colors.primaryLight}`
                                     }}
-                                    whileHover={{ x: 5 }}
                                     variants={itemVariants}
                                 >
                                     {item.completed ? (
-                                        <motion.div
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            transition={{ type: 'spring', stiffness: 500 }}
-                                        >
-                                            <CheckCircle size={20} style={styles.checkIcon} />
-                                        </motion.div>
+                                        <CheckCircle size={18} color="#10b981" />
                                     ) : (
                                         <div style={{
-                                            width: '20px',
-                                            height: '20px',
-                                            borderRadius: '4px',
+                                            width: '18px',
+                                            height: '18px',
                                             border: `2px solid ${colors.mutedText}`,
+                                            borderRadius: '4px',
                                             flexShrink: 0
                                         }} />
                                     )}
-                                    {item.text}
-                                    {item.completed && (
-                                        <motion.div 
-                                            style={styles.checklistItemBg}
-                                            initial={{ width: 0 }}
-                                            animate={{ width: '100%' }}
-                                            transition={{ duration: 1, delay: 0.5 }}
-                                        />
-                                    )}
+                                    <span style={{
+                                        textDecoration: item.completed ? 'none' : 'none',
+                                        color: item.completed ? colors.success : colors.text
+                                    }}>
+                                        {item.text}
+                                    </span>
                                 </motion.li>
                             ))}
                         </motion.ul>
                         
-                        <div style={styles.divider}></div>
-                        
                         <motion.div 
-                            style={styles.priceTag}
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '12px',
+                                fontSize: '18px',
+                                fontWeight: '600',
+                                color: colors.dark,
+                                marginBottom: '24px'
+                            }}
                             variants={fadeIn}
-                            transition={{ delay: 0.4 }}
                         >
-                            <DollarSign size={24} style={styles.dollarIcon} />
-                            <span>Session: <strong>$49</strong></span>
+                            <DollarSign size={20} color={colors.secondary} />
+                            <span>Session: <strong style={{ color: colors.primary }}>$49</strong></span>
                         </motion.div>
                         
                         <motion.button
-                            style={styles.ctaButton}
-                            whileHover={{ 
-                                scale: 1.03,
-                                boxShadow: `0 15px 30px rgba(14, 165, 233, 0.4)`
+                            style={{
+                                background: colors.gradient,
+                                color: colors.light,
+                                border: 'none',
+                                padding: '16px 24px',
+                                fontSize: '16px',
+                                borderRadius: '12px',
+                                cursor: 'pointer',
+                                fontWeight: '600',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                margin: '0 auto',
+                                maxWidth: '350px',
+                                width: '100%',
+                                justifyContent: 'center'
                             }}
+                            whileHover={{ background: colors.gradientHover }}
                             whileTap={{ scale: 0.98 }}
-                            onClick={() => alert("Redirecting to booking page...")}
                             variants={slideUp}
-                            transition={{ delay: 0.6 }}
                         >
-                            <Phone size={20} />
-                            Contact Us Now to Book Your Slot
-                            <ArrowRight size={20} />
-                            <motion.span 
-                                style={styles.ctaButtonHover}
-                                whileHover={{ transform: 'translateX(100%)' }}
-                            />
+                            <Phone size={18} />
+                            <span>Contact Us Now</span>
+                            <ArrowRight size={18} />
                         </motion.button>
                     </motion.section>
                 </motion.div>
-            </main>
         </div>
     );
 };

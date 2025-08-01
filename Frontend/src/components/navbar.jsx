@@ -5,60 +5,86 @@ import mascot from '../assets/paul_avatar.png';
 import AdminModal from './AdminModal';
 import './navbar.css';
 
-const tourSteps = [
+const desktopTourSteps = [
+  { selector: null, text: "👋 Welcome to Creditor Academy!", description: "We empower individuals with private education on credit, remedy processes, and business structuring. Let's take a quick tour of the platform." },
+  { selector: '#nav-courses', text: 'Explore all credit-building courses.', description: 'Browse our structured education paths covering credit, sovereignty, and private business solutions.' },
+  { selector: '#nav-services', text: 'Check services like website and merchant support.', description: 'We offer additional services like private website setups and merchant processing tailored to your journey.' },
+  { selector: '#nav-membership', text: 'Join our membership to unlock full benefits.', description: 'Access exclusive content, member-only classes, priority support, and more with our all-in-one membership.' },
+  { selector: '#nav-contact', text: 'Have a question? Contact us here.', description: 'Need help or have a query? Reach out to us anytime through our contact page.' },
+  { selector: '#nav-remedy', text: 'Start your remedy journey now.', description: 'Take action with practical remedy courses to correct status, claim rights, and restore credit powerfully.' },
+  { selector: '#nav-login', text: 'Already a member? Login here.', description: "If you've joined us before, log in to access your dashboard, courses, and exclusive resources." }
+];
+
+const mobileTourSteps = [
+  {
+    selector: '.nav-menu-btn',
+    text: "🍔 Hamburger Menu",
+    description: "This is the hamburger icon. Tap here to access all important links and navigation options."
+  },
+  {
+    selector: '#nav-login.mobile',
+    text: "🔑 Login Button",
+    description: "Tap here to create an account or login to access member features."
+  },
   {
     selector: null,
-    text: "👋 Welcome to Creditor Academy!",
-    description: "We empower individuals with private education on credit, remedy processes, and business structuring. Let's take a quick tour of the platform."
-  },
-  {
-    selector: '#nav-courses',
-    text: 'Explore all credit-building courses.',
-    description: 'Browse our structured education paths covering credit, sovereignty, and private business solutions.'
-  },
-  {
-    selector: '#nav-services',
-    text: 'Check services like website and merchant support.',
-    description: 'We offer additional services like private website setups and merchant processing tailored to your journey.'
-  },
-  {
-    selector: '#nav-membership',
-    text: 'Join our membership to unlock full benefits.',
-    description: 'Access exclusive content, member-only classes, priority support, and more with our all-in-one membership.'
-  },
-  {
-    selector: '#nav-contact',
-    text: 'Have a question? Contact us here.',
-    description: 'Need help or have a query? Reach out to us anytime through our contact page.'
-  },
-  {
-    selector: '#nav-remedy',
-    text: 'Start your remedy journey now.',
-    description: 'Take action with practical remedy courses to correct status, claim rights, and restore credit powerfully.'
-  },
-  {
-    selector: '#nav-login',
-    text: 'Already a member? Login here.',
-    description: 'If you’ve joined us before, log in to access your dashboard, courses, and exclusive resources.'
+    text: "🤖 AI Assistant",
+    description: "This is your AI assistant chatbot ready to help with any questions."
   }
 ];
+
+function getTourSteps(isMobile) {
+  return isMobile ? mobileTourSteps : desktopTourSteps;
+}
+
+function getDeviceGroup(width) {
+  if (width <= 599) return 'mobile';
+  if (width >= 600 && width < 1300) return 'tablet';
+  return 'desktop';
+}
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showCourses, setShowCourses] = useState(false);
   const [showServices, setShowServices] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [deviceGroup, setDeviceGroup] = useState(getDeviceGroup(window.innerWidth));
   const [scrolled, setScrolled] = useState(false);
+  const isMobileTablet = width <= 1024;
 
   const [tourStep, setTourStep] = useState(0);
-  const [tourActive, setTourActive] = useState(true); // tour repeats every time
+  const [tourActive, setTourActive] = useState(true);
   const [animateIn, setAnimateIn] = useState(false);
 
   const coursesTimeoutRef = useRef(null);
   const servicesTimeoutRef = useRef(null);
+  const dropdownRef = useRef(null);
 
-  // Animate on activation
+  const [tourSteps, setTourSteps] = useState(getTourSteps(isMobileTablet));
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+      setDeviceGroup(getDeviceGroup(window.innerWidth));
+      setTourSteps(getTourSteps(window.innerWidth <= 1024));
+      if (!(window.innerWidth <= 1024) && isMenuOpen) setIsMenuOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowCourses(false);
+        setShowServices(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   useEffect(() => {
     if (tourActive) setTimeout(() => setAnimateIn(true), 100);
     else setAnimateIn(false);
@@ -69,6 +95,11 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileTablet && isMenuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isMenuOpen, isMobileTablet]);
 
   const handleCoursesEnter = () => {
     clearTimeout(coursesTimeoutRef.current);
@@ -84,27 +115,20 @@ const Navbar = () => {
   const handleServicesLeave = () => {
     servicesTimeoutRef.current = setTimeout(() => setShowServices(false), 150);
   };
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   const openModal = (e) => {
     e.preventDefault();
     setIsModalOpen(true);
   };
   const closeModal = () => setIsModalOpen(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const mobile = window.innerWidth < 1024;
-      setIsMobile(mobile);
-      if (!mobile && isMenuOpen) setIsMenuOpen(false);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMenuOpen]);
-
-  useEffect(() => {
-    document.body.style.overflow = isMobile && isMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [isMenuOpen, isMobile]);
+  const handleMobileLinkClick = () => {
+    setShowCourses(false);
+    setShowServices(false);
+    toggleMenu();
+  };
 
   const loginButton = (isMobileView = false) => (
     <a
@@ -112,32 +136,138 @@ const Navbar = () => {
       href="#"
       onClick={openModal}
       className={`nav-login-btn${isMobileView ? ' mobile' : ''}`}
-    >Login</a>
+      style={isMobileView ? { flexShrink: 0, marginLeft: 'auto' } : {}}
+    >
+      Login
+    </a>
   );
-
-  // Highlight effect
-  useEffect(() => {
-    if (!tourActive) return;
-    const currentStep = tourSteps[tourStep];
-    document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
-    const el = document.querySelector(currentStep.selector);
-    if (el) el.classList.add('tour-highlight');
-    return () => {
-      document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
-    };
-  }, [tourStep, tourActive]);
 
   const getCurrentRect = () => {
     const step = tourSteps[tourStep];
-    if (!step.selector) return null;
+    if (!step || !step.selector) return null;
     const el = document.querySelector(step.selector);
     return el?.getBoundingClientRect();
   };
+
+  // Responsive mascot/message box for all device groups
+  let mascotGuideContainerStyle, mascotImageStyle, messageBoxStyle, textSize, descSize;
+  if (deviceGroup === 'mobile') {
+    mascotGuideContainerStyle = {
+      position: 'fixed',
+      left: 8,
+      bottom: 17,
+      zIndex: 10010,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'end',
+      pointerEvents: 'none'
+    };
+    mascotImageStyle = {
+      width: '90px',
+      height: '145px',
+      objectFit: 'contain',
+      pointerEvents: 'none',
+      userSelect: 'none'
+    };
+    messageBoxStyle = {
+      marginLeft: 6,
+      width: 175,
+      minHeight: 77,
+      background: '#18223a',
+      color: '#f0f7ff',
+      borderRadius: 14,
+      boxShadow: '0 4px 11px rgba(56,110,200,0.27)',
+      border: '1.3px solid #27408b',
+      padding: '12px 11px 9px 12px',
+      display: 'flex',
+      flexDirection: 'column',
+      pointerEvents: 'auto',
+      fontFamily: "'Poppins',sans-serif",
+      zIndex: 10011
+    };
+    textSize = '0.96rem';
+    descSize = '0.78rem';
+  } else if (deviceGroup === 'tablet') {
+    mascotGuideContainerStyle = {
+      position: 'fixed',
+      left: 24,
+      bottom: 46,
+      zIndex: 10010,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'end',
+      pointerEvents: 'none'
+    };
+    mascotImageStyle = {
+      width: '108px',
+      height: '148px',
+      objectFit: 'contain',
+      pointerEvents: 'none',
+      userSelect: 'none'
+    };
+    messageBoxStyle = {
+      marginLeft: 18,
+      width: 270,
+      minHeight: 124,
+      background: '#18223a',
+      color: '#f0f7ff',
+      borderRadius: 18,
+      boxShadow: '0 7px 29px rgba(53,110,220,0.17)',
+      border: '1.7px solid #25408c',
+      padding: '19px 20px 14px 20px',
+      display: 'flex',
+      flexDirection: 'column',
+      pointerEvents: 'auto',
+      fontFamily: "'Poppins',sans-serif",
+      zIndex: 100
+    };
+    textSize = '1.08rem';
+    descSize = '0.93rem';
+  } else { // desktop
+    mascotGuideContainerStyle = {
+      position: 'fixed',
+      left: 42,
+      bottom: 44,
+      zIndex: 10010,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'end',
+      pointerEvents: 'none'
+    };
+    mascotImageStyle = {
+      width: '140px',
+      height: '180px',
+      objectFit: 'contain',
+      pointerEvents: 'none',
+      userSelect: 'none',
+      zIndex: 101
+    };
+    messageBoxStyle = {
+      marginLeft: 28,
+      width: 350,
+      minHeight: 138,
+      background: '#18223a',
+      color: '#f0f7ff',
+      borderRadius: 20,
+      boxShadow: '0 8px 30px rgba(53,110,210,0.22)',
+      border: '1.8px solid #25408c',
+      padding: '28px 33px 19px 33px',
+      display: 'flex',
+      flexDirection: 'column',
+      fontFamily: "'Poppins',sans-serif",
+      zIndex: 100
+    };
+    textSize = '1.23rem';
+    descSize = '1.06rem';
+  }
+
+  const showMascotGuide = tourActive && tourSteps[tourStep];
+
   return (
     <>
-      <header className={`nav-root${scrolled ? " scrolled" : ""}`}>
+      <header className={`nav-root${scrolled ? " scrolled" : ""}`} ref={dropdownRef}>
         <div className="nav-logo-wrap">
-          {isMobile && (
+          {isMobileTablet && (
             <button onClick={toggleMenu} className="nav-menu-btn" aria-label="Menu">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#59b7ff">
                 {isMenuOpen ? (
@@ -152,26 +282,23 @@ const Navbar = () => {
             <img src={logo} alt="Creditor Academy" className="nav-logo" />
           </Link>
         </div>
-        {!isMobile && (
+        {!isMobileTablet && (
           <nav className="nav-main-menu">
             <div className="nav-dropdown-wrap" onMouseEnter={handleCoursesEnter} onMouseLeave={handleCoursesLeave}>
               <span id="nav-courses" className="nav-link cool-underline">Courses ▾</span>
               <div className={`nav-dropdown${showCourses ? ' visible' : ''}`}>
-                <NavLink to="/sov" className="nav-dropdown-link cool-underline">FRESHMAN: Sovereignty 101</NavLink>
-                <NavLink to="/sophomore" className="nav-dropdown-link cool-underline">SOPHOMORE: Become Private</NavLink>
-                <NavLink to="/operate" className="nav-dropdown-link cool-underline">JUNIOR: Operate Private</NavLink>
-                <NavLink to="/unlimitedcredit" className="nav-dropdown-link cool-underline">SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
-                <NavLink to="/remedy" className="nav-dropdown-link cool-underline">I WANT REMEDY NOW!</NavLink>
-                <NavLink to="/privatemerchant" className="nav-dropdown-link cool-underline">Private Merchant & Processing</NavLink>
+                <NavLink to="/newsov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>BecomePrivate & New SOV 101</NavLink>
+                <NavLink to="/operate" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Operate Private</NavLink>
+                <NavLink to="/private" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>PRIVATE BUSINESS CREDIT</NavLink>
               </div>
             </div>
             <div className="nav-dropdown-wrap" onMouseEnter={handleServicesEnter} onMouseLeave={handleServicesLeave}>
               <span id="nav-services" className="nav-link cool-underline">Services ▾</span>
               <div className={`nav-dropdown${showServices ? ' visible' : ''}`}>
-                <NavLink to="/liveclass" className="nav-dropdown-link cool-underline">Live Class</NavLink>
-                <NavLink to="/athena" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Athena LMS</NavLink>
-                <NavLink to="/website" className="nav-dropdown-link cool-underline">Website Creation</NavLink>
-                <NavLink to="/pmp" className="nav-dropdown-link cool-underline">Merchant Processing</NavLink>
+                <NavLink to="/liveclass" className="nav-dropdown-link cool-underline" onClick={() => setShowServices(false)}>Live Class</NavLink>
+                <NavLink to="/athena" className="nav-dropdown-link cool-underline" onClick={() => setShowServices(false)}>Athena LMS</NavLink>
+                <NavLink to="/website" className="nav-dropdown-link cool-underline" onClick={() => setShowServices(false)}>Website Creation</NavLink>
+                <NavLink to="/pmp" className="nav-dropdown-link cool-underline" onClick={() => setShowServices(false)}>Merchant Processing</NavLink>
               </div>
             </div>
             <NavLink id="nav-membership" to="/masterclass" className="nav-link cool-underline">Membership</NavLink>
@@ -180,52 +307,41 @@ const Navbar = () => {
             {loginButton()}
           </nav>
         )}
-        {isMobile && loginButton(true)}
-        {isMobile && isMenuOpen && (
+        {isMobileTablet && loginButton(true)}
+        {isMobileTablet && isMenuOpen && (
           <div className="nav-mobile-menu">
             <div className="nav-mobile-dropdown">
-              <button
-                onClick={() => setShowCourses(!showCourses)}
-                className="nav-mobile-dropdown-btn"
-              >
+              <button onClick={() => setShowCourses(!showCourses)} className="nav-mobile-dropdown-btn">
                 Courses {showCourses ? '▴' : '▾'}
               </button>
               {showCourses && (
                 <div className="nav-mobile-dropdown-content">
-                  <NavLink to="/sov" className="nav-mobile-link cool-underline" onClick={toggleMenu}>FRESHMAN: Sovereignty 101</NavLink>
-                  <NavLink to="/sophomore" className="nav-mobile-link cool-underline" onClick={toggleMenu}>SOPHOMORE: Become Private</NavLink>
-                  <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={toggleMenu}>JUNIOR: Operate Private</NavLink>
-                  <NavLink to="/unlimitedcredit" className="nav-mobile-link cool-underline" onClick={toggleMenu}>SENIOR: PRIVATE BUSINESS CREDIT</NavLink>
-                  <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>I WANT REMEDY NOW!</NavLink>
-                  <NavLink to="/privatemerchant" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Private Merchant & Processing</NavLink>
+                  <NavLink to="/newsov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>BecomePrivate & New SOV 101</NavLink>
+                  <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Operate Private</NavLink>
+                  <NavLink to="/private" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>PRIVATE BUSINESS CREDIT</NavLink>
                 </div>
               )}
             </div>
             <div className="nav-mobile-dropdown">
-              <button
-                onClick={() => setShowServices(!showServices)}
-                className="nav-mobile-dropdown-btn"
-              >
+              <button onClick={() => setShowServices(!showServices)} className="nav-mobile-dropdown-btn">
                 Services {showServices ? '▴' : '▾'}
               </button>
               {showServices && (
                 <div className="nav-mobile-dropdown-content">
-                  <NavLink to="/liveclass"   className="nav-mobile-link cool-underline" onClick={toggleMenu}>Live Class</NavLink>
-                  <NavLink to="/athena" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Athena LMS</NavLink>
-                  <NavLink to="/website" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Website Creation</NavLink>
-                  <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Merchant Processing</NavLink>
+                  <NavLink to="/liveclass" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Live Class</NavLink>
+                  <NavLink to="/athena" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Athena LMS</NavLink>
+                  <NavLink to="/website" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Website Creation</NavLink>
+                  <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Merchant Processing</NavLink>
                 </div>
               )}
             </div>
-            <NavLink to="/masterclass" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Membership</NavLink>
-            <NavLink to="/ContactSection" className="nav-mobile-link cool-underline" onClick={toggleMenu}>Contact</NavLink>
-            <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={toggleMenu}>I Want Remedy NOW !</NavLink>
+            <NavLink to="/masterclass" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Membership</NavLink>
+            <NavLink to="/ContactSection" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Contact</NavLink>
+            <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>I Want Remedy NOW !</NavLink>
           </div>
         )}
       </header>
-
-      {/* MASCOT TOUR */}
-      {tourActive && (
+      {showMascotGuide && (
         <>
           {/* Overlay */}
           <div style={{
@@ -234,15 +350,14 @@ const Navbar = () => {
             left: 0,
             width: '100vw',
             height: '100vh',
-            background: 'rgba(0,0,0,0.7)',
+            background: 'rgba(0,0,0,0.58)',
             zIndex: 998
           }} />
-
           {/* Focus highlight */}
           {(() => {
             const rect = getCurrentRect();
             if (!rect) return null;
-            const size = Math.max(rect.width, rect.height) + 30;
+            const size = Math.max(rect.width, rect.height) + (isMobileTablet ? 26 : 50);
             const top = rect.top + window.scrollY + rect.height / 2 - size / 2;
             const left = rect.left + window.scrollX + rect.width / 2 - size / 2;
             return (
@@ -253,148 +368,105 @@ const Navbar = () => {
                 width: size,
                 height: size,
                 borderRadius: '50%',
-                boxShadow: '0 0 0 3px #fff, 0 0 15px 6px #3498db',
+                boxShadow: '0 0 0 2.7px #fff, 0 0 12px 7px #3498db',
                 zIndex: 9999,
                 pointerEvents: 'none',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)'
               }} />
             );
           })()}
-
-          {/* Mascot Box with Avatar & Animation */}
-          <div style={{
-            position: 'fixed',
-            bottom: '20px',
-            left: '30px',
-            display: 'flex',
-            alignItems: 'center',
-            padding: '16px 20px 16px 100px', // increased left padding for mascot
-            background: 'rgba(0, 0, 0, 0.5)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            borderRadius: '16px',
-            boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
-            zIndex: 10000,
-            width: '300px',
-            minHeight: '180px',
-            height: 'auto',
-            color: '#fff',
-            transform: animateIn ? 'translateY(0)' : 'translateY(40px)',
-            opacity: animateIn ? 1 : 0,
-            transition: 'all 0.6s ease',
-          }}>
-            {/* Speech bubble tail */}
-            <div style={{
-              position: 'absolute',
-              left: '55px',
-              bottom: '-14px',
-              width: 0,
-              height: 0,
-              borderLeft: '10px solid transparent',
-              borderRight: '10px solid transparent',
-              borderTop: '14px solid rgba(0, 0, 0, 0.5)',
-              filter: 'blur(0.3px)',
-              zIndex: -1
-            }} />
-
-            {/* Mascot Image - aligned left and outside */}
-            <img src={mascot} alt="Mascot" style={{
-              width: 'auto',
-              height: '180px',
-              position: 'absolute',
-              left: '0px',
-              bottom: '20px',
-            }} />
-
-            {/* Text + Buttons */}
-            <div style={{ flex: 1, fontFamily: "'Poppins', sans-serif", position: 'relative' }}>
-              <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{tourSteps[tourStep].text}</p>
+          {/* Mascot/box container */}
+          <div style={mascotGuideContainerStyle}>
+            <img src={mascot} alt="Mascot" style={mascotImageStyle} />
+            <div style={messageBoxStyle}>
+              <p style={{
+                fontSize: textSize,
+                fontWeight: 700,
+                margin: '0 0 6px 0',
+                letterSpacing: '-0.5px',
+                lineHeight: '1.17'
+              }}>
+                {tourSteps[tourStep].text}
+              </p>
               {tourSteps[tourStep].description && (
-                <p style={{ fontSize: '0.9rem', marginTop: '6px', color: '#ddd' }}>
+                <p style={{
+                  fontSize: descSize,
+                  color: '#b6d7ff',
+                  lineHeight: 1.27,
+                  fontWeight: 400,
+                  letterSpacing: '-0.14px',
+                  margin: 0,
+                  marginBottom: 10
+                }}>
                   {tourSteps[tourStep].description}
                 </p>
               )}
-
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+                marginTop: 6
+              }}>
                 <button
-                  onClick={() => {
-                    setTourActive(false);
-                    localStorage.setItem('tour_seen', 'true');
-                  }}
+                  onClick={() => setTourActive(false)}
                   style={{
                     border: 'none',
                     background: 'none',
-                    color: '#ccc',
-                    fontSize: '0.85rem',
+                    color: '#6fb5fe',
+                    fontSize: descSize,
                     fontFamily: 'Poppins, sans-serif',
                     cursor: 'pointer',
-                    textDecoration: 'underline'
+                    textDecoration: 'underline',
+                    padding: '0 2.5px',
+                    pointerEvents: 'auto'
                   }}
-                >
-                  Skip
-                </button>
-
-                <div style={{ display: 'flex', gap: '12px' }}>
-                  {/* BACK BUTTON */}
+                >Skip</button>
+                <div style={{ display: 'flex', gap: '9px' }}>
                   {tourStep > 0 && (
                     <button
                       onClick={() => setTourStep(tourStep - 1)}
                       style={{
-                        backgroundColor: '#ffffff',
-                        color: '#2c3e50',
-                        border: '1px solid #2c3e50',
-                        padding: '8px 14px',
-                        borderRadius: '6px',
+                        backgroundColor: '#18223a',
+                        color: '#bedaff',
+                        border: '1.2px solid #5384b8',
+                        padding: '4.8px 14px',
+                        borderRadius: '7px',
                         fontFamily: 'Poppins, sans-serif',
-                        fontSize: '0.85rem',
+                        fontSize: descSize,
                         fontWeight: 600,
                         cursor: 'pointer',
-                        boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.2s ease',
+                        pointerEvents: 'auto'
                       }}
-                      onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f0f0f0'}
-                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ffffff'}
-                    >
-                      ← Back
-                    </button>
+                    >←</button>
                   )}
-
-                  {/* NEXT/FINISH BUTTON */}
                   <button
                     onClick={() => {
-                      if (tourStep === tourSteps.length - 1) {
-                        setTourActive(false);
-                        localStorage.setItem('tour_seen', 'true');
-                      } else {
-                        setTourStep(tourStep + 1);
-                      }
+                      if (tourStep < tourSteps.length - 1) setTourStep(tourStep + 1);
+                      else setTourActive(false);
                     }}
                     style={{
                       backgroundColor: '#3498db',
                       color: '#fff',
                       border: 'none',
-                      padding: '8px 14px',
-                      borderRadius: '6px',
+                      padding: '4.8px 18px',
+                      borderRadius: '7px',
                       fontFamily: 'Poppins, sans-serif',
-                      fontSize: '0.85rem',
+                      fontSize: descSize,
                       fontWeight: 600,
                       cursor: 'pointer',
-                      boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
-                      transition: 'all 0.3s ease'
+                      boxShadow: '0 2px 8px 0 rgba(52,152,219,0.13)',
+                      transition: 'all 0.2s ease',
+                      pointerEvents: 'auto'
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#2980b9'}
-                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#3498db'}
-                  >
-                    {tourStep === tourSteps.length - 1 ? 'Finish' : 'Next →'}
-                  </button>
+                  >{tourStep === tourSteps.length - 1 ? 'Finish' : 'Next →'}</button>
                 </div>
               </div>
             </div>
           </div>
         </>
       )}
-
       <AdminModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );

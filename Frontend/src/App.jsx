@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 
 //Imports from components 
 import Navbar from './components/navbar';
@@ -66,8 +66,6 @@ function App() {
         <Route path="/mastertnc" element={<MasterTnc />} />
         <Route path="/athena" element={<Athena />} />
         <Route path="/private" element={<PrivateBusiness />} />
-        
-        
         <Route path="/newsov" element={<DemoSOV />} />
 
       </Routes>
