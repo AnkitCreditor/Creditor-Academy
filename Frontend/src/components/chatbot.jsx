@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaRobot, FaPaperPlane, FaTimes, FaBook, FaDollarSign, FaUsers, FaChevronRight } from 'react-icons/fa';
+import { FaPaperPlane, FaTimes, FaBook, FaDollarSign, FaUsers, FaChevronRight } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import chatbotImage from '../assets/chatbot.webp'; // Import the custom chatbot image
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +9,8 @@ const Chatbot = () => {
     { 
       sender: 'bot', 
       text: 'Hey there! 🎉 Welcome to Creditor Academy—your gateway to financial freedom! How can I assist you today?', 
-      showSuggestions: true 
+      showSuggestions: true,
+      id: Date.now()
     },
   ]);
   const [input, setInput] = useState('');
@@ -26,20 +28,17 @@ const Chatbot = () => {
       `▸ Build in Credit™ - Unlimited funding strategies\n` +
       `▸ Masterclass - Advanced financial tactics\n\n` +
       `Which one intrigues you? 😊`,
-
     pricing: `💰 **Membership Tiers** 💎\n\n` +
       `◈ Freshman - $9/mo\n` +
       `◈ Master Class - $69/mo (includes private ID)\n` +
       `◈ "Remedy Now" - $399 (50% OFF)\n` +
       `◈ Cadillac Website - $499 down + $49/mo\n\n` +
       `Want me to explain any option?`,
-
     'talk to team': `👥 **Connect With Us** 📞\n\n` +
       `• Email: sales@creditoracademy.com\n` +
       `• Platform: Message via member dashboard\n` +
       `• VIP Support: Available for Master Class members\n\n` +
       `We'll respond within 24 hours!`,
-
     default: `🤖 **Pro Tip**: Try these quick options 👇`
   };
 
@@ -55,9 +54,9 @@ const Chatbot = () => {
 
     setTimeout(() => {
       const responseKey = message.toLowerCase().includes('course') ? 'courses' :
-                         message.toLowerCase().includes('pric') ? 'pricing' :
-                         message.toLowerCase().includes('team') ? 'talk to team' : 
-                         'default';
+                          message.toLowerCase().includes('pric') ? 'pricing' :
+                          message.toLowerCase().includes('team') ? 'talk to team' : 
+                          'default';
       
       setMessages(prev => [...prev, { 
         sender: 'bot', 
@@ -124,7 +123,7 @@ const Chatbot = () => {
         whileTap={{ scale: 0.95 }}
         onClick={toggleChat}
       >
-        <FaRobot size={24} />
+        <img src={chatbotImage} alt="Chatbot" className="chatbot-icon" />
         <AnimatePresence>
           {!isOpen && (
             <motion.div 
@@ -160,7 +159,7 @@ const Chatbot = () => {
                     duration: 2 
                   }}
                 >
-                  <FaRobot size={20} />
+                  <img src={chatbotImage} alt="CreditorBot Avatar" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
                 </motion.div>
                 <div className="header-text">
                   <h3>CreditorBot</h3>
@@ -255,8 +254,8 @@ const Chatbot = () => {
           position: fixed;
           bottom: 30px;
           right: 30px;
-          width: 65px;
-          height: 65px;
+          width: 62px;
+          height: 62px;
           background: linear-gradient(135deg, #15235e, #1e3a8a);
           color: white;
           border-radius: 50%;
@@ -271,6 +270,12 @@ const Chatbot = () => {
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .chatbot-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
         .chatbot-button:hover {
           box-shadow: 0 20px 40px rgba(21, 35, 94, 0.6);
           border-color: rgba(255, 255, 255, 0.4);
@@ -278,8 +283,8 @@ const Chatbot = () => {
 
         .pulse-dot {
           position: absolute;
-          top: -8px;
-          right: -8px;
+          top: -5px;
+          right: -5px;
           width: 18px;
           height: 18px;
           background: linear-gradient(135deg, #ff6b6b, #ee5a24);
@@ -338,6 +343,8 @@ const Chatbot = () => {
           color: white;
           backdrop-filter: blur(10px);
           border: 2px solid rgba(255, 255, 255, 0.3);
+          padding: 2px;
+          box-sizing: border-box;
         }
 
         .header-text h3 {
@@ -400,6 +407,10 @@ const Chatbot = () => {
           position: relative;
         }
 
+        .message p {
+            margin: 0;
+        }
+
         .message.bot {
           background: white;
           color: #2d3748;
@@ -437,6 +448,7 @@ const Chatbot = () => {
           color: #4a5568;
           transition: all 0.3s ease;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+          text-align: left;
         }
 
         .suggestion-btn:hover {
@@ -445,6 +457,10 @@ const Chatbot = () => {
           border-color: rgba(255, 255, 255, 0.2);
           transform: translateX(8px);
           box-shadow: 0 8px 25px rgba(21, 35, 94, 0.3);
+        }
+
+        .suggestion-btn span {
+            flex-grow: 1;
         }
 
         .suggestion-icon {
@@ -456,6 +472,7 @@ const Chatbot = () => {
           background: rgba(21, 35, 94, 0.1);
           border-radius: 50%;
           color: #15235e;
+          flex-shrink: 0;
         }
 
         .suggestion-btn:hover .suggestion-icon {
@@ -523,6 +540,11 @@ const Chatbot = () => {
             right: 20px;
             width: 60px;
             height: 60px;
+          }
+
+          .chatbot-icon {
+              width: 38px;
+              height: 38px;
           }
 
           .chat-window {
@@ -595,6 +617,11 @@ const Chatbot = () => {
             right: 15px;
             width: 55px;
             height: 55px;
+          }
+          
+          .chatbot-icon {
+            width: 35px;
+            height: 35px;
           }
 
           .chat-window {
