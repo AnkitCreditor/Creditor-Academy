@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
   FaBalanceScale,
@@ -17,6 +17,9 @@ const fadeInUp = {
 
 const BecomePrivateCourse = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const sliderRef = useRef(null);
+  
   const cards = [
     {
       title: "Status Correction",
@@ -55,31 +58,42 @@ const BecomePrivateCourse = () => {
     }
   ];
 
-  const cardWidth = 320; // Fixed card width
-  const gap = 30; // Gap between cards
-  const getVisibleCards = () => {
-    const width = window.innerWidth;
-    if (width >= 1024) return 3; // 3 cards visible
-    if (width >= 640) return 2; // 2 cards visible
-    return 1; // 1 card visible
-  };
-
-  const getMaxSlides = () => Math.max(0, cards.length - getVisibleCards());
+  const visibleCards = 4; // Always show 4 cards
+  const maxSlides = Math.max(0, cards.length - visibleCards);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => Math.min(prev + 1, getMaxSlides()));
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
+    
+    if (currentSlide >= maxSlides) {
+      // If at the end, loop back to beginning
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(prev => prev + 1);
+    }
+    
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => Math.max(prev - 1, 0));
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
+    
+    if (currentSlide === 0) {
+      // If at beginning, loop to end
+      setCurrentSlide(maxSlides);
+    } else {
+      setCurrentSlide(prev => prev - 1);
+    }
+    
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   return (
     <div style={{ fontFamily: 'Inter, sans-serif', backgroundColor: '#f4f6f8', color: '#2c3e50', padding: '20px 20px' }}>
+      {/* Banner Section */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -116,6 +130,7 @@ const BecomePrivateCourse = () => {
         }}></div>
       </motion.div>
 
+      {/* Title Section */}
       <div style={{
         textAlign: 'center',
         padding: '0 20px',
@@ -169,6 +184,7 @@ const BecomePrivateCourse = () => {
         </motion.button>
       </div>
 
+      {/* Course Overview Section */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -187,6 +203,7 @@ const BecomePrivateCourse = () => {
           overflow: 'hidden'
         }}
       >
+        {/* Background elements */}
         <div style={{
           position: 'absolute',
           top: '-100px',
@@ -205,6 +222,8 @@ const BecomePrivateCourse = () => {
           borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(0,161,255,0.04) 0%, rgba(0,161,255,0) 70%)'
         }}></div>
+        
+        {/* Video Preview */}
         <motion.div
           whileHover={{ scale: 1.02 }}
           style={{
@@ -282,6 +301,8 @@ const BecomePrivateCourse = () => {
             }}></div>
           </div>
         </motion.div>
+        
+        {/* Course Description */}
         <div style={{
           flex: '1 1 550px',
           minWidth: '300px',
@@ -369,6 +390,7 @@ const BecomePrivateCourse = () => {
         </div>
       </motion.div>
 
+      {/* What You'll Learn Section with 4-card slider */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -387,7 +409,7 @@ const BecomePrivateCourse = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
             style={{
-              fontSize: '2rem',
+              fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
               fontWeight: '700',
               color: '#0056b3',
               marginBottom: '15px'
@@ -401,7 +423,7 @@ const BecomePrivateCourse = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             style={{
-              fontSize: '1.1rem',
+              fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
               color: '#666',
               maxWidth: '700px',
               margin: '0 auto',
@@ -412,20 +434,23 @@ const BecomePrivateCourse = () => {
           </motion.p>
         </div>
 
-        <div style={{
-          position: 'relative',
-          maxWidth: '100%',
-          margin: '0 auto',
-          overflow: 'hidden'
-        }}>
-          <motion.button
+        <div 
+          ref={sliderRef}
+          style={{
+            position: 'relative',
+            maxWidth: '100%',
+            margin: '0 auto',
+            overflow: 'hidden',
+            padding: '0 40px'
+          }}
+        >
+          {/* Previous Button */}
+          <button
             onClick={prevSlide}
-            disabled={currentSlide === 0}
-            whileHover={{ scale: currentSlide === 0 ? 1 : 1.1 }}
-            whileTap={{ scale: currentSlide === 0 ? 1 : 0.9 }}
+            disabled={isAnimating}
             style={{
               position: 'absolute',
-              left: '10px',
+              left: '0',
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
@@ -438,25 +463,25 @@ const BecomePrivateCourse = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: currentSlide === 0 ? 'not-allowed' : 'pointer',
-              opacity: currentSlide === 0 ? 0.5 : 1
+              cursor: 'pointer'
             }}
             aria-label="Previous slide"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 18L9 12L15 6" stroke="#0056b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </motion.button>
+          </button>
 
+          {/* Cards Container */}
           <div
-            id="slider-container"
             style={{
-              display: 'flex',
-              gap: `${gap}px`,
+              display: 'grid',
+              gridTemplateColumns: `repeat(${cards.length}, 1fr)`,
+              gap: '30px',
               padding: '20px 0',
+              transform: `translateX(-${currentSlide * (100 / visibleCards)}%)`,
               transition: 'transform 0.5s ease-in-out',
-              transform: `translateX(-${currentSlide * (cardWidth + gap)}px)`,
-              width: `${cards.length * (cardWidth + gap) - gap}px`, // Total width of all cards
+              width: `${cards.length * (100 / visibleCards)}%`
             }}
           >
             {cards.map((item, index) => (
@@ -464,8 +489,6 @@ const BecomePrivateCourse = () => {
                 key={index}
                 whileHover={{ scale: 1.02 }}
                 style={{
-                  flex: `0 0 ${cardWidth}px`,
-                  width: `${cardWidth}px`,
                   background: '#fff',
                   borderRadius: '20px',
                   overflow: 'hidden',
@@ -522,7 +545,7 @@ const BecomePrivateCourse = () => {
                   paddingTop: '40px'
                 }}>
                   <h3 style={{
-                    fontSize: '1.3rem',
+                    fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)',
                     fontWeight: '700',
                     marginBottom: '15px',
                     color: '#1a1a1a'
@@ -530,7 +553,7 @@ const BecomePrivateCourse = () => {
                     {item.title}
                   </h3>
                   <p style={{
-                    fontSize: '1rem',
+                    fontSize: 'clamp(0.9rem, 1.1vw, 1rem)',
                     color: '#555',
                     lineHeight: '1.6',
                     marginBottom: '20px'
@@ -546,7 +569,7 @@ const BecomePrivateCourse = () => {
                       borderRadius: '50px',
                       padding: '8px 20px',
                       color: item.color,
-                      fontSize: '0.9rem',
+                      fontSize: 'clamp(0.8rem, 1vw, 0.9rem)',
                       fontWeight: '600',
                       cursor: 'pointer',
                       display: 'flex',
@@ -564,14 +587,13 @@ const BecomePrivateCourse = () => {
             ))}
           </div>
 
-          <motion.button
+          {/* Next Button */}
+          <button
             onClick={nextSlide}
-            disabled={currentSlide >= getMaxSlides()}
-            whileHover={{ scale: currentSlide >= getMaxSlides() ? 1 : 1.1 }}
-            whileTap={{ scale: currentSlide >= getMaxSlides() ? 1 : 0.9 }}
+            disabled={isAnimating}
             style={{
               position: 'absolute',
-              right: '10px',
+              right: '0',
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
@@ -584,28 +606,27 @@ const BecomePrivateCourse = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: currentSlide >= getMaxSlides() ? 'not-allowed' : 'pointer',
-              opacity: currentSlide >= getMaxSlides() ? 0.5 : 1
+              cursor: 'pointer'
             }}
             aria-label="Next slide"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 18L15 12L9 6" stroke="#0056b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </motion.button>
+          </button>
         </div>
 
+        {/* Mobile Indicators */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
           gap: '10px',
           marginTop: '30px'
         }}>
-          {Array.from({ length: getMaxSlides() + 1 }).map((_, index) => (
-            <motion.div
+          {Array.from({ length: cards.length - visibleCards + 1 }).map((_, index) => (
+            <div
               key={index}
-              whileHover={{ scale: 1.2 }}
-              onClick={() => goToSlide(index)}
+              onClick={() => setCurrentSlide(index)}
               style={{
                 width: '10px',
                 height: '10px',
@@ -619,8 +640,10 @@ const BecomePrivateCourse = () => {
         </div>
       </motion.div>
 
+      {/* Game Banner Section */}
       <GameBanner />
 
+      {/* What You Can Do Section */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -654,7 +677,7 @@ const BecomePrivateCourse = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             style={{
-              fontSize: '1.1rem',
+              fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
               color: '#666',
               maxWidth: '700px',
               margin: '0 auto',
@@ -792,6 +815,7 @@ const BecomePrivateCourse = () => {
         </motion.div>
       </motion.div>
 
+      {/* Consultation Section */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -961,6 +985,7 @@ const BecomePrivateCourse = () => {
         </motion.div>
       </motion.div>
 
+      {/* Enrollment CTA Section */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
