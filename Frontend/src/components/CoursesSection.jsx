@@ -48,7 +48,7 @@ const courses = [
     title: 'JUNIOR: Operate Private',
     description: 'Build, manage, and grow an Empire in the private, independent of the public system.',
     image: juniorImage,
-    link: '/operateprivate',
+    link: '/operate',
     features: [
       { icon: <FaBriefcase />, text: 'Form Private Business Trusts' },
       { icon: <FaHome />, text: 'Private Membership Association' },
