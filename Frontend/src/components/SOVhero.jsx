@@ -1,8 +1,9 @@
 import React from 'react';
-import sovbanner from '../assets/Sov_101_football.webp';
+import sovbanner from '../assets/Sovfootball.webp';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import MasterTnc from '../page/MasterTnc';
+
 const SOVhero = () => {
   const navigate = useNavigate();
   const handleButtonClick = () => {
