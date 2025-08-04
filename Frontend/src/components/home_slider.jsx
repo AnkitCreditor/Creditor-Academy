@@ -10,7 +10,7 @@ import opbanner from '../assets/OperateBanner.webp';
 import seniorbanner from '../assets/PrivateBusiness.webp';
 import iwrnbanner from '../assets/iwrn_banner.webp';
 import pmcbanner from '../assets/PrivateMerchantFootball.webp';
-import sovbanner from '../assets/sov_101_football.webp';
+import sovbanner from '../assets/sovfootball.webp';
 import sophomorebanner from '../assets/BecomePrivateBanner.webp';
 
 
