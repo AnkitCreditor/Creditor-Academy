@@ -1,5 +1,5 @@
 import React from 'react';
-import sovbanner from '../assets/Sovfootball.webp';
+import sovbanner from '../assets/sovfootball.webp';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import MasterTnc from '../page/MasterTnc';
