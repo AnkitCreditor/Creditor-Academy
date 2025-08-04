@@ -1,31 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
+import img1 from '../assets/user1.webp';
+import img2 from '../assets/user2.webp';
+import img3 from '../assets/user3.webp';
 
 const SOVtestimonials = () => {
   const testimonials = [
     {
       id: 1,
-      image: "https://randomuser.me/api/portraits/women/44.webp",
+      image: img1,
       name: "Lauren R., Florida",
       quote: `"The ID aren't just symbolic — they're powerful. When I wear mine, I'm not guessing anymore. I know."`,
       rating: 5
     },
     {
       id: 2,
-      image: "https://randomuser.me/api/portraits/men/32.webp",
+      image: img2,
       name: "Carlos J., Nevada",
       quote: `"New SOV 101 broke down American history in a way no school or law professor ever did. It woke me up."`,
       rating: 5
     },
     {
       id: 3,
-      image: "https://randomuser.me/api/portraits/men/75.webp",
+      image: img3,
       name: "Travis P., New York",
-      quote: `"This course didn't flood me with forms. It gave me <strong style="color: #e67e22;">foundation</strong>. Now I'm walking into the Private with clarity."`,
+      quote: `"This course didn't flood me with forms. It gave me <strong style='color: #e67e22;'>foundation</strong>. Now I'm walking into the Private with clarity."`,
       rating: 5
     }
   ];
+
+  // your return JSX here using testimonial.image
 
   // Animation variants
   const containerVariants = {

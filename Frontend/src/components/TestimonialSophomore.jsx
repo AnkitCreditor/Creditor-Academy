@@ -2,23 +2,26 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
+import img1 from '../assets/user1.webp';
+import img2 from '../assets/user2.webp';
+import img3 from '../assets/user3.webp';
 
 const testimonials = [
   {
     name: "Amara W., Oregon",
-    image: "https://randomuser.me/api/portraits/women/44.webp",
+    image: img1,
     quote:
       "Status correction isn’t theory here. You actually do the work, file the docs, and walk away with proof.",
   },
   {
     name: "Kevin R., Tennessee",
-    image: "https://randomuser.me/api/portraits/men/32.webp",
+    image: img2,
     quote:
       "The SPC process was a mystery until I took this course. Now I’m filed, recorded, and free.",
   },
   {
     name: "John P., Arizona",
-    image: "https://randomuser.me/api/portraits/men/75.webp",
+    image: img3,
     quote:
       "My ID, Trust, and UCC — all completed in 3 months. I’m living in the Private now.",
   },
