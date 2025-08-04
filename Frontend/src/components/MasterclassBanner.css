@@ -16,7 +16,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(2, 11, 37, 0.2); /* dark blue with transparency */
+  background-color: rgba(165, 207, 239, 0.2); /* dark blue with transparency */
   z-index: 0;
 }
 
