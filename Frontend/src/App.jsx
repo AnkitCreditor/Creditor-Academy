@@ -69,7 +69,7 @@ function App() {
 
       </Routes>
       <Footer />
-      <Chatbot /> {/* Add Chatbot here to render on all pages */}
+      {/* <Chatbot />  Add Chatbot here to render on all pages */}
     </Router>
   );
 }
