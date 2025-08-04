@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import roadmapImg from '../assets/logo_roadmap.png';
-import Banner from '../assets/roadmap-banner.png';
+import roadmapImg from '../assets/logo_roadmap.webp';
+import Banner from '../assets/roadmap-banner.webp';
 
 const RoadmapSeries = () => {
   return (

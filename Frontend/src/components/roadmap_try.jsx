@@ -6,9 +6,9 @@ import {
   FaGraduationCap, FaBook, FaChalkboardTeacher, FaLightbulb, FaTools,
   FaCar, FaBed, FaShoppingCart, FaMicrophone, FaBriefcase
 } from "react-icons/fa";
-import BecomePrivate from '../assets/sophomore.jpg';
-import Junior from '../assets/junior.jpg';
-import Senior from '../assets/senior.jpeg';
+import BecomePrivate from '../assets/sophomore.webp';
+import Junior from '../assets/junior.webp';
+import Senior from '../assets/senior.webp';
 
 const RoadmapCourses = () => {
   const [hoveredCard, setHoveredCard] = useState(null);

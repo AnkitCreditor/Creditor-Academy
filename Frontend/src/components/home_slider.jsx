@@ -4,13 +4,13 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 
-import mcbanner from '../assets/Masterclass.png';
-import sovbanner from '../assets/BPSOV_Banner.png';
-// import becomeprivatebanner from '../assets/BecomePrivateBanner.png';
-import opbanner from '../assets/OperateBanner.png';
-import seniorbanner from '../assets/PrivateBusiness.png';
-import iwrnbanner from '../assets/iwrn_banner.png';
-// import pmcbanner from '../assets/PrivateMerchantFootball.png';
+import mcbanner from '../assets/Masterclass.webp';
+import sovbanner from '../assets/BPSOV_Banner.webp';
+// import becomeprivatebanner from '../assets/BecomePrivateBanner.webp';
+import opbanner from '../assets/OperateBanner.webp';
+import seniorbanner from '../assets/PrivateBusiness.webp';
+import iwrnbanner from '../assets/iwrn_banner.webp';
+// import pmcbanner from '../assets/PrivateMerchantFootball.webp';
 const courseSlides = [
   {
     title: "Masterclass",

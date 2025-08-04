@@ -7,7 +7,7 @@ import {
   FaMobileAlt,
   FaBookOpen
 } from 'react-icons/fa';
-import lmsPreview from '../assets/lms.jpg'; // Using your imported image
+import lmsPreview from '../assets/lms.webp'; // Using your imported image
 
 const CourseUnlocks = () => {
   const unlockItems = [

@@ -6,19 +6,19 @@ import { useNavigate } from "react-router-dom";
 const testimonials = [
   {
     name: "Amara W., Oregon",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    image: "https://randomuser.me/api/portraits/women/44.webp",
     quote:
       "Status correction isn’t theory here. You actually do the work, file the docs, and walk away with proof.",
   },
   {
     name: "Kevin R., Tennessee",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: "https://randomuser.me/api/portraits/men/32.webp",
     quote:
       "The SPC process was a mystery until I took this course. Now I’m filed, recorded, and free.",
   },
   {
     name: "John P., Arizona",
-    image: "https://randomuser.me/api/portraits/men/75.jpg",
+    image: "https://randomuser.me/api/portraits/men/75.webp",
     quote:
       "My ID, Trust, and UCC — all completed in 3 months. I’m living in the Private now.",
   },

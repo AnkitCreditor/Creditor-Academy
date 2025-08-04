@@ -5,11 +5,11 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Navigation, Autoplay } from 'swiper/modules';
 
-import img1 from '../assets/anyone.jpg';
-import img2 from '../assets/private.jpg';
-import img3 from '../assets/IdentitySop.jpg';
-import img4 from '../assets/junior.jpg';
-import img5 from '../assets/launch.jpg';
+import img1 from '../assets/anyone.webp';
+import img2 from '../assets/private.webp';
+import img3 from '../assets/IdentitySop.webp';
+import img4 from '../assets/junior.webp';
+import img5 from '../assets/launch.webp';
 
 const cardData = [
   {

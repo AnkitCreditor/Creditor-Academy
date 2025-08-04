@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Operate from '../assets/OperateBanner.png';
+import Operate from '../assets/OperateBanner.webp';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import MembershipTnC from '../page/MembershipTnC';

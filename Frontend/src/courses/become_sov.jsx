@@ -7,10 +7,10 @@ import {
   FaFileContract,
   FaShieldAlt
 } from 'react-icons/fa';
-import Banner from '../assets/BPSOV_Banner.png';
+import Banner from '../assets/BPSOV_Banner.webp';
 import GameBanner from '../components/GameBanner';
-import Remedy from '../assets/Remedy_Result_3.jpg';
-import MP from '../assets/PMP2.jpg';
+import Remedy from '../assets/Remedy_Result_3.webp';
+import MP from '../assets/PMP2.webp';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },

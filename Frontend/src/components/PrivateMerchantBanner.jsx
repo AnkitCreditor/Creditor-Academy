@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import privateMerchantFootball from '../assets/PrivateMerchantFootball.png';
+import privateMerchantFootball from '../assets/PrivateMerchantFootball.webp';
 import styled, { keyframes } from 'styled-components';
 
 const PrivateMerchantBanner = () => {

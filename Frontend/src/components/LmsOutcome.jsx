@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, TrendingUp, MessageCircle, DollarSign, Handshake, Star } from "lucide-react";
-import lmso1 from '../assets/lmso1.jpg';
-import lmso2 from '../assets/lmso2.jpg';
-import lmso3 from '../assets/lmso3.jpg';
-import lmso4 from '../assets/lmso4.jpg';
-import lmso5 from '../assets/lmso5.jpg';
-import lmso6 from '../assets/lmso6.jpg';
+import lmso1 from '../assets/lmso1.webp';
+import lmso2 from '../assets/lmso2.webp';
+import lmso3 from '../assets/lmso3.webp';
+import lmso4 from '../assets/lmso4.webp';
+import lmso5 from '../assets/lmso5.webp';
+import lmso6 from '../assets/lmso6.webp';
 
 const trainingCategories = [
   {

@@ -12,14 +12,14 @@ import {
 
 import GameBanner from './GameBanner';
 
-import cardaccount from '../assets/cardaccount.jpg';
-import pubiccredit from '../assets/publiccredit.jpg';
-import luxurypersonal from '../assets/luxurypersonal.jpg';
-import acceptpayments from '../assets/acceptpayments.jpg';
-import stack from '../assets/stack.jpg';
-import begin from '../assets/begin.jpg';
-import Remedy from '../assets/Remedy_Result_3.jpg';
-import MP from '../assets/PMP2.jpg';
+import cardaccount from '../assets/cardaccount.webp';
+import pubiccredit from '../assets/publiccredit.webp';
+import luxurypersonal from '../assets/luxurypersonal.webp';
+import acceptpayments from '../assets/acceptpayments.webp';
+import stack from '../assets/stack.webp';
+import begin from '../assets/begin.webp';
+import Remedy from '../assets/Remedy_Result_3.webp';
+import MP from '../assets/PMP2.webp';
 
 const AboutPrivateBusiness = () => {
     // Color scheme

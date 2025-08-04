@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import image from "../assets/arab-businessman-private-jet-generative-ai.jpg"; // Update if needed
+import image from "../assets/arab-businessman-private-jet-generative-ai.webp"; // Update if needed
 
 const WhatYouBuild = () => {
   const items = [

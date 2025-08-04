@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import stater from '../assets/stater.jpg';
-import cadillac from '../assets/cadillac.jpg';
-import websiteDevelopment from '../assets/websiteDevelopment.jpg';
-import SEOready from '../assets/SEOready.jpg';
-import mobileOptimized from '../assets/mobileOptimized.jpg';
-import CustomBrand from '../assets/CustomBrand.jpg';
-import Ongoing from '../assets/Ongoing.jpg';
-import SecureHosting from '../assets/SecureHosting.jpg';
-import FastLoading from '../assets/FastLoadingg.jpg';
+import stater from '../assets/stater.webp';
+import cadillac from '../assets/cadillac.webp';
+import websiteDevelopment from '../assets/websiteDevelopment.webp';
+import SEOready from '../assets/SEOready.webp';
+import mobileOptimized from '../assets/mobileOptimized.webp';
+import CustomBrand from '../assets/CustomBrand.webp';
+import Ongoing from '../assets/Ongoing.webp';
+import SecureHosting from '../assets/SecureHosting.webp';
+import FastLoading from '../assets/FastLoadingg.webp';
 import { useNavigate } from 'react-router-dom';
 
 const WebsiteUpperSection = () => {
@@ -138,7 +138,7 @@ const WebsiteUpperSection = () => {
       >
         <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)', zIndex: '1' }}></div>
         <img 
-          src="https://www.creditoracademy.com/files/8178604/Website_Creation(2).jpg?lmsauth=b4e18bc1fed0208b641bf66a778d622326a86a75" 
+          src="https://www.creditoracademy.com/files/8178604/Website_Creation(2).webp?lmsauth=b4e18bc1fed0208b641bf66a778d622326a86a75" 
           alt="Website Banner" 
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.9)' }} 
         />

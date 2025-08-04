@@ -5,17 +5,17 @@ const features = [
   {
     title: "Interactive Sessions",
     desc: "Ask questions and get real-time answers during our engaging sessions.",
-    img: "https://img.freepik.com/premium-photo/live-button-with-play-icon-rendering_327483-180.jpg?w=740",
+    img: "https://img.freepik.com/premium-photo/live-button-with-play-icon-rendering_327483-180.webp?w=740",
   },
   {
     title: "Expert Mentors",
     desc: "Learn from professionals with years of real-world experience.",
-    img: "https://img.freepik.com/premium-photo/portrait-manager-man-with-arms-crossed-startup-success-teamwork-with-partnership-face-male-person-employee-with-leadership-collaboration-meeting-with-happiness-profit-growth_590464-187930.jpg?w=740",
+    img: "https://img.freepik.com/premium-photo/portrait-manager-man-with-arms-crossed-startup-success-teamwork-with-partnership-face-male-person-employee-with-leadership-collaboration-meeting-with-happiness-profit-growth_590464-187930.webp?w=740",
   },
   {
     title: "Session Replays",
     desc: "Missed a class? No problem — access full replays anytime.",
-    img: "https://img.freepik.com/premium-photo/three-people-are-sitting-front-tv-that-has-man-it_1286328-3032.jpg?w=740",
+    img: "https://img.freepik.com/premium-photo/three-people-are-sitting-front-tv-that-has-man-it_1286328-3032.webp?w=740",
   },
 ];
 

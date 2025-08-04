@@ -1,7 +1,7 @@
 import React from 'react';
-import JourneySOV from '../assets/journeysov.jpg';
-import walk from '../assets/walk.jpg';
-import graduate from '../assets/graduate.jpg';
+import JourneySOV from '../assets/journeysov.webp';
+import walk from '../assets/walk.webp';
+import graduate from '../assets/graduate.webp';
 
 const JourneySOVpage = () => {
   const handleMouseOver = (e) => {
