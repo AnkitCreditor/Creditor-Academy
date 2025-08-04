@@ -343,16 +343,14 @@ const AboutPrivateBusiness = () => {
                     }}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
+                    viewport={{ once: true }}
                     variants={containerVariants}
                 >
                 {/* Enhanced Intro Section */}
                 <motion.section 
                     style={{
-                        ...glassCardStyle,
                         marginTop: '40px',
                         padding: '60px 30px',
-                        borderRadius: '24px',
                         backdropFilter: 'blur(12px)',
                         background: 'rgba(255, 255, 255, 0.05)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -834,7 +832,7 @@ const AboutPrivateBusiness = () => {
                 }
                 `}</style>
 
-                    {/*What You'll Learn */}
+                    {/* What You'll Learn */}
                     <motion.section 
                     style={{
                         marginTop: '20px', 
@@ -844,11 +842,12 @@ const AboutPrivateBusiness = () => {
                         backgroundColor: '#cbe9ffff'
                     }}
                     variants={scaleUp}
+                    viewport={{ once: false, amount: 0.3 }}
                     >
                     {/* Title */}
                     <motion.h2 
                         style={{
-                        fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                        fontSize: '2.5rem',
                         fontWeight: '700',
                         color: colors.dark,
                         marginBottom: '40px',
@@ -861,7 +860,7 @@ const AboutPrivateBusiness = () => {
                         }}
                         variants={slideUp}
                     >
-                        <CheckCircle size={28} color={colors.secondary} />
+                        <CheckCircle size={40} color={colors.secondary} />
                         What You'll Master:
                     </motion.h2>
 
@@ -910,8 +909,8 @@ const AboutPrivateBusiness = () => {
 
                     {/* Scrollable Cards */}
                     <motion.div
-                    ref={scrollRef}
-                    style={{
+                        ref={scrollRef}
+                        style={{
                         display: 'flex',
                         overflowX: 'auto',
                         gap: '20px',
@@ -920,19 +919,15 @@ const AboutPrivateBusiness = () => {
                         WebkitOverflowScrolling: 'touch',
                         scrollbarWidth: 'none',
                         msOverflowStyle: 'none',
-                        ...(!isMobile && {  // Only apply margin on desktop
-                        margin: '0 80px'
-                        }),
+                        ...(!isMobile && { margin: '0 10%' }),
                         ...(isMobile && {
-                        margin: '0 1rem',
-                        scrollbarWidth: 'none',
-                        msOverflowStyle: 'none',
-                        scrollSnapType: 'x mandatory'
+                            margin: '0 1rem',
+                            scrollSnapType: 'x mandatory'
                         })
-                    }}
-                    variants={containerVariants}
-                    onScroll={isMobile ? handleScroll : undefined}
-                    onWheel={(e) => e.stopPropagation()}
+                        }}
+                        variants={containerVariants}
+                        onScroll={isMobile ? handleScroll : undefined}
+                        onWheel={(e) => e.stopPropagation()}
                     >
                         {features.map((feature, index) => (
                         <motion.div
@@ -942,10 +937,9 @@ const AboutPrivateBusiness = () => {
                             flex: '0 0 auto',
                             background: colors.light,
                             borderRadius: '16px',
-                            padding: '20px',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '16px',
+                            overflow: 'hidden',
                             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
                             border: `1px solid ${colors.primaryLight}`,
                             ...(isMobile && { scrollSnapAlign: 'start' })
@@ -953,47 +947,58 @@ const AboutPrivateBusiness = () => {
                             variants={itemVariants}
                             whileHover={{ y: -5 }}
                         >
+                            {/* Image (no padding/margin) */}
                             <img 
                             src={feature.image} 
                             alt={feature.title}
                             style={{
+                                display: 'block',
                                 width: '100%',
                                 height: '160px',
                                 objectFit: 'cover',
-                                borderRadius: '12px'
+                                margin: 0,
+                                padding: 0
                             }}
                             />
-                            
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+
+                            {/* Content */}
                             <div style={{
+                            padding: '20px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '16px'
+                            }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <div style={{
                                 background: 'rgba(14, 165, 233, 0.1)',
                                 padding: '10px',
                                 borderRadius: '8px'
-                            }}>
+                                }}>
                                 {feature.icon}
-                            </div>
-                            <p style={{
+                                </div>
+                                <p style={{
                                 fontSize: '16px',
                                 fontWeight: '500',
                                 flex: 1
-                            }}>
+                                }}>
                                 {feature.title}
-                            </p>
+                                </p>
                             </div>
 
                             <div style={{
-                            padding: '12px',
-                            background: 'rgba(14, 165, 233, 0.05)',
-                            borderRadius: '8px',
-                            borderLeft: `3px solid ${colors.secondary}`
+                                padding: '12px',
+                                background: 'rgba(14, 165, 233, 0.05)',
+                                borderRadius: '8px',
+                                borderLeft: `3px solid ${colors.secondary}`
                             }}>
-                            <p style={{
+                                <p style={{
                                 fontSize: '14px',
                                 lineHeight: '1.6',
                                 color: colors.text
-                            }}>
+                                }}>
                                 {feature.description || "Detailed explanation about this feature and how it benefits your business."}
-                            </p>
+                                </p>
+                            </div>
                             </div>
                         </motion.div>
                         ))}
@@ -1023,7 +1028,7 @@ const AboutPrivateBusiness = () => {
                             />
                             ))}
                         </div>
-                        
+
                         {/* Swipe Indicator */}
                         <div
                             style={{

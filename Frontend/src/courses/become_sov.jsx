@@ -9,6 +9,8 @@ import {
 } from 'react-icons/fa';
 import Banner from '../assets/BPSOV_Banner.png';
 import GameBanner from '../components/GameBanner';
+import Remedy from '../assets/Remedy_Result_3.jpg';
+import MP from '../assets/PMP2.jpg';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -16,9 +18,48 @@ const fadeInUp = {
 };
 
 const BecomePrivateCourse = () => {
+
+  const colors = {
+        primary: '#0369a1',
+        primaryLight: '#e0f2fe',
+        secondary: '#0ea5e9',
+        dark: '#0c4a6e',
+        light: '#ffffff',
+        background: '#f8fafc',
+        text: '#334155',
+        accent: '#38bdf8',
+        mutedText: '#64748b',
+        success: '#10b981',
+        gradient: 'linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%)',
+        gradientHover: 'linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%)'
+    };
+
+  const fadeIn = {
+      hidden: { opacity: 0 },
+      visible: { 
+        opacity: 1,
+        transition: { duration: 0.8, ease: "easeOut" }
+      }
+  };
+
+  // Add this utility function at the top of your file
+    const hexToRgba = (hex, alpha = 1) => {
+    // Remove # if present
+    hex = hex.replace('#', '');
+    
+    // Parse r, g, b values
+    const r = parseInt(hex.length === 3 ? hex.slice(0, 1).repeat(2) : hex.slice(0, 2), 16);
+    const g = parseInt(hex.length === 3 ? hex.slice(1, 2).repeat(2) : hex.slice(2, 4), 16);
+    const b = parseInt(hex.length === 3 ? hex.slice(2, 3).repeat(2) : hex.slice(4, 6), 16);
+    
+    // Return rgba string
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const sliderRef = useRef(null);
+  
   
   const cards = [
     {
@@ -134,7 +175,7 @@ const BecomePrivateCourse = () => {
       <div style={{
         textAlign: 'center',
         padding: '0 20px',
-        maxWidth: '900px',
+        maxWidth: '1200px',
         margin: '0 auto 60px',
       }}>
         <motion.h1
@@ -164,6 +205,408 @@ const BecomePrivateCourse = () => {
         >
           Reclaim Your Legal Identity and Exit the Public System
         </motion.p>
+
+        {/* Courses Section with Creative Layout */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          style={{
+            margin: '20px 0',
+            position: 'relative'
+          }}
+        >
+          {/* Decorative elements */}
+          <div style={{
+            position: 'absolute',
+            top: '-50px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '150px',
+            height: '150px',
+            borderRadius: '50%',
+            background: `radial-gradient(circle, ${colors.primaryLight} 0%, rgba(255,255,255,0) 70%)`,
+            filter: 'blur(30px)',
+            zIndex: 0
+          }} />
+          
+          {/* Section header */}
+          <motion.h3 
+            style={{
+              textAlign: 'center',
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              marginBottom: '60px',
+              position: 'relative',
+              color: colors.text
+            }}
+            variants={fadeIn}
+          >
+            Your Path to <span style={{
+              color: colors.primary,
+              position: 'relative',
+              display: 'inline-block'
+            }}>
+            Sovereignty Mastery
+            <motion.span 
+              style={{
+                position: 'absolute',
+                bottom: '-5px',
+                left: 0,
+                width: '100%',
+                height: '3px',
+                background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
+                borderRadius: '3px'
+              }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: false, amount: 0.3 }}
+            />
+            </span>
+          </motion.h3>
+
+          {/* Courses container */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: '40px',
+            position: 'relative',
+            zIndex: 1
+          }}>
+            {/* "Become Private" Course Card */}
+            <motion.div
+              whileHover={{ y: -10 }}
+              style={{
+                background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
+                borderRadius: '20px',
+                padding: '0',
+                width: 'clamp(300px, 30vw, 400px)',
+                boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+                border: `1px solid ${hexToRgba(colors.primary, 0.2)}`,
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              {/* Premium Course Tag */}
+              <div style={{
+                position: 'absolute',
+                top: '15px',
+                left: '15px',
+                background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
+                color: 'white',
+                padding: '5px 15px',
+                borderRadius: '20px',
+                fontSize: '0.8rem',
+                fontWeight: '600',
+                zIndex: 2,
+                boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+              }}>
+                Premium Course
+              </div>
+
+              {/* Image container with hover effect */}
+              <motion.div 
+                style={{
+                  width: '100%',
+                  height: '200px',
+                  overflow: 'hidden'
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src={Remedy} 
+                  alt="Status Correction Illustration"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center'
+                  }}
+                />
+              </motion.div>
+
+              <div style={{
+                padding: '30px',
+                position: 'relative'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: '100px',
+                  height: '100px',
+                  background: `linear-gradient(45deg, ${colors.primary}, ${colors.secondary})`,
+                  clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
+                  opacity: 0.1
+                }} />
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '20px'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '15px'
+                  }}>
+                    <div style={{
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '12px',
+                      background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        <path d="M12 7v6l3 3"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 style={{
+                        fontSize: '1.5rem',
+                        margin: 0,
+                        color: colors.primary,
+                        fontWeight: '700'
+                      }}>Become Private</h4>
+                      <p style={{
+                        margin: 0,
+                        color: colors.textSecondary,
+                        fontSize: '0.9rem'
+                      }}>Status Correction Masterclass</p>
+                    </div>
+                  </div>
+                  <p style={{
+                    color: colors.textSecondary,
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Reclaim your legal identity and exit the public system through proper status correction.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Plus sign connector */}
+            <motion.div
+              style={{
+                width: '60px',
+                height: '60px',
+                borderRadius: '50%',
+                background: colors.primary,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                flexShrink: 0
+              }}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              <div style={{
+                position: 'absolute',
+                width: '30px',
+                height: '4px',
+                background: 'white',
+                borderRadius: '2px'
+              }} />
+              <div style={{
+                position: 'absolute',
+                width: '4px',
+                height: '30px',
+                background: 'white',
+                borderRadius: '2px'
+              }} />
+              <div style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                border: `2px dashed ${colors.primary}`,
+                animation: 'spin 15s linear infinite',
+                opacity: 0.3
+              }} />
+            </motion.div>
+
+            {/* New SOV 101 Course Card */}
+            <motion.div
+              whileHover={{ y: -10 }}
+              style={{
+                background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
+                borderRadius: '20px',
+                padding: '0',
+                width: 'clamp(300px, 30vw, 400px)',
+                boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+                border: `1px solid ${hexToRgba(colors.secondary, 0.2)}`,
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              {/* Premium Course Tag */}
+              <div style={{
+                position: 'absolute',
+                top: '15px',
+                left: '15px',
+                background: `linear-gradient(90deg, ${colors.secondary}, ${colors.primary})`,
+                color: 'white',
+                padding: '5px 15px',
+                borderRadius: '20px',
+                fontSize: '0.8rem',
+                fontWeight: '600',
+                zIndex: 2,
+                boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+              }}>
+                Premium Course
+              </div>
+
+              {/* Image container with hover effect */}
+              <motion.div 
+                style={{
+                  width: '100%',
+                  height: '200px',
+                  overflow: 'hidden'
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src={MP} 
+                  alt="Sovereignty Foundations Illustration"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center'
+                  }}
+                />
+              </motion.div>
+
+              <div style={{
+                padding: '30px',
+                position: 'relative'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '100px',
+                  height: '100px',
+                  background: `linear-gradient(45deg, ${colors.secondary}, ${colors.primary})`,
+                  clipPath: 'polygon(0 100%, 100% 0, 0 0)',
+                  opacity: 0.1
+                }} />
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '20px'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '15px'
+                  }}>
+                    <div style={{
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '12px',
+                      background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 style={{
+                        fontSize: '1.5rem',
+                        margin: 0,
+                        color: colors.secondary,
+                        fontWeight: '700'
+                      }}>New SOV 101</h4>
+                      <p style={{
+                        margin: 0,
+                        color: colors.textSecondary,
+                        fontSize: '0.9rem'
+                      }}>Sovereignty Foundations</p>
+                    </div>
+                  </div>
+                  <p style={{
+                    color: colors.textSecondary,
+                    lineHeight: '1.7',
+                    margin: 0
+                  }}>
+                    Master the principles of sovereignty and how to rebut legal presumptions effectively.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom mention */}
+          <motion.p
+            style={{
+              textAlign: 'center',
+              marginTop: '60px',
+              fontSize: '1.2rem',
+              color: colors.text
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            Plus learn to establish your <strong style={{
+              color: colors.primary,
+              fontWeight: '600',
+              position: 'relative'
+            }}>
+            Sovereign Status
+            <motion.span 
+              style={{
+                position: 'absolute',
+                bottom: '-2px',
+                left: 0,
+                width: '100%',
+                height: '2px',
+                background: colors.primary,
+                borderRadius: '2px'
+              }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+            />
+            </strong>
+          </motion.p>
+        </motion.section>
+
+        {/* Add this to your global styles */}
+        <style jsx global>{`
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
+
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
@@ -560,28 +1003,7 @@ const BecomePrivateCourse = () => {
                   }}>
                     {item.desc}
                   </p>
-                  <motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    style={{
-                      background: 'transparent',
-                      border: `2px solid ${item.color}`,
-                      borderRadius: '50px',
-                      padding: '8px 20px',
-                      color: item.color,
-                      fontSize: 'clamp(0.8rem, 1vw, 0.9rem)',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}
-                  >
-                    Learn more
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke={item.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </motion.button>
+                  
                 </div>
               </motion.div>
             ))}
@@ -769,22 +1191,6 @@ const BecomePrivateCourse = () => {
               }}>
                 {item.description}
               </p>
-              <motion.div
-                whileHover={{ x: 5 }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  color: item.color,
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  fontSize: '0.95rem'
-                }}
-              >
-                <span>Learn how</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '5px' }}>
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke={item.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -1047,7 +1453,6 @@ const BecomePrivateCourse = () => {
               }}
               style={{ display: 'inline-block', fontSize: '1.4em' }}
             >
-              🚀
             </motion.span>
             Enroll in Roadmap Series
           </motion.button>
