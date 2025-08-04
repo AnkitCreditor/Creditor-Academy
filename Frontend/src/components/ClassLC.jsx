@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import LiveClassBanner from "../assets/LiveClassBanner.png";
+import LiveClassBanner from "../assets/LiveClassBanner.webp";
 
 const ClassLC = () => {
   const bannerRef = useRef(null);

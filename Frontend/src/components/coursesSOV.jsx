@@ -13,7 +13,7 @@ import {
   FaBookReader,
   FaChalkboardTeacher
 } from 'react-icons/fa';
-import chess from '../assets/chess.jpg';
+import chess from '../assets/chess.webp';
 
 const CoursesSOV = () => {
   // Animation variants

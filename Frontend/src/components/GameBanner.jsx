@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaGamepad, FaMedal, FaUsers } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import GBanner from '../assets/game_banner.png';
+import GBanner from '../assets/game_banner.webp';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },

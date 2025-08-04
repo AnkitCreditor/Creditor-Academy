@@ -1,10 +1,10 @@
 import React from 'react';
 import { FaCheckCircle, FaCheck } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import SEOoptimized from '../assets/SEOoptimized.jpg';
-import BusinessFunctionality from '../assets/BusinessFunctionality.jpg';
-import MonthlyMaintainance from '../assets/MonthlyMaintainance.jpg';
-import CustomWebsite from '../assets/CustomWebsite.jpg';
+import SEOoptimized from '../assets/SEOoptimized.webp';
+import BusinessFunctionality from '../assets/BusinessFunctionality.webp';
+import MonthlyMaintainance from '../assets/MonthlyMaintainance.webp';
+import CustomWebsite from '../assets/CustomWebsite.webp';
 import { useNavigate } from 'react-router-dom';
 
 const WebsiteEndSection = () => {

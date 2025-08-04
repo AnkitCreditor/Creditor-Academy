@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   PlayCircle, CheckCircle, ArrowRight, DollarSign, Phone, 
@@ -6,21 +6,20 @@ import {
   ChevronDown, ChevronUp, Plus, Minus, Zap,
   Car, Home, Droplet, Mic, FileText, Calendar, BookOpen,
   MessageSquare, ShoppingCart,
-  // Additional icons needed for business ideas
   Truck, Box, Camera, Activity, PawPrint,
-  Headphones, Package
+  Headphones, Package, ChevronLeft, ChevronRight
 } from 'lucide-react';
 
 import GameBanner from './GameBanner';
 
-import cardaccount from '../assets/cardaccount.jpg';
-import pubiccredit from '../assets/publiccredit.jpg';
-import luxurypersonal from '../assets/luxurypersonal.jpg';
-import acceptpayments from '../assets/acceptpayments.jpg';
-import stack from '../assets/stack.jpg';
-import begin from '../assets/begin.jpg';
-import Remedy from '../assets/Remedy_Result_3.jpg';
-import MP from '../assets/PMP2.jpg';
+import cardaccount from '../assets/cardaccount.webp';
+import pubiccredit from '../assets/publiccredit.webp';
+import luxurypersonal from '../assets/luxurypersonal.webp';
+import acceptpayments from '../assets/acceptpayments.webp';
+import stack from '../assets/stack.webp';
+import begin from '../assets/begin.webp';
+import Remedy from '../assets/Remedy_Result_3.webp';
+import MP from '../assets/PMP2.webp';
 
 const AboutPrivateBusiness = () => {
     // Color scheme
@@ -81,6 +80,63 @@ const AboutPrivateBusiness = () => {
             icon: <Zap size={24} color="#ec4899" />
         }
     ];
+
+    const scrollRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+    const handleResize = () => {
+        setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize(); // Set on initial render
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const scroll = (direction) => {
+    const container = scrollRef.current;
+    const scrollAmount = 500;
+    if (container) {
+        container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+    }
+    };
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+    const container = scrollRef.current;
+
+    const handleScroll = () => {
+        if (!container) return;
+
+        const scrollLeft = container.scrollLeft;
+        const cardWidth = container.firstChild?.getBoundingClientRect().width + 20; // card width + gap
+        const index = Math.round(scrollLeft / cardWidth);
+        setCurrentIndex(index);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Add this state at the top of your component
+    const [activeDot, setActiveDot] = useState(0);
+
+    // Add this scroll handler
+    const handleScroll = () => {
+    if (!scrollRef.current) return;
+    
+    const container = scrollRef.current;
+    const cardWidth = container.firstChild?.offsetWidth || 280;
+    const scrollPosition = container.scrollLeft;
+    const newActiveDot = Math.round(scrollPosition / (cardWidth + 20)); // 20 is the gap
+    
+    if (newActiveDot !== activeDot && newActiveDot >= 0 && newActiveDot <= 4) {
+        setActiveDot(newActiveDot);
+    }
+    };
 
     const businessIdeas = [
         "Car Rental", "Airbnb", "Payment Processing", "Coaching", 
@@ -284,20 +340,17 @@ const AboutPrivateBusiness = () => {
                         margin: '0 auto',
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '60px'
                     }}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
+                    viewport={{ once: true }}
                     variants={containerVariants}
                 >
                 {/* Enhanced Intro Section */}
                 <motion.section 
                     style={{
-                        ...glassCardStyle,
                         marginTop: '40px',
                         padding: '60px 30px',
-                        borderRadius: '24px',
                         backdropFilter: 'blur(12px)',
                         background: 'rgba(255, 255, 255, 0.05)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -779,17 +832,22 @@ const AboutPrivateBusiness = () => {
                 }
                 `}</style>
 
-                    {/* Features Section */}
+                    {/* What You'll Learn */}
                     <motion.section 
                     style={{
-                        ...glassCardStyle,
-                        marginTop: '40px'
+                        marginTop: '20px', 
+                        padding: '50px 0px',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        backgroundColor: '#cbe9ffff'
                     }}
                     variants={scaleUp}
+                    viewport={{ once: false, amount: 0.3 }}
                     >
+                    {/* Title */}
                     <motion.h2 
                         style={{
-                        fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                        fontSize: '2.5rem',
                         fontWeight: '700',
                         color: colors.dark,
                         marginBottom: '40px',
@@ -802,83 +860,217 @@ const AboutPrivateBusiness = () => {
                         }}
                         variants={slideUp}
                     >
-                        <CheckCircle size={28} color={colors.secondary} />
+                        <CheckCircle size={40} color={colors.secondary} />
                         What You'll Master:
                     </motion.h2>
-                    
+
+                    {/* Arrow Buttons (Desktop Only) */}
+                    {!isMobile && (
+                        <>
+                        <button 
+                            onClick={() => scroll('left')} 
+                            style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '20px',
+                            transform: 'translateY(-50%)',
+                            background: colors.light,
+                            border: 'none',
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                            padding: '10px',
+                            borderRadius: '50%',
+                            cursor: 'pointer',
+                            zIndex: 2
+                            }}
+                        >
+                            <ChevronLeft size={24} />
+                        </button>
+
+                        <button 
+                            onClick={() => scroll('right')} 
+                            style={{
+                            position: 'absolute',
+                            top: '50%',
+                            right: '20px',
+                            transform: 'translateY(-50%)',
+                            background: colors.light,
+                            border: 'none',
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                            padding: '10px',
+                            borderRadius: '50%',
+                            cursor: 'pointer',
+                            zIndex: 2
+                            }}
+                        >
+                            <ChevronRight size={24} />
+                        </button>
+                        </>
+                    )}
+
+                    {/* Scrollable Cards */}
                     <motion.div
+                        ref={scrollRef}
                         style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                        gap: '20px'
+                        display: 'flex',
+                        overflowX: 'auto',
+                        gap: '20px',
+                        scrollBehavior: 'smooth',
+                        paddingBottom: isMobile ? '0' : '8px',
+                        WebkitOverflowScrolling: 'touch',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                        ...(!isMobile && { margin: '0 10%' }),
+                        ...(isMobile && {
+                            margin: '0 1rem',
+                            scrollSnapType: 'x mandatory'
+                        })
                         }}
                         variants={containerVariants}
+                        onScroll={isMobile ? handleScroll : undefined}
+                        onWheel={(e) => e.stopPropagation()}
                     >
                         {features.map((feature, index) => (
                         <motion.div
                             key={index}
                             style={{
+                            width: 'clamp(240px, 80vw, 280px)',
+                            flex: '0 0 auto',
                             background: colors.light,
                             borderRadius: '16px',
-                            padding: '20px',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '16px',
+                            overflow: 'hidden',
                             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
                             border: `1px solid ${colors.primaryLight}`,
+                            ...(isMobile && { scrollSnapAlign: 'start' })
                             }}
                             variants={itemVariants}
                             whileHover={{ y: -5 }}
                         >
+                            {/* Image (no padding/margin) */}
                             <img 
                             src={feature.image} 
                             alt={feature.title}
                             style={{
+                                display: 'block',
                                 width: '100%',
                                 height: '160px',
                                 objectFit: 'cover',
-                                borderRadius: '12px'
+                                margin: 0,
+                                padding: 0
                             }}
                             />
-                            
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+
+                            {/* Content */}
                             <div style={{
+                            padding: '20px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '16px'
+                            }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <div style={{
                                 background: 'rgba(14, 165, 233, 0.1)',
                                 padding: '10px',
                                 borderRadius: '8px'
-                            }}>
+                                }}>
                                 {feature.icon}
-                            </div>
-                            <p style={{
+                                </div>
+                                <p style={{
                                 fontSize: '16px',
                                 fontWeight: '500',
                                 flex: 1
-                            }}>
+                                }}>
                                 {feature.title}
-                            </p>
+                                </p>
                             </div>
 
-                            {/* Always-visible description */}
                             <div style={{
-                            padding: '12px',
-                            background: 'rgba(14, 165, 233, 0.05)',
-                            borderRadius: '8px',
-                            borderLeft: `3px solid ${colors.secondary}`
+                                padding: '12px',
+                                background: 'rgba(14, 165, 233, 0.05)',
+                                borderRadius: '8px',
+                                borderLeft: `3px solid ${colors.secondary}`
                             }}>
-                            <p style={{
+                                <p style={{
                                 fontSize: '14px',
                                 lineHeight: '1.6',
                                 color: colors.text
-                            }}>
+                                }}>
                                 {feature.description || "Detailed explanation about this feature and how it benefits your business."}
-                            </p>
+                                </p>
+                            </div>
                             </div>
                         </motion.div>
                         ))}
                     </motion.div>
+
+                    {/* Mobile Indicators */}
+                    {isMobile && (
+                        <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '8px',
+                        marginTop: '16px'
+                        }}>
+                        {/* Dot Indicators */}
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                            {features.slice(0, 5).map((_, index) => (
+                            <div 
+                                key={index}
+                                style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                backgroundColor: currentIndex === index ? colors.secondary : '#ddd',
+                                transition: 'background-color 0.3s ease'
+                                }}
+                            />
+                            ))}
+                        </div>
+
+                        {/* Swipe Indicator */}
+                        <div
+                            style={{
+                            textAlign: 'center',
+                            fontSize: '14px',
+                            color: colors.mutedText || '#888',
+                            animation: 'bounceFade 2s infinite',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '6px'
+                            }}
+                        >
+                            <ChevronLeft size={16} />
+                            Swipe to explore
+                            <ChevronRight size={16} />
+                        </div>
+                        </div>
+                    )}
+
+                    {/* Keyframe for mobile animation */}
+                    <style>
+                        {`
+                        @keyframes bounceFade {
+                            0%, 100% {
+                            opacity: 0.4;
+                            transform: translateY(0);
+                            }
+                            50% {
+                            opacity: 1;
+                            transform: translateY(-3px);
+                            }
+                        }
+
+                        /* Hide scrollbar on WebKit */
+                        div::-webkit-scrollbar {
+                            display: none;
+                        }
+                        `}
+                    </style>
                     </motion.section>
-
-
+                    
                     <GameBanner />
 
                     {/* Business Ideas Section */}

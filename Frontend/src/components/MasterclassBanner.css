@@ -1,7 +1,7 @@
 .masterclass-hero-section {
   position: relative;
   width: 100%;
-  background-image: url('../assets/mc_bg.jpg');
+  background-image: url('../assets/mc_bg.webp');
   background-size: cover;
   background-position: center;
   padding: 60px 0px;
@@ -16,7 +16,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(2, 11, 37, 0.2); /* dark blue with transparency */
+  background-color: rgba(165, 207, 239, 0.2); /* dark blue with transparency */
   z-index: 0;
 }
 

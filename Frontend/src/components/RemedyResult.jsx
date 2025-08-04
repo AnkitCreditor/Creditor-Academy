@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import CourseMatters from '../assets/course_matters.jpg';
-import RemedyResult1 from '../assets/Remedy_Result_1.jpg';
-import RemedyResult2 from '../assets/Remedy_Result_2.jpg';
-import RemedyResult3 from '../assets/Remedy_Result_3.jpg';
-import RemedyResult4 from '../assets/Remedy_Result_4.jpg';
-import RemedyResult5 from '../assets/Remedy_Result_5.jpg';
+import CourseMatters from '../assets/course_matters.webp';
+import RemedyResult1 from '../assets/Remedy_Result_1.webp';
+import RemedyResult2 from '../assets/Remedy_Result_2.webp';
+import RemedyResult3 from '../assets/Remedy_Result_3.webp';
+import RemedyResult4 from '../assets/Remedy_Result_4.webp';
+import RemedyResult5 from '../assets/Remedy_Result_5.webp';
 
 const cardVariants = {
   hover: { y: -8, transition: { duration: 0.3 } }

@@ -3,14 +3,17 @@ import { motion, useInView } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
+import mcbanner from '../assets/Masterclass.webp';
+import newsovbanner from '../assets/BPSOV_Banner.webp';
+import becomeprivatebanner from '../assets/BecomePrivateBanner.webp';
+import opbanner from '../assets/OperateBanner.webp';
+import seniorbanner from '../assets/PrivateBusiness.webp';
+import iwrnbanner from '../assets/iwrn_banner.webp';
+import pmcbanner from '../assets/PrivateMerchantFootball.webp';
+import sovbanner from '../assets/sovfootball.webp';
+import sophomorebanner from '../assets/BecomePrivateBanner.webp';
 
-import mcbanner from '../assets/Masterclass.png';
-import sovbanner from '../assets/BPSOV_Banner.png';
-// import becomeprivatebanner from '../assets/BecomePrivateBanner.png';
-import opbanner from '../assets/OperateBanner.png';
-import seniorbanner from '../assets/PrivateBusiness.png';
-import iwrnbanner from '../assets/iwrn_banner.png';
-// import pmcbanner from '../assets/PrivateMerchantFootball.png';
+
 const courseSlides = [
   {
     title: "Masterclass",
@@ -20,13 +23,29 @@ const courseSlides = [
     link: "/masterclass" // Add your actual route here
   },
   {
-    title: "Become Private + New SOV 101",
-    description: "Correct your status and exit public contracts to reclaim sovereignty.",
+    title: "FRESHMAN: Sovereignty 101",
+    description: "Discover how America shifted from liberty to control—and what it takes to reclaim independence once again.",
 
     price: "View More",
     banner: sovbanner,
-    link: "/newsov"
+    link: "/sov"
   },
+  {
+    title: "SOPHOMORE: Become Private",
+    description: "Learn how to step out of the public and establish your affairs in the private.",
+
+    price: "View More",
+    banner: sophomorebanner,
+    link: "/sophomore"
+  },
+  // {
+  //   title: "Become Private + New SOV 101",
+  //   description: "Correct your status and exit public contracts to reclaim sovereignty.",
+
+  //   price: "View More",
+  //   banner: newsovbanner,
+  //   link: "/newsov"
+  // },
   // {
   //   title: "SOPHOMORE: Become Private",
   //   description: "Discover the ideal structure for your business success.",
@@ -41,27 +60,12 @@ const courseSlides = [
     banner: opbanner,
     link: "/operate"
   },
-  // {
-  //   title: "SENIOR: Private Business Credit",
-  //   description: "Learn how to build unlimited business credit in the Private.",
-  //   price: "Connect with Us",
-  //   banner: seniorbanner,
-  //   link: "/unlimitedcredit"
-  // },
-  // {
-  //   title: "I Want Remedy Now!",
-  //   description: "Fast, lawful credit discharge that puts you back in control.",
-  //   price: "Offer Price $399",
-  //   banner: iwrnbanner,
-  //   link: "/remedy"
-  // },
   {
-
     title: "SENIOR: Private Business Credit",
-    description: "Build business credit through UBOT Trusts and private processing.",
-    price: "View More",
+    description: "Learn how to build unlimited business credit in the Private.",
+    price: "Connect with Us",
     banner: seniorbanner,
-    link: "/private"
+    link: "/unlimitedcredit"
   },
   {
     title: "I Want Remedy Now!",
@@ -71,12 +75,20 @@ const courseSlides = [
     link: "/remedy"
   },
   // {
-  //   title: "Private Merchant Course",
-  //   description: "Discover the foundation of private commerce and take control of how you get paid",
-  //   price: "Connect with Us",
-  //   banner: pmcbanner,
-  //   link: "/privatemerchant"
-  // }
+
+  //   title: "SENIOR: Private Business Credit",
+  //   description: "Build business credit through UBOT Trusts and private processing.",
+  //   price: "View More",
+  //   banner: seniorbanner,
+  //   link: "/private"
+  // },
+  {
+    title: "Private Merchant Course",
+    description: "Discover the foundation of private commerce and take control of how you get paid",
+    price: "Connect with Us",
+    banner: pmcbanner,
+    link: "/privatemerchant"
+  }
 
 ];
 

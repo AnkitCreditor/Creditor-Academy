@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiArrowRight, FiDollarSign, FiCreditCard, FiBriefcase } from 'react-icons/fi';
-import Senior from '../assets/senior.jpeg';
+import Senior from '../assets/senior.webp';
 
 const RoadmapStepThree = () => {
   return (

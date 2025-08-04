@@ -97,7 +97,7 @@ const Senior_Testimonial = () => {
     {
       text: '“I secured $18,000 in Tier 2 credit — without using my SSN.”',
       name: 'Tyrell W., California',
-      image: 'https://randomuser.me/api/portraits/men/32.jpg',
+      image: 'https://randomuser.me/api/portraits/men/32.webp',
     },
     {
       text: '“The website, structure, and binder made me bankable in 45 days.”',
@@ -107,7 +107,7 @@ const Senior_Testimonial = () => {
     {
       text: '“No PG. No hard pull. Just results. This system WORKS.”',
       name: 'David R., Ohio',
-      image: 'https://randomuser.me/api/portraits/men/75.jpg',
+      image: 'https://randomuser.me/api/portraits/men/75.webp',
     },
   ];
 

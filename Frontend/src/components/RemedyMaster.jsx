@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import CourseMatters from '../assets/course_matters.jpg';
+import CourseMatters from '../assets/course_matters.webp';
 
 const RemedyMaster = () => {
   const items = [

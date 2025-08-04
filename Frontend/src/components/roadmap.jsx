@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import roadmapImg from '../assets/logo_roadmap.png';
-import Banner from '../assets/roadmap-banner.png';
+import roadmapImg from '../assets/logo_roadmap.webp';
+import Banner from '../assets/roadmap-banner.webp';
+import Courses from './CoursesSection';
 
 const RoadmapSeries = () => {
   return (
@@ -170,7 +171,6 @@ const RoadmapSeries = () => {
           padding: '2rem 1.25rem',
         }}
       >
-        {/* Feature Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -181,19 +181,19 @@ const RoadmapSeries = () => {
             boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
             overflow: 'hidden',
             display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            flexDirection: 'column',
+            flexDirection: 'column', // default for mobile
           }}
+          className="feature-card-responsive"
         >
+          {/* Image Section */}
           <div
             style={{
-              flex: '0 0 auto',
               background: '#eee',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               padding: '30px',
+              flex: '1 1 40%',
             }}
           >
             <motion.img
@@ -201,7 +201,7 @@ const RoadmapSeries = () => {
               alt="Atlas Logo"
               style={{
                 width: '100%',
-                maxWidth: '120px',
+                maxWidth: '200px',
                 height: 'auto',
               }}
               whileHover={{ scale: 1.05 }}
@@ -209,9 +209,10 @@ const RoadmapSeries = () => {
             />
           </div>
 
+          {/* Text Content */}
           <div
             style={{
-              flex: 1,
+              flex: '1 1 90%',
               padding: '1.5rem',
               display: 'flex',
               flexDirection: 'column',
@@ -220,7 +221,7 @@ const RoadmapSeries = () => {
           >
             <h3
               style={{
-                fontSize: '1.5rem',
+                fontSize: '2rem',
                 fontWeight: 700,
                 color: '#111827',
                 marginBottom: '1rem',
@@ -232,13 +233,14 @@ const RoadmapSeries = () => {
             </h3>
             <p
               style={{
-                fontSize: '0.9rem',
+                fontSize: '1rem',
                 color: '#4b5563',
                 marginBottom: '1rem',
                 lineHeight: 1.6,
               }}
             >
-              The Roadmap Series by Paulmichael is your gateway to exiting the public system, restoring your private status, and building real businesses using credit and trust law.
+              The Roadmap Series by Paulmichael is your gateway to exiting the public system,
+              restoring your private status, and building real businesses using credit and trust law.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
               {['Sovereignty', 'Credit Mastery', 'Trust Operations', 'Private Commerce'].map((item, index) => (
@@ -261,6 +263,16 @@ const RoadmapSeries = () => {
             </div>
           </div>
         </motion.div>
+
+        <style>
+          {`
+            @media (min-width: 768px) {
+              .feature-card-responsive {
+                flex-direction: row !important;
+              }
+            }
+          `}
+        </style>
 
         {/* Testimonial */}
         <motion.div
@@ -349,6 +361,7 @@ const RoadmapSeries = () => {
           </motion.button>
         </motion.div>
       </div>
+      <Courses />
     </section>
   );
 };

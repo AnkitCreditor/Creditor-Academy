@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 
 //Imports from components 
 import Navbar from './components/navbar';
@@ -35,7 +33,7 @@ import PrivateMerchant from './courses/PrivateMerchant';
 import Private from './courses/PrivateBusiness';
 import PrivateBusiness from './courses/PrivateBusiness';
 import DemoSOV from './courses/become_sov';
-
+import RoadMapDemo from './components/roadmap_try';
 
 
 function App() {
@@ -67,10 +65,11 @@ function App() {
         <Route path="/athena" element={<Athena />} />
         <Route path="/private" element={<PrivateBusiness />} />
         <Route path="/newsov" element={<DemoSOV />} />
+        <Route path="/demoroad" element={<RoadMapDemo />} />
 
       </Routes>
       <Footer />
-      <Chatbot /> {/* Add Chatbot here to render on all pages */}
+      {/* <Chatbot />  Add Chatbot here to render on all pages */}
     </Router>
   );
 }

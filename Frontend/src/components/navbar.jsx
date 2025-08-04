@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import logo from '../assets/creditorlogo.png';
-import mascot from '../assets/paul_avatar.png';
+import logo from '../assets/creditorlogo.webp';
+import mascot from '../assets/paul_avatar.webp';
 import AdminModal from './AdminModal';
 import './navbar.css';
 
@@ -15,11 +15,17 @@ const desktopTourSteps = [
   { selector: '#nav-login', text: 'Already a member? Login here.', description: "If you've joined us before, log in to access your dashboard, courses, and exclusive resources." }
 ];
 
+// Updated mobile tour steps for your requested behavior
 const mobileTourSteps = [
   {
     selector: '.nav-menu-btn',
-    text: "🍔 Hamburger Menu",
-    description: "This is the hamburger icon. Tap here to access all important links and navigation options."
+    text: "Hamburger Menu",
+    description: "This is the hamburger icon. Tap here to access Courses, Services & more."
+  },
+  {
+    selector: null,
+    text: "Menu Options",
+    description: "Here you can see the services, courses, and other relevant offerings !."
   },
   {
     selector: '#nav-login.mobile',
@@ -53,6 +59,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const isMobileTablet = width <= 1024;
 
+  // Tour state
   const [tourStep, setTourStep] = useState(0);
   const [tourActive, setTourActive] = useState(true);
   const [animateIn, setAnimateIn] = useState(false);
@@ -101,6 +108,48 @@ const Navbar = () => {
     return () => { document.body.style.overflow = ""; };
   }, [isMenuOpen, isMobileTablet]);
 
+  // CONTROL MENU AND DROPDOWNS BASED ON TOUR STEP - Mobile simplified version
+  useEffect(() => {
+    if (!isMobileTablet || !tourActive) return;
+
+    /*
+      Step 0: Explain hamburger icon, menu closed
+      Step 1: Open menu, no dropdowns - general explanation
+      Step 2: Login button highlight - menu remains open, dropdowns closed
+      Step 3: Chatbot highlight - menu closed
+      After step 3: close menu and tour ends
+    */
+
+    switch (tourStep) {
+      case 0:
+        setIsMenuOpen(false);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+      case 1:
+        setIsMenuOpen(true);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+      case 2:
+        setIsMenuOpen(true);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+      case 3:
+        setIsMenuOpen(false);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+      default:
+        // Just close menu & dropdowns after tour end or unexpected step
+        setIsMenuOpen(false);
+        setShowCourses(false);
+        setShowServices(false);
+        break;
+    }
+  }, [tourStep, tourActive, isMobileTablet]);
+
   const handleCoursesEnter = () => {
     clearTimeout(coursesTimeoutRef.current);
     setShowCourses(true);
@@ -133,10 +182,23 @@ const Navbar = () => {
   const loginButton = (isMobileView = false) => (
     <a
       id="nav-login"
-      href="#"
-      onClick={openModal}
+      href="https://lmsathena.com/login"
       className={`nav-login-btn${isMobileView ? ' mobile' : ''}`}
       style={isMobileView ? { flexShrink: 0, marginLeft: 'auto' } : {}}
+    >
+      Login
+    </a>
+  );
+
+  // For mobile step highlighting the login button
+  // We set id="nav-login.mobile" in the loginButton mobile render for tour selector
+  // So add this here:
+  const loginButtonMobile = (
+    <a
+      id="nav-login.mobile"
+      href="https://lmsathena.com/login"
+      className="nav-login-btn mobile"
+      style={{ flexShrink: 0, marginLeft: 'auto' }}
     >
       Login
     </a>
@@ -149,7 +211,7 @@ const Navbar = () => {
     return el?.getBoundingClientRect();
   };
 
-  // Responsive mascot/message box for all device groups
+  // Mascot styles unchanged
   let mascotGuideContainerStyle, mascotImageStyle, messageBoxStyle, textSize, descSize;
   if (deviceGroup === 'mobile') {
     mascotGuideContainerStyle = {
@@ -287,9 +349,15 @@ const Navbar = () => {
             <div className="nav-dropdown-wrap" onMouseEnter={handleCoursesEnter} onMouseLeave={handleCoursesLeave}>
               <span id="nav-courses" className="nav-link cool-underline">Courses ▾</span>
               <div className={`nav-dropdown${showCourses ? ' visible' : ''}`}>
-                <NavLink to="/newsov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>BecomePrivate & New SOV 101</NavLink>
+                <NavLink to="/sov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>FRESHMAN: Sovereignty 101</NavLink>
+                <NavLink to="/sophomore" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>SOPHOMORE: Become Private</NavLink>
+                <NavLink to="/operate" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>JUNIOR: Operate Private</NavLink>
+                <NavLink to="/unlimitedcredit" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>SENIOR: Private Business Credit</NavLink>
+                <NavLink to="/remedy" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>I Want Remedy Now!</NavLink>
+                <NavLink to="/pmp" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Private Mwechant & Processing</NavLink>
+                {/*<NavLink to="/newsov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>BecomePrivate & New SOV 101</NavLink>
                 <NavLink to="/operate" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Operate Private</NavLink>
-                <NavLink to="/private" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>PRIVATE BUSINESS CREDIT</NavLink>
+                <NavLink to="/private" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>PRIVATE BUSINESS CREDIT</NavLink>*/}
               </div>
             </div>
             <div className="nav-dropdown-wrap" onMouseEnter={handleServicesEnter} onMouseLeave={handleServicesLeave}>
@@ -307,7 +375,8 @@ const Navbar = () => {
             {loginButton()}
           </nav>
         )}
-        {isMobileTablet && loginButton(true)}
+        {isMobileTablet && (tourStep === 2 ? loginButtonMobile : loginButton(true))}
+
         {isMobileTablet && isMenuOpen && (
           <div className="nav-mobile-menu">
             <div className="nav-mobile-dropdown">
@@ -316,9 +385,15 @@ const Navbar = () => {
               </button>
               {showCourses && (
                 <div className="nav-mobile-dropdown-content">
-                  <NavLink to="/newsov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>BecomePrivate & New SOV 101</NavLink>
+                  {/* <NavLink to="/newsov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>BecomePrivate & New SOV 101</NavLink>
                   <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Operate Private</NavLink>
-                  <NavLink to="/private" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>PRIVATE BUSINESS CREDIT</NavLink>
+                  <NavLink to="/private" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>PRIVATE BUSINESS CREDIT</NavLink> */}
+                  <NavLink to="/sov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>FRESHMAN: Sovereignty 101</NavLink>
+                  <NavLink to="/sophomore" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>SOPHOMORE: Become Private</NavLink>
+                  <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>JUNIOR: Operate Private</NavLink>
+                  <NavLink to="/unlimitedcredit" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>SENIOR: Private Business Credit</NavLink>
+                  <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>I Want Remedy Now!</NavLink>
+                  <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Private Mwechant & Processing</NavLink>
                 </div>
               )}
             </div>
@@ -341,6 +416,7 @@ const Navbar = () => {
           </div>
         )}
       </header>
+
       {showMascotGuide && (
         <>
           {/* Overlay */}
@@ -467,6 +543,7 @@ const Navbar = () => {
           </div>
         </>
       )}
+
       <AdminModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );

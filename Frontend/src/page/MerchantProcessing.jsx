@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Banner from '../assets/PrivateMerchant_Banner.jpg';
-import flex from '../assets/PMP_Flex.jpg'
-import PMP1 from '../assets/PMP1.jpg';
-import PMP2 from '../assets/PMP2.jpg';
-import PMP3 from '../assets/PMP3.jpg';
-import PMP4 from '../assets/PMP4.jpg';
-import PMP5 from '../assets/PMP5.jpg';
+import Banner from '../assets/PrivateMerchant_Banner.webp';
+import flex from '../assets/PMP_Flex.webp'
+import PMP1 from '../assets/PMP1.webp';
+import PMP2 from '../assets/PMP2.webp';
+import PMP3 from '../assets/PMP3.webp';
+import PMP4 from '../assets/PMP4.webp';
+import PMP5 from '../assets/PMP5.webp';
 import OurPlatform from '../components/PMPOffers';
 
 const MerchantProcessing = () => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import option1 from '../assets/option1.jpg';
-import option2 from '../assets/option2.jpg';
-import option3 from '../assets/option3.jpg';
+import option1 from '../assets/option1.webp';
+import option2 from '../assets/option2.webp';
+import option3 from '../assets/option3.webp';
 
 const OptionMC = () => {
   const offers = [

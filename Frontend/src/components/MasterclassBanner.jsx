@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import masterclassBanner from '../assets/Masterclass.png';
+import masterclassBanner from '../assets/Masterclass.webp';
 import './MasterclassBanner.css';
 import { useNavigate } from 'react-router-dom';
 

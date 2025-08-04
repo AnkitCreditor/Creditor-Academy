@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import begin from '../assets/begin.jpg';
-import how from '../assets/how.jpg';
-import acting from '../assets/acting.jpg';
-import understand from '../assets/understand.jpg';
-import truee from '../assets/true.jpg';
-import publicc from '../assets/public.jpg';
-import law from '../assets/law.jpg';
+import begin from '../assets/begin.webp';
+import how from '../assets/how.webp';
+import acting from '../assets/acting.webp';
+import understand from '../assets/understand.webp';
+import truee from '../assets/true.webp';
+import publicc from '../assets/public.webp';
+import law from '../assets/law.webp';
 
 const KeyLearning = () => {
   // Animation variants

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import  PrivateBusiness from '../assets/PrivateBusiness.png'; // Adjust the path if necessary
+import  PrivateBusiness from '../assets/PrivateBusiness.webp'; // Adjust the path if necessary
 import MembershipTnC from "../page/MembershipTnC";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
