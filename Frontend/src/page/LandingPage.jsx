@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import website from '../assets/Website_banner_2(2).jpg';
-import privateMerchant from '../assets/merchant (1).jpg';
+import website from '../assets/Website_banner_2(2).webp';
+import privateMerchant from '../assets/merchant (1).webp';
 import GameBanner from '../components/GameBanner.jsx';
 import AboutSection from "../components/AboutSection";
 import MasterclassBanner from '../components/MasterclassBanner';
@@ -64,7 +64,7 @@ const LandingPage = () => {
               style={{ width: '100%', overflow: 'hidden' }}
             >
               <img
-                src="https://creditoracademy.com/wp-content/uploads/2025/05/i-want-remedy-now-.png"
+                src="https://creditoracademy.com/wp-content/uploads/2025/05/i-want-remedy-now-.webp"
                 alt="Book a demo"
                 style={{
                   width: '100%',
@@ -177,7 +177,7 @@ const LandingPage = () => {
               style={{ flex: '1 1 300px', background: '#fff', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 6px 12px rgba(0,0,0,0.1)' }}
             >
               <div style={{ position: 'relative' }}>
-                <img src="https://creditoracademy.com/wp-content/uploads/2025/04/Youtube-live-banner.png" style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+                <img src="https://creditoracademy.com/wp-content/uploads/2025/04/Youtube-live-banner.webp" style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
                 <div style={{ position: 'absolute', top: '10px', left: '10px', background: 'rgba(255,255,255,0.8)', padding: '5px', borderRadius: '50%' }}>
                   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube" style={{ width: '40px', height: 'auto' }} />
                 </div>

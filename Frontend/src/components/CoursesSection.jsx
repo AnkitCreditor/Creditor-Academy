@@ -8,12 +8,12 @@ import {
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-import freshmanImage from '../assets/freshman.jpg';
-import sophomoreImage from '../assets/sophomore.jpg';
-import juniorImage from '../assets/junior.jpg';
-import seniorImage from '../assets/senior.jpeg';
-import remedyImage from '../assets/remedy.jpg';
-import privateImage from '../assets/private.jpg';
+import freshmanImage from '../assets/freshman.webp';
+import sophomoreImage from '../assets/sophomore.webp';
+import juniorImage from '../assets/junior.webp';
+import seniorImage from '../assets/senior.webp';
+import remedyImage from '../assets/remedy.webp';
+import privateImage from '../assets/private.webp';
 
 import { useNavigate } from 'react-router-dom';
 

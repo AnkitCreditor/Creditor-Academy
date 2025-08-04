@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import img1 from '../assets/Couple.jpg';
-import img2 from '../assets/carluxury.jpg';
-import img3 from '../assets/jet.jpg';
-import img4 from '../assets/yatchview.jpg';
+import img1 from '../assets/Couple.webp';
+import img2 from '../assets/carluxury.webp';
+import img3 from '../assets/jet.webp';
+import img4 from '../assets/yatchview.webp';
 
 const slides = [
   {

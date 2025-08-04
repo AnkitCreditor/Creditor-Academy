@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Stripe from '../assets/PMPStripe.jpg';
+import Stripe from '../assets/PMPStripe.webp';
 
 const PMPOffers = () => {
   const animatedHover = {

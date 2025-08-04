@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiArrowRight, FiBookOpen, FiShield, FiHome, FiUsers, FiDollarSign } from 'react-icons/fi';
-import Junior from '../assets/junior.jpg';
+import Junior from '../assets/junior.webp';
 
 const RoadmapStepTwo = () => {
   return (

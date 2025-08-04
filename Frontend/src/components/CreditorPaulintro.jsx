@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import paul from "../assets/Paul.png";
+import paul from "../assets/Paul.webp";
 
 const CreditorPaulintro = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);

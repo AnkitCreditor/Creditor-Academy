@@ -279,7 +279,7 @@ const LMSCTA = () => {
             }}
           />
           <img
-            src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600"
+            src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.webp?auto=compress&cs=tinysrgb&w=600"
             alt="Athena LMS Dashboard Preview"
             style={{
               width: '100%',

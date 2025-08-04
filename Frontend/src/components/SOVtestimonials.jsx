@@ -6,21 +6,21 @@ const SOVtestimonials = () => {
   const testimonials = [
     {
       id: 1,
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      image: "https://randomuser.me/api/portraits/women/44.webp",
       name: "Lauren R., Florida",
       quote: `"The ID aren't just symbolic — they're powerful. When I wear mine, I'm not guessing anymore. I know."`,
       rating: 5
     },
     {
       id: 2,
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      image: "https://randomuser.me/api/portraits/men/32.webp",
       name: "Carlos J., Nevada",
       quote: `"New SOV 101 broke down American history in a way no school or law professor ever did. It woke me up."`,
       rating: 5
     },
     {
       id: 3,
-      image: "https://randomuser.me/api/portraits/men/75.jpg",
+      image: "https://randomuser.me/api/portraits/men/75.webp",
       name: "Travis P., New York",
       quote: `"This course didn't flood me with forms. It gave me <strong style="color: #e67e22;">foundation</strong>. Now I'm walking into the Private with clarity."`,
       rating: 5

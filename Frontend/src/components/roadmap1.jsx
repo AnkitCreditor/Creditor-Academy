@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiArrowRight, FiBookOpen } from 'react-icons/fi';
-import BecomePrivate from '../assets/sophomore.jpg';
-import SOV from '../assets/sovereignty.jpg';
+import BecomePrivate from '../assets/sophomore.webp';
+import SOV from '../assets/sovereignty.webp';
 
 const RoadmapStepOne = () => {
   return (

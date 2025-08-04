@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Banner from '../assets/Unlimited_Credit_Banner.png';
+import Banner from '../assets/Unlimited_Credit_Banner.webp';
 import USP from '../components/Senior_CourseUSP'
 import GameBanner from '../components/GameBanner';
 import Snapshot from '../components/Senior_Snapshot';

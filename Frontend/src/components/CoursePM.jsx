@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import client from '../assets/client.jpg';
-import launch from '../assets/launch.jpg';
-import legal from '../assets/legal.jpg';
-import merchant from '../assets/merchant.jpg';
-import reseller from '../assets/reseller.jpg';
+import client from '../assets/client.webp';
+import launch from '../assets/launch.webp';
+import legal from '../assets/legal.webp';
+import merchant from '../assets/merchant.webp';
+import reseller from '../assets/reseller.webp';
 
 const CoursePM = () => {
   const cards = [
