@@ -3,7 +3,6 @@ import { motion, useInView } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-
 import mcbanner from '../assets/Masterclass.webp';
 import newsovbanner from '../assets/BPSOV_Banner.webp';
 import becomeprivatebanner from '../assets/BecomePrivateBanner.webp';
