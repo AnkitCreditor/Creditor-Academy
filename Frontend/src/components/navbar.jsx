@@ -182,8 +182,7 @@ const Navbar = () => {
   const loginButton = (isMobileView = false) => (
     <a
       id="nav-login"
-      href="#"
-      onClick={openModal}
+      href="https://lmsathena.com/login"
       className={`nav-login-btn${isMobileView ? ' mobile' : ''}`}
       style={isMobileView ? { flexShrink: 0, marginLeft: 'auto' } : {}}
     >
@@ -197,8 +196,7 @@ const Navbar = () => {
   const loginButtonMobile = (
     <a
       id="nav-login.mobile"
-      href="#"
-      onClick={openModal}
+      href="https://lmsathena.com/login"
       className="nav-login-btn mobile"
       style={{ flexShrink: 0, marginLeft: 'auto' }}
     >
@@ -387,9 +385,15 @@ const Navbar = () => {
               </button>
               {showCourses && (
                 <div className="nav-mobile-dropdown-content">
-                  <NavLink to="/newsov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>BecomePrivate & New SOV 101</NavLink>
+                  {/* <NavLink to="/newsov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>BecomePrivate & New SOV 101</NavLink>
                   <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Operate Private</NavLink>
-                  <NavLink to="/private" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>PRIVATE BUSINESS CREDIT</NavLink>
+                  <NavLink to="/private" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>PRIVATE BUSINESS CREDIT</NavLink> */}
+                  <NavLink to="/sov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>FRESHMAN: Sovereignty 101</NavLink>
+                  <NavLink to="/sophomore" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>SOPHOMORE: Become Private</NavLink>
+                  <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>JUNIOR: Operate Private</NavLink>
+                  <NavLink to="/unlimitedcredit" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>SENIOR: Private Business Credit</NavLink>
+                  <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>I Want Remedy Now!</NavLink>
+                  <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Private Mwechant & Processing</NavLink>
                 </div>
               )}
             </div>
