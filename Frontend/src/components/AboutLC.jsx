@@ -1,21 +1,24 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import i1 from "../assets/interactive.webp";
+import i2 from "../assets/mentor.webp";
+import i3 from "../assets/replay.webp"; // ✅ Fix the path and slashes
 
 const features = [
   {
     title: "Interactive Sessions",
     desc: "Ask questions and get real-time answers during our engaging sessions.",
-    img: "https://img.freepik.com/premium-photo/live-button-with-play-icon-rendering_327483-180.webp?w=740",
+    img: i1,
   },
   {
     title: "Expert Mentors",
     desc: "Learn from professionals with years of real-world experience.",
-    img: "https://img.freepik.com/premium-photo/portrait-manager-man-with-arms-crossed-startup-success-teamwork-with-partnership-face-male-person-employee-with-leadership-collaboration-meeting-with-happiness-profit-growth_590464-187930.webp?w=740",
+    img: i2,
   },
   {
     title: "Session Replays",
     desc: "Missed a class? No problem — access full replays anytime.",
-    img: "https://img.freepik.com/premium-photo/three-people-are-sitting-front-tv-that-has-man-it_1286328-3032.webp?w=740",
+    img: i3,
   },
 ];
 
