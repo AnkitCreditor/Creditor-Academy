@@ -8,6 +8,9 @@ import sovereignty from '../assets/sovereignty.webp';
 import you from '../assets/you.webp';
 import MasterTnc from '../page/MasterTnc';
 import { useNavigate } from 'react-router-dom';
+import img1 from '../assets/user1.webp';
+import img2 from '../assets/user2.webp';
+import img3 from '../assets/user3.webp';
 
 export const MCwho = () => {
   const navigate = useNavigate();
@@ -41,17 +44,17 @@ export const MCwho = () => {
     {
       name: 'Derrick M., Georgia',
       quote: 'I secured $22,000 in business credit within 3 months.',
-      img: 'https://randomuser.me/api/portraits/men/44.webp'
+      img: img1
     },
     {
       name: 'Tina L., Texas',
       quote: 'I finally understood trusts. My private site launched without setup fees.',
-      img: 'https://randomuser.me/api/portraits/women/32.webp'
+      img: img2
     },
     {
       name: 'Justin A., Nevada',
       quote: 'I unlocked 5 courses just from playing. This is a training ground, not a school.',
-      img: 'https://randomuser.me/api/portraits/men/75.webp'
+      img: img3
     }
   ];
 

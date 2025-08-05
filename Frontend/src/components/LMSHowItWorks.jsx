@@ -1,6 +1,8 @@
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import badge from '../assets/2badge.webp';
+import Knc from '../assets/KnC.webp';
 
 const LMSHowItWorks = () => {
   const controls = useAnimation();
@@ -42,7 +44,7 @@ const LMSHowItWorks = () => {
       ),
       color: "#29b6f6",
       gradient: "linear-gradient(135deg, #29b6f6 0%, #039be5 100%)",
-      image: "https://images.pexels.com/photos/4145193/pexels-photo-4145193.webp?auto=compress&cs=tinysrgb&w=600"
+      image: Knc
     },
     {
       title: "Earn Badges",
@@ -55,7 +57,7 @@ const LMSHowItWorks = () => {
       ),
       color: "#039be5",
       gradient: "linear-gradient(135deg, #039be5 0%, #0288d1 100%)",
-      image: "https://images.pexels.com/photos/4145197/pexels-photo-4145197.webp?auto=compress&cs=tinysrgb&w=600"
+      image: badge
     },
     {
       title: "Get Certified",
