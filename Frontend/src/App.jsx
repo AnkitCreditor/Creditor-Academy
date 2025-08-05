@@ -1,13 +1,13 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Static components (don't lazy load these small global UI pieces)
+// Static components
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-// import Chatbot from './components/chatbot'; // Uncomment when needed
+import Loader from './components/Loader'; // 👈 Custom Loader
 
-// Lazy loaded components
+// Lazy loaded pages
 const LandingPage = lazy(() => import('./page/LandingPage'));
 const MasterClass = lazy(() => import('./page/MasterClass'));
 const WebsiteCreation = lazy(() => import('./page/WebsiteCreation'));
@@ -31,7 +31,7 @@ const PrivateMerchant = lazy(() => import('./courses/PrivateMerchant'));
 const PrivateBusiness = lazy(() => import('./courses/PrivateBusiness'));
 const DemoSOV = lazy(() => import('./courses/become_sov'));
 
-// Components treated as pages
+// Components as pages
 const ContactSection = lazy(() => import('./components/ContactSection'));
 const RoadMapDemo = lazy(() => import('./components/roadmap_try'));
 
@@ -41,7 +41,7 @@ function App() {
       <Navbar />
       <ScrollToTop />
 
-      <Suspense fallback={<div style={{ padding: '100px', textAlign: 'center' }}>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/privatemerchant" element={<PrivateMerchant />} />
