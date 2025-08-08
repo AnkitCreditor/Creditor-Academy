@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import CorrectSop from '../assets/CorrectSop.jpg';
-import SecureSop from '../assets/SecureSop.jpg';
-import IdentitySop from '../assets/IdentitySop.jpg';
+import CorrectSop from '../assets/CorrectSop.webp';
+import SecureSop from '../assets/SecureSop.webp';
+import IdentitySop from '../assets/IdentitySop.webp';
 
 const LearnSophomore = () => {
   useEffect(() => {

@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiArrowRight, FiBookOpen, FiShield, FiHome, FiUsers, FiDollarSign } from 'react-icons/fi';
-import Junior from '../assets/junior.jpg';
+import Junior from '../assets/junior.webp';
 
 const RoadmapStepTwo = () => {
   return (
@@ -167,23 +168,26 @@ const RoadmapStepTwo = () => {
             Build, manage, and grow an Empire in the private, independent of the public system.
           </p>
           <div style={{ marginTop: 'auto' }}>
-            <a href="/operateprivate" style={{
-              display: 'block',
-              padding: '12px 20px',
-              backgroundColor: '#3b82f6',
-              color: 'white',
-              borderRadius: '6px',
-              fontSize: '15px',
-              fontWeight: 600,
-              textDecoration: 'none',
-              textAlign: 'center',
-              transition: 'all 0.2s ease',
-              ':hover': {
-                backgroundColor: '#2563eb'
-              }
-            }}>
+            <Link 
+              to="/operateprivate"
+              style={{
+                display: 'block',
+                padding: '12px 20px',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                borderRadius: '6px',
+                fontSize: '15px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                textAlign: 'center',
+                transition: 'all 0.2s ease',
+                ':hover': {
+                  backgroundColor: '#2563eb'
+                }
+              }}
+            >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -413,7 +417,10 @@ const RoadmapStepTwo = () => {
               <div style={{ fontSize: '12px', opacity: 0.8 }}>Course Price</div>
               <div style={{ fontSize: '24px', fontWeight: 700 }}>$49</div>
             </div>
-            <a href="/ContactSection" style={{ textDecoration: 'none' }}>
+            <Link 
+              to="/ContactSection"
+              style={{ textDecoration: 'none', width: '100%' }}
+            >
               <button style={{
                 padding: '10px 20px',
                 backgroundColor: 'white',
@@ -431,7 +438,7 @@ const RoadmapStepTwo = () => {
               }}>
                 Contact Counselor
               </button>
-            </a>
+            </Link>
           </div>
         </div>
       </motion.div>

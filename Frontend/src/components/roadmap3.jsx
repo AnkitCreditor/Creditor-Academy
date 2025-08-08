@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiArrowRight, FiDollarSign, FiCreditCard, FiBriefcase } from 'react-icons/fi';
-import Senior from '../assets/senior.jpeg';
+import Senior from '../assets/senior.webp';
 
 const RoadmapStepThree = () => {
   return (
@@ -168,23 +169,26 @@ const RoadmapStepThree = () => {
             Build business credit using UBOT Trusts and establish private merchant processing — no banks, no KYC, no shutdowns.
           </p>
           <div style={{ marginTop: 'auto' }}>
-            <a href="/ContactSection" style={{
-              display: 'block',
-              padding: '12px 20px',
-              backgroundColor: '#3b82f6',
-              color: 'white',
-              borderRadius: '6px',
-              fontSize: '15px',
-              fontWeight: 600,
-              textDecoration: 'none',
-              textAlign: 'center',
-              transition: 'all 0.2s ease',
-              ':hover': {
-                backgroundColor: '#2563eb'
-              }
-            }}>
+            <Link 
+              to="/ContactSection"
+              style={{
+                display: 'block',
+                padding: '12px 20px',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                borderRadius: '6px',
+                fontSize: '15px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                textAlign: 'center',
+                transition: 'all 0.2s ease',
+                ':hover': {
+                  backgroundColor: '#2563eb'
+                }
+              }}
+            >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -456,7 +460,10 @@ const RoadmapStepThree = () => {
             ))}
           </ul>
         </div>
-        <a href="/ContactSection" style={{ textDecoration: 'none' }}>
+        <Link 
+          to="/ContactSection"
+          style={{ textDecoration: 'none', width: '100%' }}
+        >
           <button style={{
             padding: '14px 24px',
             backgroundColor: 'white',
@@ -468,11 +475,15 @@ const RoadmapStepThree = () => {
             fontSize: '16px',
             width: '100%',
             transition: 'all 0.2s ease',
-            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+            ':hover': {
+              transform: 'translateY(-2px)',
+              boxShadow: '0 6px 8px -1px rgba(0, 0, 0, 0.15)'
+            }
           }}>
             Contact Us Now to Book Your Session
           </button>
-        </a>
+        </Link>
       </motion.div>
     </div>
   );

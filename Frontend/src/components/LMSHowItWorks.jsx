@@ -1,6 +1,10 @@
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import badge from '../assets/2badge.webp';
+import Knc from '../assets/KnC.webp';
+import Engaging from '../assets/engaging.webp';
+import graduate from '../assets/graduate2.webp';
 
 const LMSHowItWorks = () => {
   const controls = useAnimation();
@@ -28,7 +32,7 @@ const LMSHowItWorks = () => {
       ),
       color: "#4fc3f7",
       gradient: "linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%)",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=500&q=80"
+      image: Engaging
     },
     {
       title: "Knowledge Check",
@@ -42,7 +46,7 @@ const LMSHowItWorks = () => {
       ),
       color: "#29b6f6",
       gradient: "linear-gradient(135deg, #29b6f6 0%, #039be5 100%)",
-      image: "https://images.pexels.com/photos/4145193/pexels-photo-4145193.jpeg?auto=compress&cs=tinysrgb&w=600"
+      image: Knc
     },
     {
       title: "Earn Badges",
@@ -55,7 +59,7 @@ const LMSHowItWorks = () => {
       ),
       color: "#039be5",
       gradient: "linear-gradient(135deg, #039be5 0%, #0288d1 100%)",
-      image: "https://images.pexels.com/photos/4145197/pexels-photo-4145197.jpeg?auto=compress&cs=tinysrgb&w=600"
+      image: badge
     },
     {
       title: "Get Certified",
@@ -71,7 +75,7 @@ const LMSHowItWorks = () => {
       ),
       color: "#0288d1",
       gradient: "linear-gradient(135deg, #0288d1 0%, #0277bd 100%)",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=500&q=80"
+      image: graduate
     }
   ];
 

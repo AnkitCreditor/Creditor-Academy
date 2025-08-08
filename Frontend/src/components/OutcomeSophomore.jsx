@@ -8,7 +8,7 @@ import {
   FaUniversity,
   FaGraduationCap,
 } from "react-icons/fa";
-import CourseSop from "../assets/CourseSop.jpg";
+import CourseSop from "../assets/CourseSop.webp";
 
 const outcomes = [
   {

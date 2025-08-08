@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import masterclassImage from '../assets/masteclassmembership.png';
+import masterclassImage from '../assets/masteclassmembership.webp';
 
 const PaymentCTA = () => {
   useEffect(() => {

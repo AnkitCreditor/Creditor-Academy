@@ -2,8 +2,8 @@ import { motion, useAnimation } from 'framer-motion';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import './HeroLMS.css';
-import dashboard from '../assets/dashboard.png';
-import progress from '../assets/progress.png';
+import dashboard from '../assets/dashboard.webp';
+import progress from '../assets/progress.webp';
 
 const HeroLMS = () => {
   const controls = useAnimation();

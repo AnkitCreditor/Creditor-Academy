@@ -138,7 +138,7 @@ const LMSAbout = () => {
                 transition: "opacity 0.5s"
               }}
               onLoadedData={() => setIsVideoLoaded(true)}
-              poster="/images/lms-video-poster.jpg"
+              poster="/images/lms-video-poster.webp"
             >
               <source src={demoVideo} type="video/mp4" />
             </video>

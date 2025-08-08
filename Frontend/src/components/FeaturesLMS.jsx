@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import statistics from '../assets/statistics.jpg';
-import usermanagement from '../assets/usermanagement.jpg';
-import livelesson from '../assets/livelesson.jpg';
-import livechat from '../assets/livechat.jpg';
-import coursecreation from '../assets/coursecreation.jpg';
-import certificate from '../assets/certificate.jpg';
+import statistics from '../assets/statistics.webp';
+import usermanagement from '../assets/usermanagement.webp';
+import livelesson from '../assets/livelesson.webp';
+import livechat from '../assets/livechat.webp';
+import coursecreation from '../assets/coursecreation.webp';
+import certificate from '../assets/certificate.webp';
 
 const FeaturesLMS = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);

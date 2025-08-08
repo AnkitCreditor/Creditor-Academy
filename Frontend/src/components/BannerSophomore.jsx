@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import  Sophomore from '../assets/BecomePrivateBanner.png'; // Adjust the path if necessary
+import  Sophomore from '../assets/BecomePrivateBanner.webp'; // Adjust the path if necessary
 import MembershipTnC from "../page/MembershipTnC";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';

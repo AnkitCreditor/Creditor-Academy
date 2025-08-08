@@ -3,13 +3,16 @@ import { motion, useInView } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import mcbanner from '../assets/masteclassmembership.png';
-import sovbanner from '../assets/Sov_101_football.png';
-import becomeprivatebanner from '../assets/BecomePrivateBanner.png';
-import opbanner from '../assets/OperatePrivateFootball.png';
-import seniorbanner from '../assets/Unlimited_Credit_Banner.png';
-import iwrnbanner from '../assets/iwrn_banner.png';
-import pmcbanner from '../assets/PrivateMerchantFootball.png';
+import mcbanner from '../assets/Masterclass.webp';
+import newsovbanner from '../assets/BPSOV_Banner.webp';
+import becomeprivatebanner from '../assets/BecomePrivateBanner.webp';
+import opbanner from '../assets/OperateBanner.webp';
+import seniorbanner from '../assets/PrivateBusiness.webp';
+import iwrnbanner from '../assets/iwrn_banner.webp';
+import pmcbanner from '../assets/PrivateMerchantFootball.webp';
+import sovbanner from '../assets/sovfootball.webp';
+import sophomorebanner from '../assets/BecomePrivateBanner.webp';
+
 
 const courseSlides = [
   {
@@ -22,23 +25,40 @@ const courseSlides = [
   {
     title: "FRESHMAN: Sovereignty 101",
     description: "Discover how America shifted from liberty to control—and what it takes to reclaim independence once again.",
-    price: "Special Offer: With Masterclass Membership",
+
+    price: "View More",
     banner: sovbanner,
     link: "/sov"
   },
   {
     title: "SOPHOMORE: Become Private",
-    description: "Discover the ideal structure for your business success.",
-    price: "Connect with Us",
-    banner: becomeprivatebanner,
+    description: "Learn how to step out of the public and establish your affairs in the private.",
+
+    price: "View More",
+    banner: sophomorebanner,
     link: "/sophomore"
   },
+  // {
+  //   title: "Become Private + New SOV 101",
+  //   description: "Correct your status and exit public contracts to reclaim sovereignty.",
+
+  //   price: "View More",
+  //   banner: newsovbanner,
+  //   link: "/newsov"
+  // },
+  // {
+  //   title: "SOPHOMORE: Become Private",
+  //   description: "Discover the ideal structure for your business success.",
+  //   price: "Connect with Us",
+  //   banner: becomeprivatebanner,
+  //   link: "/sophomore"
+  // },
   {
     title: "JUNIOR: Operate Private",
-    description: "Build, manage, and grow an Empire in the private, independent of the public system.",
-    price: "Connect with Us",
+    description: "Build trusts and PMAs to operate without state oversight.",
+    price: "View More",
     banner: opbanner,
-    link: "/operateprivate"
+    link: "/operate"
   },
   {
     title: "SENIOR: Private Business Credit",
@@ -54,6 +74,14 @@ const courseSlides = [
     banner: iwrnbanner,
     link: "/remedy"
   },
+  // {
+
+  //   title: "SENIOR: Private Business Credit",
+  //   description: "Build business credit through UBOT Trusts and private processing.",
+  //   price: "View More",
+  //   banner: seniorbanner,
+  //   link: "/private"
+  // },
   {
     title: "Private Merchant Course",
     description: "Discover the foundation of private commerce and take control of how you get paid",
@@ -61,6 +89,7 @@ const courseSlides = [
     banner: pmcbanner,
     link: "/privatemerchant"
   }
+
 ];
 
 const HomeSlider = () => {
@@ -168,8 +197,10 @@ const HomeSlider = () => {
                     width: '100%',
                     height: bannerHeight,
                     backgroundImage: `url(${slide.banner})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundSize: isMobile ? 'contain' : 'cover',
+                    backgroundPosition: isMobile ? 'center center' : 'center top',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundColor: '#f8f9fa',
                   }}
                 />
                 {isInView && (

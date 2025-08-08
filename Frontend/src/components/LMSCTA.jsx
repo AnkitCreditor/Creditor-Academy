@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import dashboard from '../assets/dashboard2.webp';
 
 const LMSCTA = () => {
   const [email, setEmail] = useState('');
@@ -279,7 +280,7 @@ const LMSCTA = () => {
             }}
           />
           <img
-            src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600"
+              src={dashboard}
             alt="Athena LMS Dashboard Preview"
             style={{
               width: '100%',
