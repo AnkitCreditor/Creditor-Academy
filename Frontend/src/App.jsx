@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import Loader from './components/Loader'; // 👈 Custom Loader
+import Loader from './components/Loader';
 
 // Lazy loaded pages
 const LandingPage = lazy(() => import('./page/LandingPage'));

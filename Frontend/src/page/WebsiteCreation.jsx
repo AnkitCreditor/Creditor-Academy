@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 // import stater from '../assets/stater.jpg';
 // import cadillac from '../assets/cadillac.jpg';
 // import websiteDevelopment from '../assets/websiteDevelopment.jpg';
@@ -16,7 +16,7 @@ import WebsiteUpperSection from '../components/websiteUpperSection';
 import WebsiteTable from '../components/WebsiteTable';
 import WebsiteEndSection from '../components/WebsiteEndSection';
 
-const WebsiteCreation = () => {
+export const WebsiteCreation = () => {
   return (
     <div>
       <WebsiteUpperSection />
