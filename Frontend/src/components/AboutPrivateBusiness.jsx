@@ -1400,7 +1400,7 @@ const AboutPrivateBusiness = () => {
                             variants={fadeIn}
                         >
                             <DollarSign size={20} color={colors.secondary} />
-                            <span>Session: <strong style={{ color: colors.primary }}>$49</strong></span>
+                            <span>Session: <strong style={{ color: colors.primary }}>$</strong></span>
                         </motion.div>
                         
                         <motion.button
