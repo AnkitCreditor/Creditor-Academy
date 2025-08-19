@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import roadmapImg from '../assets/logo_roadmap.webp';
 import Banner from '../assets/roadmap-banner.webp';
-import Courses from './CoursesSection';
+// import Courses from './CoursesSection';
 
 const RoadmapSeries = () => {
   return (
@@ -361,7 +361,7 @@ const RoadmapSeries = () => {
           </motion.button>
         </motion.div>
       </div>
-      <Courses />
+      {/* <Courses /> */}
     </section>
   );
 };
