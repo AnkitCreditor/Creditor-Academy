@@ -39,6 +39,18 @@ const MasterclassMembershipTC = () => {
         Group started by, created by, maintained, or organized by the Association, I agree to the terms and
         conditions of CREDITOR ACADEMY, a Private Montessori Association, Agreement as follows.
       </p>
+      
+      {/* Added red heading above the form */}
+      <h3 style={{
+        color: 'red',
+        textAlign: 'center',
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
+        marginBottom: '15px'
+      }}>
+        Note : You need to fill this form to proceed to the payment.
+      </h3>
+      
       <iframe
         style={{ width: '100%', height: '100%', border: '2px solid transparent', marginBottom: '10px' }}
         src="https://api.wonderengine.ai/widget/form/ocYS1yVCfWxOe011l8ew"

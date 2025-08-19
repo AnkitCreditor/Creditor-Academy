@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import img1 from '../assets/Couple.webp';
+import img1 from '../assets/Goodcouple.webp';
 import img2 from '../assets/carluxury.webp';
 import img3 from '../assets/jet.webp';
 import img4 from '../assets/yatchview.webp';
