@@ -34,6 +34,7 @@ const DemoSOV = lazy(() => import('./courses/become_sov'));
 // Components as pages
 const ContactSection = lazy(() => import('./components/ContactSection'));
 const RoadMapDemo = lazy(() => import('./components/roadmap_try'));
+const Chatbot = lazy(() => import('./components/chatbot'));
 
 function App() {
   return (
@@ -69,7 +70,7 @@ function App() {
       </Suspense>
 
       <Footer />
-      {/* <Chatbot /> */}
+      <Chatbot />
     </Router>
   );
 }

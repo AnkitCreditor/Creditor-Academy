@@ -14,14 +14,15 @@ import ContactSection from '../components/ContactSection.jsx';
 import HomeSlider from '../components/home_slider.jsx';
 import CreditorPaulintro from '../components/CreditorPaulintro.jsx';
 import Teaching from '../components/Teaching.jsx';
-// import Roadmap from '../components/roadmap.jsx';
+import Roadmap from '../components/roadmap.jsx';
 import Courses from '../components/CoursesSection';
 
 import website from '../assets/Website_banner_2(2).webp';
 import privateMerchant from '../assets/merchant (1).webp';
 import RemedyBanner from '../assets/iwrnbanner.webp';
-
-
+// import DemoRoadmap from '../components/roadmap_try.jsx';
+import Rseries from '../components/Rseries.jsx';
+import LiveClassBanner from "../assets/LiveClassBanner.webp";
 const LandingPage = () => {
   const navigate = useNavigate();
 
@@ -36,108 +37,12 @@ const LandingPage = () => {
       <CreditorPaulintro />
       <Teaching />
       <MasterclassBanner />
-      {/* <Roadmap /> */}
-      <Courses />
+      <Roadmap />
+      {/* <DemoRoadmap /> */}
+      <Rseries />
+      {/* <Courses /> */}
       <GameBanner />
-
-        {/* Merged Remedy Section */}
-        <section
-          style={{
-            width: '100%',
-            margin: 0,
-            padding: 0,
-            background: 'white',
-            fontFamily: 'Poppins, sans-serif',
-            boxSizing: 'border-box',
-          }}
-        >
-          <div
-            style={{
-              maxWidth: '1200px',
-              margin: '0 auto',
-              padding: '0 1rem',
-              boxSizing: 'border-box',
-            }}
-          >
-            {/* Image Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              viewport={{ once: false, amount: 0.2 }}
-              style={{ width: '100%', overflow: 'hidden' }}
-            >
-              <img
-                src={RemedyBanner}
-                alt="Book a demo"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  border: 'none',
-                  borderRadius: '10px',
-                }}
-              />
-            </motion.div>
-
-            {/* Content Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: false, amount: 0.2 }}
-              style={{
-                textAlign: 'center',
-                padding: '30px 10px',
-                maxWidth: '700px',
-                margin: '0 auto',
-              }}
-            >
-              <p
-                style={{
-                  fontSize: '2rem',
-                  fontWeight: '700',
-                  lineHeight: 1.5,
-                  marginBottom: '30px',
-                  textAlign: 'center',
-                  background: 'linear-gradient(to right, #1a66d9, #5fa8d3)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  opacity: 0,
-                  transform: 'translateY(20px)',
-                  animation: 'fadeSlideIn 1s ease-out forwards',
-                  letterSpacing: '0.5px',
-                }}
-              >
-                Book a session by clicking on the button
-              </p>
-              
-
-              <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: '0 12px 24px rgba(0,0,0,0.15)',
-                }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                onClick={() => navigate('/remedy')}
-                style={{
-                  padding: '14px 28px',
-                  fontSize: '1rem',
-                  color: 'white',
-                  backgroundColor: '#5dade2',
-                  border: 'none',
-                  borderRadius: '30px',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                }}
-              >
-                Learn More
-              </motion.button>
-            </motion.div>
-          </div>
-        </section>
-
-        <HomeSlider/ >
+      <HomeSlider/ >
 
         {/* Services Section */}
       <section style={{ 
@@ -371,7 +276,7 @@ const LandingPage = () => {
                 overflow: 'hidden'
               }}>
                 <motion.img 
-                  src="https://creditoracademy.com/wp-content/uploads/2025/04/Youtube-live-banner.png" 
+                  src={LiveClassBanner} 
                   alt="Live Class" 
                   initial={{ scale: 1 }}
                   whileHover={{ scale: 1.1 }}
