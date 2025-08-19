@@ -117,7 +117,7 @@ const NextStepSection = () => {
               alignItems: 'center',
               justifyContent: 'center'
             }}>💰</span>
-            <span>Course Investment: <span style={{ fontWeight: '800', color: '#075985' }}>$49</span></span>
+            <span>Course Investment: <span style={{ fontWeight: '800', color: '#075985' }}>$</span></span>
           </div>
 
           <motion.button

@@ -1348,7 +1348,7 @@ const BecomePrivateCourse = () => {
               background: 'linear-gradient(90deg, #0056b3, #00a1ff)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
-            }}>$49</span>
+            }}>$</span>
           </motion.div>
           <div>
             <motion.button
