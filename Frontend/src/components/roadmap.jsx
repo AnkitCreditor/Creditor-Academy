@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import roadmapImg from '../assets/logo_roadmap.webp';
 import Banner from '../assets/roadmap-banner.webp';
 // import Courses from './CoursesSection';
+import R1 from './roadmap1';
+import R2 from './roadmap2';
+import R3 from './roadmap3';
 
 const RoadmapSeries = () => {
   return (
@@ -361,7 +364,7 @@ const RoadmapSeries = () => {
           </motion.button>
         </motion.div>
       </div>
-      {/* <Courses /> */}
+      <Courses />
     </section>
   );
 };
