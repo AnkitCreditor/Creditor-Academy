@@ -11,7 +11,7 @@ const CourseRoadmap = () => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.header}>Your Sovereignty Blueprint Starts Here</h2>
+      <h1 style={styles.header}>Creditor Academy Premium Courses</h1>
       <div style={styles.cardsContainer}>
         {/* Card 1 */}
         <CourseCard 

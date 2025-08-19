@@ -22,30 +22,30 @@ const courseSlides = [
     banner: mcbanner,
     link: "/masterclass" // Add your actual route here
   },
-  {
-    title: "FRESHMAN: Sovereignty 101",
-    description: "Discover how America shifted from liberty to control—and what it takes to reclaim independence once again.",
-
-    price: "View More",
-    banner: sovbanner,
-    link: "/sov"
-  },
-  {
-    title: "SOPHOMORE: Become Private",
-    description: "Learn how to step out of the public and establish your affairs in the private.",
-
-    price: "View More",
-    banner: sophomorebanner,
-    link: "/sophomore"
-  },
   // {
-  //   title: "Become Private + New SOV 101",
-  //   description: "Correct your status and exit public contracts to reclaim sovereignty.",
+  //   title: "FRESHMAN: Sovereignty 101",
+  //   description: "Discover how America shifted from liberty to control—and what it takes to reclaim independence once again.",
 
   //   price: "View More",
-  //   banner: newsovbanner,
-  //   link: "/newsov"
+  //   banner: sovbanner,
+  //   link: "/sov"
   // },
+  // {
+  //   title: "SOPHOMORE: Become Private",
+  //   description: "Learn how to step out of the public and establish your affairs in the private.",
+
+  //   price: "View More",
+  //   banner: sophomorebanner,
+  //   link: "/sophomore"
+  // },
+  {
+    title: "Become Private + SOV 101",
+    description: "Correct your status and exit public contracts to reclaim sovereignty.",
+
+    price: "View More",
+    banner: newsovbanner,
+    link: "/newsov"
+  },
   // {
   //   title: "SOPHOMORE: Become Private",
   //   description: "Discover the ideal structure for your business success.",
@@ -60,35 +60,35 @@ const courseSlides = [
     banner: opbanner,
     link: "/operate"
   },
-  {
-    title: "SENIOR: Private Business Credit",
-    description: "Learn how to build unlimited business credit in the Private.",
-    price: "Connect with Us",
-    banner: seniorbanner,
-    link: "/unlimitedcredit"
-  },
-  {
-    title: "I Want Remedy Now!",
-    description: "Fast, lawful credit discharge that puts you back in control.",
-    price: "Offer Price $399",
-    banner: iwrnbanner,
-    link: "/remedy"
-  },
   // {
-
   //   title: "SENIOR: Private Business Credit",
-  //   description: "Build business credit through UBOT Trusts and private processing.",
-  //   price: "View More",
+  //   description: "Learn how to build unlimited business credit in the Private.",
+  //   price: "Connect with Us",
   //   banner: seniorbanner,
-  //   link: "/private"
+  //   link: "/unlimitedcredit"
+  // },
+  // {
+  //   title: "I Want Remedy Now!",
+  //   description: "Fast, lawful credit discharge that puts you back in control.",
+  //   price: "Offer Price $399",
+  //   banner: iwrnbanner,
+  //   link: "/remedy"
   // },
   {
-    title: "Private Merchant Course",
-    description: "Discover the foundation of private commerce and take control of how you get paid",
-    price: "Connect with Us",
-    banner: pmcbanner,
-    link: "/privatemerchant"
-  }
+
+    title: "SENIOR: Private Business Credit",
+    description: "Build business credit through UBOT Trusts and private processing.",
+    price: "View More",
+    banner: seniorbanner,
+    link: "/private"
+  },
+  // {
+  //   title: "Private Merchant Course",
+  //   description: "Discover the foundation of private commerce and take control of how you get paid",
+  //   price: "Connect with Us",
+  //   banner: pmcbanner,
+  //   link: "/privatemerchant"
+  // }
 
 ];
 

@@ -5,6 +5,11 @@ import mascot from '../assets/paul_avatar.webp';
 import AdminModal from './AdminModal';
 import './navbar.css';
 
+// Social media and contact icons
+import { FaFacebook, FaTwitter, FaYoutube, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaTiktok } from 'react-icons/fa6';
+import { SiRumble } from 'react-icons/si';
+
 const desktopTourSteps = [
   { selector: null, text: "👋 Welcome to Creditor Academy!", description: "We empower individuals with private education on credit, remedy processes, and business structuring. Let's take a quick tour of the platform." },
   { selector: '#nav-courses', text: 'Explore all credit-building courses.', description: 'Browse our structured education paths covering credit, sovereignty, and private business solutions.' },
@@ -15,7 +20,6 @@ const desktopTourSteps = [
   { selector: '#nav-login', text: 'Already a member? Login here.', description: "If you've joined us before, log in to access your dashboard, courses, and exclusive resources." }
 ];
 
-// Updated mobile tour steps for your requested behavior
 const mobileTourSteps = [
   {
     selector: '.nav-menu-btn',
@@ -108,17 +112,8 @@ const Navbar = () => {
     return () => { document.body.style.overflow = ""; };
   }, [isMenuOpen, isMobileTablet]);
 
-  // CONTROL MENU AND DROPDOWNS BASED ON TOUR STEP - Mobile simplified version
   useEffect(() => {
     if (!isMobileTablet || !tourActive) return;
-
-    /*
-      Step 0: Explain hamburger icon, menu closed
-      Step 1: Open menu, no dropdowns - general explanation
-      Step 2: Login button highlight - menu remains open, dropdowns closed
-      Step 3: Chatbot highlight - menu closed
-      After step 3: close menu and tour ends
-    */
 
     switch (tourStep) {
       case 0:
@@ -142,7 +137,6 @@ const Navbar = () => {
         setShowServices(false);
         break;
       default:
-        // Just close menu & dropdowns after tour end or unexpected step
         setIsMenuOpen(false);
         setShowCourses(false);
         setShowServices(false);
@@ -190,9 +184,6 @@ const Navbar = () => {
     </a>
   );
 
-  // For mobile step highlighting the login button
-  // We set id="nav-login.mobile" in the loginButton mobile render for tour selector
-  // So add this here:
   const loginButtonMobile = (
     <a
       id="nav-login.mobile"
@@ -211,7 +202,6 @@ const Navbar = () => {
     return el?.getBoundingClientRect();
   };
 
-  // Mascot styles unchanged
   let mascotGuideContainerStyle, mascotImageStyle, messageBoxStyle, textSize, descSize;
   if (deviceGroup === 'mobile') {
     mascotGuideContainerStyle = {
@@ -327,6 +317,37 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Top Bar for Social Media and Contact Info */}
+      <div className="top-bar">
+        <div className="top-bar-container">
+          <div className="contact-info">
+            <a href="tel:+1234567890" className="contact-link">
+              <FaPhone className="contact-icon" /> 425-400-9246
+            </a>
+            <a href="mailto:counselor@creditoracademy.com" className="contact-link">
+              <FaEnvelope className="contact-icon" /> counselor@creditoracademy.com
+            </a>
+          </div>
+          <div className="social-links">
+            <a href="https://www.facebook.com/groups/1455118361753321/" target="_blank" rel="noopener noreferrer" className="social-link">
+              <FaFacebook className="social-icon" />
+            </a>
+            <a href="https://x.com/CreditorAcademy" target="_blank" rel="noopener noreferrer" className="social-link">
+              <FaTwitter className="social-icon" />
+            </a>
+            <a href="https://www.tiktok.com/@creditoracademy" target="_blank" rel="noopener noreferrer" className="social-link">
+              <FaTiktok className="social-icon" />
+            </a>
+            <a href="https://www.youtube.com/@creditoracademy" target="_blank" rel="noopener noreferrer" className="social-link">
+              <FaYoutube className="social-icon" />
+            </a>
+            <a href="https://rumble.com/user/CreditorAcademy" target="_blank" rel="noopener noreferrer" className="social-link">
+              <SiRumble className="social-icon" />
+            </a>
+          </div>
+        </div>
+      </div>
+
       <header className={`nav-root${scrolled ? " scrolled" : ""}`} ref={dropdownRef}>
         <div className="nav-logo-wrap">
           {isMobileTablet && (
@@ -349,13 +370,7 @@ const Navbar = () => {
             <div className="nav-dropdown-wrap" onMouseEnter={handleCoursesEnter} onMouseLeave={handleCoursesLeave}>
               <span id="nav-courses" className="nav-link cool-underline">Courses ▾</span>
               <div className={`nav-dropdown${showCourses ? ' visible' : ''}`}>
-                {/* <NavLink to="/sov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>FRESHMAN: Sovereignty 101</NavLink>
-                <NavLink to="/sophomore" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>SOPHOMORE: Become Private</NavLink>
-                <NavLink to="/operate" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>JUNIOR: Operate Private</NavLink>
-                <NavLink to="/unlimitedcredit" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>SENIOR: Private Business Credit</NavLink>
-                <NavLink to="/remedy" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>I Want Remedy Now!</NavLink>
-                <NavLink to="/pmp" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Private Merchant & Processing</NavLink> */}
-                <NavLink to="/newsov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>BecomePrivate & New SOV 101</NavLink>
+                <NavLink to="/newsov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>BecomePrivate & SOV 101</NavLink>
                 <NavLink to="/operate" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Operate Private</NavLink>
                 <NavLink to="/private" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>PRIVATE BUSINESS CREDIT</NavLink>
               </div>
@@ -371,7 +386,7 @@ const Navbar = () => {
             </div>
             <NavLink id="nav-membership" to="/masterclass" className="nav-link cool-underline">Membership</NavLink>
             <NavLink id="nav-contact" to="/ContactSection" className="nav-link cool-underline">Contact</NavLink>
-            <NavLink id="nav-remedy" to="/remedy" className="nav-link cool-underline">Remedy NOW</NavLink>
+            {/* <NavLink id="nav-remedy" to="/remedy" className="nav-link cool-underline">Remedy NOW</NavLink> */}
             {loginButton()}
           </nav>
         )}
@@ -385,9 +400,6 @@ const Navbar = () => {
               </button>
               {showCourses && (
                 <div className="nav-mobile-dropdown-content">
-                  {/* <NavLink to="/newsov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>BecomePrivate & New SOV 101</NavLink>
-                  <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Operate Private</NavLink>
-                  <NavLink to="/private" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>PRIVATE BUSINESS CREDIT</NavLink> */}
                   <NavLink to="/sov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>FRESHMAN: Sovereignty 101</NavLink>
                   <NavLink to="/sophomore" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>SOPHOMORE: Become Private</NavLink>
                   <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>JUNIOR: Operate Private</NavLink>
@@ -419,7 +431,6 @@ const Navbar = () => {
 
       {showMascotGuide && (
         <>
-          {/* Overlay */}
           <div style={{
             position: 'fixed',
             top: 0,
@@ -429,7 +440,6 @@ const Navbar = () => {
             background: 'rgba(0,0,0,0.58)',
             zIndex: 998
           }} />
-          {/* Focus highlight */}
           {(() => {
             const rect = getCurrentRect();
             if (!rect) return null;
@@ -451,7 +461,6 @@ const Navbar = () => {
               }} />
             );
           })()}
-          {/* Mascot/box container */}
           <div style={mascotGuideContainerStyle}>
             <img src={mascot} alt="Mascot" style={mascotImageStyle} />
             <div style={messageBoxStyle}>

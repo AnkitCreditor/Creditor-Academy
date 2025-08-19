@@ -479,3 +479,93 @@ body, #root {
   content: none !important;
 }
 
+/* Top Bar Styles */
+.top-bar {
+  background-color: #18223a;
+  color: #fff;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #25408c;
+}
+
+.top-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact-info {
+  display: flex;
+  gap: 20px;
+}
+
+.contact-link {
+  color: #b6d7ff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s;
+}
+
+.contact-link:hover {
+  color: #fff;
+}
+
+.contact-icon {
+  font-size: 0.9rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  color: #b6d7ff;
+  transition: color 0.2s;
+}
+
+.social-link:hover {
+  color: #fff;
+}
+
+.social-icon {
+  font-size: 1.1rem;
+}
+
+/* Responsive styles for top bar */
+@media (max-width: 768px) {
+  .top-bar-container {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 15px;
+  }
+  
+  .contact-info {
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+  
+  .social-links {
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    font-size: 0.8rem;
+    padding: 6px 0;
+  }
+  
+  .contact-icon, .social-icon {
+    font-size: 0.9rem;
+  }
+}
+
