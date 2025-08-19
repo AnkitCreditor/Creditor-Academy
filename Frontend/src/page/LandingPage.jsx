@@ -42,7 +42,7 @@ const LandingPage = () => {
       <Rseries />
       {/* <Courses /> */}
       <GameBanner />
-      <HomeSlider/ >
+      <HomeSlider />
 
         {/* Services Section */}
       <section style={{ 
