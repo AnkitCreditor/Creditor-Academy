@@ -400,12 +400,15 @@ const Navbar = () => {
               </button>
               {showCourses && (
                 <div className="nav-mobile-dropdown-content">
-                  <NavLink to="/sov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>FRESHMAN: Sovereignty 101</NavLink>
+                  {/* <NavLink to="/sov" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>FRESHMAN: Sovereignty 101</NavLink>
                   <NavLink to="/sophomore" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>SOPHOMORE: Become Private</NavLink>
                   <NavLink to="/operate" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>JUNIOR: Operate Private</NavLink>
                   <NavLink to="/unlimitedcredit" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>SENIOR: Private Business Credit</NavLink>
                   <NavLink to="/remedy" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>I Want Remedy Now!</NavLink>
-                  <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Private Merchant & Processing</NavLink>
+                  <NavLink to="/pmp" className="nav-mobile-link cool-underline" onClick={handleMobileLinkClick}>Private Merchant & Processing</NavLink> */}
+                  <NavLink to="/newsov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>BecomePrivate & SOV 101</NavLink>
+                <NavLink to="/operate" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Operate Private</NavLink>
+                <NavLink to="/private" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>PRIVATE BUSINESS CREDIT</NavLink>
                 </div>
               )}
             </div>

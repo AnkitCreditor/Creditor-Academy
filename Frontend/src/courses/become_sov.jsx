@@ -189,7 +189,7 @@ const BecomePrivateCourse = () => {
             color: '#0056b3'
           }}
         >
-          Become Private + New SOV 101
+          Become Private & SOV 101
         </motion.h1>
         <motion.p
           initial={{ y: 20, opacity: 0 }}
@@ -541,7 +541,7 @@ const BecomePrivateCourse = () => {
                         margin: 0,
                         color: colors.secondary,
                         fontWeight: '700'
-                      }}>New SOV 101</h4>
+                      }}>Sovereignty 101</h4>
                       <p style={{
                         margin: 0,
                         color: colors.textSecondary,
@@ -1454,7 +1454,7 @@ const BecomePrivateCourse = () => {
               style={{ display: 'inline-block', fontSize: '1.4em' }}
             >
             </motion.span>
-            Enroll in Roadmap Series
+            Enroll in Course
           </motion.button>
           <div style={{
             position: 'absolute',
