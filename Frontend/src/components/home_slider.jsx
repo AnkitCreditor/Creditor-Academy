@@ -22,6 +22,32 @@ const courseSlides = [
     banner: mcbanner,
     link: "/masterclass" // Add your actual route here
   },
+
+  {
+    title: "Become Private + SOV 101",
+    description: "Correct your status and exit public contracts to reclaim sovereignty.",
+
+    price: "View More",
+    banner: newsovbanner,
+    link: "/newsov"
+  },
+
+  {
+    title: "JUNIOR: Operate Private",
+    description: "Build trusts and PMAs to operate without state oversight.",
+    price: "View More",
+    banner: opbanner,
+    link: "/operate"
+  },
+
+  {
+
+    title: "SENIOR: Private Business Credit",
+    description: "Build business credit through UBOT Trusts and private processing.",
+    price: "View More",
+    banner: seniorbanner,
+    link: "/private"
+  },
   // {
   //   title: "FRESHMAN: Sovereignty 101",
   //   description: "Discover how America shifted from liberty to control—and what it takes to reclaim independence once again.",
@@ -38,14 +64,7 @@ const courseSlides = [
   //   banner: sophomorebanner,
   //   link: "/sophomore"
   // },
-  {
-    title: "Become Private + SOV 101",
-    description: "Correct your status and exit public contracts to reclaim sovereignty.",
-
-    price: "View More",
-    banner: newsovbanner,
-    link: "/newsov"
-  },
+  
   // {
   //   title: "SOPHOMORE: Become Private",
   //   description: "Discover the ideal structure for your business success.",
@@ -53,13 +72,7 @@ const courseSlides = [
   //   banner: becomeprivatebanner,
   //   link: "/sophomore"
   // },
-  {
-    title: "JUNIOR: Operate Private",
-    description: "Build trusts and PMAs to operate without state oversight.",
-    price: "View More",
-    banner: opbanner,
-    link: "/operate"
-  },
+  
   // {
   //   title: "SENIOR: Private Business Credit",
   //   description: "Learn how to build unlimited business credit in the Private.",
@@ -74,14 +87,7 @@ const courseSlides = [
   //   banner: iwrnbanner,
   //   link: "/remedy"
   // },
-  {
-
-    title: "SENIOR: Private Business Credit",
-    description: "Build business credit through UBOT Trusts and private processing.",
-    price: "View More",
-    banner: seniorbanner,
-    link: "/private"
-  },
+  
   // {
   //   title: "Private Merchant Course",
   //   description: "Discover the foundation of private commerce and take control of how you get paid",

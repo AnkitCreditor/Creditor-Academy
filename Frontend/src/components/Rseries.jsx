@@ -15,7 +15,7 @@ const CourseRoadmap = () => {
       <div style={styles.cardsContainer}>
         {/* Card 1 */}
         <CourseCard 
-          title="Become Private & SOV 101" 
+          title="Become Private + SOV 101" 
           image={img1}
           subtitle="Reclaim Your Legal Identity"
           description="Correct your status and exit public contracts to reclaim sovereignty"
