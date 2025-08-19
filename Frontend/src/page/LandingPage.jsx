@@ -14,13 +14,14 @@ import ContactSection from '../components/ContactSection.jsx';
 import HomeSlider from '../components/home_slider.jsx';
 import CreditorPaulintro from '../components/CreditorPaulintro.jsx';
 import Teaching from '../components/Teaching.jsx';
-// import Roadmap from '../components/roadmap.jsx';
+import Roadmap from '../components/roadmap.jsx';
 import Courses from '../components/CoursesSection';
 
 import website from '../assets/Website_banner_2(2).webp';
 import privateMerchant from '../assets/merchant (1).webp';
 import RemedyBanner from '../assets/iwrnbanner.webp';
-
+// import DemoRoadmap from '../components/roadmap_try.jsx';
+import Rseries from '../components/Rseries.jsx';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -36,8 +37,10 @@ const LandingPage = () => {
       <CreditorPaulintro />
       <Teaching />
       <MasterclassBanner />
-      {/* <Roadmap /> */}
-      <Courses />
+      <Roadmap />
+      {/* <DemoRoadmap /> */}
+      <Rseries />
+      {/* <Courses /> */}
       <GameBanner />
 
         {/* Merged Remedy Section */}

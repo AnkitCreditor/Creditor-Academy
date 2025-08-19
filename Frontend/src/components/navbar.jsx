@@ -349,15 +349,15 @@ const Navbar = () => {
             <div className="nav-dropdown-wrap" onMouseEnter={handleCoursesEnter} onMouseLeave={handleCoursesLeave}>
               <span id="nav-courses" className="nav-link cool-underline">Courses ▾</span>
               <div className={`nav-dropdown${showCourses ? ' visible' : ''}`}>
-                <NavLink to="/sov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>FRESHMAN: Sovereignty 101</NavLink>
+                {/* <NavLink to="/sov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>FRESHMAN: Sovereignty 101</NavLink>
                 <NavLink to="/sophomore" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>SOPHOMORE: Become Private</NavLink>
                 <NavLink to="/operate" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>JUNIOR: Operate Private</NavLink>
                 <NavLink to="/unlimitedcredit" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>SENIOR: Private Business Credit</NavLink>
                 <NavLink to="/remedy" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>I Want Remedy Now!</NavLink>
-                <NavLink to="/pmp" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Private Merchant & Processing</NavLink>
-                {/*<NavLink to="/newsov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>BecomePrivate & New SOV 101</NavLink>
+                <NavLink to="/pmp" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Private Merchant & Processing</NavLink> */}
+                <NavLink to="/newsov" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>BecomePrivate & New SOV 101</NavLink>
                 <NavLink to="/operate" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>Operate Private</NavLink>
-                <NavLink to="/private" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>PRIVATE BUSINESS CREDIT</NavLink>*/}
+                <NavLink to="/private" className="nav-dropdown-link cool-underline" onClick={() => setShowCourses(false)}>PRIVATE BUSINESS CREDIT</NavLink>
               </div>
             </div>
             <div className="nav-dropdown-wrap" onMouseEnter={handleServicesEnter} onMouseLeave={handleServicesLeave}>
