@@ -1337,7 +1337,7 @@ const AboutPrivateBusiness = () => {
                             }}
                             variants={fadeIn}
                         >
-                            Book your <strong>$49 Roadmap Session</strong> and meet your assigned counselor to:
+                            Book your <strong>Course Session</strong> and meet your assigned counselor to:
                         </motion.p>
                         
                         <motion.ul 
