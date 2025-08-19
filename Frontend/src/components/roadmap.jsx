@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import roadmapImg from '../assets/logo_roadmap.webp';
+import roadmapImg from '../assets/roadmap.webp';
+import passiveImg from '../assets/passive.webp';
 import Banner from '../assets/roadmap-banner.webp';
+import { Link } from 'react-router-dom';
 // import Courses from './CoursesSection';
 import R1 from './roadmap1';
 import R2 from './roadmap2';
@@ -113,7 +115,7 @@ const RoadmapSeries = () => {
             >
               Your comprehensive guide to financial sovereignty and credit mastery
             </motion.p>
-
+{/* 
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
@@ -161,7 +163,7 @@ const RoadmapSeries = () => {
               >
                 $49
               </motion.span>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </motion.div>
@@ -174,6 +176,7 @@ const RoadmapSeries = () => {
           padding: '2rem 1.25rem',
         }}
       >
+        {/* First Feature Card (Image Left, Text Right) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -195,8 +198,9 @@ const RoadmapSeries = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '30px',
+              padding: '0', // Remove padding to allow full area usage
               flex: '1 1 40%',
+              overflow: 'hidden', // Hide any overflow
             }}
           >
             <motion.img
@@ -204,14 +208,15 @@ const RoadmapSeries = () => {
               alt="Atlas Logo"
               style={{
                 width: '100%',
-                maxWidth: '200px',
-                height: 'auto',
+                height: '100%', // Take full height of container
+                objectFit: 'cover', // Cover the entire area while maintaining aspect ratio
+                minHeight: '100%', // Ensure it covers vertically
+                minWidth: '100%', // Ensure it covers horizontally
               }}
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             />
           </div>
-
           {/* Text Content */}
           <div
             style={{
@@ -246,7 +251,7 @@ const RoadmapSeries = () => {
               restoring your private status, and building real businesses using credit and trust law.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-              {['Sovereignty', 'Credit Mastery', 'Trust Operations', 'Private Commerce'].map((item, index) => (
+              {['Orientation to the Private Path', 'Become Private & SOV 101', 'Operate Private', 'Senior Business credit'].map((item, index) => (
                 <motion.span
                   key={index}
                   whileHover={{ scale: 1.05 }}
@@ -267,10 +272,119 @@ const RoadmapSeries = () => {
           </div>
         </motion.div>
 
+        {/* Second Feature Card (Image Right, Text Left) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          style={{
+            backgroundColor: '#ffffff',
+            borderRadius: '20px',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column-reverse', // default for mobile
+            marginTop: '2rem',
+          }}
+          className="feature-card-responsive-reverse"
+        >
+          {/* Text Content */}
+          <div
+            style={{
+              flex: '1 1 90%',
+              padding: '1.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+          >
+            <h3
+              style={{
+                fontSize: '2rem',
+                fontWeight: 700,
+                color: '#111827',
+                marginBottom: '1rem',
+                lineHeight: 1.3,
+              }}
+            >
+              Start your{' '}
+              <span style={{ color: '#0e6297ff' }}>Passive Income</span> now
+            </h3>
+            <ul
+              style={{
+                fontSize: '1rem',
+                color: '#4b5563',
+                marginBottom: '1rem',
+                lineHeight: 1.6,
+                paddingLeft: '1.5rem',
+              }}
+            >
+              <li style={{ marginBottom: '0.5rem' }}>
+                <strong>Phase 1: Trust Formation</strong>
+              </li>
+              <li style={{ marginBottom: '0.5rem' }}>
+                <strong>Phase 2: Tier 1 Business Credit Optimization</strong>
+              </li>
+              <li>
+                <strong>Phase 3: Private Merchant Processing</strong>
+              </li>
+            </ul>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+              {['Launch Your Airbnb with a Trust', 'Start a Credit Repair Company', 'Sell Digital', 'Start a Vending Machine Route'].map((item, index) => (
+                <motion.span
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  style={{
+                    padding: '0.375rem 0.75rem',
+                    backgroundColor: '#dbeafe',
+                    color: '#0e5988ff',
+                    borderRadius: '9999px',
+                    fontSize: '0.75rem',
+                    fontWeight: 500,
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {item}
+                </motion.span>
+              ))}
+            </div>
+          </div>
+
+          {/* Image Section */}
+          <div
+            style={{
+              background: '#eee',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0', // Remove padding to allow full area usage
+              flex: '1 1 40%',
+              overflow: 'hidden', // Hide any overflow
+            }}
+          >
+            <motion.img
+              src={passiveImg}
+              alt="Atlas Logo"
+              style={{
+                width: '100%',
+                height: '100%', // Take full height of container
+                objectFit: 'cover', // Cover the entire area while maintaining aspect ratio
+                minHeight: '100%', // Ensure it covers vertically
+                minWidth: '100%', // Ensure it covers horizontally
+              }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            />
+          </div>
+        </motion.div>
+
         <style>
           {`
             @media (min-width: 768px) {
               .feature-card-responsive {
+                flex-direction: row !important;
+              }
+              .feature-card-responsive-reverse {
                 flex-direction: row !important;
               }
             }
@@ -281,7 +395,7 @@ const RoadmapSeries = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           style={{
             background: 'linear-gradient(135deg, #0e63a9ff 0%, #237fe1ff 100%)',
             borderRadius: '20px',
@@ -327,7 +441,7 @@ const RoadmapSeries = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           style={{
             textAlign: 'center',
             marginTop: '2rem',
@@ -343,25 +457,28 @@ const RoadmapSeries = () => {
           >
             Ready to Transform Your Financial Future?
           </h3>
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-              boxShadow: '0 10px 25px -5px rgba(37, 99, 235, 0.4)',
-            }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              padding: '0.75rem 1.5rem',
-              background: 'linear-gradient(135deg, #3799daff 0%, #1d84d8ff 100%)',
-              color: 'white',
-              fontSize: '1rem',
-              fontWeight: 600,
-              borderRadius: '9999px',
-              border: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            Enroll Now for $49
-          </motion.button>
+          
+<Link to="/masterclass" style={{ textDecoration: 'none' }}>
+  <motion.button
+    whileHover={{
+      scale: 1.05,
+      boxShadow: '0 10px 25px -5px rgba(37, 99, 235, 0.4)',
+    }}
+    whileTap={{ scale: 0.95 }}
+    style={{
+      padding: '0.75rem 1.5rem',
+      background: 'linear-gradient(135deg, #3799daff 0%, #1d84d8ff 100%)',
+      color: 'white',
+      fontSize: '1rem',
+      fontWeight: 600,
+      borderRadius: '9999px',
+      border: 'none',
+      cursor: 'pointer',
+    }}
+  >
+    Start your journey
+  </motion.button>
+</Link>
         </motion.div>
       </div>
       {/* <Courses /> */}
