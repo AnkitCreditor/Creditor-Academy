@@ -364,7 +364,7 @@ const RoadmapSeries = () => {
           </motion.button>
         </motion.div>
       </div>
-      <Courses />
+      {/* <Courses /> */}
     </section>
   );
 };
