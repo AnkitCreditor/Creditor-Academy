@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  PlayCircle, CheckCircle, ArrowRight, DollarSign, Phone, 
-  Briefcase, Star, Search, Shield, Lock, Globe, CreditCard,
-  ChevronDown, ChevronUp, Plus, Minus, Zap,
-  Car, Home, Droplet, Mic, FileText, Calendar, BookOpen,
-  MessageSquare, ShoppingCart,
-  Truck, Box, Camera, Activity, PawPrint,
-  Headphones, Package, ChevronLeft, ChevronRight
+import {
+    PlayCircle, CheckCircle, ArrowRight, DollarSign, Phone,
+    Briefcase, Star, Search, Shield, Lock, Globe, CreditCard,
+    ChevronDown, ChevronUp, Plus, Minus, Zap,
+    Car, Home, Droplet, Mic, FileText, Calendar, BookOpen,
+    MessageSquare, ShoppingCart,
+    Truck, Box, Camera, Activity, PawPrint,
+    Headphones, Package, ChevronLeft, ChevronRight
 } from 'lucide-react';
 
 import GameBanner from './GameBanner';
@@ -19,7 +19,9 @@ import acceptpayments from '../assets/acceptpayments.webp';
 import stack from '../assets/stack.webp';
 import begin from '../assets/begin.webp';
 import Remedy from '../assets/Remedy_Result_3.webp';
+
 import MP from '../assets/PMP2.webp';
+import PBC from '../assets/PBC.webp';
 
 const AboutPrivateBusiness = () => {
     // Color scheme
@@ -85,40 +87,40 @@ const AboutPrivateBusiness = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-    const handleResize = () => {
-        setIsMobile(window.innerWidth < 768);
-    };
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
 
-    handleResize(); // Set on initial render
-    window.addEventListener('resize', handleResize);
+        handleResize(); // Set on initial render
+        window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     const scroll = (direction) => {
-    const container = scrollRef.current;
-    const scrollAmount = 500;
-    if (container) {
-        container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
-    }
+        const container = scrollRef.current;
+        const scrollAmount = 500;
+        if (container) {
+            container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+        }
     };
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-    const container = scrollRef.current;
+        const container = scrollRef.current;
 
-    const handleScroll = () => {
-        if (!container) return;
+        const handleScroll = () => {
+            if (!container) return;
 
-        const scrollLeft = container.scrollLeft;
-        const cardWidth = container.firstChild?.getBoundingClientRect().width + 20; // card width + gap
-        const index = Math.round(scrollLeft / cardWidth);
-        setCurrentIndex(index);
-    };
+            const scrollLeft = container.scrollLeft;
+            const cardWidth = container.firstChild?.getBoundingClientRect().width + 20; // card width + gap
+            const index = Math.round(scrollLeft / cardWidth);
+            setCurrentIndex(index);
+        };
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
+        container.addEventListener('scroll', handleScroll);
+        return () => container.removeEventListener('scroll', handleScroll);
     }, []);
 
     // Add this state at the top of your component
@@ -126,21 +128,21 @@ const AboutPrivateBusiness = () => {
 
     // Add this scroll handler
     const handleScroll = () => {
-    if (!scrollRef.current) return;
-    
-    const container = scrollRef.current;
-    const cardWidth = container.firstChild?.offsetWidth || 280;
-    const scrollPosition = container.scrollLeft;
-    const newActiveDot = Math.round(scrollPosition / (cardWidth + 20)); // 20 is the gap
-    
-    if (newActiveDot !== activeDot && newActiveDot >= 0 && newActiveDot <= 4) {
-        setActiveDot(newActiveDot);
-    }
+        if (!scrollRef.current) return;
+
+        const container = scrollRef.current;
+        const cardWidth = container.firstChild?.offsetWidth || 280;
+        const scrollPosition = container.scrollLeft;
+        const newActiveDot = Math.round(scrollPosition / (cardWidth + 20)); // 20 is the gap
+
+        if (newActiveDot !== activeDot && newActiveDot >= 0 && newActiveDot <= 4) {
+            setActiveDot(newActiveDot);
+        }
     };
 
     const businessIdeas = [
-        "Car Rental", "Airbnb", "Payment Processing", "Coaching", 
-        "E-commerce", "Cleaning", "Podcast", "Credit Repair", 
+        "Car Rental", "Airbnb", "Payment Processing", "Coaching",
+        "E-commerce", "Cleaning", "Podcast", "Credit Repair",
         "Notary", "Bookkeeping"
     ];
 
@@ -180,7 +182,7 @@ const AboutPrivateBusiness = () => {
 
     const fadeIn = {
         hidden: { opacity: 0 },
-        visible: { 
+        visible: {
             opacity: 1,
             transition: { duration: 0.8, ease: "easeOut" }
         }
@@ -188,24 +190,24 @@ const AboutPrivateBusiness = () => {
 
     const scaleUp = {
         hidden: { scale: 0.95, opacity: 0 },
-        visible: { 
-            scale: 1, 
+        visible: {
+            scale: 1,
             opacity: 1,
-            transition: { 
-                duration: 0.8, 
-                ease: [0.16, 1, 0.3, 1] 
+            transition: {
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1]
             }
         }
     };
 
     const slideUp = {
         hidden: { y: 30, opacity: 0 },
-        visible: { 
-            y: 0, 
+        visible: {
+            y: 0,
             opacity: 1,
-            transition: { 
-                duration: 0.8, 
-                ease: [0.16, 1, 0.3, 1] 
+            transition: {
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1]
             }
         }
     };
@@ -225,16 +227,16 @@ const AboutPrivateBusiness = () => {
 
     // Add this utility function at the top of your file
     const hexToRgba = (hex, alpha = 1) => {
-    // Remove # if present
-    hex = hex.replace('#', '');
-    
-    // Parse r, g, b values
-    const r = parseInt(hex.length === 3 ? hex.slice(0, 1).repeat(2) : hex.slice(0, 2), 16);
-    const g = parseInt(hex.length === 3 ? hex.slice(1, 2).repeat(2) : hex.slice(2, 4), 16);
-    const b = parseInt(hex.length === 3 ? hex.slice(2, 3).repeat(2) : hex.slice(4, 6), 16);
-    
-    // Return rgba string
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        // Remove # if present
+        hex = hex.replace('#', '');
+
+        // Parse r, g, b values
+        const r = parseInt(hex.length === 3 ? hex.slice(0, 1).repeat(2) : hex.slice(0, 2), 16);
+        const g = parseInt(hex.length === 3 ? hex.slice(1, 2).repeat(2) : hex.slice(2, 4), 16);
+        const b = parseInt(hex.length === 3 ? hex.slice(2, 3).repeat(2) : hex.slice(4, 6), 16);
+
+        // Return rgba string
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     };
 
     return (
@@ -276,7 +278,7 @@ const AboutPrivateBusiness = () => {
                     >
                         SENIOR: Private Business Credit
                     </motion.h1>
-                    
+
                     <motion.p
                         style={{
                             fontSize: 'clamp(1.1rem, 3vw, 1.5rem)',
@@ -291,7 +293,7 @@ const AboutPrivateBusiness = () => {
                     >
                         Build $200K+ in Business Credit — <span style={{ color: colors.accent }}>No SSN. No PG. No Banks.</span>
                     </motion.p>
-                    
+
                     <motion.div
                         style={{
                             maxWidth: '800px',
@@ -321,9 +323,9 @@ const AboutPrivateBusiness = () => {
                         }}>
                             <PlayCircle size={60} color={colors.light} />
                         </div>
-                        <img 
-                            src={begin} 
-                            alt="Preview" 
+                        <img
+                            src={begin}
+                            alt="Preview"
                             style={{
                                 width: '100%',
                                 height: '100%',
@@ -334,20 +336,20 @@ const AboutPrivateBusiness = () => {
                 </div>
             </section>
 
-                <motion.div
-                    style={{
-                        Width: '1200px',
-                        margin: '0 auto',
-                        display: 'flex',
-                        flexDirection: 'column',
-                    }}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={containerVariants}
-                >
+            <motion.div
+                style={{
+                    Width: '1200px',
+                    margin: '0 auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={containerVariants}
+            >
                 {/* Enhanced Intro Section */}
-                <motion.section 
+                <motion.section
                     style={{
                         marginTop: '40px',
                         padding: '60px 30px',
@@ -379,8 +381,8 @@ const AboutPrivateBusiness = () => {
                             whileHover={{ scale: 1.02 }}
                             variants={fadeIn}
                         >
-                            <img 
-                                src={begin} 
+                            <img
+                                src={begin}
                                 alt="Financial Sovereignty"
                                 style={{
                                     width: '100%',
@@ -390,8 +392,8 @@ const AboutPrivateBusiness = () => {
                                 }}
                             />
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             style={{
                                 flex: 1,
                                 minWidth: '300px',
@@ -419,7 +421,7 @@ const AboutPrivateBusiness = () => {
                                     financial sovereignty
                                 </span>.
                             </p>
-                            
+
                             <p style={{
                                 fontSize: 'clamp(1rem, 2vw, 1.1rem)',
                                 color: colors.text,
@@ -431,7 +433,7 @@ const AboutPrivateBusiness = () => {
                                     fontWeight: '600'
                                 }}>UBOT Trusts</strong>, repair your personal credit, and establish Private Merchant Processing — no banks, no KYC, no risk of shutdowns.
                             </p>
-                            
+
                             <div style={{
                                 display: 'flex',
                                 gap: '16px',
@@ -480,348 +482,507 @@ const AboutPrivateBusiness = () => {
 
                 {/* Courses Section with Creative Layout */}
                 <motion.section
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                style={{
-                    margin: '20px 0',
-                    position: 'relative'
-                }}
-                >
-                {/* Decorative elements */}
-                <div style={{
-                    position: 'absolute',
-                    top: '-50px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '150px',
-                    height: '150px',
-                    borderRadius: '50%',
-                    background: `radial-gradient(circle, ${colors.primaryLight} 0%, rgba(255,255,255,0) 70%)`,
-                    filter: 'blur(30px)',
-                    zIndex: 0
-                }} />
-                
-                {/* Section header */}
-                <motion.h3 
-                    style={{
-                    textAlign: 'center',
-                    fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
-                    marginBottom: '60px',
-                    position: 'relative',
-                    color: colors.text
-                    }}
-                    variants={fadeIn}
-                >
-                    Your Path to <span style={{
-                    color: colors.primary,
-                    position: 'relative',
-                    display: 'inline-block'
-                    }}>
-                    Financial Freedom
-                    <motion.span 
-                        style={{
-                        position: 'absolute',
-                        bottom: '-5px',
-                        left: 0,
-                        width: '100%',
-                        height: '3px',
-                        background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
-                        borderRadius: '3px'
-                        }}
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        viewport={{ once: false, amount: 0.3 }}
-                    />
-                    </span>
-                </motion.h3>
-
-                {/* Courses container */}
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexWrap: 'wrap',
-                    gap: '40px',
-                    position: 'relative',
-                    zIndex: 1
-                }}>
-                    {/* "I Want Remedy Now" Course Card */}
-                    <motion.div
-                    whileHover={{ y: -10 }}
-                    style={{
-                        background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
-                        borderRadius: '20px',
-                        padding: '30px',
-                        width: 'clamp(300px, 30vw, 400px)',
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
-                        border: `1px solid ${hexToRgba(colors.primary, 0.2)}`,
-                        position: 'relative',
-                        overflow: 'hidden'
-                    }}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
+                    initial="hidden"
+                    whileInView="visible"
                     viewport={{ once: false, amount: 0.3 }}
-                    >
-                    {/* Added Image at the Top */}
-                    <div style={{
-                        width: '100%',
-                        height: '220px',
-                        borderRadius: '12px',
-                        overflow: 'hidden',
-                        marginBottom: '20px',
-                        position: 'relative'
-                    }}>
-                        <img 
-                        src={Remedy} 
-                        alt="Credit Repair Illustration"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover'
-                        }}
-                        />
-                        <div style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: '40%',
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
-                        }} />
-                    </div>
-
-                    <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        right: 0,
-                        width: '100px',
-                        height: '100px',
-                        background: `linear-gradient(45deg, ${colors.primary}, ${colors.secondary})`,
-                        clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
-                        opacity: 0.1
-                    }} />
-                    <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '20px'
-                    }}>
-                        <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '15px'
-                        }}>
-                        <div style={{
-                            width: '50px',
-                            height: '50px',
-                            borderRadius: '12px',
-                            background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexShrink: 0
-                        }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                        </div>
-                        <h4 style={{
-                            fontSize: '1.5rem',
-                            margin: 0,
-                            color: colors.primary,
-                            fontWeight: '700'
-                        }}>I Want Remedy Now</h4>
-                        </div>
-                        <p style={{
-                        color: colors.textSecondary,
-                        lineHeight: '1.7'
-                        }}>
-                        Fix your personal credit with our proven system. Remove negative items, boost your score, and gain financial control.
-                        </p>
-                    </div>
-                    </motion.div>
-
-                    {/* Plus sign connector */}
-                    <motion.div
                     style={{
-                        width: '60px',
-                        height: '60px',
+                        margin: '20px 0',
+                        position: 'relative'
+                    }}
+                >
+                    {/* Decorative elements */}
+                    <div style={{
+                        position: 'absolute',
+                        top: '-50px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '150px',
+                        height: '150px',
                         borderRadius: '50%',
-                        background: colors.primary,
+                        background: `radial-gradient(circle, ${colors.primaryLight} 0%, rgba(255,255,255,0) 70%)`,
+                        filter: 'blur(30px)',
+                        zIndex: 0
+                    }} />
+
+                    {/* Section header */}
+                    <motion.h3
+                        style={{
+                            textAlign: 'center',
+                            fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+                            marginBottom: '60px',
+                            position: 'relative',
+                            color: colors.text
+                        }}
+                        variants={fadeIn}
+                    >
+                        Your Path to <span style={{
+                            color: colors.primary,
+                            position: 'relative',
+                            display: 'inline-block'
+                        }}>
+                            Financial Freedom
+                            <motion.span
+                                style={{
+                                    position: 'absolute',
+                                    bottom: '-5px',
+                                    left: 0,
+                                    width: '100%',
+                                    height: '3px',
+                                    background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
+                                    borderRadius: '3px'
+                                }}
+                                initial={{ scaleX: 0 }}
+                                whileInView={{ scaleX: 1 }}
+                                transition={{ duration: 0.8, delay: 0.3 }}
+                                viewport={{ once: false, amount: 0.3 }}
+                            />
+                        </span>
+                    </motion.h3>
+
+                    {/* Courses container */}
+                    <div className="courses-container" style={{
                         display: 'flex',
+                        flexDirection: 'row',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        flexWrap: 'nowrap',
+                        gap: '40px',
                         position: 'relative',
-                        flexShrink: 0
-                    }}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    >
-                    <div style={{
-                        position: 'absolute',
-                        width: '30px',
-                        height: '4px',
-                        background: 'white',
-                        borderRadius: '2px'
-                    }} />
-                    <div style={{
-                        position: 'absolute',
-                        width: '4px',
-                        height: '30px',
-                        background: 'white',
-                        borderRadius: '2px'
-                    }} />
-                    <div style={{
-                        position: 'absolute',
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: '50%',
-                        border: `2px dashed ${colors.primary}`,
-                        animation: 'spin 15s linear infinite',
-                        opacity: 0.3
-                    }} />
-                    </motion.div>
-
-                    {/* Private Merchant Processing Course Card */}
-                    <motion.div
-                    whileHover={{ y: -10 }}
-                    style={{
-                        background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
-                        borderRadius: '20px',
-                        padding: '30px',
-                        width: 'clamp(300px, 30vw, 400px)',
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
-                        border: `1px solid ${hexToRgba(colors.secondary, 0.2)}`,
-                        position: 'relative',
-                        overflow: 'hidden'
-                    }}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    >
-                    {/* Added Image at the Top */}
-                    <div style={{
-                        width: '100%',
-                        height: '220px',
-                        borderRadius: '12px',
-                        overflow: 'hidden',
-                        marginBottom: '20px',
-                        position: 'relative'
+                        zIndex: 1
                     }}>
-                        <img 
-                        src={MP} 
-                        alt="Payment Processing Illustration"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover'
-                        }}
-                        />
-                        <div style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: '40%',
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
-                        }} />
+                        <style>
+                            {`
+      @media (max-width: 768px) {
+        .courses-container {
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: flex-start !important;
+        }
+        .plus-sign {
+          margin: 20px 0 !important;
+        }
+      }
+    `}
+                        </style>
+
+                        {/* "I Want Remedy Now" Course Card */}
+                        <motion.div
+                            whileHover={{ y: -10 }}
+                            style={{
+                                background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
+                                borderRadius: '20px',
+                                padding: '30px',
+                                width: 'clamp(300px, 30vw, 400px)',
+                                boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+                                border: `1px solid ${hexToRgba(colors.primary, 0.2)}`,
+                                position: 'relative',
+                                overflow: 'hidden'
+                            }}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                        >
+                            {/* Added Image at the Top */}
+                            <div style={{
+                                width: '100%',
+                                height: '220px',
+                                borderRadius: '12px',
+                                overflow: 'hidden',
+                                marginBottom: '20px',
+                                position: 'relative'
+                            }}>
+                                <img
+                                    src={Remedy}
+                                    alt="Credit Repair Illustration"
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    height: '40%',
+                                    background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
+                                }} />
+                            </div>
+
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                right: 0,
+                                width: '100px',
+                                height: '100px',
+                                background: `linear-gradient(45deg, ${colors.primary}, ${colors.secondary})`,
+                                clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
+                                opacity: 0.1
+                            }} />
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '20px'
+                            }}>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '15px'
+                                }}>
+                                    <div style={{
+                                        width: '50px',
+                                        height: '50px',
+                                        borderRadius: '12px',
+                                        background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0
+                                    }}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        </svg>
+                                    </div>
+                                    <h4 style={{
+                                        fontSize: '1.5rem',
+                                        margin: 0,
+                                        color: colors.primary,
+                                        fontWeight: '700'
+                                    }}>I Want Remedy Now</h4>
+                                </div>
+                                <p style={{
+                                    color: colors.textSecondary,
+                                    lineHeight: '1.7'
+                                }}>
+                                    Fix your personal credit with our proven system. Remove negative items, boost your score, and gain financial control.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Plus sign connector */}
+                        <motion.div
+                            className="plus-sign"
+                            style={{
+                                width: '60px',
+                                height: '60px',
+                                borderRadius: '50%',
+                                background: colors.primary,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                position: 'relative',
+                                flexShrink: 0
+                            }}
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                        >
+                            <div style={{
+                                position: 'absolute',
+                                width: '30px',
+                                height: '4px',
+                                background: 'white',
+                                borderRadius: '2px'
+                            }} />
+                            <div style={{
+                                position: 'absolute',
+                                width: '4px',
+                                height: '30px',
+                                background: 'white',
+                                borderRadius: '2px'
+                            }} />
+                            <div style={{
+                                position: 'absolute',
+                                width: '100%',
+                                height: '100%',
+                                borderRadius: '50%',
+                                border: `2px dashed ${colors.primary}`,
+                                animation: 'spin 15s linear infinite',
+                                opacity: 0.3
+                            }} />
+                        </motion.div>
+
+                        {/* Private Merchant Processing Course Card */}
+                        <motion.div
+                            whileHover={{ y: -10 }}
+                            style={{
+                                background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
+                                borderRadius: '20px',
+                                padding: '30px',
+                                width: 'clamp(300px, 30vw, 400px)',
+                                boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+                                border: `1px solid ${hexToRgba(colors.secondary, 0.2)}`,
+                                position: 'relative',
+                                overflow: 'hidden'
+                            }}
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                        >
+                            {/* Added Image at the Top */}
+                            <div style={{
+                                width: '100%',
+                                height: '220px',
+                                borderRadius: '12px',
+                                overflow: 'hidden',
+                                marginBottom: '20px',
+                                position: 'relative'
+                            }}>
+                                <img
+                                    src={MP}
+                                    alt="Payment Processing Illustration"
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    height: '40%',
+                                    background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
+                                }} />
+                            </div>
+
+                            <div style={{
+                                position: 'absolute',
+                                bottom: 0,
+                                left: 0,
+                                width: '100px',
+                                height: '100px',
+                                background: `linear-gradient(45deg, ${colors.secondary}, ${colors.primary})`,
+                                clipPath: 'polygon(0 100%, 100% 0, 0 0)',
+                                opacity: 0.1
+                            }} />
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '20px'
+                            }}>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '15px'
+                                }}>
+                                    <div style={{
+                                        width: '50px',
+                                        height: '50px',
+                                        borderRadius: '12px',
+                                        background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0
+                                    }}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                            <path d="M2 10h20M7 15h1m4 0h1m4 0h1"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 style={{
+                                        fontSize: '1.5rem',
+                                        margin: 0,
+                                        color: colors.secondary,
+                                        fontWeight: '700'
+                                    }}>Private Merchant Processing</h4>
+                                </div>
+                                <p style={{
+                                    color: colors.textSecondary,
+                                    lineHeight: '1.7'
+                                }}>
+                                    Process payments without banks. No KYC, no shutdowns. Take full control of your financial transactions.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Plus sign connector */}
+                        <motion.div
+                            className="plus-sign"
+                            style={{
+                                width: '60px',
+                                height: '60px',
+                                borderRadius: '50%',
+                                background: colors.primary,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                position: 'relative',
+                                flexShrink: 0
+                            }}
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                        >
+                            <div style={{
+                                position: 'absolute',
+                                width: '30px',
+                                height: '4px',
+                                background: 'white',
+                                borderRadius: '2px'
+                            }} />
+                            <div style={{
+                                position: 'absolute',
+                                width: '4px',
+                                height: '30px',
+                                background: 'white',
+                                borderRadius: '2px'
+                            }} />
+                            <div style={{
+                                position: 'absolute',
+                                width: '100%',
+                                height: '100%',
+                                borderRadius: '50%',
+                                border: `2px dashed ${colors.primary}`,
+                                animation: 'spin 15s linear infinite',
+                                opacity: 0.3
+                            }} />
+                        </motion.div>
+
+                        {/* Private Business Credit */}
+                        <motion.div
+                            whileHover={{ y: -10 }}
+                            style={{
+                                background: `linear-gradient(135deg, ${colors.cardBg || '#fff'}, ${hexToRgba(colors.cardBg || '#fff', 0.8)})`,
+                                borderRadius: '20px',
+                                padding: '30px',
+                                width: 'clamp(300px, 30vw, 400px)',
+                                boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+                                border: `1px solid ${hexToRgba(colors.primary, 0.2)}`,
+                                position: 'relative',
+                                overflow: 'hidden'
+                            }}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                        >
+                            {/* Added Image at the Top */}
+                            <div style={{
+                                width: '100%',
+                                height: '220px',
+                                borderRadius: '12px',
+                                overflow: 'hidden',
+                                marginBottom: '20px',
+                                position: 'relative'
+                            }}>
+                                <img
+                                    src={PBC}
+                                    alt="Credit Repair Illustration"
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    height: '40%',
+                                    background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
+                                }} />
+                            </div>
+
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                right: 0,
+                                width: '100px',
+                                height: '100px',
+                                background: `linear-gradient(45deg, ${colors.primary}, ${colors.secondary})`,
+                                clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
+                                opacity: 0.1
+                            }} />
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '20px'
+                            }}>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '15px'
+                                }}>
+                                    <div style={{
+                                        width: '50px',
+                                        height: '50px',
+                                        borderRadius: '12px',
+                                        background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0
+                                    }}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        </svg>
+                                    </div>
+                                    <h4 style={{
+                                        fontSize: '1.5rem',
+                                        margin: 0,
+                                        color: colors.primary,
+                                        fontWeight: '700'
+                                    }}>Private Business Credit</h4>
+                                </div>
+                                <p style={{
+                                    color: colors.textSecondary,
+                                    lineHeight: '1.7'
+                                }}>
+                                    Build business credit through UBOT Trusts and private processing and empower
+                                    yourself with the financial freedom.
+                                </p>
+                            </div>
+                        </motion.div>
+
                     </div>
 
-                    <div style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        width: '100px',
-                        height: '100px',
-                        background: `linear-gradient(45deg, ${colors.secondary}, ${colors.primary})`,
-                        clipPath: 'polygon(0 100%, 100% 0, 0 0)',
-                        opacity: 0.1
-                    }} />
-                    <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '20px'
-                    }}>
-                        <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '15px'
-                        }}>
-                        <div style={{
-                            width: '50px',
-                            height: '50px',
-                            borderRadius: '12px',
-                            background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexShrink: 0
-                        }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                            <path d="M2 10h20M7 15h1m4 0h1m4 0h1"></path>
-                            </svg>
-                        </div>
-                        <h4 style={{
-                            fontSize: '1.5rem',
-                            margin: 0,
-                            color: colors.secondary,
-                            fontWeight: '700'
-                        }}>Private Merchant Processing</h4>
-                        </div>
-                        <p style={{
-                        color: colors.textSecondary,
-                        lineHeight: '1.7'
-                        }}>
-                        Process payments without banks. No KYC, no shutdowns. Take full control of your financial transactions.
-                        </p>
-                    </div>
-                    </motion.div>
-                </div>
-
-                {/* UBOT Trusts mention at bottom */}
-                <motion.p
-                    style={{
-                    textAlign: 'center',
-                    marginTop: '60px',
-                    fontSize: '1.2rem',
-                    color: colors.text
-                    }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    viewport={{ once: true }}
-                >
-                    Plus learn to build business credit with <strong style={{
-                    color: colors.primary,
-                    fontWeight: '600',
-                    position: 'relative'
-                    }}>
-                    UBOT Trusts
-                    <motion.span 
+                    {/* UBOT Trusts mention at bottom */}
+                    <motion.p
                         style={{
-                        position: 'absolute',
-                        bottom: '-2px',
-                        left: 0,
-                        width: '100%',
-                        height: '2px',
-                        background: colors.primary,
-                        borderRadius: '2px'
+                            textAlign: 'center',
+                            marginTop: '60px',
+                            fontSize: '1.2rem',
+                            color: colors.text
                         }}
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
                         viewport={{ once: true }}
-                    />
-                    </strong>
-                </motion.p>
+                    >
+                        Plus learn to build business credit with <strong style={{
+                            color: colors.primary,
+                            fontWeight: '600',
+                            position: 'relative'
+                        }}>
+                            UBOT Trusts
+                            <motion.span
+                                style={{
+                                    position: 'absolute',
+                                    bottom: '-2px',
+                                    left: 0,
+                                    width: '100%',
+                                    height: '2px',
+                                    background: colors.primary,
+                                    borderRadius: '2px'
+                                }}
+                                initial={{ scaleX: 0 }}
+                                whileInView={{ scaleX: 1 }}
+                                transition={{ duration: 0.8, delay: 0.5 }}
+                                viewport={{ once: true }}
+                            />
+                        </strong>
+                    </motion.p>
                 </motion.section>
 
                 {/* Add this to your global styles */}
@@ -832,10 +993,10 @@ const AboutPrivateBusiness = () => {
                 }
                 `}</style>
 
-                    {/* What You'll Learn */}
-                    <motion.section 
+                {/* What You'll Learn */}
+                <motion.section
                     style={{
-                        marginTop: '20px', 
+                        marginTop: '20px',
                         padding: '50px 0px',
                         position: 'relative',
                         overflow: 'hidden',
@@ -843,20 +1004,20 @@ const AboutPrivateBusiness = () => {
                     }}
                     variants={scaleUp}
                     viewport={{ once: false, amount: 0.3 }}
-                    >
+                >
                     {/* Title */}
-                    <motion.h2 
+                    <motion.h2
                         style={{
-                        fontSize: '2.5rem',
-                        fontWeight: '700',
-                        color: colors.dark,
-                        marginBottom: '40px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '12px',
-                        width: '100%',
-                        textAlign: 'center'
+                            fontSize: '2.5rem',
+                            fontWeight: '700',
+                            color: colors.dark,
+                            marginBottom: '40px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '12px',
+                            width: '100%',
+                            textAlign: 'center'
                         }}
                         variants={slideUp}
                     >
@@ -867,185 +1028,197 @@ const AboutPrivateBusiness = () => {
                     {/* Arrow Buttons (Desktop Only) */}
                     {!isMobile && (
                         <>
-                        <button 
-                            onClick={() => scroll('left')} 
-                            style={{
-                            position: 'absolute',
-                            top: '50%',
-                            left: '20px',
-                            transform: 'translateY(-50%)',
-                            background: colors.light,
-                            border: 'none',
-                            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-                            padding: '10px',
-                            borderRadius: '50%',
-                            cursor: 'pointer',
-                            zIndex: 2
-                            }}
-                        >
-                            <ChevronLeft size={24} />
-                        </button>
+                            <button
+                                onClick={() => scroll('left')}
+                                style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '20px',
+                                    transform: 'translateY(-50%)',
+                                    background: colors.light,
+                                    border: 'none',
+                                    boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                                    padding: '10px',
+                                    borderRadius: '50%',
+                                    cursor: 'pointer',
+                                    zIndex: 2
+                                }}
+                            >
+                                <ChevronLeft size={24} />
+                            </button>
 
-                        <button 
-                            onClick={() => scroll('right')} 
-                            style={{
-                            position: 'absolute',
-                            top: '50%',
-                            right: '20px',
-                            transform: 'translateY(-50%)',
-                            background: colors.light,
-                            border: 'none',
-                            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-                            padding: '10px',
-                            borderRadius: '50%',
-                            cursor: 'pointer',
-                            zIndex: 2
-                            }}
-                        >
-                            <ChevronRight size={24} />
-                        </button>
+                            <button
+                                onClick={() => scroll('right')}
+                                style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    right: '20px',
+                                    transform: 'translateY(-50%)',
+                                    background: colors.light,
+                                    border: 'none',
+                                    boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                                    padding: '10px',
+                                    borderRadius: '50%',
+                                    cursor: 'pointer',
+                                    zIndex: 2
+                                }}
+                            >
+                                <ChevronRight size={24} />
+                            </button>
                         </>
                     )}
 
                     {/* Scrollable Cards */}
-                    <motion.div
-                        ref={scrollRef}
+<motion.div
+    ref={scrollRef}
+    style={{
+        display: 'flex',
+        overflowX: 'auto',
+        gap: '20px',
+        scrollBehavior: 'smooth',
+        paddingBottom: isMobile ? '0' : '8px',
+        WebkitOverflowScrolling: 'touch',
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none',
+        ...(!isMobile && { margin: '0 10%' }),
+        ...(isMobile && {
+            margin: '0 1rem',
+            scrollSnapType: 'x mandatory'
+        })
+    }}
+    variants={containerVariants}
+    onScroll={isMobile ? handleScroll : undefined}
+    onWheel={(e) => e.stopPropagation()}
+>
+    {features.map((feature, index) => (
+        <motion.div
+            key={index}
+            style={{
+                width: 'clamp(240px, 80vw, 280px)',
+                flex: '0 0 auto',
+                background: colors.light,
+                borderRadius: '16px',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                border: `1px solid ${colors.primaryLight}`,
+                ...(isMobile && { scrollSnapAlign: 'start' })
+            }}
+            variants={itemVariants}
+            whileHover={{ y: -5 }}
+        >
+            {/* Image (no padding/margin) */}
+            <img
+                src={feature.image}
+                alt={feature.title}
+                style={{
+                    display: 'block',
+                    width: '100%',
+                    height: '160px',
+                    objectFit: 'cover',
+                    margin: 0,
+                    padding: 0
+                }}
+            />
+
+            {/* Content */}
+            <div
+                style={{
+                    padding: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px'
+                }}
+            >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div
                         style={{
-                        display: 'flex',
-                        overflowX: 'auto',
-                        gap: '20px',
-                        scrollBehavior: 'smooth',
-                        paddingBottom: isMobile ? '0' : '8px',
-                        WebkitOverflowScrolling: 'touch',
-                        scrollbarWidth: 'none',
-                        msOverflowStyle: 'none',
-                        ...(!isMobile && { margin: '0 10%' }),
-                        ...(isMobile && {
-                            margin: '0 1rem',
-                            scrollSnapType: 'x mandatory'
-                        })
+                            background: 'rgba(14, 165, 233, 0.1)',
+                            padding: '10px',
+                            borderRadius: '8px'
                         }}
-                        variants={containerVariants}
-                        onScroll={isMobile ? handleScroll : undefined}
-                        onWheel={(e) => e.stopPropagation()}
                     >
-                        {features.map((feature, index) => (
-                        <motion.div
-                            key={index}
-                            style={{
-                            width: 'clamp(240px, 80vw, 280px)',
-                            flex: '0 0 auto',
-                            background: colors.light,
-                            borderRadius: '16px',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            overflow: 'hidden',
-                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-                            border: `1px solid ${colors.primaryLight}`,
-                            ...(isMobile && { scrollSnapAlign: 'start' })
-                            }}
-                            variants={itemVariants}
-                            whileHover={{ y: -5 }}
-                        >
-                            {/* Image (no padding/margin) */}
-                            <img 
-                            src={feature.image} 
-                            alt={feature.title}
-                            style={{
-                                display: 'block',
-                                width: '100%',
-                                height: '160px',
-                                objectFit: 'cover',
-                                margin: 0,
-                                padding: 0
-                            }}
-                            />
+                        {feature.icon}
+                    </div>
+                    <p
+                        style={{
+                            fontSize: '16px',
+                            fontWeight: '500',
+                            flex: 1
+                        }}
+                    >
+                        {feature.title}
+                    </p>
+                </div>
 
-                            {/* Content */}
-                            <div style={{
-                            padding: '20px',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '16px'
-                            }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                <div style={{
-                                background: 'rgba(14, 165, 233, 0.1)',
-                                padding: '10px',
-                                borderRadius: '8px'
-                                }}>
-                                {feature.icon}
-                                </div>
-                                <p style={{
-                                fontSize: '16px',
-                                fontWeight: '500',
-                                flex: 1
-                                }}>
-                                {feature.title}
-                                </p>
-                            </div>
+                <div
+                    style={{
+                        padding: '12px',
+                        background: 'rgba(14, 165, 233, 0.05)',
+                        borderRadius: '8px',
+                        borderLeft: `3px solid ${colors.secondary}`
+                    }}
+                >
+                    <p
+                        style={{
+                            fontSize: '14px',
+                            lineHeight: '1.6',
+                            color: colors.text
+                        }}
+                    >
+                        {feature.description ||
+                            'Detailed explanation about this feature and how it benefits your business.'}
+                    </p>
+                </div>
+            </div>
+        </motion.div>
+    ))}
+</motion.div>
 
-                            <div style={{
-                                padding: '12px',
-                                background: 'rgba(14, 165, 233, 0.05)',
-                                borderRadius: '8px',
-                                borderLeft: `3px solid ${colors.secondary}`
-                            }}>
-                                <p style={{
-                                fontSize: '14px',
-                                lineHeight: '1.6',
-                                color: colors.text
-                                }}>
-                                {feature.description || "Detailed explanation about this feature and how it benefits your business."}
-                                </p>
-                            </div>
-                            </div>
-                        </motion.div>
-                        ))}
-                    </motion.div>
 
                     {/* Mobile Indicators */}
                     {isMobile && (
                         <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        gap: '8px',
-                        marginTop: '16px'
-                        }}>
-                        {/* Dot Indicators */}
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                            {features.slice(0, 5).map((_, index) => (
-                            <div 
-                                key={index}
-                                style={{
-                                width: '10px',
-                                height: '10px',
-                                borderRadius: '50%',
-                                backgroundColor: currentIndex === index ? colors.secondary : '#ddd',
-                                transition: 'background-color 0.3s ease'
-                                }}
-                            />
-                            ))}
-                        </div>
-
-                        {/* Swipe Indicator */}
-                        <div
-                            style={{
-                            textAlign: 'center',
-                            fontSize: '14px',
-                            color: colors.mutedText || '#888',
-                            animation: 'bounceFade 2s infinite',
                             display: 'flex',
-                            justifyContent: 'center',
+                            flexDirection: 'column',
                             alignItems: 'center',
-                            gap: '6px'
-                            }}
-                        >
-                            <ChevronLeft size={16} />
-                            Swipe to explore
-                            <ChevronRight size={16} />
-                        </div>
+                            gap: '8px',
+                            marginTop: '16px'
+                        }}>
+                            {/* Dot Indicators */}
+                            <div style={{ display: 'flex', gap: '8px' }}>
+                                {features.slice(0, 5).map((_, index) => (
+                                    <div
+                                        key={index}
+                                        style={{
+                                            width: '10px',
+                                            height: '10px',
+                                            borderRadius: '50%',
+                                            backgroundColor: currentIndex === index ? colors.secondary : '#ddd',
+                                            transition: 'background-color 0.3s ease'
+                                        }}
+                                    />
+                                ))}
+                            </div>
+
+                            {/* Swipe Indicator */}
+                            <div
+                                style={{
+                                    textAlign: 'center',
+                                    fontSize: '14px',
+                                    color: colors.mutedText || '#888',
+                                    animation: 'bounceFade 2s infinite',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    gap: '6px'
+                                }}
+                            >
+                                <ChevronLeft size={16} />
+                                Swipe to explore
+                                <ChevronRight size={16} />
+                            </div>
                         </div>
                     )}
 
@@ -1069,31 +1242,31 @@ const AboutPrivateBusiness = () => {
                         }
                         `}
                     </style>
-                    </motion.section>
-                    
-                    <GameBanner />
+                </motion.section>
 
-                    {/* Business Ideas Section */}
-                    <motion.section 
+                <GameBanner />
+
+                {/* Business Ideas Section */}
+                <motion.section
                     style={{
                         ...glassCardStyle,
                         marginTop: '40px',
                         padding: 'clamp(24px, 5vw, 40px)'
                     }}
                     variants={scaleUp}
-                    >
-                    <motion.h2 
+                >
+                    <motion.h2
                         style={{
-                        fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                        fontWeight: '700',
-                        color: colors.dark,
-                        marginBottom: '30px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '12px',
-                        justifyContent: 'center', // 👈 center the icon + text
-                        width: '100%',            // 👈 ensures it spans full width
-                        textAlign: 'center'
+                            fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                            fontWeight: '700',
+                            color: colors.dark,
+                            marginBottom: '30px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '12px',
+                            justifyContent: 'center', // 👈 center the icon + text
+                            width: '100%',            // 👈 ensures it spans full width
+                            textAlign: 'center'
                         }}
                         variants={slideUp}
                     >
@@ -1103,81 +1276,81 @@ const AboutPrivateBusiness = () => {
 
                     {/* Top 10 Ideas */}
                     <motion.div variants={fadeIn}>
-                        <motion.h3 
-                        style={{
-                            fontSize: '1.25rem',
-                            fontWeight: '600',
-                            color: colors.dark,
-                            marginBottom: '20px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '10px'
-                        }}
+                        <motion.h3
+                            style={{
+                                fontSize: '1.25rem',
+                                fontWeight: '600',
+                                color: colors.dark,
+                                marginBottom: '20px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px'
+                            }}
                         >
-                        <Star size={20} color={colors.secondary} />
-                        Top 10 Ideas:
+                            <Star size={20} color={colors.secondary} />
+                            Top 10 Ideas:
                         </motion.h3>
 
                         <motion.div
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                            gap: '16px',
-                            marginBottom: '30px'
-                        }}
-                        variants={containerVariants}
-                        >
-                        {[
-                            { name: "Car Rental (Turo, HyreCar)", icon: <Car size={20} color="#3b82f6" /> },
-                            { name: "Airbnb / Rental Arbitrage", icon: <Home size={20} color="#8b5cf6" /> },
-                            { name: "Merchant Services / Payment Processing", icon: <CreditCard size={20} color="#10b981" /> },
-                            { name: "Coaching / Consulting", icon: <MessageSquare size={20} color="#ec4899" /> },
-                            { name: "E-commerce / Dropshipping", icon: <ShoppingCart size={20} color="#f59e0b" /> },
-                            { name: "Cleaning Services", icon: <Droplet size={20} color="#06b6d4" /> },
-                            { name: "Podcast / Digital Studio", icon: <Mic size={20} color="#ef4444" /> },
-                            { name: "Credit Repair / Funding Agency", icon: <FileText size={20} color="#84cc16" /> },
-                            { name: "Virtual Office / Notary Services", icon: <Calendar size={20} color="#f97316" /> },
-                            { name: "Tax Prep & Bookkeeping", icon: <BookOpen size={20} color="#6366f1" /> }
-                        ].map((idea, index) => (
-                            <motion.div
-                            key={`top10-${index}`}
                             style={{
-                                background: colors.light,
-                                borderRadius: '12px',
-                                padding: '16px',
-                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-                                border: `1px solid ${colors.primaryLight}`,
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '12px',
-                                transition: 'all 0.3s ease'
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                                gap: '16px',
+                                marginBottom: '30px'
                             }}
-                            variants={itemVariants}
-                            whileHover={{ 
-                                y: -3,
-                                boxShadow: `0 8px 20px rgba(3, 105, 161, 0.15)`,
-                                borderColor: colors.secondary
-                            }}
-                            >
-                            <div style={{
-                                background: 'rgba(14, 165, 233, 0.1)',
-                                padding: '10px',
-                                borderRadius: '8px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}>
-                                {idea.icon}
-                            </div>
-                            <span style={{
-                                fontSize: '15px',
-                                fontWeight: '500',
-                                flex: 1
-                            }}>
-                                {idea.name}
-                            </span>
-                            </motion.div>
-                        ))}
+                            variants={containerVariants}
+                        >
+                            {[
+                                { name: "Car Rental (Turo, HyreCar)", icon: <Car size={20} color="#3b82f6" /> },
+                                { name: "Airbnb / Rental Arbitrage", icon: <Home size={20} color="#8b5cf6" /> },
+                                { name: "Merchant Services / Payment Processing", icon: <CreditCard size={20} color="#10b981" /> },
+                                { name: "Coaching / Consulting", icon: <MessageSquare size={20} color="#ec4899" /> },
+                                { name: "E-commerce / Dropshipping", icon: <ShoppingCart size={20} color="#f59e0b" /> },
+                                { name: "Cleaning Services", icon: <Droplet size={20} color="#06b6d4" /> },
+                                { name: "Podcast / Digital Studio", icon: <Mic size={20} color="#ef4444" /> },
+                                { name: "Credit Repair / Funding Agency", icon: <FileText size={20} color="#84cc16" /> },
+                                { name: "Virtual Office / Notary Services", icon: <Calendar size={20} color="#f97316" /> },
+                                { name: "Tax Prep & Bookkeeping", icon: <BookOpen size={20} color="#6366f1" /> }
+                            ].map((idea, index) => (
+                                <motion.div
+                                    key={`top10-${index}`}
+                                    style={{
+                                        background: colors.light,
+                                        borderRadius: '12px',
+                                        padding: '16px',
+                                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                                        border: `1px solid ${colors.primaryLight}`,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '12px',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    variants={itemVariants}
+                                    whileHover={{
+                                        y: -3,
+                                        boxShadow: `0 8px 20px rgba(3, 105, 161, 0.15)`,
+                                        borderColor: colors.secondary
+                                    }}
+                                >
+                                    <div style={{
+                                        background: 'rgba(14, 165, 233, 0.1)',
+                                        padding: '10px',
+                                        borderRadius: '8px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        {idea.icon}
+                                    </div>
+                                    <span style={{
+                                        fontSize: '15px',
+                                        fontWeight: '500',
+                                        flex: 1
+                                    }}>
+                                        {idea.name}
+                                    </span>
+                                </motion.div>
+                            ))}
                         </motion.div>
                     </motion.div>
 
@@ -1186,251 +1359,251 @@ const AboutPrivateBusiness = () => {
                         {/* Tag Button */}
                         <motion.div
                             style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            background: colors.primary,
-                            color: colors.light,
-                            borderRadius: '20px',
-                            padding: '8px 16px',
-                            cursor: 'pointer',
-                            boxShadow: `0 2px 8px ${colors.primaryLight}`,
-                            position: 'relative',
-                            zIndex: 2
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                background: colors.primary,
+                                color: colors.light,
+                                borderRadius: '20px',
+                                padding: '8px 16px',
+                                cursor: 'pointer',
+                                boxShadow: `0 2px 8px ${colors.primaryLight}`,
+                                position: 'relative',
+                                zIndex: 2
                             }}
-                            whileHover={{ 
-                            background: colors.secondary,
-                            scale: 1.05 
+                            whileHover={{
+                                background: colors.secondary,
+                                scale: 1.05
                             }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setExpandedIdeas(!expandedIdeas)}
                         >
-                            <span style={{ 
-                            fontSize: '14px',
-                            fontWeight: '600',
-                            marginRight: '8px'
+                            <span style={{
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                marginRight: '8px'
                             }}>
-                            {expandedIdeas ? 'Hide' : '+15 More'}
+                                {expandedIdeas ? 'Hide' : '+15 More'}
                             </span>
                             {expandedIdeas ? (
-                            <Minus size={16} color={colors.light} />
+                                <Minus size={16} color={colors.light} />
                             ) : (
-                            <Plus size={16} color={colors.light} />
+                                <Plus size={16} color={colors.light} />
                             )}
                         </motion.div>
 
                         {/* Continuous Tag Body */}
                         <AnimatePresence>
                             {expandedIdeas && (
-                            <motion.div
-                                initial={{ 
-                                opacity: 0,
-                                height: 0,
-                                marginTop: 0
-                                }}
-                                animate={{ 
-                                opacity: 1,
-                                height: 'auto',
-                                marginTop: '12px'
-                                }}
-                                exit={{ 
-                                opacity: 0,
-                                height: 0,
-                                marginTop: 0
-                                }}
-                                transition={{ duration: 0.3 }}
-                                style={{
-                                background: colors.primaryLight,
-                                borderRadius: '0 16px 16px 16px',
-                                padding: '20px',
-                                position: 'relative',
-                                left: '-16px'
-                                }}
-                            >
-                                {/* Notch effect */}
-                                <div style={{
-                                position: 'absolute',
-                                top: '-12px',
-                                left: '16px',
-                                width: '24px',
-                                height: '12px',
-                                background: colors.primaryLight,
-                                clipPath: 'polygon(0 100%, 50% 0, 100% 100%)'
-                                }}></div>
-
                                 <motion.div
-                                style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-                                    gap: '12px'
-                                }}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                                >
-                                {[
-                                    "Mobile Notary", "Box Truck Freight", "ATMs", 
-                                    "Funnel Agency", "Event Rentals", "Dispatching",
-                                    "360 Photo Booths", "Supplement Brands", "Print-on-Demand",
-                                    "Detailing", "Subscription Boxes", "Virtual Assistants",
-                                    "Online Courses", "Pet Services & more"
-                                ].map((idea, index) => (
-                                    <motion.div
-                                    key={`more-${index}`}
-                                    style={{
-                                        background: colors.light,
-                                        borderRadius: '8px',
-                                        padding: '10px 12px',
-                                        fontSize: '14px',
-                                        fontWeight: '500',
-                                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '8px'
+                                    initial={{
+                                        opacity: 0,
+                                        height: 0,
+                                        marginTop: 0
                                     }}
-                                    initial={{ x: -10, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ delay: index * 0.03 }}
-                                    >
+                                    animate={{
+                                        opacity: 1,
+                                        height: 'auto',
+                                        marginTop: '12px'
+                                    }}
+                                    exit={{
+                                        opacity: 0,
+                                        height: 0,
+                                        marginTop: 0
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    style={{
+                                        background: colors.primaryLight,
+                                        borderRadius: '0 16px 16px 16px',
+                                        padding: '20px',
+                                        position: 'relative',
+                                        left: '-16px'
+                                    }}
+                                >
+                                    {/* Notch effect */}
                                     <div style={{
-                                        width: '6px',
-                                        height: '6px',
-                                        borderRadius: '50%',
-                                        background: colors.primary
+                                        position: 'absolute',
+                                        top: '-12px',
+                                        left: '16px',
+                                        width: '24px',
+                                        height: '12px',
+                                        background: colors.primaryLight,
+                                        clipPath: 'polygon(0 100%, 50% 0, 100% 100%)'
                                     }}></div>
-                                    {idea}
+
+                                    <motion.div
+                                        style={{
+                                            display: 'grid',
+                                            gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+                                            gap: '12px'
+                                        }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 0.2 }}
+                                    >
+                                        {[
+                                            "Mobile Notary", "Box Truck Freight", "ATMs",
+                                            "Funnel Agency", "Event Rentals", "Dispatching",
+                                            "360 Photo Booths", "Supplement Brands", "Print-on-Demand",
+                                            "Detailing", "Subscription Boxes", "Virtual Assistants",
+                                            "Online Courses", "Pet Services & more"
+                                        ].map((idea, index) => (
+                                            <motion.div
+                                                key={`more-${index}`}
+                                                style={{
+                                                    background: colors.light,
+                                                    borderRadius: '8px',
+                                                    padding: '10px 12px',
+                                                    fontSize: '14px',
+                                                    fontWeight: '500',
+                                                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '8px'
+                                                }}
+                                                initial={{ x: -10, opacity: 0 }}
+                                                animate={{ x: 0, opacity: 1 }}
+                                                transition={{ delay: index * 0.03 }}
+                                            >
+                                                <div style={{
+                                                    width: '6px',
+                                                    height: '6px',
+                                                    borderRadius: '50%',
+                                                    background: colors.primary
+                                                }}></div>
+                                                {idea}
+                                            </motion.div>
+                                        ))}
                                     </motion.div>
-                                ))}
                                 </motion.div>
-                            </motion.div>
                             )}
                         </AnimatePresence>
                     </motion.div>
-                    </motion.section>
+                </motion.section>
 
-                    {/* CTA Section */}
-                    <motion.section
+                {/* CTA Section */}
+                <motion.section
+                    style={{
+                        ...glassCardStyle,
+                        marginTop: '40px',
+                        textAlign: 'center'
+                    }}
+                    variants={scaleUp}
+                >
+                    <motion.h2
                         style={{
-                            ...glassCardStyle,
-                            marginTop: '40px',
-                            textAlign: 'center'
+                            fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                            fontWeight: '700',
+                            color: colors.dark,
+                            marginBottom: '20px'
                         }}
-                        variants={scaleUp}
+                        variants={slideUp}
                     >
-                        <motion.h2 
-                            style={{
-                                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                                fontWeight: '700',
-                                color: colors.dark,
-                                marginBottom: '20px'
-                            }}
-                            variants={slideUp}
-                        >
-                            Next Step:
-                        </motion.h2>
-                        
-                        <motion.p 
-                            style={{
-                                fontSize: 'clamp(1rem, 2vw, 1.1rem)',
-                                color: colors.text,
-                                lineHeight: '1.6',
-                                marginBottom: '24px'
-                            }}
-                            variants={fadeIn}
-                        >
-                            Book your <strong>Course Session</strong> and meet your assigned counselor to:
-                        </motion.p>
-                        
-                        <motion.ul 
-                            style={{
-                                listStyle: 'none',
-                                padding: 0,
-                                margin: '0 auto 24px',
-                                maxWidth: '500px'
-                            }}
-                            variants={containerVariants}
-                        >
-                            {checklistItems.map((item, index) => (
-                                <motion.li
-                                    key={index}
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '12px',
-                                        fontSize: '15px',
-                                        marginBottom: '12px',
-                                        padding: '12px',
-                                        borderRadius: '8px',
-                                        background: item.completed ? '#f0fdf4' : 'rgba(14, 165, 233, 0.05)',
-                                        border: `1px solid ${item.completed ? '#10b981' : colors.primaryLight}`
-                                    }}
-                                    variants={itemVariants}
-                                >
-                                    {item.completed ? (
-                                        <CheckCircle size={18} color="#10b981" />
-                                    ) : (
-                                        <div style={{
-                                            width: '18px',
-                                            height: '18px',
-                                            border: `2px solid ${colors.mutedText}`,
-                                            borderRadius: '4px',
-                                            flexShrink: 0
-                                        }} />
-                                    )}
-                                    <span style={{
-                                        textDecoration: item.completed ? 'none' : 'none',
-                                        color: item.completed ? colors.success : colors.text
-                                    }}>
-                                        {item.text}
-                                    </span>
-                                </motion.li>
-                            ))}
-                        </motion.ul>
-                        
-                        <motion.div 
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '12px',
-                                fontSize: '18px',
-                                fontWeight: '600',
-                                color: colors.dark,
-                                marginBottom: '24px'
-                            }}
-                            variants={fadeIn}
-                        >
-                            <DollarSign size={20} color={colors.secondary} />
-                            <span>Session: <strong style={{ color: colors.primary }}>$</strong></span>
-                        </motion.div>
-                        
-                        <motion.button
-                            style={{
-                                background: colors.gradient,
-                                color: colors.light,
-                                border: 'none',
-                                padding: '16px 24px',
-                                fontSize: '16px',
-                                borderRadius: '12px',
-                                cursor: 'pointer',
-                                fontWeight: '600',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '10px',
-                                margin: '0 auto',
-                                maxWidth: '350px',
-                                width: '100%',
-                                justifyContent: 'center'
-                            }}
-                            whileHover={{ background: colors.gradientHover }}
-                            whileTap={{ scale: 0.98 }}
-                            variants={slideUp}
-                        >
-                            <Phone size={18} />
-                            <span>Contact Us Now</span>
-                            <ArrowRight size={18} />
-                        </motion.button>
-                    </motion.section>
-                </motion.div>
+                        Next Step:
+                    </motion.h2>
+
+                    <motion.p
+                        style={{
+                            fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                            color: colors.text,
+                            lineHeight: '1.6',
+                            marginBottom: '24px'
+                        }}
+                        variants={fadeIn}
+                    >
+                        Book your <strong>Course Session</strong> and meet your assigned counselor to:
+                    </motion.p>
+
+                    <motion.ul
+                        style={{
+                            listStyle: 'none',
+                            padding: 0,
+                            margin: '0 auto 24px',
+                            maxWidth: '500px'
+                        }}
+                        variants={containerVariants}
+                    >
+                        {checklistItems.map((item, index) => (
+                            <motion.li
+                                key={index}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '12px',
+                                    fontSize: '15px',
+                                    marginBottom: '12px',
+                                    padding: '12px',
+                                    borderRadius: '8px',
+                                    background: item.completed ? '#f0fdf4' : 'rgba(14, 165, 233, 0.05)',
+                                    border: `1px solid ${item.completed ? '#10b981' : colors.primaryLight}`
+                                }}
+                                variants={itemVariants}
+                            >
+                                {item.completed ? (
+                                    <CheckCircle size={18} color="#10b981" />
+                                ) : (
+                                    <div style={{
+                                        width: '18px',
+                                        height: '18px',
+                                        border: `2px solid ${colors.mutedText}`,
+                                        borderRadius: '4px',
+                                        flexShrink: 0
+                                    }} />
+                                )}
+                                <span style={{
+                                    textDecoration: item.completed ? 'none' : 'none',
+                                    color: item.completed ? colors.success : colors.text
+                                }}>
+                                    {item.text}
+                                </span>
+                            </motion.li>
+                        ))}
+                    </motion.ul>
+
+                    <motion.div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '12px',
+                            fontSize: '18px',
+                            fontWeight: '600',
+                            color: colors.dark,
+                            marginBottom: '24px'
+                        }}
+                        variants={fadeIn}
+                    >
+                        <DollarSign size={20} color={colors.secondary} />
+                        <span>Session: <strong style={{ color: colors.primary }}>$</strong></span>
+                    </motion.div>
+
+                    <motion.button
+                        style={{
+                            background: colors.gradient,
+                            color: colors.light,
+                            border: 'none',
+                            padding: '16px 24px',
+                            fontSize: '16px',
+                            borderRadius: '12px',
+                            cursor: 'pointer',
+                            fontWeight: '600',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            margin: '0 auto',
+                            maxWidth: '350px',
+                            width: '100%',
+                            justifyContent: 'center'
+                        }}
+                        whileHover={{ background: colors.gradientHover }}
+                        whileTap={{ scale: 0.98 }}
+                        variants={slideUp}
+                    >
+                        <Phone size={18} />
+                        <span>Contact Us Now</span>
+                        <ArrowRight size={18} />
+                    </motion.button>
+                </motion.section>
+            </motion.div>
         </div>
     );
 };
