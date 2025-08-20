@@ -21,17 +21,16 @@ const Chatbot = () => {
   }, [messages]);
 
   const botResponses = {
-    courses: `📚 **Course Catalog** ✨\n\n` +
-      `▸ Sovereignty 101 - Master legal identity foundations\n` +
-      `▸ Private Merchant - Setup payment processing\n` +
+    courses: `📚 ** Premium Course Catalog** ✨\n\n` +
+      `▸ Become Private & Sovereignty 101\n` +
       `▸ Operate in Private - Trust/business management\n` +
-      `▸ Build in Credit™ - Unlimited funding strategies\n` +
+      `▸ Private Business Credit\n` +
       `▸ Masterclass - Advanced financial tactics\n\n` +
       `Which one intrigues you? 😊`,
     pricing: `💰 **Membership Tiers** 💎\n\n` +
-      `◈ Freshman - $9/mo\n` +
+      // `◈ Freshman - $9/mo\n` +
       `◈ Master Class - $69/mo (includes private ID)\n` +
-      `◈ "Remedy Now" - $399 (50% OFF)\n` +
+      // `◈ "Remedy Now" - $399 (50% OFF)\n` +
       `◈ Cadillac Website - $499 down + $49/mo\n\n` +
       `Want me to explain any option?`,
     'talk to team': `👥 **Connect With Us** 📞\n\n` +
