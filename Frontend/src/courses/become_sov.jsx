@@ -9,6 +9,8 @@ import {
 } from 'react-icons/fa';
 import Banner from '../assets/BPSOV_Banner.webp';
 import GameBanner from '../components/GameBanner';
+import SovSlider from '../components/SovSlider';
+
 import Remedy from '../assets/Remedy_Result_3.webp';
 import MP from '../assets/PMP2.webp';
 
@@ -833,236 +835,240 @@ const BecomePrivateCourse = () => {
         </div>
       </motion.div>
 
-      {/* What You'll Learn Section with 4-card slider */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        style={{
-          margin: '80px auto',
-          padding: '0 20px',
-          maxWidth: '1200px',
-          textAlign: 'center',
-          position: 'relative'
-        }}
-      >
-        <div style={{ marginBottom: '50px' }}>
-          <motion.h2
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-              fontWeight: '700',
-              color: '#0056b3',
-              marginBottom: '15px'
-            }}
-          >
-            <span style={{ marginRight: '10px' }}>🎯</span>
-            What You'll Learn
-          </motion.h2>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            style={{
-              fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
-              color: '#666',
-              maxWidth: '700px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}
-          >
-            Master these essential concepts to take control of your legal standing
-          </motion.p>
-        </div>
+     {/* What You'll Learn Section with 4-card slider */}
+      {/* <motion.div
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  viewport={{ once: true }}
+  style={{
+    margin: '80px auto',
+    padding: '0 20px',
+    maxWidth: '1200px',
+    textAlign: 'center',
+    position: 'relative'
+  }}
+>
+  <div style={{ marginBottom: '50px' }}>
+    <motion.h2
+      initial={{ y: 20, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      style={{
+        fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+        fontWeight: '700',
+        color: '#0056b3',
+        marginBottom: '15px'
+      }}
+    >
+      <span style={{ marginRight: '10px' }}>🎯</span>
+      What You'll Learn
+    </motion.h2>
+    <motion.p
+      initial={{ y: 20, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      style={{
+        fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
+        color: '#666',
+        maxWidth: '700px',
+        margin: '0 auto',
+        lineHeight: '1.6'
+      }}
+    >
+      Master these essential concepts to take control of your legal standing
+    </motion.p>
+  </div>
 
-        <div 
-          ref={sliderRef}
+  <div
+    ref={sliderRef}
+    style={{
+      position: 'relative',
+      maxWidth: '100%',
+      margin: '0 auto',
+      overflow: 'hidden',
+      padding: '0 40px'
+    }}
+    onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
+    onTouchEnd={(e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      if (touchStartX.current - touchEndX > 50) nextSlide();
+      if (touchStartX.current - touchEndX < -50) prevSlide();
+    }}
+  >
+    <button
+      onClick={prevSlide}
+      disabled={isAnimating}
+      style={{
+        position: 'absolute',
+        left: '0',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        zIndex: 10,
+        width: '40px',
+        height: '40px',
+        borderRadius: '50%',
+        background: 'white',
+        border: 'none',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer'
+      }}
+      aria-label="Previous slide"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke="#0056b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </button>
+
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${cards.length}, 1fr)`,
+        gap: '30px',
+        padding: '20px 0',
+        transform: `translateX(-${currentSlide * (100 / visibleCards)}%)`,
+        transition: 'transform 0.5s ease-in-out',
+        width: `${cards.length * (100 / visibleCards)}%`
+      }}
+    >
+      {cards.map((item, index) => (
+        <motion.div
+          key={index}
+          whileHover={{ scale: 1.02 }}
+          onClick={() => alert(`Clicked: ${item.title}`)} // ✅ whole card clickable
           style={{
-            position: 'relative',
-            maxWidth: '100%',
-            margin: '0 auto',
+            background: '#fff',
+            borderRadius: '20px',
             overflow: 'hidden',
-            padding: '0 40px'
+            boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
+            position: 'relative',
+            border: '1px solid rgba(0,0,0,0.08)',
+            cursor: 'pointer'
           }}
         >
-          {/* Previous Button */}
-          <button
-            onClick={prevSlide}
-            disabled={isAnimating}
-            style={{
-              position: 'absolute',
-              left: '0',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 10,
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: 'white',
-              border: 'none',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer'
-            }}
-            aria-label="Previous slide"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="#0056b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-
-          {/* Cards Container */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: `repeat(${cards.length}, 1fr)`,
-              gap: '30px',
-              padding: '20px 0',
-              transform: `translateX(-${currentSlide * (100 / visibleCards)}%)`,
-              transition: 'transform 0.5s ease-in-out',
-              width: `${cards.length * (100 / visibleCards)}%`
-            }}
-          >
-            {cards.map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.02 }}
-                style={{
-                  background: '#fff',
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
-                  position: 'relative',
-                  border: '1px solid rgba(0,0,0,0.08)',
-                }}
-              >
-                <div style={{
-                  height: '180px',
-                  position: 'relative',
-                  overflow: 'hidden'
-                }}>
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'transform 0.5s ease'
-                    }}
-                  />
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: `linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, ${item.color}80 100%)`
-                  }}></div>
-                </div>
-                <div style={{
-                  position: 'absolute',
-                  top: '150px',
-                  left: '20px',
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '15px',
-                  background: 'rgba(255,255,255,0.95)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
-                  border: `2px solid ${item.color}`
-                }}>
-                  <item.Icon style={{
-                    fontSize: '1.8rem',
-                    color: item.color
-                  }}/>
-                </div>
-                <div style={{
-                  padding: '25px',
-                  paddingTop: '40px'
-                }}>
-                  <h3 style={{
-                    fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)',
-                    fontWeight: '700',
-                    marginBottom: '15px',
-                    color: '#1a1a1a'
-                  }}>
-                    {item.title}
-                  </h3>
-                  <p style={{
-                    fontSize: 'clamp(0.9rem, 1.1vw, 1rem)',
-                    color: '#555',
-                    lineHeight: '1.6',
-                    marginBottom: '20px'
-                  }}>
-                    {item.desc}
-                  </p>
-                  
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Next Button */}
-          <button
-            onClick={nextSlide}
-            disabled={isAnimating}
-            style={{
-              position: 'absolute',
-              right: '0',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 10,
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: 'white',
-              border: 'none',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer'
-            }}
-            aria-label="Next slide"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="#0056b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Indicators */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '10px',
-          marginTop: '30px'
-        }}>
-          {Array.from({ length: cards.length - visibleCards + 1 }).map((_, index) => (
-            <div
-              key={index}
-              onClick={() => setCurrentSlide(index)}
+          <div style={{
+            height: '180px',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <img
+              src={item.img}
+              alt={item.title}
               style={{
-                width: '10px',
-                height: '10px',
-                borderRadius: '50%',
-                background: index === currentSlide ? '#0056b3' : 'rgba(0,0,0,0.1)',
-                cursor: 'pointer',
-                transition: 'background 0.3s ease'
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                transition: 'transform 0.5s ease'
               }}
             />
-          ))}
-        </div>
-      </motion.div>
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: `linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, ${item.color}80 100%)`
+            }}></div>
+          </div>
+          <div style={{
+            position: 'absolute',
+            top: '150px',
+            left: '20px',
+            width: '60px',
+            height: '60px',
+            borderRadius: '15px',
+            background: 'rgba(255,255,255,0.95)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+            border: `2px solid ${item.color}`
+          }}>
+            <item.Icon style={{
+              fontSize: '1.8rem',
+              color: item.color
+            }}/>
+          </div>
+          <div style={{
+            padding: '25px',
+            paddingTop: '40px'
+          }}>
+            <h3 style={{
+              fontSize: 'clamp(1.1rem, 1.5vw, 1.3rem)',
+              fontWeight: '700',
+              marginBottom: '15px',
+              color: '#1a1a1a'
+            }}>
+              {item.title}
+            </h3>
+            <p style={{
+              fontSize: 'clamp(0.9rem, 1.1vw, 1rem)',
+              color: '#555',
+              lineHeight: '1.6',
+              marginBottom: '20px'
+            }}>
+              {item.desc}
+            </p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+
+    <button
+      onClick={nextSlide}
+      disabled={isAnimating}
+      style={{
+        position: 'absolute',
+        right: '0',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        zIndex: 10,
+        width: '40px',
+        height: '40px',
+        borderRadius: '50%',
+        background: 'white',
+        border: 'none',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer'
+      }}
+      aria-label="Next slide"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18L15 12L9 6" stroke="#0056b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '10px',
+    marginTop: '30px'
+  }}>
+    {Array.from({ length: cards.length - visibleCards + 1 }).map((_, index) => (
+      <div
+        key={index}
+        onClick={() => setCurrentSlide(index)}
+        style={{
+          width: '10px',
+          height: '10px',
+          borderRadius: '50%',
+          background: index === currentSlide ? '#0056b3' : 'rgba(0,0,0,0.1)',
+          cursor: 'pointer',
+          transition: 'background 0.3s ease'
+        }}
+      />
+    ))}
+  </div>
+</motion.div> */}
 
       {/* Game Banner Section */}
+      <SovSlider />
       <GameBanner />
 
       {/* What You Can Do Section */}
