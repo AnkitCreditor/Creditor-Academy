@@ -96,9 +96,9 @@ const RoadmapSeries = () => {
                   transition: { duration: 0.5 },
                 }}
               >
-                Roadmap
+                Starter
               </motion.span>{' '}
-              Series
+              Courses
             </motion.h1>
 
             <motion.p
@@ -113,7 +113,7 @@ const RoadmapSeries = () => {
                 lineHeight: 1.6,
               }}
             >
-              Your comprehensive guide to financial sovereignty and credit mastery
+              Your comprehensive guide to financial sovereignty and credit mastery get Complementry with the Masterclass 
             </motion.p>
 {/* 
             <motion.div
@@ -236,8 +236,8 @@ const RoadmapSeries = () => {
                 lineHeight: 1.3,
               }}
             >
-              Start Your Journey to{' '}
-              <span style={{ color: '#0e6297ff' }}>Private Wealth</span>, Legal Freedom & Credit Power
+              Start Your Journey with {' '}
+              <span style={{ color: '#0e6297ff' }}>Roadmap Series </span>to Private Wealth, Legal Freedom & Credit Power 
             </h3>
             <p
               style={{
