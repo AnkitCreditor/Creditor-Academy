@@ -16,6 +16,7 @@ import CreditorPaulintro from '../components/CreditorPaulintro.jsx';
 import Teaching from '../components/Teaching.jsx';
 import Roadmap from '../components/roadmap.jsx';
 import Courses from '../components/CoursesSection';
+import Event from '../components/eventadd.jsx';
 
 import website from '../assets/Website_banner_2(2).webp';
 import privateMerchant from '../assets/merchant (1).webp';
@@ -37,6 +38,7 @@ const LandingPage = () => {
       <CreditorPaulintro />
       <Teaching />
       <MasterclassBanner />
+      <Event />
       <Roadmap />
       {/* <DemoRoadmap /> */}
       <Rseries />
