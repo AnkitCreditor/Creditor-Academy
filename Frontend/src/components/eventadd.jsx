@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import EventImg from '../assets/Event.jpeg';
+import EventImg from '../assets/Events/Event2.png';
 
 // Enhanced single-file React component — tilt removed from parallax.
 // Changes: replaced rotateX/rotateY with translation-only parallax, switched to pointer events,
@@ -15,8 +15,9 @@ export default function EventPromoSectionEnhanced() {
   // Widget URL
   const WIDGET_URL = 'https://api.wonderengine.ai/widget/form/o69tKOXv3NV8GnS4aGls';
 
-  // Countdown target: 11:00 AM Pacific Time (America/Los_Angeles) on Aug 23, 2025
-  const TARGET_TS = new Date('2025-08-23T11:00:00-07:00').getTime();
+  // Countdown target: 11:15 AM Pacific Time (America/Los_Angeles) on Sep 6, 2025
+  // Note: Sep 6, 2025 is in Daylight Saving Time (PDT), so the offset is -07:00.
+  const TARGET_TS = new Date('2025-09-06T11:15:00-07:00').getTime();
 
   const calcTimeLeft = (target) => {
     const diff = target - Date.now();
@@ -268,13 +269,13 @@ export default function EventPromoSectionEnhanced() {
           <div className="eyebrow reveal" data-delay="80">CREDITOR ACADEMY</div>
 
           <h1 id="eventTitle" className="hero reveal" data-delay="140">
-            Exciting Opportunity <span className="highlight">ALERT!</span>
+            Exciting <span className="highlight">Giveaway</span> Opportunity <span className="highlight">Alert!</span>
             <span className="title-sheen" aria-hidden="true" />
           </h1>
 
-          <div className="sub reveal" data-delay="220">Free Financial Growth Consultation <div className="winners-pill" aria-hidden="true"><span className="winners-number">5</span><span className="winners-text">Lucky Winners</span></div></div>
+          <div className="sub reveal" data-delay="220">Are You Ready To Become Private? <div className="winners-pill" aria-hidden="true"><span className="winners-number">$1000</span><span className="winners-text">Giveaway</span></div></div>
 
-          <p className="desc reveal" data-delay="300">Get expert financial advice tailored to boost your credit score, manage debt lawfully, and gain true financial confidence — at no cost. Join our live session for personalised steps &amp; next actions.</p>
+          <p className="desc reveal" data-delay="300">Join Creditor Academy for your chance to win $1000 and unlock exclusive insights into becoming private.</p>
 
           <div className="cta-row">
             <button
@@ -324,8 +325,8 @@ export default function EventPromoSectionEnhanced() {
 
           <div className="info-row reveal" data-delay="480">
             <div>
-              <div className="date">23 AUGUST 2025</div>
-              <div className="time">11AM Pacific Time</div>
+              <div className="date">6 SEPTEMBER 2025</div>
+              <div className="time">11:15 AM Pacific Time (PDT)</div>
             </div>
             <div style={{ marginLeft: 'auto' }}>
               <div className="phone-pill reveal" data-delay="540">
@@ -430,7 +431,7 @@ export default function EventPromoSectionEnhanced() {
         .event-content{position:relative;z-index:4;display:flex;flex-direction:column;gap:12px;padding-right:6px}
         .eyebrow{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#00121a;padding:8px 14px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:0.6px;box-shadow:0 8px 22px rgba(75,170,255,0.06)}
         .hero{font-size:40px;line-height:1.02;margin:4px 0 0;font-weight:800;color:rgba(255,255,255,0.98);letter-spacing:-0.4px}
-        .highlight{background:linear-gradient(90deg,var(--accent-2),#7bdcff);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .highlight{background:#ffd119;-webkit-background-clip:text;background-clip:text;color:transparent}
         .title-sheen{position:absolute;right:0;top:-6px;width:160px;height:28px;transform:skewX(-18deg);background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.18));mix-blend-mode:overlay;border-radius:6px;opacity:0.0;animation: sheent 3.6s infinite}
         @keyframes sheent{0%{opacity:0;transform:translateX(-40px) skewX(-18deg)}50%{opacity:0.9;transform:translateX(120px) skewX(-18deg)}100%{opacity:0;transform:translateX(300px) skewX(-18deg)}}
         .sub{font-weight:700;color:rgba(235,245,255,0.95);margin-top:6px}
