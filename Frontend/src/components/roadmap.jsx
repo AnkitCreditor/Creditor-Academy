@@ -26,7 +26,7 @@ const RoadmapSeries = () => {
         style={{
           position: 'relative',
           width: '100%',
-          marginTop: '50px',
+          marginTop: '0px',
           minHeight: '60vh',
           overflow: 'hidden',
           display: 'flex',

@@ -1,7 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import EventImg from '../assets/Events/Event2.png';
 
-// Enhanced single-file React component — responsive fixes for small screens
+// Enhanced single-file React component
+// Changes in this version:
+// 1) Removed horizontal/inner scroller on desktop by constraining the card and keeping overflow hidden.
+// 2) Kept small-screen alignment and structure intact (responsive media queries preserved).
+// 3) Countdown target is now fixed to PST (Pacific Standard Time, UTC-8) as requested.
+//    NOTE: 'PST' here is used as a fixed -08:00 offset rather than daylight-aware America/Los_Angeles.
+
 export default function EventPromoSectionEnhanced() {
   const cardRef = useRef(null);
   const speakerCardRef = useRef(null);
@@ -12,8 +18,9 @@ export default function EventPromoSectionEnhanced() {
   // Widget URL
   const WIDGET_URL = 'https://api.wonderengine.ai/widget/form/o69tKOXv3NV8GnS4aGls';
 
-  // Countdown target: 11:15 AM Pacific Time (America/Los_Angeles) on Sep 6, 2025
-  const TARGET_TS = new Date('2025-09-06T11:15:00-07:00').getTime();
+  // Countdown target: 11:15 AM Pacific Standard Time (PST, fixed UTC-8) on Sep 6, 2025
+  // Using a fixed -08:00 offset so the timestamp always represents "PST" rather than DST-aware zones.
+  const TARGET_TS = new Date('2025-09-06T11:15:00-08:00').getTime();
 
   const calcTimeLeft = (target) => {
     const diff = target - Date.now();
@@ -296,7 +303,7 @@ export default function EventPromoSectionEnhanced() {
           <div className="info-row reveal" data-delay="480">
             <div>
               <div className="date">6 SEPTEMBER 2025</div>
-              <div className="time">11:15 AM Pacific Time (PDT)</div>
+              <div className="time">11:15 AM Pacific Time (PST)</div>
             </div>
             <div style={{ marginLeft: 'auto' }}>
               <div className="phone-pill reveal" data-delay="540">
@@ -385,19 +392,19 @@ export default function EventPromoSectionEnhanced() {
         .event-section{background:linear-gradient(180deg,var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);padding:24px 18px; margin-top: 30px; overflow-x:hidden}
 
         /* Layout: desktop -> two columns (content + visual). Use minmax so the right column can shrink. */
-        .event-card{position:relative;display:grid;grid-template-columns:1fr minmax(240px, 440px);gap:26px;padding:20px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));backdrop-filter: blur(8px);box-shadow:0 18px 50px rgba(4,8,22,0.6);overflow:visible;min-width:0}
+        .event-card{position:relative;display:grid;grid-template-columns:1fr minmax(240px, 440px);gap:26px;padding:20px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));backdrop-filter: blur(8px);box-shadow:0 18px 50px rgba(4,8,22,0.6);overflow:hidden;min-width:0;max-width:1200px;margin-inline:auto}
 
         /* prevent grid children from overflowing (important for responsive shrink) */
         .event-content, .speaker-wrap, .speaker-card { min-width: 0 }
 
-        .neon-outline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;border-radius:20px;z-index:0}
+        .neon-outline{position:absolute;left:6px;right:6px;top:6px;bottom:6px;width:auto;height:auto;pointer-events:none;border-radius:20px;z-index:0}
         .neon-path{stroke:#66baff44;stroke-linejoin:round;filter:drop-shadow(0 8px 28px rgba(102,186,255,0.08));stroke-opacity:0.95;stroke-dasharray: 1600;stroke-dashoffset:1600;animation: dash 6s linear infinite}
         @keyframes dash{0%{stroke-dashoffset:1600}50%{stroke-dashoffset:0}100%{stroke-dashoffset:-1600}}
 
         .bg-layers{position:absolute;inset:0;pointer-events:none;border-radius:20px;overflow:hidden;z-index:0}
         .gradient-blob{position:absolute;filter:blur(64px);opacity:0.9;mix-blend-mode:screen}
-        .g1{width:560px;height:560px;left:-140px;top:-160px;background:radial-gradient(circle at 30% 30%, rgba(4,80,160,0.36), rgba(4,80,160,0.02));animation: blob 14s infinite linear}
-        .g2{width:420px;height:420px;right:-120px;bottom:-80px;background:radial-gradient(circle at 70% 30%, rgba(0,150,255,0.22), rgba(0,150,255,0.01));animation: blob 18s infinite linear reverse}
+        .g1{width:560px;height:560px;left:-8vw;top:-10vw;background:radial-gradient(circle at 30% 30%, rgba(4,80,160,0.36), rgba(4,80,160,0.02));animation: blob 14s infinite linear}
+        .g2{width:420px;height:420px;right:-8vw;bottom:-6vw;background:radial-gradient(circle at 70% 30%, rgba(0,150,255,0.22), rgba(0,150,255,0.01));animation: blob 18s infinite linear reverse}
         @keyframes blob{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(8px) rotate(28deg)}100%{transform:translateY(0) rotate(0deg)}}
         .scanline{position:absolute;inset:0;background-image:repeating-linear-gradient(180deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.00) 2px);opacity:0.04;mix-blend-mode:overlay;animation: scan 8s linear infinite}
         @keyframes scan{0%{transform:translateY(-4%)}100%{transform:translateY(4%)}}
@@ -488,6 +495,7 @@ export default function EventPromoSectionEnhanced() {
           .countdown{min-width:unset;width:100%}
           .info-row{flex-direction:column;align-items:flex-start;gap:8px}
           .phone-pill{margin-left:0}
+          .event-card{max-width:calc(100% - 24px);}
         }
         @media (max-width:640px){
           .event-section{padding:14px 12px}
